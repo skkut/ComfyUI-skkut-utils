@@ -1,0 +1,8 @@
+# Files excluded from the Comfy Registry package (.gitignore syntax).
+# Everything git-tracked is packaged by default; keep the zip to runtime code.
+
+# Per-util development documentation (still on GitHub)
+docs/
+
+# Repo-internal conventions doc
+Agents.md

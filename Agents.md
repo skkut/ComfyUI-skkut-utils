@@ -13,6 +13,7 @@ collects small utilities that previously lived in separate repos
 
 ```
 __init__.py                        # Root aggregator — the ONLY file ComfyUI imports
+pyproject.toml                     # Comfy Registry package metadata ([tool.comfy])
 auto_dark_mode/__init__.py         # Feature: OS theme detection + theme switching (Python backend)
 detailed_jobstatus/__init__.py     # Feature: execution timer (web-only placeholder subpackage)
 save_compressed_weppy/             # Feature: WebP saving (node + HTTP route)

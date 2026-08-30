@@ -1,0 +1,13 @@
+[project]
+name = "skkut-utils"
+description = "A collection of small utilities for ComfyUI: Auto Dark Mode, Detailed Job Status timer, Save Compressed Weppy (WebP with embedded prompt/workflow metadata), and Skutils Resolution Calculator."
+version = "0.1.0"
+license = { file = "LICENSE" }
+dependencies = ["piexif"]
+
+[project.urls]
+Repository = "https://github.com/skkut/ComfyUI-skkut-utils"
+
+[tool.comfy]
+PublisherId = "skkut"
+DisplayName = "Skkut Utils"

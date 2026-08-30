@@ -1,6 +1,23 @@
 # ComfyUI-skkut-utils
 
-A collection of small utilities for [ComfyUI](https://github.com/comfyanonymous/ComfyUI), unified into a single custom-node repo. Install once, get all utils.
+## About
+
+**ComfyUI-skkut-utils** is a single-repo collection of small, practical utilities for [ComfyUI](https://github.com/comfyanonymous/ComfyUI). Instead of maintaining a dozen tiny custom-node repos — each with its own clone-and-install step — every utility lives here, installs together, and needs no configuration.
+
+What's inside:
+
+- **Theme & appearance** — [Auto Dark Mode](docs/auto-dark-mode.md) keeps ComfyUI's colour palette in sync with your OS light/dark setting, in the browser and in ComfyUI Desktop.
+- **Feedback while generating** — [Detailed Job Status](docs/detailed-jobstatus.md) adds a floating, draggable timer that shows how long a job actually ran (not queued), with final status colours.
+- **Saving with metadata** — [Save Compressed Weppy](docs/save-compressed-weppy.md) exports compressed WebP with the prompt and workflow embedded, so dragging the image back into ComfyUI recovers the workflow that made it.
+- **Latent setup** — [Skutils Resolution Calculator](docs/resolution-calculator.md) turns an aspect-ratio preset and a megapixel target into exact width/height values for an Empty Latent Image, with 20 presets spanning the SD1.5, SDXL, SD3/Flux and video-model ladders.
+
+**Design principles:**
+
+- **Install once, get everything** — one `git clone` into `ComfyUI/custom_nodes/`, restart, done. No build step, no config files.
+- **Small and self-contained** — each utility is an independent subpackage with its own docs; use one, or use them all.
+- **Zero-config by default** — features just work on startup; nothing is intrusive until you use it.
+
+Compatible with ComfyUI in the browser and the ComfyUI Desktop app, on Windows, macOS and Linux. MIT-licensed.
 
 ## Installation
 
@@ -15,6 +32,8 @@ A collection of small utilities for [ComfyUI](https://github.com/comfyanonymous/
    ```bash
    git clone https://github.com/skkut/ComfyUI-skkut-utils.git
    ```
+
+   Or install from the [Comfy Registry](https://registry.comfy.org) via **ComfyUI Manager** (search for `skkut-utils`).
 
 3. (Optional) Install the optional dependency for the Weppy EXIF writer:
 
