@@ -14,6 +14,8 @@ collects small utilities that previously lived in separate repos
 ```
 __init__.py                        # Root aggregator — the ONLY file ComfyUI imports
 pyproject.toml                     # Comfy Registry package metadata ([tool.comfy])
+.comfyignore                       # Files excluded from the registry package
+.github/workflows/publish_action.yml  # Auto-publish to the Comfy Registry
 auto_dark_mode/__init__.py         # Feature: OS theme detection + theme switching (Python backend)
 detailed_jobstatus/__init__.py     # Feature: execution timer (web-only placeholder subpackage)
 save_compressed_weppy/             # Feature: WebP saving (node + HTTP route)
@@ -63,6 +65,33 @@ Link back to the root README for install instructions.
    `README.md` (feature table + link to the new doc).
 5. If the feature needs a Python package not already in `requirements.txt`,
    add it there (keep optional deps commented as optional).
+
+## Releasing to the Comfy Registry
+
+Publishing is fully automated via GitHub Actions
+(`.github/workflows/publish_action.yml`, using `Comfy-Org/publish-node-action`).
+No local `comfy node publish` needed.
+
+**Release flow:**
+
+1. Bump `version` in `pyproject.toml` (semver `X.Y.Z`). Versions are immutable
+   once published — never re-push an unchanged version.
+2. Commit and push to `main`. The workflow fires only when `pyproject.toml`
+   changes (or run manually via `workflow_dispatch`).
+
+**Rules to remember:**
+
+- Only git-tracked files get packaged — commit new files (feature subpackages,
+  `web/` files) before releasing, or they are silently missing from the
+  published package.
+- `.comfyignore` excludes `docs/` and `Agents.md` from the package (they stay
+  on GitHub).
+- The action uses the `REGISTRY_ACCESS_TOKEN` repository secret (the publisher
+  API key for `skkut`).
+- Publisher ID `skkut` and package name `skkut-utils` are immutable — renaming
+  either means a new registry package.
+- A failed workflow run usually means the version was already published (did
+  you bump?) or the token is missing.
 
 ## Conventions
 
