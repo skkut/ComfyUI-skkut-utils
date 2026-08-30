@@ -1,0 +1,16 @@
+# Python
+__pycache__/
+*.pyc
+
+# Node
+node_modules/
+
+# Build outputs
+dist/
+build/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo

@@ -1,0 +1,3 @@
+# Optional: enables the primary EXIF writer for Save Compressed Weppy.
+# Without it, the feature falls back to Pillow's native EXIF writer.
+piexif
