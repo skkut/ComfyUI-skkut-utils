@@ -26,15 +26,21 @@ All three inputs are dropdowns: aspect-ratio preset, megapixels (0.5–5.0), and
 
 ## How it works
 
-Each preset is anchored to the **canonical resolution the community uses at ~1 MP** (SDXL / SD3 / Flux / video ladders). The node scales that anchor by the square root of the megapixel target and rounds both sides to `multiple` — the same math as the built-in *Resolution Selector*:
+Each preset is anchored to the **canonical resolution the community uses at ~1 MP** (SDXL / SD3 / Flux / video ladders). The node scales that anchor so the result has the **requested total megapixels — or just below, never above** — with both sides a multiple of `multiple`:
 
 ```
-scale  = sqrt(megapixels)
-width  = round(anchor_w × scale / multiple) × multiple
-height = round(anchor_h × scale / multiple) × multiple
+target_px = megapixels × 1,000,000     # 1 MP = 1,000,000 pixels
+pixels    = anchor_w × anchor_h
+scale     = sqrt(target_px / pixels)
 ```
 
-So at `1.0 MP` the node reproduces the familiar ladder values exactly (e.g. `16:9` → `1344×768`, the SDXL/Flux widescreen), and at other megapixel values it scales smoothly (e.g. `1:1` at `2.0 MP` → `1448×1448`).
+The scale is computed relative to the anchor's **actual** pixel count (not an assumed exact 1.0 MP), so the result lands on the target regardless of the anchor. Then, among the multiples of `multiple` around the ideal size, the node picks the **largest `width × height` that does not exceed `target_px`**; when two candidates are within one grid step of the best area, the one closest to the preset's aspect ratio wins, and the `1:1` preset always returns an exact square. The result is therefore capped at the selected megapixels:
+
+- `1:1` at `1.5 MP`, `multiple 8` → `1224×1224` ≈ **1.498 MP** — an exact square, never above
+- `3:4` at `2.0 MP`, `multiple 8` → `1224×1632` ≈ **1.998 MP** (≤ 2.0)
+- `16:9` at `1.0 MP`, `multiple 8` → `1328×752` ≈ **0.999 MP** (≤ 1.0)
+- `32:9` at `5.0 MP`, `multiple 128` → `4216×1184` ≈ **4.992 MP** (≤ 5.0)
+- `1:1` at `1.0 MP`, `multiple 8` → `1000×1000` = **exactly 1.0 MP**
 
 ## Preset table
 
@@ -66,12 +72,12 @@ The first 8 presets use the **exact option strings of the built-in node**, so wo
 Notes on anchors:
 
 - `~` labels are the *industry* names for near-matches (e.g. `1344×768` is mathematically 7:4 but is universally called "16:9" in SDXL/Flux material).
-- Anchors are the canonical ~1 MP sizes, so a preset's area can be slightly under/over 1.0 MP (e.g. Flux `3:4` = 768×1024 ≈ 0.79 MP). That is intentional — the anchor is what the model family actually trains/generates at.
+- Anchors are the canonical ~1 MP sizes, so a preset's area can be slightly under/over 1.0 MP (e.g. Flux `3:4` = 768×1024 ≈ 0.79 MP). That is intentional — the anchor is what the model family actually trains/generates at. The anchor only sets the **shape**; the scale math above always lands on the selected megapixel target (or just under it).
 - The "SD1.5 class" entries cover the 512/768-base era ratios; SD1.5 generation typically happens at `0.5–0.6 MP` with `multiple = 64`.
 
 ## Example
 
-`1:1 (Square)` + megapixels `2.0` + `multiple 8` → `width 1448`, `height 1448` (≈2.1 MP, divisible by 8).
+`1:1 (Square)` + megapixels `2.0` + `multiple 8` → `width 1408`, `height 1408` (≈1.98 MP — exact square, divisible by 8, never above the target).
 
 ## Files
 

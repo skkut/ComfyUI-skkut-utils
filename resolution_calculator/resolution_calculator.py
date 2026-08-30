@@ -14,11 +14,13 @@ ladders.  See docs/resolution-calculator.md for the full table.
 
 import math
 
-# Aspect-ratio presets: label -> (width, height) anchor at 1.0 MP.
+# Aspect-ratio presets: label -> (width, height) anchor at ~1 MP.
 # Anchors are the canonical resolutions the community uses at ~1 MP
-# (SDXL / SD3 / Flux / video ladders).  Other megapixel values scale the
-# anchor by sqrt(MP) and round to `multiple`, exactly like the built-in
-# Resolution Selector node.
+# (SDXL / SD3 / Flux / video ladders); their exact pixel count is not
+# always 1,000,000 (e.g. Flux 3:4 = 768x1024 ≈ 0.79 MP).  Other megapixel
+# values scale the anchor so the result has the requested total or just
+# below (never above), with both sides a multiple of `multiple` and the
+# 1:1 preset always an exact square.
 RESOLUTION_OPTIONS = {
     "1:1 (Square)": (1024, 1024),
     "4:5 (Social Portrait)": (896, 1152),
@@ -67,12 +69,12 @@ class SkutilsResolutionCalculator:
                 "megapixels": (
                     MEGAPIXEL_OPTIONS,
                     {"default": "1.0",
-                     "tooltip": "Target total megapixels. 1.0 ≈ 1024x1024 for square."},
+                     "tooltip": "Target total megapixels (1 MP = 1,000,000 px); the result never exceeds this."},
                 ),
                 "multiple": (
                     MULTIPLE_OPTIONS,
                     {"default": 8, "advanced": True,
-                     "tooltip": "Round both dimensions to a multiple of this. 8 divides 16/32/64, so it works for every model family; use 16/32/64 for Flux and video models."},
+                     "tooltip": "Both dimensions are multiples of this, and the total is at most the selected megapixels. 8 divides 16/32/64, so it works for every model family; use 16/32/64 for Flux and video models."},
                 ),
             }
         }
@@ -84,8 +86,51 @@ class SkutilsResolutionCalculator:
 
     def calculate(self, aspect_ratio, megapixels, multiple):
         base_w, base_h = RESOLUTION_OPTIONS[aspect_ratio]
-        mp = float(megapixels)
-        scale = math.sqrt(mp)
-        width = round(base_w * scale / multiple) * multiple
-        height = round(base_h * scale / multiple) * multiple
-        return (width, height)
+        # Megapixels are decimal: 1 MP = 1,000,000 pixels.  Anchors are the
+        # model ladders' canonical ~1 MP sizes, which are not exactly
+        # 1,000,000 px, so the scale is computed relative to the anchor's
+        # actual pixel count.
+        target_px = float(megapixels) * 1_000_000
+        # A square preset must stay square: the largest multiple-compatible
+        # square at or below the target (e.g. 1:1 at 1.5 MP -> 1224x1224).
+        if base_w == base_h:
+            side = math.floor(math.sqrt(target_px) / multiple) * multiple
+            return (side, side)
+        pixels = base_w * base_h
+        scale = math.sqrt(target_px / pixels)
+        w0 = base_w * scale
+        h0 = base_h * scale
+        # Never exceed the target: among the multiples of `multiple` around
+        # the ideal size, find the largest w*h at or below target_px.  For
+        # each candidate width the best height is the largest multiple that
+        # still fits, so the result stays within one `multiple` of the
+        # achievable maximum.
+        lo = math.floor(w0 / multiple) - 3
+        hi = math.floor(w0 / multiple) + 3
+        best_area = 0
+        candidates = []
+        for kw in range(lo, hi + 1):
+            w = kw * multiple
+            if w <= 0:
+                continue
+            h = math.floor(target_px / w / multiple) * multiple
+            if h <= 0:
+                continue
+            area = w * h
+            candidates.append((area, w, h))
+            if area > best_area:
+                best_area = area
+        # Max area alone can distort the shape for tiny gains (e.g. 16:9 at
+        # 1.0 MP would come out 1344x744 instead of 1328x752).  Among
+        # candidates within one grid step of the best area, prefer the
+        # closest aspect ratio; beyond that, more pixels win.
+        slack = multiple * min(w0, h0)
+        best_w = best_h = 0
+        best_ratio_err = float("inf")
+        for area, w, h in candidates:
+            if area < best_area - slack:
+                continue
+            ratio_err = abs(w / h - w0 / h0)
+            if ratio_err < best_ratio_err:
+                best_w, best_h, best_ratio_err = w, h, ratio_err
+        return (best_w, best_h)
