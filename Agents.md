@@ -18,6 +18,9 @@ detailed_jobstatus/__init__.py     # Feature: execution timer (web-only placehol
 save_compressed_weppy/             # Feature: WebP saving (node + HTTP route)
     __init__.py                    #   registers node mapping + /save_compressed_weppy route
     save_compressed_weppy.py       #   node implementation
+resolution_calculator/             # Feature: Skutils Resolution Calculator (node)
+    __init__.py                    #   registers node mapping
+    resolution_calculator.py       #   node implementation
 web/                               # Single WEB_DIRECTORY: one JS file per feature
     auto_dark_mode.js
     jobTimer.js

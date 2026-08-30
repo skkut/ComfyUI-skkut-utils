@@ -33,6 +33,7 @@ No build step. Everything except the Weppy node is zero-config and activates on 
 | 🎨 **Auto Dark Mode** | Switches the ComfyUI theme to match the OS Light/Dark colour-scheme, in real time (browser + ComfyUI Desktop) | Nothing to do — automatic |
 | ⏱ **Detailed Job Status** | Floating, draggable execution timer (MM:SS) in the UI, timed from actual execution start | Nothing to do — automatic |
 | 🖼 **Save Compressed Weppy** | Saves images as compressed WebP with embedded prompt/workflow metadata | Add the **Save Compressed Weppy** node, or right-click any image → "Save Compressed Weppy" |
+| 📐 **Skutils Resolution Calculator** | Width/height from 20 aspect-ratio presets + a megapixel dropdown (0.5–5.0 MP) — like the built-in Resolution Selector, with more options | Add the **Skutils Resolution Calculator** node and feed `width`/`height` into an Empty Latent Image |
 
 ---
 
@@ -63,6 +64,14 @@ Saved files keep their metadata: drag a `.webp` back into ComfyUI to recover the
 
 ---
 
+### 📐 Skutils Resolution Calculator
+
+**Description.** Calculates `width` and `height` for your Empty Latent Image from an **aspect-ratio preset** and a **megapixel target** — the same idea as the built-in *Resolution Selector* node, but with **20 presets** (the built-in's 8, the SD1.5/SDXL/SD3-Flux/video ladders, and ultra-wide/ultra-tall tiers) and a **megapixel dropdown** from `0.5 MP` to `5.0 MP` in 0.5 steps instead of a free float.
+
+**How to use.** Add the **Skutils Resolution Calculator** node (category `utils/resolution`), pick a preset such as `16:9 (Widescreen)` and a megapixel value, and connect the `width`/`height` outputs to an Empty Latent Image. Each preset is anchored to its canonical ~1 MP resolution (e.g. `16:9` → `1344×768`, the SDXL/Flux widescreen), so `1.0 MP` reproduces the familiar values exactly. The advanced `multiple` input is a dropdown (8/16/32/64/128, default 8) — 8 divides all the others, so it works for every model family; pick 16/32/64 for Flux or video models.
+
+---
+
 ## Repository layout
 
 ```
@@ -70,6 +79,7 @@ __init__.py                    # Root aggregator (WEB_DIRECTORY, node mappings)
 auto_dark_mode/                # Util: Auto Dark Mode (Python backend)
 detailed_jobstatus/            # Util: Detailed Job Status (web-only)
 save_compressed_weppy/         # Util: Save Compressed Weppy (node + route)
+resolution_calculator/         # Util: Skutils Resolution Calculator (node)
 web/                           # Frontend extensions, one file per util
 docs/                          # Per-util documentation
 ```
@@ -79,6 +89,7 @@ Each utility is documented in detail in [docs/](docs/):
 - [docs/auto-dark-mode.md](docs/auto-dark-mode.md) — how theme detection, injection and the WebSocket push work, plus troubleshooting
 - [docs/detailed-jobstatus.md](docs/detailed-jobstatus.md) — event handling, completion detection, widget behaviour
 - [docs/save-compressed-weppy.md](docs/save-compressed-weppy.md) — node inputs, context-menu flow, EXIF metadata strategy
+- [docs/resolution-calculator.md](docs/resolution-calculator.md) — preset table, megapixel dropdown, calculation math
 
 See [Agents.md](Agents.md) for the repo conventions (layout, docs rule, how to add a util).
 
