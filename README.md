@@ -10,6 +10,7 @@ What's inside:
 - **Feedback while generating** — [Detailed Job Status](docs/detailed-jobstatus.md) adds a floating, draggable timer that shows how long a job actually ran (not queued), with final status colours.
 - **Saving with metadata** — [Save Compressed Weppy](docs/save-compressed-weppy.md) exports compressed WebP with the prompt and workflow embedded, so dragging the image back into ComfyUI recovers the workflow that made it.
 - **Latent setup** — [Skutils Resolution Calculator](docs/resolution-calculator.md) turns an aspect-ratio preset and a megapixel target into exact width/height values for an Empty Latent Image, with 20 presets spanning the SD1.5, SDXL, SD3/Flux and video-model ladders.
+- **Text in the workflow** — [Skutils Text Preview](docs/text-preview.md) shows any text right on the node *and* stores it in the saved workflow JSON, so reloading the workflow brings the text back — no re-run, no external file.
 
 **Design principles:**
 
@@ -53,6 +54,7 @@ No build step. Everything except the Weppy node is zero-config and activates on 
 | ⏱ **Detailed Job Status** | Floating, draggable execution timer (MM:SS) in the UI, timed from actual execution start | Nothing to do — automatic |
 | 🖼 **Save Compressed Weppy** | Saves images as compressed WebP with embedded prompt/workflow metadata | Add the **Save Compressed Weppy** node, or right-click any image → "Save Compressed Weppy" |
 | 📐 **Skutils Resolution Calculator** | Width/height from 20 aspect-ratio presets + a megapixel dropdown (0.5–5.0 MP) — like the built-in Resolution Selector, with more options | Add the **Skutils Resolution Calculator** node and feed `width`/`height` into an Empty Latent Image |
+| 📝 **Skutils Text Preview** | Shows text in the node and stores it in the saved workflow JSON — reloading the workflow brings the displayed text back (no re-run) | Add the **Skutils Text Preview** node, connect a `STRING` into its `text` port, run once, then save the workflow |
 
 ---
 
@@ -91,6 +93,14 @@ Saved files keep their metadata: drag a `.webp` back into ComfyUI to recover the
 
 ---
 
+### 📝 Skutils Text Preview
+
+**Description.** Displays text right on the node — and, unlike the built-in display-only text-preview nodes, **stores the displayed text in the saved workflow JSON**. The executed text is written into the node's regular widget (via a small frontend extension), so a workflow save serializes it into the `.json` and a workflow load restores it: reopen the file later and the text is still there, without re-running.
+
+**How to use.** Add the **Skutils Text Preview** node (category `utils/text`), connect any `STRING` output into its `text` port, and run the workflow once — the text then appears in a read-only text area in the node body. From then on, **Ctrl+S** — the text is part of the saved JSON (also when the workflow is embedded in an image, e.g. via Save Compressed Weppy). Caveat: like every node's widget values, it is not included in *Save (API format)* JSON.
+
+---
+
 ## Repository layout
 
 ```
@@ -99,6 +109,7 @@ auto_dark_mode/                # Util: Auto Dark Mode (Python backend)
 detailed_jobstatus/            # Util: Detailed Job Status (web-only)
 save_compressed_weppy/         # Util: Save Compressed Weppy (node + route)
 resolution_calculator/         # Util: Skutils Resolution Calculator (node)
+text_preview/                  # Util: Skutils Text Preview (node + frontend)
 web/                           # Frontend extensions, one file per util
 docs/                          # Per-util documentation
 ```
@@ -109,6 +120,7 @@ Each utility is documented in detail in [docs/](docs/):
 - [docs/detailed-jobstatus.md](docs/detailed-jobstatus.md) — event handling, completion detection, widget behaviour
 - [docs/save-compressed-weppy.md](docs/save-compressed-weppy.md) — node inputs, context-menu flow, EXIF metadata strategy
 - [docs/resolution-calculator.md](docs/resolution-calculator.md) — preset table, megapixel dropdown, calculation math
+- [docs/text-preview.md](docs/text-preview.md) — how the displayed text is stored in the workflow JSON, what is/isn't saved
 
 See [Agents.md](Agents.md) for the repo conventions (layout, docs rule, how to add a util).
 

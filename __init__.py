@@ -12,6 +12,9 @@ Features
   "Save Compressed Weppy" context-menu entry.
 - resolution_calculator — "Skutils Resolution Calculator" node: aspect-ratio
   preset (20 options) + megapixel dropdown (0.5–5.0 MP) → width/height.
+- text_preview — "Skutils Text Preview" node: shows text in the node and
+  stores it in the saved workflow JSON (unlike the built-in
+  display-only text-preview nodes).
 
 Layout
 ------
@@ -25,6 +28,7 @@ from . import auto_dark_mode  # noqa: F401  (registers HTTP routes, starts theme
 from . import detailed_jobstatus  # noqa: F401  (web-only feature)
 from . import save_compressed_weppy  # noqa: F401  (registers node + /save_compressed_weppy route)
 from . import resolution_calculator  # noqa: F401  (registers node mapping)
+from . import text_preview  # noqa: F401  (registers node mapping; frontend half in web/text_preview.js)
 
 from .save_compressed_weppy import (
     NODE_CLASS_MAPPINGS as _SAVE_COMPRESSED_WEPPY_CLASS_MAPPINGS,
@@ -34,14 +38,20 @@ from .resolution_calculator import (
     NODE_CLASS_MAPPINGS as _RESOLUTION_CALCULATOR_CLASS_MAPPINGS,
     NODE_DISPLAY_NAME_MAPPINGS as _RESOLUTION_CALCULATOR_DISPLAY_MAPPINGS,
 )
+from .text_preview import (
+    NODE_CLASS_MAPPINGS as _TEXT_PREVIEW_CLASS_MAPPINGS,
+    NODE_DISPLAY_NAME_MAPPINGS as _TEXT_PREVIEW_DISPLAY_MAPPINGS,
+)
 
 NODE_CLASS_MAPPINGS = {
     **_SAVE_COMPRESSED_WEPPY_CLASS_MAPPINGS,
     **_RESOLUTION_CALCULATOR_CLASS_MAPPINGS,
+    **_TEXT_PREVIEW_CLASS_MAPPINGS,
 }
 NODE_DISPLAY_NAME_MAPPINGS = {
     **_SAVE_COMPRESSED_WEPPY_DISPLAY_MAPPINGS,
     **_RESOLUTION_CALCULATOR_DISPLAY_MAPPINGS,
+    **_TEXT_PREVIEW_DISPLAY_MAPPINGS,
 }
 
 WEB_DIRECTORY = "./web"
