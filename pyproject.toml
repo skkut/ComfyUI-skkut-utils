@@ -1,7 +1,7 @@
 [project]
 name = "skkut-utils"
-description = "A collection of small utilities for ComfyUI: Auto Dark Mode, Detailed Job Status timer, Save Compressed Weppy (WebP with embedded prompt/workflow metadata), Skutils Resolution Calculator, and Skutils Text Preview (text persisted in the saved workflow JSON)."
-version = "0.2.0"
+description = "A collection of small utilities for ComfyUI: Auto Dark Mode, Detailed Job Status timer, Save Compressed Weppy (WebP with embedded prompt/workflow metadata), Skutils Resolution Calculator, Skutils Scale Image to Total Pixels (the built-in resize node with an optional image input), and Skutils Text Preview (text persisted in the saved workflow JSON)."
+version = "0.3.0"
 license = { file = "LICENSE" }
 dependencies = ["piexif"]
 
