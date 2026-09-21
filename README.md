@@ -10,6 +10,7 @@ What's inside:
 - **Feedback while generating** — [Detailed Job Status](docs/detailed-jobstatus.md) adds a floating, draggable timer that shows how long a job actually ran (not queued), with final status colours.
 - **Saving with metadata** — [Save Compressed Weppy](docs/save-compressed-weppy.md) exports compressed WebP with the prompt and workflow embedded, so dragging the image back into ComfyUI recovers the workflow that made it.
 - **Latent setup** — [Skutils Resolution Calculator](docs/resolution-calculator.md) turns an aspect-ratio preset and a megapixel target into exact width/height values for an Empty Latent Image, with 20 presets spanning the SD1.5, SDXL, SD3/Flux and video-model ladders.
+- **Resizing optional images** — [Skutils Scale Image to Total Pixels](docs/scale-to-total-pixels.md) is the built-in *Scale Image to Total Pixels* node with an **optional** image input, so an image slot you may leave empty no longer blocks the whole workflow from queueing.
 - **Text in the workflow** — [Skutils Text Preview](docs/text-preview.md) shows any text right on the node *and* stores it in the saved workflow JSON, so reloading the workflow brings the text back — no re-run, no external file.
 
 **Design principles:**
@@ -54,6 +55,7 @@ No build step. Everything except the Weppy node is zero-config and activates on 
 | ⏱ **Detailed Job Status** | Floating, draggable execution timer (MM:SS) in the UI, timed from actual execution start | Nothing to do — automatic |
 | 🖼 **Save Compressed Weppy** | Saves images as compressed WebP with embedded prompt/workflow metadata | Add the **Save Compressed Weppy** node, or right-click any image → "Save Compressed Weppy" |
 | 📐 **Skutils Resolution Calculator** | Width/height from 20 aspect-ratio presets + a megapixel dropdown (0.5–5.0 MP) — like the built-in Resolution Selector, with more options | Add the **Skutils Resolution Calculator** node and feed `width`/`height` into an Empty Latent Image |
+| 🔍 **Skutils Scale Image to Total Pixels** | The built-in *Scale Image to Total Pixels* node with an **optional** image input — leave it unconnected and the node outputs nothing instead of failing prompt validation | Add the **Skutils Scale Image to Total Pixels** node wherever you resize a reference image that may not always be supplied |
 | 📝 **Skutils Text Preview** | Shows text in the node and stores it in the saved workflow JSON — reloading the workflow brings the displayed text back (no re-run) | Add the **Skutils Text Preview** node, connect a `STRING` into its `text` port, run once, then save the workflow |
 
 ---
@@ -93,6 +95,16 @@ Saved files keep their metadata: drag a `.webp` back into ComfyUI to recover the
 
 ---
 
+### 🔍 Skutils Scale Image to Total Pixels
+
+**Description.** The built-in *Scale Image to Total Pixels* node, with one change: its **`image` input is optional**. The widgets (`upscale_method`, `megapixels`, `resolution_steps`), their ranges, their defaults and the resize arithmetic are the built-in node's, so it is a drop-in replacement — but with nothing plugged into `image` it returns `None` and the workflow still queues instead of being rejected.
+
+**Why it exists.** ComfyUI validates a prompt's required inputs *before* it runs anything, and that validation is not lazy-aware: a node with an unconnected required input fails the whole submission even when it sits on a branch nothing will ever execute — so a switch that selects the other side does not protect it. Because the built-in node's `image` is required (and its body has no `None` guard either), wiring it to an image slot you may leave empty makes the entire workflow unqueueable. A switch after the resize cannot help, and feeding it a dummy image silently changes the result. This node removes the constraint instead of working around it.
+
+**How to use.** Add the **Skutils Scale Image to Total Pixels** node (category `utils/resolution`) anywhere you would use the built-in one, and connect `image`. When the slot may be empty, leave it unconnected — the node then outputs `None`, which propagates like any other value, so put it at the *end* of an optional branch (autogrow image containers such as `TextEncodeQwenImage21`'s `images` accept `None`; a plain required `IMAGE` input will not). See [docs/scale-to-total-pixels.md](docs/scale-to-total-pixels.md) for the full problem statement and the worked example.
+
+---
+
 ### 📝 Skutils Text Preview
 
 **Description.** Displays text right on the node — and, unlike the built-in display-only text-preview nodes, **stores the displayed text in the saved workflow JSON**. The executed text is written into the node's regular widget (via a small frontend extension), so a workflow save serializes it into the `.json` and a workflow load restores it: reopen the file later and the text is still there, without re-running.
@@ -109,6 +121,7 @@ auto_dark_mode/                # Util: Auto Dark Mode (Python backend)
 detailed_jobstatus/            # Util: Detailed Job Status (web-only)
 save_compressed_weppy/         # Util: Save Compressed Weppy (node + route)
 resolution_calculator/         # Util: Skutils Resolution Calculator (node)
+scale_to_total_pixels/         # Util: Skutils Scale Image to Total Pixels (node)
 text_preview/                  # Util: Skutils Text Preview (node + frontend)
 web/                           # Frontend extensions, one file per util
 docs/                          # Per-util documentation
@@ -120,6 +133,7 @@ Each utility is documented in detail in [docs/](docs/):
 - [docs/detailed-jobstatus.md](docs/detailed-jobstatus.md) — event handling, completion detection, widget behaviour
 - [docs/save-compressed-weppy.md](docs/save-compressed-weppy.md) — node inputs, context-menu flow, EXIF metadata strategy
 - [docs/resolution-calculator.md](docs/resolution-calculator.md) — preset table, megapixel dropdown, calculation math
+- [docs/scale-to-total-pixels.md](docs/scale-to-total-pixels.md) — the problem statement, why the built-in node's required input blocks optional slots, and how the `None` passthrough behaves
 - [docs/text-preview.md](docs/text-preview.md) — how the displayed text is stored in the workflow JSON, what is/isn't saved
 
 See [Agents.md](Agents.md) for the repo conventions (layout, docs rule, how to add a util).
