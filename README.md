@@ -6,12 +6,12 @@
 
 What's inside:
 
-- **Theme & appearance** — [Auto Dark Mode](docs/auto-dark-mode.md) keeps ComfyUI's colour palette in sync with your OS light/dark setting, in the browser and in ComfyUI Desktop.
-- **Feedback while generating** — [Detailed Job Status](docs/detailed-jobstatus.md) adds a floating, draggable timer that shows how long a job actually ran (not queued), with final status colours.
-- **Saving with metadata** — [Save Compressed Weppy](docs/save-compressed-weppy.md) exports compressed WebP with the prompt and workflow embedded, so dragging the image back into ComfyUI recovers the workflow that made it.
-- **Latent setup** — [Skutils Resolution Calculator](docs/resolution-calculator.md) turns an aspect-ratio preset and a megapixel target into exact width/height values for an Empty Latent Image, with 20 presets spanning the SD1.5, SDXL, SD3/Flux and video-model ladders.
+- **Auto Dark mode** — [Auto Dark Mode](docs/auto-dark-mode.md) keeps ComfyUI's colour palette in sync with your OS light/dark setting, in the browser and in ComfyUI Desktop.
+- **Timer while generating** — [Detailed Job Status](docs/detailed-jobstatus.md) adds a floating, draggable timer that shows how long a job actually ran (not queued), with final status colours.
+- **Compressed WebP with metadata** — [Save Compressed Weppy](docs/save-compressed-weppy.md) exports compressed WebP with the prompt and workflow embedded, so dragging the image back into ComfyUI recovers the workflow that made it.
+- **High Resolution Aspect ration selector** — [Skutils Resolution Calculator](docs/resolution-calculator.md) turns an aspect-ratio preset and a megapixel target into exact width/height values for an Empty Latent Image, with 20 presets spanning the SD1.5, SDXL, SD3/Flux and video-model ladders.
 - **Resizing optional images** — [Skutils Scale Image to Total Pixels](docs/scale-to-total-pixels.md) is the built-in *Scale Image to Total Pixels* node with an **optional** image input, so an image slot you may leave empty no longer blocks the whole workflow from queueing.
-- **Text in the workflow** — [Skutils Text Preview](docs/text-preview.md) shows any text right on the node *and* stores it in the saved workflow JSON, so reloading the workflow brings the text back — no re-run, no external file.
+- **Text Preview that is saved in the workflow** — [Skutils Text Preview](docs/text-preview.md) shows any text right on the node *and* stores it in the saved workflow JSON, so reloading the workflow brings the text back — no re-run, no external file.
 
 **Design principles:**
 
