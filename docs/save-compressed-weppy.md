@@ -6,7 +6,7 @@ Saves images as compressed WebP files (`.webp`) while embedding the ComfyUI prom
 
 | | |
 |---|---|
-| **Python backend** | `save_compressed_weppy/__init__.py` (HTTP route) + `save_compressed_weppy/save_compressed_weppy.py` (node) |
+| **Python backend** | `save_compressed_weppy/__init__.py` (HTTP route) + `save_compressed_weppy/save_compressed_weppy.py` (node) + `save_compressed_weppy/download_name.py` (download naming) |
 | **Frontend extension** | `web/save_compressed_weppy.js` |
 | **Dependency** | `piexif` (optional — graceful fallback to Pillow's native EXIF writer) |
 
@@ -43,7 +43,25 @@ The context-menu entry sends `POST /save_compressed_weppy` with:
 }
 ```
 
-The server resolves the image via `folder_paths.get_directory_by_type`, re-encodes it as WebP (quality 80, lossy), embeds the metadata, and returns the file as an attachment (`Content-Disposition: attachment`) with a random name like `ComfyUI_Weppy_abcde.webp`. The frontend turns the response into a browser download — in ComfyUI Desktop (or browsers set to ask) this opens the native save dialog.
+The server resolves the image via `folder_paths.get_directory_by_type`, re-encodes it as WebP (quality 80, lossy), embeds the metadata, and returns the file as an attachment (`Content-Disposition: attachment`). The frontend turns the response into a browser download — in ComfyUI Desktop (or browsers set to ask) this opens the native save dialog.
+
+### Download filename
+
+The context menu can only send what the browser already holds: the image it was opened on, plus the current graph serialised as an API prompt. It cannot send any node's *computed* output — core only emits the `executed` websocket event for nodes that return ui data, so a node whose output is a plain `STRING` never publishes its value to the frontend. The menu has nothing to read, even when a node already computes a filename.
+
+The name is therefore derived **server-side from the prompt**, which does carry the widget values. `download_name.py` holds one small reader per supported node class in `NAME_PROVIDERS`:
+
+| Node class | Name taken from |
+|---|---|
+| `OrexStyleSelector` (OreX) | The selected style's `thumbnail` basename — the same string the node's own `file_name` output carries |
+
+The reader mirrors the node's own rule rather than re-inventing one. Note that the thumbnail name is *not* always a slug of the style name — `emotions` uses `__Happiness`, `Klein_Edit` uses `_Make_Photo_1` — which is why the style file is read rather than the name slugified.
+
+The response is named `<name>_<5 random letters>.webp` (e.g. `collage_kzqrv.webp`); a graph with no supported node keeps the default `ComfyUI_Weppy_<5 random letters>.webp`. The random suffix is retained so repeated saves never collide or overwrite silently.
+
+Resolution is best-effort and never fails a save: a missing pack, an unreadable or unrecognised style set, or an unknown selection all fall back to the default prefix. Derived names are flattened to `[A-Za-z0-9._-]` before reaching the header (so `__Happiness` becomes `Happiness`), and the style-set name is validated before it is used to build a path.
+
+To teach the menu about another pack's filename output, add an entry to `NAME_PROVIDERS` — the readers are plain `inputs -> str | None` functions.
 
 ## Metadata handling
 
@@ -61,5 +79,6 @@ The feature ships as part of the unified `ComfyUI-skkut-utils` repo — see the 
 ## Files
 
 - `save_compressed_weppy/save_compressed_weppy.py` — node implementation and `strip_binary_from_workflow()`.
+- `save_compressed_weppy/download_name.py` — download filename policy: `NAME_PROVIDERS`, the OreX style reader, the style-catalog lookup, and `safe_slug()`.
 - `save_compressed_weppy/__init__.py` — registers the node mapping and the `/save_compressed_weppy` route.
 - `web/save_compressed_weppy.js` — context-menu extension (extension name `SaveCompressedWeppy.ContextMenu`).

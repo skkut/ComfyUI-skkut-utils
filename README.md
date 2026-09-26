@@ -81,7 +81,7 @@ No build step. Everything except the Weppy node is zero-config and activates on 
 **Description.** Saves images as compressed `.webp` files while embedding the ComfyUI prompt and workflow in the EXIF metadata (large base64 blobs are stripped automatically so the metadata stays within EXIF size limits). Two ways to use it:
 
 1. **Save Compressed Weppy node** (category: `image`) — add it to your workflow and every generated image is saved to the output directory during execution. Inputs: `images`, `filename_prefix` (default `ComfyUI_Weppy`), `quality` (1–100, default 80), `lossless` (default off). The prompt/workflow are captured automatically via hidden inputs.
-2. **Right-click any image preview** → **"Save Compressed Weppy"** (right next to the native "Save Image" entry) — re-encodes that image and triggers a download. In ComfyUI Desktop this opens the native save dialog.
+2. **Right-click any image preview** → **"Save Compressed Weppy"** (right next to the native "Save Image" entry) — re-encodes that image and triggers a download. In ComfyUI Desktop this opens the native save dialog. The download is named after the graph when a supported node supplies one (e.g. the OreX style selector's selected style → `collage_kzqrv.webp`), and `ComfyUI_Weppy_<random>` otherwise.
 
 Saved files keep their metadata: drag a `.webp` back into ComfyUI to recover the workflow that generated it.
 

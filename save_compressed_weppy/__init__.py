@@ -12,12 +12,12 @@ EXIF size limits).  Two entry points:
     displayed image and trigger a browser download.
 """
 
+from .download_name import build as build_download_name
 from .save_compressed_weppy import SaveCompressedWeppy, strip_binary_from_workflow
 
 import os
 import io
 import json
-import random
 from server import PromptServer
 from aiohttp import web
 import folder_paths
@@ -69,7 +69,7 @@ async def save_compressed_weppy_endpoint(request):
             if workflow is not None:
                 exif_bytes[0x010e] = ("workflow:" + json.dumps(strip_binary_from_workflow(workflow))).encode("utf-8")
 
-        download_name = f"ComfyUI_Weppy_{''.join(random.choice('abcdefghijklmnopqrstupvxyz') for _ in range(5))}.webp"
+        name = build_download_name(prompt)
 
         buf = io.BytesIO()
         img.save(buf, format="WEBP", exif=exif_bytes, quality=80, lossless=False)
@@ -78,7 +78,7 @@ async def save_compressed_weppy_endpoint(request):
         return web.Response(
             body=buf.getvalue(),
             content_type="image/webp",
-            headers={"Content-Disposition": f'attachment; filename="{download_name}"'}
+            headers={"Content-Disposition": f'attachment; filename="{name}"'}
         )
     except Exception as e:
         return web.json_response({"status": "error", "message": str(e)}, status=500)
