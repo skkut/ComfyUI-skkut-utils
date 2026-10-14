@@ -54,12 +54,17 @@ The name is therefore derived **server-side from the prompt**, which does carry 
 | Node class | Name taken from |
 |---|---|
 | `OrexStyleSelector` (OreX) | The selected style's `thumbnail` basename — the same string the node's own `file_name` output carries |
+| `ClioStyle` / `ClioStyleEncode` (Clio Style Library) | The `style` dropdown selection, as `Krea2/<style name>` — the same string the node's own `filename_prefix` output carries |
 
-The reader mirrors the node's own rule rather than re-inventing one. Note that the thumbnail name is *not* always a slug of the style name — `emotions` uses `__Happiness`, `Klein_Edit` uses `_Make_Photo_1` — which is why the style file is read rather than the name slugified.
+The reader mirrors the node's own rule rather than re-inventing one. Note that the Clio name is *not* a slug of the OreX style: the two packs share no style vocabulary, and OreX's thumbnail name is not always a slug of its style name either — `emotions` uses `__Happiness`, `Klein_Edit` uses `_Make_Photo_1` — which is why the style file is read rather than the name slugified.
+
+**Clio details.** The pack writes `Krea2/<style name>` into its `filename_prefix`, keeping the style name's own punctuation, so `Cover Art` becomes `Krea2_Cover_Art_<suffix>.webp` (the `/` is flattened like any other separator). Two cases collapse to `Krea2/unstyled`, matching the node: the `✨ none` dropdown entry, and a style that no longer has a paragraph in the pack's `styles.json` — which Clio re-reads on every call, so entries can vanish without a ComfyUI restart. If that file cannot be read at all, the style is assumed to exist rather than renaming every save to `unstyled`.
 
 The response is named `<name>_<5 random letters>.webp` (e.g. `collage_kzqrv.webp`); a graph with no supported node keeps the default `ComfyUI_Weppy_<5 random letters>.webp`. The random suffix is retained so repeated saves never collide or overwrite silently.
 
-Resolution is best-effort and never fails a save: a missing pack, an unreadable or unrecognised style set, or an unknown selection all fall back to the default prefix. Derived names are flattened to `[A-Za-z0-9._-]` before reaching the header (so `__Happiness` becomes `Happiness`), and the style-set name is validated before it is used to build a path.
+Resolution is best-effort and never fails a save: a missing pack, an unreadable or unrecognised style set, or an unknown selection all fall back to the default prefix. Derived names are flattened to `[A-Za-z0-9._-]` before reaching the header (so `__Happiness` becomes `Happiness`), and a style-set name taken from the prompt is validated before it is used to build a path.
+
+A `style` input that arrives as a *link* (the widget converted to an input socket) yields nothing — the linked value is not in the prompt — so the name falls through to another supported node or the default. The same applies to any reader whose inputs are all linked.
 
 To teach the menu about another pack's filename output, add an entry to `NAME_PROVIDERS` — the readers are plain `inputs -> str | None` functions.
 
@@ -79,6 +84,6 @@ The feature ships as part of the unified `ComfyUI-skkut-utils` repo — see the 
 ## Files
 
 - `save_compressed_weppy/save_compressed_weppy.py` — node implementation and `strip_binary_from_workflow()`.
-- `save_compressed_weppy/download_name.py` — download filename policy: `NAME_PROVIDERS`, the OreX style reader, the style-catalog lookup, and `safe_slug()`.
+- `save_compressed_weppy/download_name.py` — download filename policy: `NAME_PROVIDERS`, the OreX and Clio style readers, the style-catalog lookups, and `safe_slug()`.
 - `save_compressed_weppy/__init__.py` — registers the node mapping and the `/save_compressed_weppy` route.
 - `web/save_compressed_weppy.js` — context-menu extension (extension name `SaveCompressedWeppy.ContextMenu`).
