@@ -38,9 +38,8 @@ _SAFE_STYLE_SET = re.compile(r"^[A-Za-z0-9][A-Za-z0-9 ._-]*$")
 _UNSAFE_IN_NAME = re.compile(r"[^A-Za-z0-9._-]+")
 _MAX_SLUG_LEN = 80
 
-# Clio's "no style" dropdown entry, and the folder it prefixes every name with.
+# Clio's "no style" dropdown entry.
 _CLIO_NONE = "✨ none"
-_CLIO_PREFIX = "Krea2/"
 
 
 def random_suffix():
@@ -145,12 +144,14 @@ def _load_catalog(styles_set):
 
 
 def _clio_style_name(inputs):
-    """Reproduce the `filename_prefix` output of the Clio Style Library node.
+    """The Clio Style Library's style name, used as the download name.
 
-    Clio builds `Krea2/<style name>` from the dropdown selection, keeping the
-    name's own punctuation, and falls back to `Krea2/unstyled` on its "none"
-    entry — or when the selected style no longer has a paragraph in the
-    library, which the pack re-reads on every call.
+    The node's own `filename_prefix` output is `Krea2/<style name>` — named
+    for the model the pack was built around — but its library is used with
+    other models too, so that folder prefix is dropped and only the style
+    name is kept.  The name's own punctuation is preserved, and it falls back
+    to `unstyled` on the "none" entry or when the selected style no longer
+    has a paragraph in the library, which the pack re-reads on every call.
     """
     style = inputs.get("style")
     # A link (the widget converted to an input) arrives as [node id, slot] —
@@ -159,8 +160,7 @@ def _clio_style_name(inputs):
         return None
     if style == _CLIO_NONE or not _clio_has_prose(style):
         style = "unstyled"
-    safe = "".join(char for char in style if char.isalnum() or char in " -_()").strip()
-    return f"{_CLIO_PREFIX}{safe}" if safe else None
+    return "".join(char for char in style if char.isalnum() or char in " -_()").strip() or None
 
 
 def _clio_has_prose(style):
