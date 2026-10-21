@@ -12,10 +12,11 @@ What's inside:
 - **High Resolution Aspect ration selector** — [Skutils Resolution Calculator](docs/resolution-calculator.md) turns an aspect-ratio preset and a megapixel target into exact width/height values for an Empty Latent Image, with 20 presets spanning the SD1.5, SDXL, SD3/Flux and video-model ladders.
 - **Resizing optional images** — [Skutils Scale Image to Total Pixels](docs/scale-to-total-pixels.md) is the built-in *Scale Image to Total Pixels* node with an **optional** image input, so an image slot you may leave empty no longer blocks the whole workflow from queueing.
 - **Text Preview that is saved in the workflow** — [Skutils Text Preview](docs/text-preview.md) shows any text output right on the node *and* stores it as part of the saved JSON workflow, so opening the workflow again in ComfyUI (or drag & drop the respective image) brings the text back — no re-run, no external file. The built-in text preview does not save this info.
+- **Style picker for prompts** — [Skutils Style Selector](docs/skutils-style-selector.md) is a visual picker over a bundled 434-style library (curated Clio + OreX sets, plus a hand-added style). Select one or many styles in a large searchable panel, combine them into one prompt or batch one run per style, and get finished positive/negative prompts plus a filename-ready style name. Add your own styles in the in-panel editor.
 
 **Design principles:**
 
-- **Install once, get everything** — one `git clone` into `ComfyUI/custom_nodes/`, restart, done. No build step, no config files.
+- **Install once, get everything** — one `git clone` or install from the [Comfy Registry](https://registry.comfy.org), restart, done. No build step, no config files.
 - **Small and self-contained** — each utility is an independent subpackage with its own docs; use one, or use them all.
 - **Zero-config by default** — features just work on startup; nothing is intrusive until you use it.
 
@@ -57,6 +58,7 @@ No build step. Everything except the Weppy node is zero-config and activates on 
 | 📐 **Skutils Resolution Calculator** | Width/height from 20 aspect-ratio presets + a megapixel dropdown (0.5–5.0 MP) — like the built-in Resolution Selector, with more options | Add the **Skutils Resolution Calculator** node and feed `width`/`height` into an Empty Latent Image |
 | 🔍 **Skutils Scale Image to Total Pixels** | The built-in *Scale Image to Total Pixels* node with an **optional** image input — leave it unconnected and the node outputs nothing instead of failing prompt validation | Add the **Skutils Scale Image to Total Pixels** node wherever you resize a reference image that may not always be supplied |
 | 📝 **Skutils Text Preview** | Shows text in the node and stores it in the saved workflow JSON — reloading the workflow brings the displayed text back (no re-run) | Add the **Skutils Text Preview** node, connect a `STRING` into its `text` port, run once, then save the workflow |
+| 🎭 **Skutils Style Selector** | 434 bundled styles in a searchable visual picker; multi-select, combine or batch-per-style, positive + negative output, custom styles | Add the **Skutils Style Selector** node, click **Choose styles…**, select styles, then connect its `positive`/`negative` outputs to your text encoder |
 
 ---
 
@@ -81,7 +83,7 @@ No build step. Everything except the Weppy node is zero-config and activates on 
 **Description.** Saves images as compressed `.webp` files while embedding the ComfyUI prompt and workflow in the EXIF metadata (large base64 blobs are stripped automatically so the metadata stays within EXIF size limits). Two ways to use it:
 
 1. **Save Compressed Weppy node** (category: `image`) — add it to your workflow and every generated image is saved to the output directory during execution. Inputs: `images`, `filename_prefix` (default `ComfyUI_Weppy`), `quality` (1–100, default 80), `lossless` (default off). The prompt/workflow are captured automatically via hidden inputs.
-2. **Right-click any image preview** → **"Save Compressed Weppy"** (right next to the native "Save Image" entry) — re-encodes that image and triggers a download. In ComfyUI Desktop this opens the native save dialog. The download is named after the graph when a supported node supplies one (the OreX style selector's selected style → `collage_kzqrv.webp`, the Clio Style Library's style → `Cover_Art_kzqrv.webp`), and `ComfyUI_Weppy_<random>` otherwise.
+2. **Right-click any image preview** → **"Save Compressed Weppy"** (right next to the native "Save Image" entry) — re-encodes that image and triggers a download. In ComfyUI Desktop this opens the native save dialog. The download is named after the graph when a supported node supplies one (the OreX style selector's selected style → `collage_kzqrv.webp`, the Clio Style Library's style → `Cover_Art_kzqrv.webp`, the Skutils Style Selector's selection → `Anime_Style_kzqrv.webp`), and `ComfyUI_Weppy_<random>` otherwise.
 
 Saved files keep their metadata: drag a `.webp` back into ComfyUI to recover the workflow that generated it.
 
@@ -113,6 +115,14 @@ Saved files keep their metadata: drag a `.webp` back into ComfyUI to recover the
 
 ---
 
+### 🎭 Skutils Style Selector
+
+**Description.** A visual style picker that combines the best parts of the Clio Style Library and OreX selectors: a large searchable panel with **434 styles in 17 categories**, multi-select with drag-to-reorder, **positive and negative** prompt output, and OreX-style **batch mode** (one downstream run per selected style). The library is bundled with the repo — nothing is read from other custom-node packs — and has been curated: duplicate styles removed, names normalized, sections reorganized, and every style given its own negative prompt.
+
+**How to use.** Add the **Skutils Style Selector** node (category `utils/style`). Connect a text node to its `positive` input socket (and optionally a base prompt to `negative`), then click **Choose styles…** and pick one or more styles. In the default **Combine styles** mode every selected style becomes one prompt; enable `batch_mode` to emit one positive/negative pair per style, in selection order, so the graph runs once per style. The outputs are `positive`, `negative` and a filename-safe `file_name` — the same name the right-click *Save Compressed Weppy* download uses. **＋ New style** in the panel adds your own custom style (name, section, prompt, negative, optional template and image URL), stored under ComfyUI's user directory and editable/deletable later; bundled entries can be cloned. The advanced `template` (`{name}`, `{style}`, `{prompt}`) controls how the prose is wrapped.
+
+---
+
 ## Repository layout
 
 ```
@@ -123,7 +133,9 @@ save_compressed_weppy/         # Util: Save Compressed Weppy (node + route)
 resolution_calculator/         # Util: Skutils Resolution Calculator (node)
 scale_to_total_pixels/         # Util: Skutils Scale Image to Total Pixels (node)
 text_preview/                  # Util: Skutils Text Preview (node + frontend)
+skutils_style_selector/        # Util: Skutils Style Selector (node + library + routes)
 web/                           # Frontend extensions, one file per util
+scripts/                       # Dev-only generators (excluded from the registry package)
 docs/                          # Per-util documentation
 ```
 
@@ -135,6 +147,7 @@ Each utility is documented in detail in [docs/](docs/):
 - [docs/resolution-calculator.md](docs/resolution-calculator.md) — preset table, megapixel dropdown, calculation math
 - [docs/scale-to-total-pixels.md](docs/scale-to-total-pixels.md) — the problem statement, why the built-in node's required input blocks optional slots, and how the `None` passthrough behaves
 - [docs/text-preview.md](docs/text-preview.md) — how the displayed text is stored in the workflow JSON, what is/isn't saved
+- [docs/skutils-style-selector.md](docs/skutils-style-selector.md) — picker usage, composition and batch rules, custom-style schema/storage, bundled-library sources and credits
 
 See [Agents.md](Agents.md) for the repo conventions (layout, docs rule, how to add a util).
 

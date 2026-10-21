@@ -206,6 +206,29 @@ def _load_clio_library():
     return None
 
 
+def _skutils_style_name(inputs):
+    """The Skutils Style Selector's selection, as its own `file_name` output.
+
+    The parsing and slugging rules live in the style-selector feature, so the
+    reader delegates to them rather than duplicating the JSON format here.
+    Imported lazily: this module is also loaded on its own by tests, and the
+    sibling package is not importable outside the repo package.
+    """
+    try:
+        from ..skutils_style_selector.library import filename_slug
+        from ..skutils_style_selector.skutils_style_selector import parse_selection
+    except (ImportError, ValueError):
+        return None
+
+    selected = inputs.get("select_styles")
+    if selected is None:
+        return None
+    names = parse_selection(selected)
+    slugs = [filename_slug(name) for name in names]
+    slugs = [slug for slug in slugs if slug]
+    return "_".join(slugs)[:_MAX_SLUG_LEN] if slugs else None
+
+
 # class_type -> reader(inputs) -> str | None.  Add an entry to teach the
 # context menu about another pack's filename output.
 NAME_PROVIDERS = {
@@ -214,6 +237,7 @@ NAME_PROVIDERS = {
     # rule — ClioStyleEncode just adds clip/strength.
     "ClioStyle": _clio_style_name,
     "ClioStyleEncode": _clio_style_name,
+    "SkutilsStyleSelector": _skutils_style_name,
 }
 
 

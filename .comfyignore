@@ -6,3 +6,6 @@ docs/
 
 # Repo-internal conventions doc
 Agents.md
+
+# Development-only tooling (the generated library it produces is packaged)
+scripts/

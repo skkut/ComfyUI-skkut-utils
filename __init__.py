@@ -18,6 +18,11 @@ Features
 - text_preview — "Skutils Text Preview" node: shows text in the node and
   stores it in the saved workflow JSON (unlike the built-in
   display-only text-preview nodes).
+- skutils_style_selector — "Skutils Style Selector" node: a visual picker
+  over a bundled 434-style library (curated Clio + OreX sets plus a
+  hand-added style), emitting
+  positive / negative prompts and a filename-friendly style name, in combine
+  or per-style batch mode, with an in-panel editor for custom styles.
 
 Layout
 ------
@@ -33,6 +38,7 @@ from . import save_compressed_weppy  # noqa: F401  (registers node + /save_compr
 from . import resolution_calculator  # noqa: F401  (registers node mapping)
 from . import scale_to_total_pixels  # noqa: F401  (registers node mapping)
 from . import text_preview  # noqa: F401  (registers node mapping; frontend half in web/text_preview.js)
+from . import skutils_style_selector  # noqa: F401  (registers node + /skutils_style_selector/* routes)
 
 from .save_compressed_weppy import (
     NODE_CLASS_MAPPINGS as _SAVE_COMPRESSED_WEPPY_CLASS_MAPPINGS,
@@ -50,18 +56,24 @@ from .text_preview import (
     NODE_CLASS_MAPPINGS as _TEXT_PREVIEW_CLASS_MAPPINGS,
     NODE_DISPLAY_NAME_MAPPINGS as _TEXT_PREVIEW_DISPLAY_MAPPINGS,
 )
+from .skutils_style_selector import (
+    NODE_CLASS_MAPPINGS as _STYLE_SELECTOR_CLASS_MAPPINGS,
+    NODE_DISPLAY_NAME_MAPPINGS as _STYLE_SELECTOR_DISPLAY_MAPPINGS,
+)
 
 NODE_CLASS_MAPPINGS = {
     **_SAVE_COMPRESSED_WEPPY_CLASS_MAPPINGS,
     **_RESOLUTION_CALCULATOR_CLASS_MAPPINGS,
     **_SCALE_TO_TOTAL_PIXELS_CLASS_MAPPINGS,
     **_TEXT_PREVIEW_CLASS_MAPPINGS,
+    **_STYLE_SELECTOR_CLASS_MAPPINGS,
 }
 NODE_DISPLAY_NAME_MAPPINGS = {
     **_SAVE_COMPRESSED_WEPPY_DISPLAY_MAPPINGS,
     **_RESOLUTION_CALCULATOR_DISPLAY_MAPPINGS,
     **_SCALE_TO_TOTAL_PIXELS_DISPLAY_MAPPINGS,
     **_TEXT_PREVIEW_DISPLAY_MAPPINGS,
+    **_STYLE_SELECTOR_DISPLAY_MAPPINGS,
 }
 
 WEB_DIRECTORY = "./web"

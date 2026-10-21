@@ -24,10 +24,19 @@ save_compressed_weppy/             # Feature: WebP saving (node + HTTP route)
 resolution_calculator/             # Feature: Skutils Resolution Calculator (node)
     __init__.py                    #   registers node mapping
     resolution_calculator.py       #   node implementation
+skutils_style_selector/            # Feature: Skutils Style Selector (node + data + routes)
+    __init__.py                    #   registers node mapping + guarded routes
+    skutils_style_selector.py      #   node implementation
+    library.py                     #   bundled/custom library, lookups, custom CRUD
+    routes.py                      #   /skutils_style_selector/* endpoints
+    styles.json                    #   GENERATED + hand-curated bundled library (committed)
+    assets/thumbs/*.webp           #   bundled style thumbnails (committed)
 web/                               # Single WEB_DIRECTORY: one JS file per feature
     auto_dark_mode.js
     jobTimer.js
     save_compressed_weppy.js
+    skutils_style_selector.js
+scripts/                           # Dev-only generators (excluded from the package)
 docs/                              # One markdown file per feature (see rule below)
 Agents.md
 README.md
