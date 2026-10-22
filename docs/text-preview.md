@@ -16,9 +16,11 @@ Node name: **Skutils Text Preview** · Category: `utils/text`
 
 | Input | Type | Default | Description |
 |---|---|---|---|
-| `text` | STRING (input port) | — | Text to display — connect any upstream `STRING` output, e.g. a prompt builder, a text parser, or another node's result |
+| `text` | STRING (input port, **optional**) | unconnected | Text to display — connect any upstream `STRING` output, e.g. a prompt builder, a text parser, or another node's result. If left unconnected (or fed an empty string), the next run clears the preview |
 
 The node has **no outputs** — it is a terminal display node (`OUTPUT_NODE`). The text it displayed on its last run is shown in a read-only text area in the node body, and that same text is what gets saved.
+
+Because `text` is optional, the node can sit on a branch whose text may not always exist without blocking the whole workflow from queueing. A run that receives no text clears the display instead of keeping a stale preview from an earlier run.
 
 ## How it works
 
@@ -41,13 +43,13 @@ The trick is *where* the text lives. ComfyUI persists **widget values** into the
               workflow JSON save: text is in the file
 ```
 
-1. **Connect a STRING** into the `text` port (the node takes no typed input, same as the built-in "Preview as Text").
-2. On each run the backend returns the executed text as a UI output.
-3. The frontend extension `web/text_preview.js` creates a real, serialized multiline widget in the node body and writes the text into it.
+1. **Connect a STRING** into the optional `text` port (the node has no text widget of its own, same as the built-in "Preview as Text"). Leaving the port unconnected is valid.
+2. On each run the backend returns the executed text as a UI output (`[]` when no text was received).
+3. The frontend extension `web/text_preview.js` creates a real, serialized multiline widget in the node body and writes the text into it — or removes the widget when the run produced no text.
 4. When you **save the workflow**, that widget value is serialized into the JSON, so the displayed text is stored *inside* the workflow file itself.
 5. When you **load the workflow**, the extension rebuilds the widget from the stored value — the text is displayed again immediately, cached runs included, no execution needed.
 
-The display widget is **read-only**: its value is always the text that was executed (or the text that was saved with the workflow), so what you see is exactly what the JSON contains.
+The display widget is **read-only**: its value is always the text that was executed (or the text that was saved with the workflow), so what you see is exactly what the JSON contains. After a run with no text the widget is removed and the node body is empty; that cleared state is what the next workflow save stores.
 
 ### What is and isn't stored
 
@@ -67,9 +69,9 @@ The display widget is **read-only**: its value is always the text that was execu
 
 ## Files
 
-- `text_preview/text_preview.py` — node implementation: port-only `text` input (STRING, `forceInput`), returns `{"ui": {"text": [...]}}`.
+- `text_preview/text_preview.py` — node implementation: optional port-only `text` input (STRING, `forceInput`), returns `{"ui": {"text": [...]}}` or `{"ui": {"text": []}}` when nothing was received.
 - `text_preview/__init__.py` — registers the node mapping.
-- `web/text_preview.js` — frontend extension that creates the serialized display widget, fills it from `onExecuted`, and rebuilds it from stored values on `configure`/`onConfigure`.
+- `web/text_preview.js` — frontend extension that creates the serialized display widget, fills it (or removes it when empty) from `onExecuted`, and rebuilds it from stored values on `configure`/`onConfigure`.
 
 ## Installation
 

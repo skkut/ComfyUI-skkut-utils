@@ -5,8 +5,8 @@ import { ComfyWidgets } from "../../scripts/widgets.js";
  * ComfyUI Skutils Text Preview – show executed text AND keep it in the
  * workflow JSON
  *
- * The node declares a plain `text` input port (STRING, forceInput) with
- * no widget of its own. This extension adds the display:
+ * The node declares an optional `text` input port (STRING, forceInput)
+ * with no widget of its own. This extension adds the display:
  *
  *  - onNodeCreated/onConfigure: nothing shows until there is something
  *    to show.
@@ -14,6 +14,8 @@ import { ComfyWidgets } from "../../scripts/widgets.js";
  *    STRING widget created with ComfyWidgets["STRING"]. Widget values are
  *    what ComfyUI serializes into the workflow JSON on save — so the
  *    text that was displayed is stored inside the saved workflow itself.
+ *    If the run supplied no text (optional input unconnected, or an
+ *    empty string), the display widget is removed so the node is empty.
  *  - configure/onConfigure: the modern frontend removes programmatically
  *    added widgets while configuring a node, so the incoming
  *    widgets_values are stashed first and the text widget is rebuilt from
@@ -83,7 +85,10 @@ app.registerExtension({
         const onExecuted = nodeType.prototype.onExecuted;
         nodeType.prototype.onExecuted = function (message) {
             const result = onExecuted ? onExecuted.apply(this, arguments) : undefined;
-            populate.call(this, message?.text ?? message?.ui?.text);
+            // A run always updates the display: no text means clear it,
+            // rather than leaving a preview from an earlier run behind.
+            const payload = message?.text ?? message?.ui?.text ?? [];
+            populate.call(this, payload);
             return result;
         };
 

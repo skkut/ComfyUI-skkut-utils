@@ -18,29 +18,36 @@ serialized multiline widget (ComfyWidgets["STRING"]), and when a saved
 workflow is loaded it rebuilds that widget from the stored value.  The
 widget value — what you see — is therefore what a workflow save writes
 to the JSON, and what a workflow load restores.
+
+The input is optional.  An unconnected ``text`` port (or an upstream
+empty string) makes the next run clear the displayed widget instead of
+failing prompt validation, so a preview left over from an earlier run
+does not masquerade as the current one.
 """
 
 
 class SkutilsTextPreview:
     """Show ``text`` in the node and keep it in the saved workflow.
 
-    Same port-only input shape as the built-in "Preview as Text" node,
-    but the text that was displayed lives in a serialized widget: save
-    the workflow and the text is in the JSON; load it and the text is
-    back, with no re-run needed.
+    The port-only input is optional: when it is unconnected (or an empty
+    string), a run clears the displayed text instead of failing prompt
+    validation.  The displayed text lives in a serialized widget, so a
+    workflow save writes it to the JSON and a load restores it without a
+    re-run.
     """
 
     @classmethod
     def INPUT_TYPES(cls):
         return {
-            "required": {
+            "optional": {
                 "text": (
                     "STRING",
                     {
                         "forceInput": True,
                         "tooltip": ("Text to display. Connect any STRING output; the "
                                     "text shown after a run is stored in the node and "
-                                    "saved with the workflow JSON."),
+                                    "saved with the workflow JSON. Leave unconnected to "
+                                    "clear the preview on the next run."),
                     },
                 ),
             }
@@ -51,7 +58,9 @@ class SkutilsTextPreview:
     OUTPUT_NODE = True
     CATEGORY = "utils/text"
 
-    def preview(self, text):
+    def preview(self, text=None):
         # The UI payload is picked up by web/text_preview.js, which stores
-        # it in a serialized widget so it survives a workflow save.
-        return {"ui": {"text": [text]}}
+        # it in a serialized widget so it survives a workflow save.  An
+        # empty list tells the frontend to remove the display widget when
+        # nothing was received.
+        return {"ui": {"text": [] if text is None else [text]}}

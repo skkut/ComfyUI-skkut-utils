@@ -57,7 +57,7 @@ No build step. Everything except the Weppy node is zero-config and activates on 
 | 🖼 **Save Compressed Weppy** | Saves images as compressed WebP with embedded prompt/workflow metadata | Add the **Save Compressed Weppy** node, or right-click any image → "Save Compressed Weppy" |
 | 📐 **Skutils Resolution Calculator** | Width/height from 20 aspect-ratio presets + a megapixel dropdown (0.5–5.0 MP) — like the built-in Resolution Selector, with more options | Add the **Skutils Resolution Calculator** node and feed `width`/`height` into an Empty Latent Image |
 | 🔍 **Skutils Scale Image to Total Pixels** | The built-in *Scale Image to Total Pixels* node with an **optional** image input — leave it unconnected and the node outputs nothing instead of failing prompt validation | Add the **Skutils Scale Image to Total Pixels** node wherever you resize a reference image that may not always be supplied |
-| 📝 **Skutils Text Preview** | Shows text in the node and stores it in the saved workflow JSON — reloading the workflow brings the displayed text back (no re-run) | Add the **Skutils Text Preview** node, connect a `STRING` into its `text` port, run once, then save the workflow |
+| 📝 **Skutils Text Preview** | Shows text in the node and stores it in the saved workflow JSON — reloading the workflow brings the displayed text back (no re-run). Its `text` input is optional; a run with no text clears the preview | Add the **Skutils Text Preview** node, connect a `STRING` into its `text` port (or leave it unconnected), run once, then save the workflow |
 | 🎭 **Skutils Style Selector** | 434 bundled styles in a searchable visual picker; multi-select, combine or batch-per-style, positive + negative output, custom styles | Add the **Skutils Style Selector** node, click **Choose styles…**, select styles, then connect its `positive`/`negative` outputs to your text encoder |
 
 ---
@@ -111,7 +111,7 @@ Saved files keep their metadata: drag a `.webp` back into ComfyUI to recover the
 
 **Description.** Displays text right on the node — and, unlike the built-in display-only text-preview nodes, **stores the displayed text in the saved workflow JSON**. The executed text is written into the node's regular widget (via a small frontend extension), so a workflow save serializes it into the `.json` and a workflow load restores it: reopen the file later and the text is still there, without re-running.
 
-**How to use.** Add the **Skutils Text Preview** node (category `utils/text`), connect any `STRING` output into its `text` port, and run the workflow once — the text then appears in a read-only text area in the node body. From then on, **Ctrl+S** — the text is part of the saved JSON (also when the workflow is embedded in an image, e.g. via Save Compressed Weppy). Caveat: like every node's widget values, it is not included in *Save (API format)* JSON.
+**How to use.** Add the **Skutils Text Preview** node (category `utils/text`), connect any `STRING` output into its `text` port, and run the workflow once — the text then appears in a read-only text area in the node body. From then on, **Ctrl+S** — the text is part of the saved JSON (also when the workflow is embedded in an image, e.g. via Save Compressed Weppy). The `text` port is **optional**: if it is left unconnected (or the upstream value is empty), the next run clears the node body instead of failing prompt validation. Caveat: like every node's widget values, it is not included in *Save (API format)* JSON.
 
 ---
 
