@@ -178,7 +178,7 @@ function renderNodeBody(node) {
     }
 
     state.button.textContent = names.length
-        ? `Edit styles (${names.length})`
+        ? `✎ Edit styles (${names.length})`
         : "Choose styles…";
 }
 
@@ -409,8 +409,9 @@ function ensureCss() {
     const style = document.createElement("style");
     style.id = CSS_ID;
     style.textContent = `
-.skutils-node { display: flex; flex-direction: column; gap: 4px; width: 100%; box-sizing: border-box; padding: 0; font-size: 11px; }
-.skutils-node-chips { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 8px; max-height: 300px; overflow-y: auto; }
+.skutils-node { display: flex; flex-direction: column; gap: 6px; width: 100%; height: 100%; box-sizing: border-box; padding: 0; font-size: 11px; }
+/* Selected styles own the top of the node and scroll when they overflow. */
+.skutils-node-chips { display: flex; flex-wrap: wrap; align-items: flex-start; align-content: flex-start; gap: 8px; flex: 1 1 auto; min-height: 0; overflow-y: auto; }
 /* Same 124x112 thumbnail as the picker strip: 124px content + 4px padding a side. */
 .skutils-node-chip { position: relative; display: flex; flex-direction: column; align-items: stretch; gap: 3px; box-sizing: border-box; width: 132px; padding: 4px; border-radius: 8px; background: rgba(127,127,127,.18); max-width: 100%; }
 .skutils-node-thumb { position: relative; width: 100%; height: 112px; flex: 0 0 auto; border-radius: 5px; overflow: hidden; background: #111; }
@@ -420,9 +421,12 @@ function ensureCss() {
 .skutils-node-name { width: 100%; text-align: center; font-size: 10px; line-height: 1.2; min-height: 2.4em; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; overflow-wrap: anywhere; }
 .skutils-node-chip.missing { outline: 1px dashed rgba(224,168,0,.7); }
 .skutils-node-empty { opacity: .6; }
-.skutils-node-actions { display: flex; align-items: center; }
-.skutils-node-button { padding: 2px 8px; border-radius: 4px; border: 1px solid var(--border-color, #444); background: var(--comfy-input-bg, #222); color: var(--fg-color, #eee); cursor: pointer; font-size: 10px; line-height: 1.4; }
-.skutils-node-button:hover { border-color: var(--p-primary-color, #3b82f6); }
+/* Anchored below the style area; the button stays centred in the node. */
+.skutils-node-actions { display: flex; flex: 0 0 auto; align-items: center; justify-content: center; width: 100%; }
+.skutils-node-button { flex: 0 1 auto; min-width: min(220px, 100%); max-width: 100%; padding: 7px 24px; border-radius: 7px; border: 1px solid transparent; background: var(--p-primary-color, #3b82f6); color: var(--p-primary-contrast-color, #fff); cursor: pointer; font-size: 12px; font-weight: 600; line-height: 1.2; text-align: center; white-space: nowrap; letter-spacing: .2px; box-shadow: 0 1px 4px rgba(0,0,0,.35); transition: filter .12s ease, box-shadow .12s ease; }
+.skutils-node-button:hover { filter: brightness(1.1); box-shadow: 0 2px 10px rgba(0,0,0,.45); }
+.skutils-node-button:active { filter: brightness(.95); }
+.skutils-node-button:focus-visible { outline: 2px solid var(--fg-color, #fff); outline-offset: 2px; }
 
 .skutils-overlay { position: fixed; inset: 0; z-index: 10000; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,.6); }
 .skutils-dialog { position: relative; width: min(1120px, 94vw); height: min(840px, 92vh); display: flex; flex-direction: column; overflow: hidden; border-radius: 12px; border: 1px solid var(--border-color, #3a3a3a); background: var(--comfy-menu-bg, #202020); color: var(--fg-color, #eee); box-shadow: 0 24px 80px rgba(0,0,0,.55); }
