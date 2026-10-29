@@ -1,0 +1,1477 @@
+{
+  "version": 1,
+  "source": "u/Dear-Spend-2865",
+  "policy": "Curated one-way exclusions. Each sheet style named in 'new' is treated as a renamed or reworked counterpart of the listed existing styles and is omitted from classified_styles_v18_curated.json. Pairings were reviewed manually; this is not an automatic similarity threshold.",
+  "sheet": "styles_wildcard_v18_krea2_classified / Classified_Styles",
+  "source_url": "https://docs.google.com/spreadsheets/d/1fb2yD74gqT_BxmBpkOMX2V7gSj_A8RQ0/",
+  "exclusions": [
+    {
+      "new": "2.5D Semi-Realistic Anime",
+      "existing": [
+        "Crisp Semi-Realistic Anime Illustration",
+        "Pony 2.5D Realism"
+      ]
+    },
+    {
+      "new": "35mm Film Photo",
+      "existing": [
+        "35mm Photography"
+      ]
+    },
+    {
+      "new": "70s Anime",
+      "existing": [
+        "1970s Anime"
+      ]
+    },
+    {
+      "new": "8-Bit NES Pixel Art",
+      "existing": [
+        "8-Bit Style"
+      ]
+    },
+    {
+      "new": "Absolute Painterly Digital Painting",
+      "existing": [
+        "Absolute Painterly Style"
+      ]
+    },
+    {
+      "new": "Abstract Expressionist Drip Painting",
+      "existing": [
+        "Jackson Pollock Style"
+      ]
+    },
+    {
+      "new": "Adventure Time Cartoon Still",
+      "existing": [
+        "Adventure Time Style"
+      ]
+    },
+    {
+      "new": "Alex Grey Visionary Painting",
+      "existing": [
+        "Alex Grey Style"
+      ]
+    },
+    {
+      "new": "Alex Ross Painted Comic Art",
+      "existing": [
+        "Alex Ross Style"
+      ]
+    },
+    {
+      "new": "Alternative Comic Clean",
+      "existing": [
+        "Alternative Comics Style"
+      ]
+    },
+    {
+      "new": "Amanda Conner-Inspired Comic Illustration",
+      "existing": [
+        "Amanda Conner Illustration"
+      ]
+    },
+    {
+      "new": "Analog Film Photo",
+      "existing": [
+        "Analog Photography"
+      ]
+    },
+    {
+      "new": "Analytical Cubism Painting",
+      "existing": [
+        "Cubism"
+      ]
+    },
+    {
+      "new": "Animal Crossing Cozy Screenshot",
+      "existing": [
+        "Animal Crossing Style"
+      ]
+    },
+    {
+      "new": "Anime",
+      "existing": [
+        "Anime Style"
+      ]
+    },
+    {
+      "new": "Anime Watercolor Illustration",
+      "existing": [
+        "Watercolor Anime Illustration"
+      ]
+    },
+    {
+      "new": "Arcane Painterly Still",
+      "existing": [
+        "Arcane Animation Still"
+      ]
+    },
+    {
+      "new": "Archie Comics",
+      "existing": [
+        "Archie Comics Style"
+      ]
+    },
+    {
+      "new": "Artgerm Comic Glamour",
+      "existing": [
+        "Artgerm Style"
+      ]
+    },
+    {
+      "new": "ArtStation Masterpiece Painting",
+      "existing": [
+        "ArtStation Masterpiece"
+      ]
+    },
+    {
+      "new": "Ashcan Realism Painting",
+      "existing": [
+        "Ashcan School Style"
+      ]
+    },
+    {
+      "new": "Bean Mouth 3D Render",
+      "existing": [
+        "The Mitchells vs. the Machines Style"
+      ]
+    },
+    {
+      "new": "Beatrix Potter Watercolor",
+      "existing": [
+        "Beatrix Potter Style"
+      ]
+    },
+    {
+      "new": "Beauty Campaign Photograph",
+      "existing": [
+        "Commercial Beauty Photography"
+      ]
+    },
+    {
+      "new": "Bernie Wrightson Style Ink Illustration",
+      "existing": [
+        "Bernie Wrightson Gothic"
+      ]
+    },
+    {
+      "new": "Berserk Ink",
+      "existing": [
+        "Berserk Manga Style"
+      ]
+    },
+    {
+      "new": "Bill Sienkiewicz Style Comic Art",
+      "existing": [
+        "Bill Sienkiewicz Expressionism"
+      ]
+    },
+    {
+      "new": "Black and White Documentary Photograph",
+      "existing": [
+        "Black-and-White Documentary Photography"
+      ]
+    },
+    {
+      "new": "Black and White High Contrast Photograph",
+      "existing": [
+        "High-Contrast Photography"
+      ]
+    },
+    {
+      "new": "Blacklight Poster",
+      "existing": [
+        "Blacklight Style"
+      ]
+    },
+    {
+      "new": "Bleach Bypass Film Still",
+      "existing": [
+        "Bleach Bypass Photography"
+      ]
+    },
+    {
+      "new": "Bleach Stylish Illustration",
+      "existing": [
+        "Bleach Style"
+      ]
+    },
+    {
+      "new": "Blue Hour Photograph",
+      "existing": [
+        "Blue Hour Cinema"
+      ]
+    },
+    {
+      "new": "Blueprint Sketch",
+      "existing": [
+        "Blueprint"
+      ]
+    },
+    {
+      "new": "Boichi Style Manga Illustration",
+      "existing": [
+        "Boichi Style"
+      ]
+    },
+    {
+      "new": "Bold Contour Illustration",
+      "existing": [
+        "Bold Contour Style"
+      ]
+    },
+    {
+      "new": "Bookplate Ex Libris Print",
+      "existing": [
+        "Bookplate Illustration"
+      ]
+    },
+    {
+      "new": "Boulet Graphic",
+      "existing": [
+        "Boulet Graphic Illustration"
+      ]
+    },
+    {
+      "new": "Brassai Night Photograph",
+      "existing": [
+        "Brassaï Night Photography"
+      ]
+    },
+    {
+      "new": "Brett Weston Abstract Photograph",
+      "existing": [
+        "Brett Weston Photography"
+      ]
+    },
+    {
+      "new": "Bruce Timm Noir Animation Still",
+      "existing": [
+        "Bruce Timm Noir"
+      ]
+    },
+    {
+      "new": "Butcher Billy Pop Art Print",
+      "existing": [
+        "Butcher Billy Style"
+      ]
+    },
+    {
+      "new": "Butterfly Lighting Photograph",
+      "existing": [
+        "Butterfly Lighting"
+      ]
+    },
+    {
+      "new": "Calligraphic Brush Illustration",
+      "existing": [
+        "Calligraphic Linework"
+      ]
+    },
+    {
+      "new": "Caricature Sketch",
+      "existing": [
+        "Caricature"
+      ]
+    },
+    {
+      "new": "Cartoon",
+      "existing": [
+        "Cartoon Style"
+      ]
+    },
+    {
+      "new": "Castlevania Gothic Anime",
+      "existing": [
+        "Castlevania Concept Art"
+      ]
+    },
+    {
+      "new": "Cel-Shaded Game Screenshot",
+      "existing": [
+        "Zelda Wind Waker Style"
+      ]
+    },
+    {
+      "new": "Character Design",
+      "existing": [
+        "Character Design Illustration"
+      ]
+    },
+    {
+      "new": "Charest Glossy Painting",
+      "existing": [
+        "Travis Charest Style"
+      ]
+    },
+    {
+      "new": "Charlie Bowater Character Portrait Digital Painting",
+      "existing": [
+        "Charlie Bowater Style"
+      ]
+    },
+    {
+      "new": "Children's Book Illustration",
+      "existing": [
+        "Children's Book Drawing",
+        "Vintage Children's Book Drawing"
+      ]
+    },
+    {
+      "new": "Chinese Xieyi Ink Painting",
+      "existing": [
+        "Chinese Ink Drawing"
+      ]
+    },
+    {
+      "new": "Cinematic Still",
+      "existing": [
+        "Cinematic Photography"
+      ]
+    },
+    {
+      "new": "CLAMP Elegance Illustration",
+      "existing": [
+        "CLAMP Style"
+      ]
+    },
+    {
+      "new": "Classic Pin-Up Painting",
+      "existing": [
+        "Pin-Up"
+      ]
+    },
+    {
+      "new": "Classical Academic Painting",
+      "existing": [
+        "Academic Precision Realism"
+      ]
+    },
+    {
+      "new": "Cloisonnism Painting",
+      "existing": [
+        "Cloisonnism"
+      ]
+    },
+    {
+      "new": "Clone Wars Angular Render",
+      "existing": [
+        "Star Wars: The Clone Wars Style"
+      ]
+    },
+    {
+      "new": "CMYK Ben-Day Print",
+      "existing": [
+        "Pop Art",
+        "Variable-Size Ben-Day Dots Illustration"
+      ]
+    },
+    {
+      "new": "Comic Book",
+      "existing": [
+        "Comics Style"
+      ]
+    },
+    {
+      "new": "Conte Crayon",
+      "existing": [
+        "Conté Pastel"
+      ]
+    },
+    {
+      "new": "Coraline Stop Motion",
+      "existing": [
+        "Coraline Stop-Motion Style"
+      ]
+    },
+    {
+      "new": "Corporate Memphis Illustration",
+      "existing": [
+        "Corporate Memphis"
+      ]
+    },
+    {
+      "new": "Cosmic Horror Painting",
+      "existing": [
+        "Cosmic Horror Illustration"
+      ]
+    },
+    {
+      "new": "Cosplay Photo",
+      "existing": [
+        "Cosplay Photography"
+      ]
+    },
+    {
+      "new": "Crayon Coloring Book",
+      "existing": [
+        "Crayola Colored-Book Style"
+      ]
+    },
+    {
+      "new": "Digital Matte Painting",
+      "existing": [
+        "Atmospheric Matte Painting"
+      ]
+    },
+    {
+      "new": "Disney Renaissance 2D Animation Still",
+      "existing": [
+        "Classic Disney Feature Animation"
+      ]
+    },
+    {
+      "new": "Domergue Deco Portrait",
+      "existing": [
+        "Jean-Gabriel Domergue Style"
+      ]
+    },
+    {
+      "new": "Dutch Angle Photograph",
+      "existing": [
+        "Dutch Angle Photography"
+      ]
+    },
+    {
+      "new": "Edgerunners Neon Illustration",
+      "existing": [
+        "Cyberpunk: Edgerunners Style"
+      ]
+    },
+    {
+      "new": "Engraving Etching",
+      "existing": [
+        "Etching"
+      ]
+    },
+    {
+      "new": "Enki Bilal Style Comic Painting",
+      "existing": [
+        "Enki Bilal-Inspired Comic Art"
+      ]
+    },
+    {
+      "new": "Escher Tessellation Lithograph",
+      "existing": [
+        "M.C. Escher Style",
+        "Tessellation-Based Illustration"
+      ]
+    },
+    {
+      "new": "Euromanga Manga Illustration",
+      "existing": [
+        "Euromanga Style"
+      ]
+    },
+    {
+      "new": "European Painted Comic Art",
+      "existing": [
+        "European Prestige Comic"
+      ]
+    },
+    {
+      "new": "Expressionist Brush Painting",
+      "existing": [
+        "Edvard Munch Style"
+      ]
+    },
+    {
+      "new": "Expressive Character Design",
+      "existing": [
+        "Expressive Character Illustration"
+      ]
+    },
+    {
+      "new": "Family Guy Style Cartoon Still",
+      "existing": [
+        "Family Guy Style"
+      ]
+    },
+    {
+      "new": "Fashion Croquis Watercolor",
+      "existing": [
+        "Fashion Sketch"
+      ]
+    },
+    {
+      "new": "Fighting Game Character Illustration",
+      "existing": [
+        "Street Fighter IV Style"
+      ]
+    },
+    {
+      "new": "Film Noir Photo",
+      "existing": [
+        "Film Noir"
+      ]
+    },
+    {
+      "new": "Final Fantasy CG Render",
+      "existing": [
+        "Cinematic Final Fantasy 3D Render"
+      ]
+    },
+    {
+      "new": "Fortnite Character Design",
+      "existing": [
+        "Fortnite Style"
+      ]
+    },
+    {
+      "new": "Franco-Belgian BD Comic Art",
+      "existing": [
+        "Franco-Belgian Ultradetailed Comics"
+      ]
+    },
+    {
+      "new": "Frank Cho Comic",
+      "existing": [
+        "Frank Cho Style"
+      ]
+    },
+    {
+      "new": "Frank Miller Sin City Comic",
+      "existing": [
+        "Frank Miller Style"
+      ]
+    },
+    {
+      "new": "Frieren Atmospheric Illustration",
+      "existing": [
+        "Frieren Style"
+      ]
+    },
+    {
+      "new": "Frutiger Aero Render",
+      "existing": [
+        "Frutiger Aero"
+      ]
+    },
+    {
+      "new": "Fujimoto Raw Manga",
+      "existing": [
+        "Chainsaw Man Style"
+      ]
+    },
+    {
+      "new": "Funko Pop Vinyl Toy",
+      "existing": [
+        "Funko Pop Style"
+      ]
+    },
+    {
+      "new": "Futurama Style Cartoon Still",
+      "existing": [
+        "Futurama Style"
+      ]
+    },
+    {
+      "new": "Gacha Character Design",
+      "existing": [
+        "Polished Mobile Gacha Style"
+      ]
+    },
+    {
+      "new": "Ghibli Painterly Anime Illustration",
+      "existing": [
+        "Ghibli Style"
+      ]
+    },
+    {
+      "new": "Giallo illustration",
+      "existing": [
+        "Giallo Poster Art"
+      ]
+    },
+    {
+      "new": "Glen Keane Animation Drawing",
+      "existing": [
+        "Glen Keane Style"
+      ]
+    },
+    {
+      "new": "Golden Hour Photograph",
+      "existing": [
+        "Golden Hour Photography"
+      ]
+    },
+    {
+      "new": "Granov Tech Painted Comic Art",
+      "existing": [
+        "Adi Granov Style"
+      ]
+    },
+    {
+      "new": "Graphic Novel Illustration",
+      "existing": [
+        "Graphic Novel"
+      ]
+    },
+    {
+      "new": "Gravity Falls Cartoon Still",
+      "existing": [
+        "Gravity Falls Style"
+      ]
+    },
+    {
+      "new": "Grindhouse Film Still",
+      "existing": [
+        "Grindhouse Poster Illustration"
+      ]
+    },
+    {
+      "new": "Gris Grimly Macabre Illustration",
+      "existing": [
+        "Gris Grimly Style",
+        "Gris Grimly-Inspired Hyperrealism"
+      ]
+    },
+    {
+      "new": "GTA V Game Art",
+      "existing": [
+        "GTA V Polished Cover Art"
+      ]
+    },
+    {
+      "new": "Halation Glow Photograph",
+      "existing": [
+        "Halation Style"
+      ]
+    },
+    {
+      "new": "Hanna-Barbera Cartoon Still",
+      "existing": [
+        "Hanna-Barbera Style"
+      ]
+    },
+    {
+      "new": "HDR Photo",
+      "existing": [
+        "HDR Photography"
+      ]
+    },
+    {
+      "new": "Herge Masterpiece Comic Art",
+      "existing": [
+        "Bande Dessinée (Hergé/Goscinny Tradition)"
+      ]
+    },
+    {
+      "new": "High-Key Lighting Photograph",
+      "existing": [
+        "High-Key Lighting Photography"
+      ]
+    },
+    {
+      "new": "Horikoshi Hero Anime",
+      "existing": [
+        "My Hero Academia Style"
+      ]
+    },
+    {
+      "new": "Hyperreal Colored Pen",
+      "existing": [
+        "Hyperrealistic Colored-Pen Sketch"
+      ]
+    },
+    {
+      "new": "Hyperrealistic Pin-Up Illustration",
+      "existing": [
+        "2020s Pin-Up"
+      ]
+    },
+    {
+      "new": "Illustrious Booru Style Illustration",
+      "existing": [
+        "Pony/Illustrious Checkpoint Style"
+      ]
+    },
+    {
+      "new": "Ilya Kuvshinov Style Anime Illustration",
+      "existing": [
+        "Ilya Kuvshinov Style"
+      ]
+    },
+    {
+      "new": "Instagram Glamour Photography",
+      "existing": [
+        "Instagram Model Glamour Photography"
+      ]
+    },
+    {
+      "new": "Invader Zim Cartoon Still",
+      "existing": [
+        "Invader Zim Style"
+      ]
+    },
+    {
+      "new": "Isayama Grit Illustration",
+      "existing": [
+        "Attack on Titan Manga Style"
+      ]
+    },
+    {
+      "new": "Isometric Illustration",
+      "existing": [
+        "Isometric 3D Graphic"
+      ]
+    },
+    {
+      "new": "J.C. Leyendecker Style Painting",
+      "existing": [
+        "J.C. Leyendecker Style"
+      ]
+    },
+    {
+      "new": "James Jean Style Illustration",
+      "existing": [
+        "James Jean Style"
+      ]
+    },
+    {
+      "new": "Jim Lee Superhero Comic Art",
+      "existing": [
+        "Jim Lee Style"
+      ]
+    },
+    {
+      "new": "JoJo Flamboyant Illustration",
+      "existing": [
+        "JoJo's Bizarre Adventure Style"
+      ]
+    },
+    {
+      "new": "Junji Ito Horror Illustration",
+      "existing": [
+        "Junji Ito Style"
+      ]
+    },
+    {
+      "new": "Katsuhiro Otomo Style Manga Illustration",
+      "existing": [
+        "Akira Style"
+      ]
+    },
+    {
+      "new": "Katsuya Terada Character Design",
+      "existing": [
+        "Katsuya Terada Style"
+      ]
+    },
+    {
+      "new": "Kay Nielsen Style Illustration",
+      "existing": [
+        "Kay Nielsen Style"
+      ]
+    },
+    {
+      "new": "Kurzgesagt Flat Illustration",
+      "existing": [
+        "Kurzgesagt Style"
+      ]
+    },
+    {
+      "new": "Leyendecker Style Painting",
+      "existing": [
+        "J.C. Leyendecker Style"
+      ]
+    },
+    {
+      "new": "Lindbergh Humanist Photograph",
+      "existing": [
+        "Peter Lindbergh-Inspired Photography"
+      ]
+    },
+    {
+      "new": "Loish Character Style Painting",
+      "existing": [
+        "Loish Ultrarealism"
+      ]
+    },
+    {
+      "new": "Lomography Cross Process Photograph",
+      "existing": [
+        "Cross-Processed Film Photography"
+      ]
+    },
+    {
+      "new": "Low Poly Render",
+      "existing": [
+        "Low Poly"
+      ]
+    },
+    {
+      "new": "Low Relief Carving",
+      "existing": [
+        "Low Relief Sculpture"
+      ]
+    },
+    {
+      "new": "Low-Key Lighting Photograph",
+      "existing": [
+        "Low-Key Photography"
+      ]
+    },
+    {
+      "new": "Mad Magazine Parody Comic Art",
+      "existing": [
+        "MAD Magazine Cover Art"
+      ]
+    },
+    {
+      "new": "Manara Fumetti Illustration",
+      "existing": [
+        "Milo Manara Style"
+      ]
+    },
+    {
+      "new": "Manga",
+      "existing": [
+        "Manga Style"
+      ]
+    },
+    {
+      "new": "Marble Statue",
+      "existing": [
+        "Marble Sculpture"
+      ]
+    },
+    {
+      "new": "Mario Galaxy Art",
+      "existing": [
+        "Modern Super Mario (Nintendo) Style"
+      ]
+    },
+    {
+      "new": "Marker Rendering",
+      "existing": [
+        "Traditional Marker Illustration"
+      ]
+    },
+    {
+      "new": "Masereel Woodcut Masterpiece",
+      "existing": [
+        "Woodcut"
+      ]
+    },
+    {
+      "new": "Matisse Fauve Masterpiece Painting",
+      "existing": [
+        "Henri Matisse Style"
+      ]
+    },
+    {
+      "new": "Matrix-Inspired Digital Noir",
+      "existing": [
+        "Matrix-Grading Photography"
+      ]
+    },
+    {
+      "new": "Meme Sketch",
+      "existing": [
+        "Troll Face",
+        "Wojak/Meme-Sketch Style"
+      ]
+    },
+    {
+      "new": "Mexico Amber Grade Film Still",
+      "existing": [
+        "Mexico Color Grading"
+      ]
+    },
+    {
+      "new": "Minecraft Blocky Screenshot",
+      "existing": [
+        "Minecraft Style"
+      ]
+    },
+    {
+      "new": "Mixed Media Collage",
+      "existing": [
+        "Mixed Media"
+      ]
+    },
+    {
+      "new": "Modern Lithograph",
+      "existing": [
+        "Contemporary Lithography"
+      ]
+    },
+    {
+      "new": "Modern Noir Pulp Cover",
+      "existing": [
+        "Psychological Thriller Pulp Illustration"
+      ]
+    },
+    {
+      "new": "Modern TV Cartoon",
+      "existing": [
+        "Modern Cartoon"
+      ]
+    },
+    {
+      "new": "Modern Ukiyo-e Prestige Print",
+      "existing": [
+        "Contemporary Ukiyo-E"
+      ]
+    },
+    {
+      "new": "Moebius Linear Illustration",
+      "existing": [
+        "Moebius-Inspired Illustration"
+      ]
+    },
+    {
+      "new": "Monet Masterpiece Painting",
+      "existing": [
+        "Monet Style"
+      ]
+    },
+    {
+      "new": "Mosaic Tile Art",
+      "existing": [
+        "Mosaic Art"
+      ]
+    },
+    {
+      "new": "Motion Blur Photo",
+      "existing": [
+        "Motion Blur Photography"
+      ]
+    },
+    {
+      "new": "Mucha Masterpiece Lithograph",
+      "existing": [
+        "Alphonse Mucha Masterwork"
+      ]
+    },
+    {
+      "new": "Muppet Puppet",
+      "existing": [
+        "Muppets Style"
+      ]
+    },
+    {
+      "new": "Murata Hyper Manga",
+      "existing": [
+        "Murata Hyperrealism"
+      ]
+    },
+    {
+      "new": "Muted Grainy 80s Anime",
+      "existing": [
+        "1980s Anime Style"
+      ]
+    },
+    {
+      "new": "N64 Low Poly Screenshot",
+      "existing": [
+        "Nintendo 64 Style"
+      ]
+    },
+    {
+      "new": "Naruto Style Illustration",
+      "existing": [
+        "Naruto Style"
+      ]
+    },
+    {
+      "new": "National Geographic Documentary Photograph",
+      "existing": [
+        "National Geographic Photography"
+      ]
+    },
+    {
+      "new": "Neon Noir Photo",
+      "existing": [
+        "Neon Photography"
+      ]
+    },
+    {
+      "new": "Niji Glossy Anime",
+      "existing": [
+        "MidJourney Niji-Inspired Digital Illustration"
+      ]
+    },
+    {
+      "new": "Norman Rockwell Style Illustration",
+      "existing": [
+        "Norman Rockwell Style"
+      ]
+    },
+    {
+      "new": "Notebook Doodle",
+      "existing": [
+        "Doodle"
+      ]
+    },
+    {
+      "new": "Obata Dark Manga",
+      "existing": [
+        "Death Note Style"
+      ]
+    },
+    {
+      "new": "Oil Impasto",
+      "existing": [
+        "Impasto",
+        "Swirling Impasto"
+      ]
+    },
+    {
+      "new": "One Piece Style Illustration",
+      "existing": [
+        "One Piece Style"
+      ]
+    },
+    {
+      "new": "Op Art Painting",
+      "existing": [
+        "Op-Art Style"
+      ]
+    },
+    {
+      "new": "Overwatch Hero Key Art",
+      "existing": [
+        "Overwatch Concept Art"
+      ]
+    },
+    {
+      "new": "Painterly Cel-Shaded Open World Screenshot",
+      "existing": [
+        "Breath of the Wild Style"
+      ]
+    },
+    {
+      "new": "Paper Collage",
+      "existing": [
+        "Collage"
+      ]
+    },
+    {
+      "new": "Partial Wireframe",
+      "existing": [
+        "Partial Wireframe 3D"
+      ]
+    },
+    {
+      "new": "Peanuts Comic Strip",
+      "existing": [
+        "Peanuts Cartoon Style"
+      ]
+    },
+    {
+      "new": "Pen and Ink",
+      "existing": [
+        "Ink Pen Drawing"
+      ]
+    },
+    {
+      "new": "Pixar 3D Render",
+      "existing": [
+        "Pixar Animation"
+      ]
+    },
+    {
+      "new": "Playboy Cover photography",
+      "existing": [
+        "Playboy / Maxim-Style Photoshoot"
+      ]
+    },
+    {
+      "new": "Playmobil Toy",
+      "existing": [
+        "Playmobil"
+      ]
+    },
+    {
+      "new": "Poe Gothic Engraving",
+      "existing": [
+        "Poe-Inspired Illustration"
+      ]
+    },
+    {
+      "new": "Pokemon Anime",
+      "existing": [
+        "Modern Pokémon Anime Style"
+      ]
+    },
+    {
+      "new": "Pop Surrealism Painting",
+      "existing": [
+        "Lowbrow Style"
+      ]
+    },
+    {
+      "new": "Post-Impressionist Swirl Painting",
+      "existing": [
+        "Van Gogh Style"
+      ]
+    },
+    {
+      "new": "Powerpuff Girls Cartoon Still",
+      "existing": [
+        "Powerpuff Girls Style"
+      ]
+    },
+    {
+      "new": "PS1 Retro 3D Game Screenshot",
+      "existing": [
+        "PS1 Graphics",
+        "PS1 Screenshot"
+      ]
+    },
+    {
+      "new": "Psychedelic Poster",
+      "existing": [
+        "1960s Psychedelic Poster Art",
+        "Psychedelia Style"
+      ]
+    },
+    {
+      "new": "Pulp Magazine Cover",
+      "existing": [
+        "American Pulp Illustration"
+      ]
+    },
+    {
+      "new": "Quilling Paper",
+      "existing": [
+        "Quilling"
+      ]
+    },
+    {
+      "new": "Rembrandt Lighting Photograph",
+      "existing": [
+        "Rembrandt-Inspired Photography"
+      ]
+    },
+    {
+      "new": "Rembrandt Masterpiece Painting",
+      "existing": [
+        "Rembrandt Painting"
+      ]
+    },
+    {
+      "new": "Rick and Morty Cartoon Still",
+      "existing": [
+        "Rick and Morty Style"
+      ]
+    },
+    {
+      "new": "Sadamoto Evangelion Illustration",
+      "existing": [
+        "Yoshiyuki Sadamoto Style"
+      ]
+    },
+    {
+      "new": "Sailor Moon Shoujo Illustration",
+      "existing": [
+        "Sailor Moon Style"
+      ]
+    },
+    {
+      "new": "Sakimichan Style Digital Painting",
+      "existing": [
+        "Sakimichan Style"
+      ]
+    },
+    {
+      "new": "Saul Steinberg Illustration",
+      "existing": [
+        "Saul Steinberg Style"
+      ]
+    },
+    {
+      "new": "Screenprint Scanline Thriller",
+      "existing": [
+        "Neon Halftone Retro-Thriller Illustration"
+      ]
+    },
+    {
+      "new": "Scribble Fine Art Drawing",
+      "existing": [
+        "Scribble Fine Art"
+      ]
+    },
+    {
+      "new": "Semi-Realistic Character Portrait Painting",
+      "existing": [
+        "Sharp-Lined Glossy Semi-Realistic Portrait"
+      ]
+    },
+    {
+      "new": "Silkscreen Pop Print",
+      "existing": [
+        "Andy Warhol Style"
+      ]
+    },
+    {
+      "new": "Simpsons Style Cartoon Still",
+      "existing": [
+        "Simpsons Style"
+      ]
+    },
+    {
+      "new": "Sims Screenshot",
+      "existing": [
+        "The Sims Game Screenshot"
+      ]
+    },
+    {
+      "new": "Sin City Selective Color Film Still",
+      "existing": [
+        "Sin City Photography"
+      ]
+    },
+    {
+      "new": "Soft Backlit Glamour Photography",
+      "existing": [
+        "Backlit Portraiture"
+      ]
+    },
+    {
+      "new": "Soft Beauty Light Photograph",
+      "existing": [
+        "Soft Beauty-Dish Portrait Rendering"
+      ]
+    },
+    {
+      "new": "Soft Pastel",
+      "existing": [
+        "Luminous Pastel"
+      ]
+    },
+    {
+      "new": "Soul Eater Graphic",
+      "existing": [
+        "Atsushi Ohkubo Style"
+      ]
+    },
+    {
+      "new": "South Park Cutout Animation Still",
+      "existing": [
+        "South Park Style"
+      ]
+    },
+    {
+      "new": "Soviet Constructivist Lithograph",
+      "existing": [
+        "Soviet Propaganda Poster"
+      ]
+    },
+    {
+      "new": "Spider-Verse Hybrid Animation Still",
+      "existing": [
+        "Spider-Verse Style"
+      ]
+    },
+    {
+      "new": "Stained Glass",
+      "existing": [
+        "Stained Glass Flat Art"
+      ]
+    },
+    {
+      "new": "Steampunk Painting",
+      "existing": [
+        "Steampunk"
+      ]
+    },
+    {
+      "new": "Steven Universe Pastel",
+      "existing": [
+        "Steven Universe Style"
+      ]
+    },
+    {
+      "new": "Stick Figure Drawing",
+      "existing": [
+        "Stick-Figure Child Drawing"
+      ]
+    },
+    {
+      "new": "Stranger Things 80s Film Still",
+      "existing": [
+        "Stranger Things-Inspired Poster"
+      ]
+    },
+    {
+      "new": "Street Art",
+      "existing": [
+        "Graffiti Painting"
+      ]
+    },
+    {
+      "new": "Studio Portrait Photograph",
+      "existing": [
+        "Studio Photography"
+      ]
+    },
+    {
+      "new": "Surrealism Painting",
+      "existing": [
+        "Salvador Dalí Style"
+      ]
+    },
+    {
+      "new": "Surveillance Camera Footage",
+      "existing": [
+        "Surveillance Camera Photo"
+      ]
+    },
+    {
+      "new": "Synthwave Retro Illustration",
+      "existing": [
+        "Hyper Synthwave"
+      ]
+    },
+    {
+      "new": "Tartakovsky Graphic Animation Still",
+      "existing": [
+        "Genndy Tartakovsky Style"
+      ]
+    },
+    {
+      "new": "Tattoo Flash Vignette Design",
+      "existing": [
+        "Vignette Tattoo Design (Flat Print Format)"
+      ]
+    },
+    {
+      "new": "Tex Avery Zany Cartoon Still",
+      "existing": [
+        "Tex Avery Style"
+      ]
+    },
+    {
+      "new": "Tezuka Classic Illustration",
+      "existing": [
+        "Osamu Tezuka Style"
+      ]
+    },
+    {
+      "new": "Tim Burton Character Design",
+      "existing": [
+        "Tim Burton Style"
+      ]
+    },
+    {
+      "new": "Tom Bagshaw-Inspired Character Design",
+      "existing": [
+        "Tom Bagshaw-Inspired Digital Painting"
+      ]
+    },
+    {
+      "new": "Topographic Lines Drawing",
+      "existing": [
+        "Topographic Linework Illustration"
+      ]
+    },
+    {
+      "new": "Toriyama Style Illustration",
+      "existing": [
+        "Akira Toriyama Style"
+      ]
+    },
+    {
+      "new": "Tron Legacy Film Still",
+      "existing": [
+        "Cinematic Tron"
+      ]
+    },
+    {
+      "new": "Ultradetailed Hyperrealism Painting",
+      "existing": [
+        "Hyperrealism"
+      ]
+    },
+    {
+      "new": "Ultradetailed Manga",
+      "existing": [
+        "Ultradetailed Manga Illustration"
+      ]
+    },
+    {
+      "new": "Underwater Photo",
+      "existing": [
+        "Underwater Photography"
+      ]
+    },
+    {
+      "new": "Unreal Engine Photoreal Render",
+      "existing": [
+        "Unreal Engine"
+      ]
+    },
+    {
+      "new": "Victo Ngai Style Illustration",
+      "existing": [
+        "Victo Ngai Style"
+      ]
+    },
+    {
+      "new": "Vogue Cover",
+      "existing": [
+        "Vogue Magazine"
+      ]
+    },
+    {
+      "new": "Voysey Arts and Crafts Print",
+      "existing": [
+        "C.F.A. Voysey Illustration"
+      ]
+    },
+    {
+      "new": "Wallace and Gromit Claymation",
+      "existing": [
+        "Wallace and Gromit Style"
+      ]
+    },
+    {
+      "new": "Watercolor",
+      "existing": [
+        "Watercolor Painting"
+      ]
+    },
+    {
+      "new": "Wes Anderson Symmetry Film Still",
+      "existing": [
+        "Wes Anderson Photography"
+      ]
+    },
+    {
+      "new": "Wet-on-Wet Ink Bloom",
+      "existing": [
+        "Wet-on-Wet Watercolor Ink Painting"
+      ]
+    },
+    {
+      "new": "X-Ray",
+      "existing": [
+        "X-Ray Style"
+      ]
+    },
+    {
+      "new": "Yoshitaka Amano Style Watercolor",
+      "existing": [
+        "Yoshitaka Amano Character Art",
+        "Yoshitaka Amano Fine Art"
+      ]
+    },
+    {
+      "new": "Yu-Gi-Oh Style Illustration",
+      "existing": [
+        "Yu-Gi-Oh! Style"
+      ]
+    },
+    {
+      "new": "Zenescope Fantasy Comic",
+      "existing": [
+        "Zenescope Illustration"
+      ]
+    }
+  ]
+}
