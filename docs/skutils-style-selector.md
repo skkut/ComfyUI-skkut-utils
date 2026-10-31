@@ -47,21 +47,26 @@ run per style** (the same behavior as OreX's batch mode).
 ## Using the picker
 
 The `select_styles` widget is hidden and replaced by a small panel: the
-selected styles appear as thumbnail cards (the same 124×112 tiles as the
-picker strip, with their selection order) above a **Choose styles…** button.
+selected styles appear as compact thumbnail cards (150×150 images, with their
+selection order) above a **Choose styles…** button. The picker grid displays
+each style at 256×256 for close comparison; the selected strip at the top of
+the picker uses the same compact 150×150 size. Each node card has a small
+**×** button next to the style name to remove that style without opening the
+picker.
 
 1. Click **Choose styles…** (or **Edit styles (N)**) on the node.
 2. Search by name, section, or prose text; filter by section with the
-   dropdown. The 17 sections are: Anime, Cartoon, Comics, Drawing, Painting,
+   dropdown. The 19 sections are: Anime, Cartoon, Comics, Drawing, Painting,
    Digital Painting, Printmaking, Craft & Collage, Photography, Design,
    Cover Art, 3D Render, Sculpture & Toys, Stop-Motion & Puppetry,
-   Video Games, Emotion, Edit.
+   Video Games, Illustration, Character & Creature Design, Emotion, Edit.
 3. Click tiles to select them. Selection order is preserved — it is the batch
    order and the order prose is joined in combine mode.
 4. Reorder selected styles in the strip at the top (drag a chip, or use the
    `‹` / `›` buttons); remove one with `×`.
-5. **Apply** writes the ordered selection back into the node. **Esc** or the
-   overlay closes without applying; **Clear** empties the selection.
+5. **Apply** writes the ordered selection back into the node. **Esc**, the
+   overlay, or the round **×** at the top-right of the selected-styles strip
+   closes without applying; **Clear** empties the selection.
 
 Selecting a workflow's saved styles or reopening it restores the selection
 from `select_styles` — the picker is only a UI over that widget.

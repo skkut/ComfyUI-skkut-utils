@@ -172,7 +172,28 @@ function renderNodeBody(node) {
             const thumb = el("div", { class: "skutils-node-thumb" });
             appendThumb(thumb, entry, name, "skutils-node-fallback");
             thumb.append(el("span", { class: "skutils-node-order", text: String(index + 1) }));
-            chip.append(thumb, el("span", { class: "skutils-node-name", text: name }));
+            const removeButton = el("button", {
+                class: "skutils-node-remove",
+                type: "button",
+                text: "×",
+                title: `Remove ${name}`,
+                "aria-label": `Remove ${name}`,
+                onclick: (event) => {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    const next = readSelection(node).filter((_, i) => i !== index);
+                    writeSelection(node, next);
+                },
+            });
+            chip.append(
+                thumb,
+                el(
+                    "div",
+                    { class: "skutils-node-footer" },
+                    el("span", { class: "skutils-node-name", text: name }),
+                    removeButton,
+                ),
+            );
             state.chips.append(chip);
         });
     }
@@ -348,7 +369,7 @@ function setupNode(node) {
     };
 
     refreshNodeBody(node);
-    node.setSize([Math.max(node.size?.[0] ?? 0, 340), Math.max(node.size?.[1] ?? 0, 230)]);
+    node.setSize([Math.max(node.size?.[0] ?? 0, 400), Math.max(node.size?.[1] ?? 0, 260)]);
 }
 
 // ---------------------------------------------------------------------------
@@ -412,13 +433,16 @@ function ensureCss() {
 .skutils-node { display: flex; flex-direction: column; gap: 6px; width: 100%; height: 100%; box-sizing: border-box; padding: 0; font-size: 11px; }
 /* Selected styles own the top of the node and scroll when they overflow. */
 .skutils-node-chips { display: flex; flex-wrap: wrap; align-items: flex-start; align-content: flex-start; gap: 8px; flex: 1 1 auto; min-height: 0; overflow-y: auto; }
-/* Same 124x112 thumbnail as the picker strip: 124px content + 4px padding a side. */
-.skutils-node-chip { position: relative; display: flex; flex-direction: column; align-items: stretch; gap: 3px; box-sizing: border-box; width: 132px; padding: 4px; border-radius: 8px; background: rgba(127,127,127,.18); max-width: 100%; }
-.skutils-node-thumb { position: relative; width: 100%; height: 112px; flex: 0 0 auto; border-radius: 5px; overflow: hidden; background: #111; }
+/* Compact node-body preview; the picker grid and strip use the full 256px size. */
+.skutils-node-chip { position: relative; display: flex; flex-direction: column; align-items: stretch; gap: 3px; box-sizing: border-box; width: 162px; padding: 6px; border-radius: 8px; background: rgba(127,127,127,.18); max-width: 100%; }
+.skutils-node-thumb { position: relative; width: 100%; height: 150px; flex: 0 0 auto; border-radius: 5px; overflow: hidden; background: #111; }
 .skutils-node-thumb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
-.skutils-node-fallback { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 26px; font-weight: 700; letter-spacing: 1px; }
+.skutils-node-fallback { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 28px; font-weight: 700; letter-spacing: 1px; }
 .skutils-node-order { position: absolute; top: 3px; left: 3px; display: inline-flex; align-items: center; justify-content: center; min-width: 18px; height: 18px; padding: 0 4px; border-radius: 9px; background: var(--p-primary-color, #3b82f6); color: #fff; font-size: 10px; font-weight: 700; box-shadow: 0 1px 4px rgba(0,0,0,.5); }
-.skutils-node-name { width: 100%; text-align: center; font-size: 10px; line-height: 1.2; min-height: 2.4em; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; overflow-wrap: anywhere; }
+.skutils-node-footer { display: flex; align-items: center; gap: 4px; min-width: 0; }
+.skutils-node-remove { flex: 0 0 auto; width: 24px; height: 20px; display: inline-flex; align-items: center; justify-content: center; padding: 0; border: none; border-radius: 4px; background: rgba(127,127,127,.16); color: inherit; font-size: 13px; line-height: 1; cursor: pointer; opacity: .75; }
+.skutils-node-remove:hover, .skutils-node-remove:focus-visible { opacity: 1; }
+.skutils-node-name { flex: 1 1 auto; min-width: 0; text-align: center; font-size: 10px; line-height: 1.2; min-height: 2.4em; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; overflow-wrap: anywhere; }
 .skutils-node-chip.missing { outline: 1px dashed rgba(224,168,0,.7); }
 .skutils-node-empty { opacity: .6; }
 /* Anchored below the style area; the button stays centred in the node. */
@@ -429,7 +453,7 @@ function ensureCss() {
 .skutils-node-button:focus-visible { outline: 2px solid var(--fg-color, #fff); outline-offset: 2px; }
 
 .skutils-overlay { position: fixed; inset: 0; z-index: 10000; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,.6); }
-.skutils-dialog { position: relative; width: min(1120px, 94vw); height: min(840px, 92vh); display: flex; flex-direction: column; overflow: hidden; border-radius: 12px; border: 1px solid var(--border-color, #3a3a3a); background: var(--comfy-menu-bg, #202020); color: var(--fg-color, #eee); box-shadow: 0 24px 80px rgba(0,0,0,.55); }
+.skutils-dialog { position: relative; width: min(1720px, 94vw); height: min(1000px, 94vh); display: flex; flex-direction: column; overflow: hidden; border-radius: 12px; border: 1px solid var(--border-color, #3a3a3a); background: var(--comfy-menu-bg, #202020); color: var(--fg-color, #eee); box-shadow: 0 24px 80px rgba(0,0,0,.55); }
 .skutils-header { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; padding: 12px 14px; border-bottom: 1px solid var(--border-color, #3a3a3a); }
 .skutils-title { margin: 0; font-size: 16px; font-weight: 600; white-space: nowrap; }
 .skutils-title small { font-weight: 400; opacity: .6; font-size: 12px; margin-left: 6px; }
@@ -440,12 +464,15 @@ function ensureCss() {
 .skutils-btn:disabled { opacity: .5; cursor: default; }
 .skutils-btn.primary { background: var(--p-primary-color, #3b82f6); border-color: transparent; color: #fff; }
 .skutils-btn.danger { border-color: rgba(220,80,80,.6); color: #ff9b9b; }
-.skutils-strip { display: flex; align-items: center; gap: 10px; min-height: 64px; padding: 10px 14px; overflow-x: auto; border-bottom: 1px solid var(--border-color, #3a3a3a); }
+.skutils-strip-row { position: relative; border-bottom: 1px solid var(--border-color, #3a3a3a); }
+.skutils-strip { display: flex; align-items: center; gap: 10px; min-height: 64px; padding: 10px 56px 10px 14px; overflow-x: auto; }
+.skutils-close { position: absolute; top: 10px; right: 12px; z-index: 2; display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; padding: 0; border: none; border-radius: 50%; background: rgba(0,0,0,.7); color: #fff; font-size: 20px; line-height: 1; cursor: pointer; opacity: .8; transition: opacity .12s ease, background .12s ease; }
+.skutils-close:hover, .skutils-close:focus-visible { opacity: 1; background: rgba(200,50,50,.95); }
 .skutils-strip-empty { align-self: center; font-size: 12px; opacity: .6; }
-.skutils-chip { display: flex; flex-direction: column; align-items: stretch; gap: 5px; flex: 0 0 auto; width: 124px; padding: 6px; border-radius: 10px; border: 1px solid var(--border-color, #3a3a3a); background: var(--comfy-input-bg, #1b1b1b); font-size: 12px; cursor: grab; }
+.skutils-chip { display: flex; flex-direction: column; align-items: stretch; gap: 5px; flex: 0 0 auto; width: 164px; padding: 6px; border-radius: 10px; border: 1px solid var(--border-color, #3a3a3a); background: var(--comfy-input-bg, #1b1b1b); font-size: 12px; cursor: grab; }
 .skutils-chip.dragging { opacity: .45; }
 .skutils-chip.missing { border-color: rgba(224,168,0,.8); }
-.skutils-chip-thumb { position: relative; width: 100%; height: 112px; flex: 0 0 auto; border-radius: 6px; overflow: hidden; background: #111; display: flex; align-items: center; justify-content: center; }
+.skutils-chip-thumb { position: relative; width: 100%; height: 150px; flex: 0 0 auto; border-radius: 6px; overflow: hidden; background: #111; display: flex; align-items: center; justify-content: center; }
 .skutils-chip-thumb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
 .skutils-chip-fallback { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 28px; font-weight: 700; letter-spacing: 1px; }
 .skutils-chip-order { position: absolute; top: 4px; left: 4px; display: inline-flex; align-items: center; justify-content: center; min-width: 20px; height: 20px; border-radius: 10px; background: var(--p-primary-color, #3b82f6); color: #fff; font-size: 11px; font-weight: 700; padding: 0 5px; box-shadow: 0 1px 4px rgba(0,0,0,.5); }
@@ -457,17 +484,17 @@ function ensureCss() {
 .skutils-chip-btn:disabled { opacity: .2; cursor: default; }
 /* Fixed tracks + explicit image height: aspect-ratio/minmax sizing cycles
    collapse inside ComfyUI's global CSS, and a wrapping name would otherwise
-   shrink the flex image box.  Every thumbnail is therefore exactly 136px high. */
-.skutils-grid { flex: 1; display: grid; grid-template-columns: repeat(auto-fill, 150px); grid-auto-rows: max-content; justify-content: center; gap: 10px; align-content: start; padding: 12px 14px; overflow-y: auto; }
+   shrink the flex image box.  Every thumbnail is therefore exactly 256px high. */
+.skutils-grid { flex: 1; display: grid; grid-template-columns: repeat(auto-fill, 270px); grid-auto-rows: max-content; justify-content: center; gap: 12px; align-content: start; padding: 12px 14px; overflow-y: auto; }
 .skutils-grid-empty { grid-column: 1 / -1; padding: 30px; text-align: center; opacity: .6; font-size: 13px; }
 .skutils-tile { position: relative; display: flex; flex-direction: column; gap: 4px; box-sizing: border-box; padding: 6px; border-radius: 8px; border: 1px solid var(--border-color, #3a3a3a); background: var(--comfy-input-bg, #1b1b1b); color: inherit; cursor: pointer; text-align: left; overflow: hidden; font: inherit; }
 .skutils-tile:hover { border-color: var(--p-primary-color, #3b82f6); }
 .skutils-tile.selected { border-color: var(--p-primary-color, #3b82f6); box-shadow: 0 0 0 2px rgba(59,130,246,.35); }
-.skutils-tile-img { position: relative; width: 100%; height: 136px; flex: 0 0 auto; border-radius: 5px; overflow: hidden; background: #111; display: flex; align-items: center; justify-content: center; }
+.skutils-tile-img { position: relative; width: 100%; height: 256px; flex: 0 0 auto; border-radius: 5px; overflow: hidden; background: #111; display: flex; align-items: center; justify-content: center; }
 .skutils-tile-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
-.skutils-fallback { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 26px; font-weight: 700; letter-spacing: 1px; }
-.skutils-tile-name { font-size: 12px; line-height: 1.25; min-height: 2.5em; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-.skutils-tile-section { font-size: 10px; line-height: 1.2; min-height: 1.2em; opacity: .6; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.skutils-fallback { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 40px; font-weight: 700; letter-spacing: 1px; }
+.skutils-tile-name { font-size: 13px; line-height: 1.25; min-height: 2.5em; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.skutils-tile-section { font-size: 11px; line-height: 1.2; min-height: 1.2em; opacity: .6; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .skutils-tile-order { position: absolute; top: 6px; left: 6px; display: none; align-items: center; justify-content: center; min-width: 22px; height: 22px; padding: 0 6px; border-radius: 11px; background: var(--p-primary-color, #3b82f6); color: #fff; font-size: 11px; font-weight: 700; }
 .skutils-tile-edit { position: absolute; top: 6px; right: 6px; width: 24px; height: 24px; border-radius: 6px; border: none; background: rgba(0,0,0,.68); color: #fff; cursor: pointer; opacity: 0; transition: opacity .15s; }
 .skutils-tile:hover .skutils-tile-edit, .skutils-tile-edit:focus { opacity: 1; }
@@ -510,7 +537,13 @@ function ensureModal() {
     const hint = el("span", { class: "skutils-footer-hint" });
     const clearButton = el("button", { class: "skutils-btn", type: "button", text: "Clear" });
     const applyButton = el("button", { class: "skutils-btn primary", type: "button", text: "Apply" });
-    const closeButton = el("button", { class: "skutils-btn", type: "button", text: "×", title: "Close (Esc)" });
+    const closeButton = el("button", {
+        class: "skutils-close",
+        type: "button",
+        text: "×",
+        title: "Close (Esc)",
+        "aria-label": "Close picker",
+    });
     const newButton = el("button", { class: "skutils-btn", type: "button", text: "＋ New style" });
 
     const header = el(
@@ -529,8 +562,10 @@ function ensureModal() {
         sectionSelect,
         status,
         newButton,
-        closeButton,
     );
+    // The close X sits in the selected-styles row, top-right, matching the
+    // node cards' remove buttons; the strip reserves space for it.
+    const stripRow = el("div", { class: "skutils-strip-row" }, strip, closeButton);
 
     const footer = el(
         "div",
@@ -543,7 +578,7 @@ function ensureModal() {
         "div",
         { class: "skutils-dialog", role: "dialog", "aria-label": "Choose styles" },
         header,
-        strip,
+        stripRow,
         grid,
         footer,
         buildEditor(),
