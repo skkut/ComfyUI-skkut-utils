@@ -130,7 +130,7 @@ class SkutilsScaleImageToTotalPixels:
 
     RETURN_TYPES = ("IMAGE",)
     FUNCTION = "scale"
-    CATEGORY = "utils/resolution"
+    CATEGORY = "skkut-utils"
 
     def scale(self, upscale_method, megapixels, resolution_steps, image=None):
         # Imported here rather than at module scope: comfy.utils only

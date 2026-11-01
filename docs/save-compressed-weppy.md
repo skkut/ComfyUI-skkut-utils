@@ -17,7 +17,7 @@ Two ways to save:
 
 ## Node configuration
 
-Node name: **Save Compressed Weppy** · Category: `image` · Output node (shows images in the UI)
+Node name: **Save Compressed Weppy** · Category: `skkut-utils` (Nodes → Extensions → skkut-utils) · Output node (shows images in the UI)
 
 | Input | Type | Default | Description |
 |---|---|---|---|

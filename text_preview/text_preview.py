@@ -56,7 +56,7 @@ class SkutilsTextPreview:
     RETURN_TYPES = ()
     FUNCTION = "preview"
     OUTPUT_NODE = True
-    CATEGORY = "utils/text"
+    CATEGORY = "skkut-utils"
 
     def preview(self, text=None):
         # The UI payload is picked up by web/text_preview.js, which stores

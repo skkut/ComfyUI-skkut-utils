@@ -10,7 +10,7 @@ ComfyUI's built-in **Scale Image to Total Pixels** node with an **optional** `im
 | **Frontend extension** | none (plain custom node) |
 | **Dependency** | none beyond ComfyUI itself |
 
-Node name: **Skutils Scale Image to Total Pixels** · Category: `utils/resolution`
+Node name: **Skutils Scale Image to Total Pixels** · Category: `skkut-utils` (Nodes → Extensions → skkut-utils)
 
 ## The problem this node solves
 

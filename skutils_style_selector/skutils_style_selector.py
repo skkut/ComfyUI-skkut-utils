@@ -207,7 +207,7 @@ class SkutilsStyleSelector:
     RETURN_TYPES = ("STRING", "STRING", "STRING")
     RETURN_NAMES = ("positive", "negative", "file_name")
     FUNCTION = "execute"
-    CATEGORY = "utils/style"
+    CATEGORY = "skkut-utils"
     OUTPUT_IS_LIST = (True, True, True)
 
     def execute(self, select_styles="[]", batch_mode=False,

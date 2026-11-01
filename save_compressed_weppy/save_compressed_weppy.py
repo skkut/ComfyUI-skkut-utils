@@ -37,7 +37,7 @@ class SaveCompressedWeppy:
     RETURN_TYPES = ()
     FUNCTION = "save_images"
     OUTPUT_NODE = True
-    CATEGORY = "image"
+    CATEGORY = "skkut-utils"
 
     def save_images(self, images, filename_prefix="ComfyUI_Weppy", quality=80, lossless=False, prompt=None, extra_pnginfo=None):
         filename_prefix += self.prefix_append

@@ -10,7 +10,7 @@ A text display node that **keeps the text it shows inside the saved workflow JSO
 | **Frontend extension** | `web/text_preview.js` (writes the executed text into the widget) |
 | **Dependency** | none beyond ComfyUI itself |
 
-Node name: **Skutils Text Preview** · Category: `utils/text`
+Node name: **Skutils Text Preview** · Category: `skkut-utils` (Nodes → Extensions → skkut-utils)
 
 ## Node configuration
 

@@ -17,7 +17,7 @@ custom styles.
 | **Bundled data** | `skutils_style_selector/styles.json` + `assets/thumbs/*.webp` |
 | **Dependencies** | none beyond ComfyUI itself |
 
-Node name: **Skutils Style Selector** · Category: `utils/style`
+Node name: **Skutils Style Selector** · Category: `skkut-utils` (Nodes → Extensions → skkut-utils)
 
 The library is **fully bundled with the repo** — no runtime dependency on
 Clio or OreX, and no files are read from other packs. Updating those packs

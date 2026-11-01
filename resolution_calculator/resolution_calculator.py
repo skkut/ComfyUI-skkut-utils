@@ -82,7 +82,7 @@ class SkutilsResolutionCalculator:
     RETURN_TYPES = ("INT", "INT")
     RETURN_NAMES = ("width", "height")
     FUNCTION = "calculate"
-    CATEGORY = "utils/resolution"
+    CATEGORY = "skkut-utils"
 
     def calculate(self, aspect_ratio, megapixels, multiple):
         base_w, base_h = RESOLUTION_OPTIONS[aspect_ratio]

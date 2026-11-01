@@ -10,7 +10,7 @@ A resolution-selector node that outputs **width** and **height** from an **aspec
 | **Frontend extension** | none (plain custom node) |
 | **Dependency** | none beyond ComfyUI itself |
 
-Node name: **Skutils Resolution Calculator** · Category: `utils/resolution`
+Node name: **Skutils Resolution Calculator** · Category: `skkut-utils` (Nodes → Extensions → skkut-utils)
 
 ## Node configuration
 
