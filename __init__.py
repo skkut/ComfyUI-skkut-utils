@@ -7,6 +7,9 @@ Features
   ComfyUI theme to match in real time (browser + ComfyUI Desktop).
 - detailed_jobstatus    — floating execution timer (MM:SS) shown while a
   job runs, from actual execution start (web-only feature).
+- settings              — a dedicated "skkut-utils" section in ComfyUI's
+  Settings dialog; currently houses the Auto Dark Mode and Job Status
+  toggles (implemented in the web/ feature extensions).
 - save_compressed_weppy — saves images as compressed WebP with embedded
   prompt/workflow metadata: a custom node plus a right-click
   "Save Compressed Weppy" context-menu entry.

@@ -8,7 +8,7 @@ Shows a real-time execution timer in the ComfyUI interface — a floating, dragg
 |---|---|
 | **Python backend** | None — web-only feature |
 | **Frontend extension** | `web/jobTimer.js` |
-| **Config** | None — widget position is remembered per-browser via `localStorage` |
+| **Config** | **Settings → skkut-utils → Features → Job Status Indicator** (default: On); widget position is remembered per-browser via `localStorage` |
 
 ## How it works
 
@@ -33,9 +33,15 @@ Key design decisions:
 - **Position**: floats at bottom-right by default. Drag it anywhere with the mouse; the position is saved to `localStorage` (`djs-timer-pos`) and restored on the next page load. The widget stops all event propagation so clicks never reach the canvas underneath.
 - **Visibility**: hidden when idle, shown while a job runs, and stays visible after completion/error with the final status until the next job starts.
 
+## Configuration
+
+The timer is enabled by default. Turn it off in **Settings → skkut-utils → Features → Job Status Indicator**.
+
+The setting (`SkkutUtils.JobStatus.Enabled`) is checked by every execution-event handler. Disabling hides the widget immediately and clears any in-flight timer; re-enabling takes effect on the next `execution_start` (a job already running is not retroactively timed). See [settings.md](settings.md) for the shared settings section.
+
 ## Installation
 
-The feature ships as part of the unified `ComfyUI-skkut-utils` repo — see the [root README](../README.md). It has no dependencies and no configuration; restart ComfyUI after installing.
+The feature ships as part of the unified `ComfyUI-skkut-utils` repo — see the [root README](../README.md). It has no dependencies; it is enabled by default and can be turned off in **Settings → skkut-utils** (see [settings.md](settings.md)). Restart ComfyUI after installing.
 
 ## Files
 

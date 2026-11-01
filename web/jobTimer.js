@@ -1,6 +1,17 @@
 import { app } from "../../scripts/app.js";
 import { api } from "../../scripts/api.js";
 
+const SETTING_ID = "SkkutUtils.JobStatus.Enabled";
+
+/** True unless the user turned the timer off in Settings → skkut-utils. */
+function isEnabled() {
+    try {
+        return app.ui?.settings?.getSettingValue(SETTING_ID) !== false;
+    } catch (_) {
+        return true;
+    }
+}
+
 /**
  * ComfyUI Detailed Job Status – Execution Timer
  *
@@ -14,6 +25,17 @@ import { api } from "../../scripts/api.js";
  */
 app.registerExtension({
     name: "DetailedJobStatus.ExecutionTimer",
+
+    settings: [
+        {
+            id: SETTING_ID,
+            name: "Job Status Indicator",
+            type: "boolean",
+            defaultValue: true,
+            category: ["skkut-utils", "Features", "JobStatus"],
+            tooltip: "Show a floating timer while a workflow is executing.",
+        },
+    ],
 
     setup() {
         // ── State ────────────────────────────────────────────────────────────
@@ -156,6 +178,7 @@ app.registerExtension({
 
         // Fired when a prompt actually begins executing (not when queued).
         api.addEventListener("execution_start", (event) => {
+            if (!isEnabled()) return;
             resetWidget();
             currentPromptId = event.detail?.prompt_id ?? null;
             startTime = Date.now();
@@ -166,6 +189,7 @@ app.registerExtension({
         // Definitive "entire workflow finished" signal — fires exactly once at
         // true completion. Confirmed via event logging on ComfyUI Desktop.
         api.addEventListener("execution_success", (event) => {
+            if (!isEnabled()) return;
             if (startTime === null) return;
             if (!isCurrentJob(event)) return;
             stopTicking();
@@ -177,6 +201,7 @@ app.registerExtension({
 
         // Fired when an error stops execution.
         api.addEventListener("execution_error", (event) => {
+            if (!isEnabled()) return;
             if (startTime === null) return;
             if (!isCurrentJob(event)) return;
             stopTicking();
@@ -188,6 +213,7 @@ app.registerExtension({
 
         // Fired when the user interrupts a running job.
         api.addEventListener("execution_interrupted", (event) => {
+            if (!isEnabled()) return;
             if (startTime === null) return;
             if (!isCurrentJob(event)) return;
             stopTicking();
@@ -195,6 +221,12 @@ app.registerExtension({
             startTime = null;
             currentPromptId = null;
             showWidget("Stopped", elapsed, "#f2994a");
+        });
+
+        // Settings → skkut-utils toggle. Disabling hides the widget and
+        // clears any in-flight timer; enabling takes effect on the next job.
+        app.ui?.settings?.addEventListener?.(`${SETTING_ID}.change`, (e) => {
+            if (!e?.detail?.value) resetWidget();
         });
     },
 });

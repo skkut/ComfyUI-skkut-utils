@@ -9,7 +9,7 @@ Detects the operating system's colour-scheme (Light / Dark) and automatically sw
 | **Python backend** | `auto_dark_mode/__init__.py` |
 | **Frontend extension** | `web/auto_dark_mode.js` |
 | **Injected script** | `/auto-dark-mode/inject.js` (served by the backend) |
-| **Config** | None — zero-config, runs at server startup |
+| **Config** | **Settings → skkut-utils → Features → Auto Dark Mode** (default: On) |
 
 ## How it works
 
@@ -43,6 +43,14 @@ A background thread polls the OS theme every 3 seconds. On change, it pushes an 
 
 The frontend extension file `web/auto_dark_mode.js` provides the same listener for browser environments where the injected script is not needed (it is loaded by ComfyUI from `WEB_DIRECTORY`).
 
+## Configuration
+
+Auto Dark Mode is enabled by default. Turn it off in **Settings → skkut-utils → Features → Auto Dark Mode**.
+
+The value (`SkkutUtils.AutoDarkMode.Enabled`) is checked at runtime by both `web/auto_dark_mode.js` and the injected `/auto-dark-mode/inject.js` script, so the toggle covers the browser and ComfyUI Desktop alike. While disabled, neither the WebSocket pushes nor the browser `matchMedia` listener nor the 3-second watchdog applies a palette. Re-enabling syncs to the current OS theme immediately.
+
+Disabling does not revert the palette that is already applied — if you want a fixed theme, choose one in **Settings → Appearance → Color Palette** after turning Auto Dark Mode off. See [settings.md](settings.md) for the shared settings section.
+
 ## HTTP routes
 
 | Route | Purpose |
@@ -58,7 +66,7 @@ The frontend extension file `web/auto_dark_mode.js` provides the same listener f
 
 ## Installation
 
-The feature ships as part of the unified `ComfyUI-skkut-utils` repo — see the [root README](../README.md). No extra dependencies, no configuration. Restart ComfyUI after installing.
+The feature ships as part of the unified `ComfyUI-skkut-utils` repo — see the [root README](../README.md). No extra dependencies; it is enabled by default and configurable in **Settings → skkut-utils** (see [settings.md](settings.md)). Restart ComfyUI after installing or updating so the injected script picks up the setting check.
 
 ## Troubleshooting
 

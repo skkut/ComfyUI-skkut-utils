@@ -8,6 +8,7 @@ What's inside:
 
 - **Auto Dark mode** — [Auto Dark Mode](docs/auto-dark-mode.md) keeps ComfyUI's colour palette in sync with your OS light/dark setting, in the browser and in ComfyUI Desktop.
 - **Timer while generating** — [Detailed Job Status](docs/detailed-jobstatus.md) adds a floating, draggable timer that shows how long a job has been running or ran (not queued), with final status colours.
+- **One settings section for everything** — [Settings](docs/settings.md) puts the switches for the automatic utilities in a dedicated **skkut-utils** section of ComfyUI's Settings dialog, instead of burying them in General. Currently: Auto Dark Mode and the Job Status timer.
 - **Compressed WebP with metadata** — [Save Compressed Weppy](docs/save-compressed-weppy.md) exports compressed WebP with the prompt and workflow embedded, so dragging the image back into ComfyUI recovers the workflow that made it.
 - **High Resolution Aspect ration selector** — [Skutils Resolution Calculator](docs/resolution-calculator.md) turns an aspect-ratio preset and a megapixel target into exact width/height values for an Empty Latent Image, with 20 presets spanning the SD1.5, SDXL, SD3/Flux and video-model ladders.
 - **Resizing optional images** — [Skutils Scale Image to Total Pixels](docs/scale-to-total-pixels.md) is the built-in *Scale Image to Total Pixels* node with an **optional** image input, so an image slot you may leave empty no longer blocks the whole workflow from queueing.
@@ -52,8 +53,8 @@ No build step. Everything except the Weppy node is zero-config and activates on 
 
 | Utils | What it does | How to use |
 |---|---|---|
-| 🎨 **Auto Dark Mode** | Switches the ComfyUI theme to match the OS Light/Dark colour-scheme, in real time (browser + ComfyUI Desktop) | Nothing to do — automatic |
-| ⏱ **Detailed Job Status** | Floating, draggable execution timer (MM:SS) in the UI, timed from actual execution start | Nothing to do — automatic |
+| 🎨 **Auto Dark Mode** | Switches the ComfyUI theme to match the OS Light/Dark colour-scheme, in real time (browser + ComfyUI Desktop) | Automatic — toggle in **Settings → skkut-utils** |
+| ⏱ **Detailed Job Status** | Floating, draggable execution timer (MM:SS) in the UI, timed from actual execution start | Automatic — toggle in **Settings → skkut-utils** |
 | 🖼 **Save Compressed Weppy** | Saves images as compressed WebP with embedded prompt/workflow metadata | Add the **Save Compressed Weppy** node, or right-click any image → "Save Compressed Weppy" |
 | 📐 **Skutils Resolution Calculator** | Width/height from 20 aspect-ratio presets + a megapixel dropdown (0.5–5.0 MP) — like the built-in Resolution Selector, with more options | Add the **Skutils Resolution Calculator** node and feed `width`/`height` into an Empty Latent Image |
 | 🔍 **Skutils Scale Image to Total Pixels** | The built-in *Scale Image to Total Pixels* node with an **optional** image input — leave it unconnected and the node outputs nothing instead of failing prompt validation | Add the **Skutils Scale Image to Total Pixels** node wherever you resize a reference image that may not always be supplied |
@@ -66,7 +67,7 @@ No build step. Everything except the Weppy node is zero-config and activates on 
 
 **Description.** Detects the OS colour-scheme (Windows / macOS / Linux) on server startup and applies it to ComfyUI instantly, using the same palette loader as the *Settings → Appearance → Color Palette* menu. A background poll (every 3 s) and WebSocket push keep the UI in sync when you change the OS theme while ComfyUI is open, and a `matchMedia` listener covers browser-driven changes.
 
-**How to use.** Nothing to configure or click — it just works. Turn it off, if you ever want to, by setting a theme manually in the ComfyUI settings menu (the watchdog re-applies the OS theme, so disable the extension or set your OS preference if you want a fixed theme). Diagnostics: look for the `skkut-utils/auto-dark-mode` logger in the server log (`Detected OS theme: …`) and `[frontend]` lines for browser-side events.
+**How to use.** Nothing to configure or click — it just works. To turn it off, use **Settings → skkut-utils → Features → Auto Dark Mode**; disabling stops all automatic palette changes (the palette currently applied stays until you pick another one in *Settings → Appearance → Color Palette*). Diagnostics: look for the `skkut-utils/auto-dark-mode` logger in the server log (`Detected OS theme: …`) and `[frontend]` lines for browser-side events.
 
 ---
 
@@ -74,7 +75,7 @@ No build step. Everything except the Weppy node is zero-config and activates on 
 
 **Description.** Shows a small floating widget in the bottom-right corner displaying how long the current job has been **executing** (not queued), in `MM:SS`. It appears when a run starts, ticks every second, and stays with the final status when the job finishes: **Running** (white) → **Completed** (green), **Error** (red), or **Stopped** (orange).
 
-**How to use.** Nothing to configure — the timer appears automatically when a job starts. Drag it anywhere with the mouse; its position is remembered per browser between sessions.
+**How to use.** Nothing to configure — the timer appears automatically when a job starts. Drag it anywhere with the mouse; its position is remembered per browser between sessions. Turn it off in **Settings → skkut-utils → Features → Job Status Indicator**.
 
 ---
 
@@ -141,6 +142,7 @@ docs/                          # Per-util documentation
 
 Each utility is documented in detail in [docs/](docs/):
 
+- [docs/settings.md](docs/settings.md) — the dedicated **skkut-utils** settings section and its feature toggles
 - [docs/auto-dark-mode.md](docs/auto-dark-mode.md) — how theme detection, injection and the WebSocket push work, plus troubleshooting
 - [docs/detailed-jobstatus.md](docs/detailed-jobstatus.md) — event handling, completion detection, widget behaviour
 - [docs/save-compressed-weppy.md](docs/save-compressed-weppy.md) — node inputs, context-menu flow, EXIF metadata strategy

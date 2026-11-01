@@ -11,8 +11,29 @@
  */
 import { app } from "../../scripts/app.js";
 
+const SETTING_ID = "SkkutUtils.AutoDarkMode.Enabled";
+
+/** True unless the user turned Auto Dark Mode off in Settings → skkut-utils. */
+function isEnabled() {
+	try {
+		return app.ui?.settings?.getSettingValue(SETTING_ID) !== false;
+	} catch (_) {
+		return true;
+	}
+}
+
 app.registerExtension({
 	name: "Comfy.AutoDarkMode",
+	settings: [
+		{
+			id: SETTING_ID,
+			name: "Auto Dark Mode",
+			type: "boolean",
+			defaultValue: true,
+			category: ["skkut-utils", "Features", "AutoDarkMode"],
+			tooltip: "Match the ComfyUI theme to your OS light/dark setting automatically.",
+		},
+	],
 	async setup() {
 		const applyTheme = (paletteId) => {
 			try {
@@ -27,6 +48,7 @@ app.registerExtension({
 		};
 
 		const sync = () => {
+			if (!isEnabled()) return;
 			const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
 			applyTheme(isDark ? "dark" : "light");
 		};
@@ -34,10 +56,17 @@ app.registerExtension({
 		// Python WebSocket push
 		if (app.api?.addEventListener) {
 			app.api.addEventListener("auto-dark-mode.theme-changed", (e) => {
+				if (!isEnabled()) return;
 				const t = e?.detail?.theme;
 				if (t === "dark" || t === "light") applyTheme(t);
 			});
 		}
+
+		// Settings → skkut-utils toggle. Re-enabling syncs immediately;
+		// disabling just stops any further theme applications.
+		app.ui?.settings?.addEventListener?.(`${SETTING_ID}.change`, (e) => {
+			if (e?.detail?.value) sync();
+		});
 
 		// Browser matchMedia
 		const mq = window.matchMedia("(prefers-color-scheme: dark)");

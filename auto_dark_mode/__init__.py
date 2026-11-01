@@ -143,6 +143,21 @@ _INJECTED_JS = r"""
     }
     serverLog('info', 'auto-dark-mode script loaded');
 
+    var SETTING_ID = 'SkkutUtils.AutoDarkMode.Enabled';
+
+    // The toggle lives in Settings -> skkut-utils. Until the frontend has
+    // registered it, treat the feature as enabled (legacy behaviour).
+    function enabled() {
+        try {
+            var app = window.app;
+            if (!app || !app.ui || !app.ui.settings ||
+                typeof app.ui.settings.getSettingValue !== 'function') return true;
+            return app.ui.settings.getSettingValue(SETTING_ID) !== false;
+        } catch (_) {
+            return true;
+        }
+    }
+
     var _lastApplied = null;
     var _lastLogTime = 0;
 
@@ -185,6 +200,7 @@ _INJECTED_JS = r"""
 
     // Watch for ComfyUI overriding our theme and silently fix it
     setInterval(function() {
+        if (!enabled()) return;
         if (_currentTheme === 'dark' || _currentTheme === 'light') {
             applyTheme(_currentTheme, true);  // silent — don't log
         }
@@ -196,6 +212,7 @@ _INJECTED_JS = r"""
     var _currentTheme = "/*OS_THEME_PLACEHOLDER*/";
 
     function sync() {
+        if (!enabled()) return;
         // Use the Python-provided theme if available, otherwise matchMedia.
         if (_currentTheme !== 'dark' && _currentTheme !== 'light') {
             _currentTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
@@ -215,12 +232,29 @@ _INJECTED_JS = r"""
                 window.app.api.addEventListener('auto-dark-mode.theme-changed', function(e) {
                     var t = e && e.detail && e.detail.theme;
                     if (t === 'dark' || t === 'light') {
+                        // Keep the value fresh even while disabled, so
+                        // re-enabling applies the current OS theme.
                         _currentTheme = t;
+                        if (!enabled()) return;
                         applyTheme(t);
                     }
                 });
                 serverLog('info', 'ws listener registered');
             } else { setTimeout(reg, 500); }
+        })();
+
+        // Re-apply the theme when the user re-enables the feature in
+        // Settings -> skkut-utils.
+        (function regSetting() {
+            var app = window.app;
+            if (!app || !app.ui || !app.ui.settings ||
+                !app.ui.settings.addEventListener) {
+                setTimeout(regSetting, 500);
+                return;
+            }
+            app.ui.settings.addEventListener(SETTING_ID + '.change', function(e) {
+                if (e && e.detail && e.detail.value) sync();
+            });
         })();
 
         // Initial sync — ComfyUI's own init may override the theme,
