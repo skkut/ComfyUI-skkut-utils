@@ -12,8 +12,13 @@ What's inside:
 - **Compressed WebP with metadata** — [Save Compressed Weppy](docs/save-compressed-weppy.md) exports compressed WebP with the prompt and workflow embedded, so dragging the image back into ComfyUI recovers the workflow that made it.
 - **High Resolution Aspect ration selector** — [Skutils Resolution Calculator](docs/resolution-calculator.md) turns an aspect-ratio preset and a megapixel target into exact width/height values for an Empty Latent Image, with 20 presets spanning the SD1.5, SDXL, SD3/Flux and video-model ladders.
 - **Resizing optional images** — [Skutils Scale Image to Total Pixels](docs/scale-to-total-pixels.md) is the built-in *Scale Image to Total Pixels* node with an **optional** image input, so an image slot you may leave empty no longer blocks the whole workflow from queueing.
+<<<<<<< HEAD
 - **Text Preview that is saved in the workflow** — [Skutils Text Preview](docs/text-preview.md) shows **any output** (text, boolean, number, image, latent, dict, …) converted to text right on the node *and* stores it as part of the saved JSON workflow, so opening the workflow again in ComfyUI (or drag & drop the respective image) brings the text back — no re-run, no external file. The built-in text preview does not save this info.
 - **Style picker for prompts** — [Skutils Style Selector](docs/skutils-style-selector.md) is a visual picker over a bundled 434-style library (curated Clio + OreX sets, plus a hand-added style). Select one or many styles in a large searchable panel, combine them into one prompt or batch one run per style, and get finished positive/negative prompts plus a filename-ready style name. Add your own styles in the in-panel editor.
+=======
+- **Text Preview that is saved in the workflow** — [Skutils Text Preview](docs/text-preview.md) shows any text output right on the node *and* stores it as part of the saved JSON workflow, so opening the workflow again in ComfyUI (or drag & drop the respective image) brings the text back — no re-run, no external file. The built-in text preview does not save this info.
+- **Style picker for prompts** — [Skutils Style Selector](docs/skutils-style-selector.md) is a visual picker over a bundled 1400+ style library (curated Clio + OreX sets, u/Dear-Spend-2865, plus custom added styles). Select one or many styles in a large searchable panel, combine them into one prompt or batch one run per style, and get finished positive/negative prompts plus a filename-ready style name. Add your own styles in the in-panel editor.
+>>>>>>> bdbbce035b63bc16999e4c4e20448fec363a4c41
 
 **Design principles:**
 
@@ -58,8 +63,13 @@ No build step. Everything except the Weppy node is zero-config and activates on 
 | 🖼 **Save Compressed Weppy** | Saves images as compressed WebP with embedded prompt/workflow metadata | Add the **Save Compressed Weppy** node, or right-click any image → "Save Compressed Weppy" |
 | 📐 **Skutils Resolution Calculator** | Width/height from 20 aspect-ratio presets + a megapixel dropdown (0.5–5.0 MP) — like the built-in Resolution Selector, with more options | Add the **Skutils Resolution Calculator** node and feed `width`/`height` into an Empty Latent Image |
 | 🔍 **Skutils Scale Image to Total Pixels** | The built-in *Scale Image to Total Pixels* node with an **optional** image input — leave it unconnected and the node outputs nothing instead of failing prompt validation | Add the **Skutils Scale Image to Total Pixels** node wherever you resize a reference image that may not always be supplied |
+<<<<<<< HEAD
 | 📝 **Skutils Text Preview** | Shows **any value** (string, boolean, number, image/latent tensor, dict, …) as text in the node and stores it in the saved workflow JSON — reloading the workflow brings the displayed text back (no re-run). Its `text` input is optional; a run with no value clears the preview | Add the **Skutils Text Preview** node, connect any output into its `text` port (or leave it unconnected), run once, then save the workflow |
 | 🎭 **Skutils Style Selector** | 434 bundled styles in a searchable visual picker; multi-select, combine or batch-per-style, positive + negative output, custom styles | Add the **Skutils Style Selector** node, click **Choose styles…**, select styles, then connect its `positive`/`negative` outputs to your text encoder |
+=======
+| 📝 **Skutils Text Preview** | Shows text in the node and stores it in the saved workflow JSON — reloading the workflow brings the displayed text back (no re-run). Its `text` input is optional; a run with no text clears the preview | Add the **Skutils Text Preview** node, connect a `STRING` into its `text` port (or leave it unconnected), run once, then save the workflow |
+| 🎭 **Skutils Style Selector** | 1400+ bundled styles in a searchable visual picker; multi-select, combine or batch-per-style, positive + negative output, custom styles | Add the **Skutils Style Selector** node, click **Choose styles…**, select styles, then connect its `positive`/`negative` outputs to your text encoder |
+>>>>>>> bdbbce035b63bc16999e4c4e20448fec363a4c41
 
 ---
 
