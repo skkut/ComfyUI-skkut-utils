@@ -18,9 +18,9 @@ Features
 - scale_to_total_pixels — "Skutils Scale Image to Total Pixels" node: the
   core resize node with an optional image input, so it can guard an image
   slot that may be left empty.
-- text_preview — "Skutils Text Preview" node: shows text in the node and
-  stores it in the saved workflow JSON (unlike the built-in
-  display-only text-preview nodes).
+- text_preview — "Skutils Text Preview" node: converts any connected
+  value to text, shows it in the node and stores it in the saved
+  workflow JSON (unlike the built-in display-only text-preview nodes).
 - skutils_style_selector — "Skutils Style Selector" node: a visual picker
   over a bundled 434-style library (curated Clio + OreX sets plus a
   hand-added style), emitting

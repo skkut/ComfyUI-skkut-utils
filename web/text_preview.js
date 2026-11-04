@@ -5,8 +5,9 @@ import { ComfyWidgets } from "../../scripts/widgets.js";
  * ComfyUI Skutils Text Preview – show executed text AND keep it in the
  * workflow JSON
  *
- * The node declares an optional `text` input port (STRING, forceInput)
- * with no widget of its own. This extension adds the display:
+ * The node declares an optional wildcard `text` input port (forceInput)
+ * with no widget of its own; the backend converts any connected value to
+ * text. This extension adds the display:
  *
  *  - onNodeCreated/onConfigure: nothing shows until there is something
  *    to show.
@@ -39,9 +40,11 @@ app.registerExtension({
          */
         function populate(payload) {
             if (payload == null) return; // nothing executed -> keep what's shown
-            const values = (Array.isArray(payload) ? payload : [payload]).filter(
-                (v) => typeof v === "string" && v.length > 0
-            );
+            // The backend always sends strings; coerce defensively in case a
+            // restored widget value or an older backend is not a string.
+            const values = (Array.isArray(payload) ? payload : [payload])
+                .map((v) => (v == null ? "" : typeof v === "string" ? v : String(v)))
+                .filter((v) => v.length > 0);
 
             if (this.widgets) {
                 // Older frontends may have a hidden converted-widget for
