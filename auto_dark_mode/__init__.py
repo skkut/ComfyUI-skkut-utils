@@ -67,6 +67,12 @@ def _get_os_theme():
     except Exception:
         return "dark"
 
+# -------------------------------------------------------------------------
+# Add a debug log so you can verify what the server thinks the OS theme is.
+# -------------------------------------------------------------------------
+
+_detected = _get_os_theme()
+_logger.debug("[skkut-utils/auto-dark-mode] OS theme detected: %s", _detected)
 
 # =========================================================================
 # WebSocket push (thread-safe)
@@ -105,9 +111,6 @@ def _push_theme(theme):
 # =========================================================================
 # Background polling
 # =========================================================================
-
-_detected = _get_os_theme()
-_logger.info("[skkut-utils/auto-dark-mode] Detected OS theme: %s", _detected)
 
 _stop = threading.Event()
 
@@ -211,14 +214,40 @@ _INJECTED_JS = r"""
     // disagree with the real OS setting.  Updated by WebSocket pushes.
     var _currentTheme = "/*OS_THEME_PLACEHOLDER*/";
 
+    /* I'm just getting the last theme that was set, and then applying it before the JS can apply the light theme.
+       That happens before the preference is read and results in the light theme being applied once on starup and reloads */
+
+    const STORAGE_KEY = "skkut-utils.lastPalette";
+
+    function persistTheme(id) {
+        try { localStorage.setItem(STORAGE_KEY, id); } catch (_) {}
+    }
+
+    function loadPersistedTheme() {
+        try { return localStorage.getItem(STORAGE_KEY); } catch (_) { return null; }
+    }
+
+    persistTheme(paletteId);
+
     function sync() {
         if (!enabled()) return;
-        // Use the Python-provided theme if available, otherwise matchMedia.
-        if (_currentTheme !== 'dark' && _currentTheme !== 'light') {
-            _currentTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+
+        // 1. Use persisted theme first
+        const persisted = loadPersistedTheme();
+        if (persisted === 'dark' || persisted === 'light') {
+            applyTheme(persisted);
+            return;
         }
-        applyTheme(_currentTheme);
+
+        // 2. Fallback to the injected OS value if available
+        if (_currentTheme === 'dark' || _currentTheme === 'light') {
+            applyTheme(_currentTheme);
+            return;
+        }
+
     }
+
+    /* That's all there is to it. */
 
     function init() {
         // matchMedia listener
