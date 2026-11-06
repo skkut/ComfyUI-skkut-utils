@@ -41,13 +41,15 @@ It also:
 
 A background thread polls the OS theme every 3 seconds. On change, it pushes an `auto-dark-mode.theme-changed` event (payload `{"theme": "dark"|"light"}`) to all connected WebSocket clients via `PromptServer.send_sync`, using `call_soon_threadsafe` so the push is safe from the background thread. Both the injected script and `web/auto_dark_mode.js` listen for this event.
 
+The poller pauses while the feature is disabled: the injected script posts the live setting to `/auto-dark-mode/state`, and polling (including the `OS theme changed` log line) resumes when it is re-enabled.
+
 The frontend extension file `web/auto_dark_mode.js` provides the same listener for browser environments where the injected script is not needed (it is loaded by ComfyUI from `WEB_DIRECTORY`).
 
 ## Configuration
 
 Auto Dark Mode is enabled by default. Turn it off in **Settings → skkut-utils → Features → Auto Dark Mode**.
 
-The value (`SkkutUtils.AutoDarkMode.Enabled`) is checked at runtime by both `web/auto_dark_mode.js` and the injected `/auto-dark-mode/inject.js` script, so the toggle covers the browser and ComfyUI Desktop alike. While disabled, neither the WebSocket pushes nor the browser `matchMedia` listener nor the 3-second watchdog applies a palette. Re-enabling syncs to the current OS theme immediately.
+The value (`SkkutUtils.AutoDarkMode.Enabled`) is checked at runtime by both `web/auto_dark_mode.js` and the injected `/auto-dark-mode/inject.js` script, so the toggle covers the browser and ComfyUI Desktop alike. While disabled, neither the WebSocket pushes nor the browser `matchMedia` listener nor the 3-second watchdog applies a palette, and the backend pauses its OS polling (so it stops logging `OS theme changed` events). Re-enabling syncs to the current OS theme immediately.
 
 ComfyUI loads settings asynchronously after the app mounts, so the injected script treats the setting as *unknown* until it becomes readable and applies no palette while in that state. This is what keeps a saved dark palette intact on startup and reload while Auto Dark Mode is off. If the setting never becomes available (for example, an environment where the web extension is not loaded), the script falls back to the enabled-by-default behaviour after 15 seconds.
 
@@ -59,6 +61,7 @@ Disabling does not revert the palette that is already applied — if you want a 
 |---|---|
 | `GET /auto-dark-mode/inject.js` | Serves the injected script with the startup-detected theme embedded |
 | `GET/POST /auto-dark-mode/log` | Frontend diagnostics endpoint; forwards JS `log`/`error` messages to the server log |
+| `GET/POST /auto-dark-mode/state` | Frontend reports whether Auto Dark Mode is enabled; pauses/resumes the OS polling thread |
 
 ## Event
 
@@ -73,5 +76,5 @@ The feature ships as part of the unified `ComfyUI-skkut-utils` repo — see the 
 ## Troubleshooting
 
 - **Server log**: startup detection and theme changes are logged with the `skkut-utils/auto-dark-mode` logger (e.g. `Detected OS theme: dark`).
-- **Frontend log**: runtime messages are posted to `/auto-dark-mode/log` and appear in the server log with a `[frontend]` prefix. Set `?level=error` diagnostics by opening the browser console (ComfyUI Desktop: **Ctrl+Shift+I** / **Cmd+Option+I**) — errors are also reported there.
+- **Frontend log**: runtime messages are posted to `/auto-dark-mode/log` and appear in the server log with a `[frontend]` prefix. Startup messages (`script loaded`, `ws listener registered`) are sent at debug level and are hidden by default; actual theme applications are logged at info. Set `?level=error` diagnostics by opening the browser console (ComfyUI Desktop: **Ctrl+Shift+I** / **Cmd+Option+I**) — errors are also reported there.
 - **Theme flicker on startup**: the injected script applies nothing until the Auto Dark Mode setting is readable (retrying every second), then retries at 2 s and 10 s after load to recover from ComfyUI's own theme initialization overriding the applied palette. If the theme still flips while the feature is disabled, hard-reload the page to drop a cached injected script and make sure ComfyUI was restarted after updating.
