@@ -67,6 +67,13 @@ def _get_os_theme():
     except Exception:
         return "dark"
 
+# -------------------------------------------------------------------------
+# Detect once at startup so the value can be embedded in the injected JS
+# and used as the baseline for change polling.
+# -------------------------------------------------------------------------
+
+_detected = _get_os_theme()
+_logger.info("[skkut-utils/auto-dark-mode] Detected OS theme: %s", _detected)
 
 # =========================================================================
 # WebSocket push (thread-safe)
@@ -106,15 +113,22 @@ def _push_theme(theme):
 # Background polling
 # =========================================================================
 
-_detected = _get_os_theme()
-_logger.info("[skkut-utils/auto-dark-mode] Detected OS theme: %s", _detected)
-
 _stop = threading.Event()
+
+# Whether any connected frontend currently has Auto Dark Mode enabled.
+# The injected script reports the live setting to /auto-dark-mode/state;
+# while it is disabled the poller is paused so it does not read the OS
+# theme or log changes.  Enabled until a client says otherwise (legacy
+# behaviour, and the state before the first page loads).
+_auto_enabled = threading.Event()
+_auto_enabled.set()
 
 def _poll():
     last = _detected
     while not _stop.wait(timeout=3):
         try:
+            if not _auto_enabled.is_set():
+                continue
             cur = _get_os_theme()
             if cur != last:
                 _logger.info("[skkut-utils/auto-dark-mode] OS theme changed: %s -> %s", last, cur)
@@ -141,21 +155,52 @@ _INJECTED_JS = r"""
         new Image().src = LOG + '?level=' + encodeURIComponent(l) +
             '&msg=' + encodeURIComponent(m) + '&t=' + Date.now();
     }
-    serverLog('info', 'auto-dark-mode script loaded');
+    serverLog('debug', 'auto-dark-mode script loaded');
 
     var SETTING_ID = 'SkkutUtils.AutoDarkMode.Enabled';
 
-    // The toggle lives in Settings -> skkut-utils. Until the frontend has
-    // registered it, treat the feature as enabled (legacy behaviour).
+    // The toggle lives in Settings -> skkut-utils.  ComfyUI mounts the app
+    // before /api/settings has finished loading, so getSettingValue()
+    // returns undefined until the store is ready.  Report that as "unknown"
+    // (null) instead of treating it as enabled: applying the OS theme before
+    // the user's choice is readable overwrites their saved palette on
+    // startup and reload.  After a grace period, fall back to the legacy
+    // enabled-by-default behaviour for environments that never register
+    // the setting (e.g. the web extension is not loaded).
+    var _loadedAt = Date.now();
+    var UNKNOWN_GRACE_MS = 15000;
+
+    function _unknown() {
+        return Date.now() - _loadedAt > UNKNOWN_GRACE_MS ? true : null;
+    }
+
     function enabled() {
         try {
             var app = window.app;
             if (!app || !app.ui || !app.ui.settings ||
-                typeof app.ui.settings.getSettingValue !== 'function') return true;
-            return app.ui.settings.getSettingValue(SETTING_ID) !== false;
+                typeof app.ui.settings.getSettingValue !== 'function') {
+                return _unknown();
+            }
+            var v = app.ui.settings.getSettingValue(SETTING_ID);
+            return v === undefined ? _unknown() : v !== false;
         } catch (_) {
-            return true;
+            return _unknown();
         }
+    }
+
+    // Tell the Python side whether the feature is on, so it can pause the
+    // OS polling thread (and its change logs) while disabled.
+    var _lastReported = null;
+    function reportEnabled(on) {
+        if (on === null || on === _lastReported) return;
+        _lastReported = on;
+        try {
+            fetch('/auto-dark-mode/state', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ enabled: on })
+            }).catch(function() {});
+        } catch (_) {}
     }
 
     var _lastApplied = null;
@@ -198,9 +243,12 @@ _INJECTED_JS = r"""
         }
     }
 
-    // Watch for ComfyUI overriding our theme and silently fix it
+    // Watch for ComfyUI overriding our theme and silently fix it.
+    // Do nothing while the setting is unreadable (null) or disabled.
     setInterval(function() {
-        if (!enabled()) return;
+        var on = enabled();
+        reportEnabled(on);
+        if (on !== true) return;
         if (_currentTheme === 'dark' || _currentTheme === 'light') {
             applyTheme(_currentTheme, true);  // silent — don't log
         }
@@ -212,7 +260,18 @@ _INJECTED_JS = r"""
     var _currentTheme = "/*OS_THEME_PLACEHOLDER*/";
 
     function sync() {
-        if (!enabled()) return;
+        var on = enabled();
+        reportEnabled(on);
+
+        // Settings are still loading — retry shortly instead of applying the
+        // OS theme over the user's saved palette.  Once the store is ready
+        // this resolves to true/false and the retry stops.
+        if (on === null) {
+            setTimeout(sync, 1000);
+            return;
+        }
+        if (!on) return;
+
         // Use the Python-provided theme if available, otherwise matchMedia.
         if (_currentTheme !== 'dark' && _currentTheme !== 'light') {
             _currentTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
@@ -235,11 +294,11 @@ _INJECTED_JS = r"""
                         // Keep the value fresh even while disabled, so
                         // re-enabling applies the current OS theme.
                         _currentTheme = t;
-                        if (!enabled()) return;
+                        if (enabled() !== true) return;
                         applyTheme(t);
                     }
                 });
-                serverLog('info', 'ws listener registered');
+                serverLog('debug', 'ws listener registered');
             } else { setTimeout(reg, 500); }
         })();
 
@@ -252,8 +311,12 @@ _INJECTED_JS = r"""
                 setTimeout(regSetting, 500);
                 return;
             }
-            app.ui.settings.addEventListener(SETTING_ID + '.change', function(e) {
-                if (e && e.detail && e.detail.value) sync();
+            app.ui.settings.addEventListener(SETTING_ID + '.change', function() {
+                // Report both directions so the backend stops polling as
+                // soon as the feature is switched off.
+                var on = enabled();
+                reportEnabled(on);
+                if (on === true) sync();
             });
         })();
 
@@ -308,6 +371,26 @@ try:
         return web.json_response({"ok": True})
     _server.routes.get("/auto-dark-mode/log")(_log)
     _server.routes.post("/auto-dark-mode/log")(_log)
+
+    # The injected script reports the live setting here so the OS polling
+    # thread can be paused (and its change logs silenced) while the feature
+    # is disabled in Settings -> skkut-utils.
+    async def _state(request):
+        try:
+            if request.method == "POST":
+                body = await request.json()
+                enabled = bool(body.get("enabled", True))
+            else:
+                enabled = request.query.get("enabled", "true").lower() != "false"
+            if enabled:
+                _auto_enabled.set()
+            else:
+                _auto_enabled.clear()
+        except Exception:
+            pass
+        return web.json_response({"ok": True, "enabled": _auto_enabled.is_set()})
+    _server.routes.get("/auto-dark-mode/state")(_state)
+    _server.routes.post("/auto-dark-mode/state")(_state)
 
     # Middleware: inject <script> into the root HTML page.
     if _app is not None:
