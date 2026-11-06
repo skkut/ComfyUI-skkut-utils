@@ -49,6 +49,8 @@ Auto Dark Mode is enabled by default. Turn it off in **Settings → skkut-utils 
 
 The value (`SkkutUtils.AutoDarkMode.Enabled`) is checked at runtime by both `web/auto_dark_mode.js` and the injected `/auto-dark-mode/inject.js` script, so the toggle covers the browser and ComfyUI Desktop alike. While disabled, neither the WebSocket pushes nor the browser `matchMedia` listener nor the 3-second watchdog applies a palette. Re-enabling syncs to the current OS theme immediately.
 
+ComfyUI loads settings asynchronously after the app mounts, so the injected script treats the setting as *unknown* until it becomes readable and applies no palette while in that state. This is what keeps a saved dark palette intact on startup and reload while Auto Dark Mode is off. If the setting never becomes available (for example, an environment where the web extension is not loaded), the script falls back to the enabled-by-default behaviour after 15 seconds.
+
 Disabling does not revert the palette that is already applied — if you want a fixed theme, choose one in **Settings → Appearance → Color Palette** after turning Auto Dark Mode off. See [settings.md](settings.md) for the shared settings section.
 
 ## HTTP routes
@@ -72,4 +74,4 @@ The feature ships as part of the unified `ComfyUI-skkut-utils` repo — see the 
 
 - **Server log**: startup detection and theme changes are logged with the `skkut-utils/auto-dark-mode` logger (e.g. `Detected OS theme: dark`).
 - **Frontend log**: runtime messages are posted to `/auto-dark-mode/log` and appear in the server log with a `[frontend]` prefix. Set `?level=error` diagnostics by opening the browser console (ComfyUI Desktop: **Ctrl+Shift+I** / **Cmd+Option+I**) — errors are also reported there.
-- **Theme flicker on startup**: initial sync retries at 2 s and 10 s after load to recover from ComfyUI's own theme initialization overriding the applied palette.
+- **Theme flicker on startup**: the injected script applies nothing until the Auto Dark Mode setting is readable (retrying every second), then retries at 2 s and 10 s after load to recover from ComfyUI's own theme initialization overriding the applied palette. If the theme still flips while the feature is disabled, hard-reload the page to drop a cached injected script and make sure ComfyUI was restarted after updating.

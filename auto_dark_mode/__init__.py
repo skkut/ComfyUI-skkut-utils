@@ -68,11 +68,12 @@ def _get_os_theme():
         return "dark"
 
 # -------------------------------------------------------------------------
-# Add a debug log so you can verify what the server thinks the OS theme is.
+# Detect once at startup so the value can be embedded in the injected JS
+# and used as the baseline for change polling.
 # -------------------------------------------------------------------------
 
 _detected = _get_os_theme()
-_logger.debug("[skkut-utils/auto-dark-mode] OS theme detected: %s", _detected)
+_logger.info("[skkut-utils/auto-dark-mode] Detected OS theme: %s", _detected)
 
 # =========================================================================
 # WebSocket push (thread-safe)
@@ -148,16 +149,32 @@ _INJECTED_JS = r"""
 
     var SETTING_ID = 'SkkutUtils.AutoDarkMode.Enabled';
 
-    // The toggle lives in Settings -> skkut-utils. Until the frontend has
-    // registered it, treat the feature as enabled (legacy behaviour).
+    // The toggle lives in Settings -> skkut-utils.  ComfyUI mounts the app
+    // before /api/settings has finished loading, so getSettingValue()
+    // returns undefined until the store is ready.  Report that as "unknown"
+    // (null) instead of treating it as enabled: applying the OS theme before
+    // the user's choice is readable overwrites their saved palette on
+    // startup and reload.  After a grace period, fall back to the legacy
+    // enabled-by-default behaviour for environments that never register
+    // the setting (e.g. the web extension is not loaded).
+    var _loadedAt = Date.now();
+    var UNKNOWN_GRACE_MS = 15000;
+
+    function _unknown() {
+        return Date.now() - _loadedAt > UNKNOWN_GRACE_MS ? true : null;
+    }
+
     function enabled() {
         try {
             var app = window.app;
             if (!app || !app.ui || !app.ui.settings ||
-                typeof app.ui.settings.getSettingValue !== 'function') return true;
-            return app.ui.settings.getSettingValue(SETTING_ID) !== false;
+                typeof app.ui.settings.getSettingValue !== 'function') {
+                return _unknown();
+            }
+            var v = app.ui.settings.getSettingValue(SETTING_ID);
+            return v === undefined ? _unknown() : v !== false;
         } catch (_) {
-            return true;
+            return _unknown();
         }
     }
 
@@ -201,9 +218,10 @@ _INJECTED_JS = r"""
         }
     }
 
-    // Watch for ComfyUI overriding our theme and silently fix it
+    // Watch for ComfyUI overriding our theme and silently fix it.
+    // Do nothing while the setting is unreadable (null) or disabled.
     setInterval(function() {
-        if (!enabled()) return;
+        if (enabled() !== true) return;
         if (_currentTheme === 'dark' || _currentTheme === 'light') {
             applyTheme(_currentTheme, true);  // silent — don't log
         }
@@ -214,40 +232,24 @@ _INJECTED_JS = r"""
     // disagree with the real OS setting.  Updated by WebSocket pushes.
     var _currentTheme = "/*OS_THEME_PLACEHOLDER*/";
 
-    /* I'm just getting the last theme that was set, and then applying it before the JS can apply the light theme.
-       That happens before the preference is read and results in the light theme being applied once on starup and reloads */
-
-    const STORAGE_KEY = "skkut-utils.lastPalette";
-
-    function persistTheme(id) {
-        try { localStorage.setItem(STORAGE_KEY, id); } catch (_) {}
-    }
-
-    function loadPersistedTheme() {
-        try { return localStorage.getItem(STORAGE_KEY); } catch (_) { return null; }
-    }
-
-    persistTheme(paletteId);
-
     function sync() {
-        if (!enabled()) return;
+        var on = enabled();
 
-        // 1. Use persisted theme first
-        const persisted = loadPersistedTheme();
-        if (persisted === 'dark' || persisted === 'light') {
-            applyTheme(persisted);
+        // Settings are still loading — retry shortly instead of applying the
+        // OS theme over the user's saved palette.  Once the store is ready
+        // this resolves to true/false and the retry stops.
+        if (on === null) {
+            setTimeout(sync, 1000);
             return;
         }
+        if (!on) return;
 
-        // 2. Fallback to the injected OS value if available
-        if (_currentTheme === 'dark' || _currentTheme === 'light') {
-            applyTheme(_currentTheme);
-            return;
+        // Use the Python-provided theme if available, otherwise matchMedia.
+        if (_currentTheme !== 'dark' && _currentTheme !== 'light') {
+            _currentTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
         }
-
+        applyTheme(_currentTheme);
     }
-
-    /* That's all there is to it. */
 
     function init() {
         // matchMedia listener
@@ -264,7 +266,7 @@ _INJECTED_JS = r"""
                         // Keep the value fresh even while disabled, so
                         // re-enabling applies the current OS theme.
                         _currentTheme = t;
-                        if (!enabled()) return;
+                        if (enabled() !== true) return;
                         applyTheme(t);
                     }
                 });
