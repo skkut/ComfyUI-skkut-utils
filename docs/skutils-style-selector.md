@@ -71,6 +71,27 @@ picker.
 Selecting a workflow's saved styles or reopening it restores the selection
 from `select_styles` — the picker is only a UI over that widget.
 
+### Section order
+
+The picker groups its tiles by section, and the section order is configurable:
+
+1. Open **Settings → skkut-utils → Style Selector**. The control sits in its
+   own group, below the **Features** toggles.
+2. Under **Section order**, drag a row (or use its `↑` / `↓` buttons) to move
+   that section. The list contains every section in the current library.
+3. Changes save automatically; **Reset to default** restores the library order.
+
+The picker grid, the section filter dropdown, and the custom-style section
+suggestions all follow this order. Within a section, styles keep their bundled
+order. Sections that are not in the saved list — for example a section added by
+a later repo update — are appended after the listed ones, so they never
+disappear. This setting only changes where sections appear: the **selection
+order** in the strip still controls prompt joining and batch order.
+
+The order is stored per user in ComfyUI's normal settings storage (key
+`SkkutUtils.StyleSelector.SectionOrder`, a JSON array of section names), so it
+is not part of a workflow.
+
 ### Modes
 
 - **Combine styles** *(default)* — all selected styles become one prompt. If

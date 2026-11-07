@@ -10,7 +10,9 @@ import { app } from "../../scripts/app.js";
  *   - a compact chip list + "Choose styles" button on the node body;
  *   - a full-screen picker (search, section filter, ordered multi-select);
  *   - an editor for custom styles, stored by the Python side under
- *     ComfyUI's user directory.
+ *     ComfyUI's user directory;
+ *   - a reorderable section list in ComfyUI's Settings dialog that controls
+ *     the order sections appear in the picker.
  */
 
 const NODE_CLASS = "SkutilsStyleSelector";
@@ -24,6 +26,10 @@ const THUMB_VERSION_FALLBACK = "1";
 const DEFAULT_TEMPLATE = "Style: {name}: {style}. Subject: {prompt}";
 const CUSTOM_URL = "/skutils_style_selector/custom";
 const CSS_ID = "skutils-style-selector-css";
+// The saved value is an ordered array of section names.  Any section that is
+// not listed keeps the library's default order and is appended after the
+// listed ones, so a newly added section never disappears.
+const SECTION_ORDER_SETTING_ID = "SkkutUtils.StyleSelector.SectionOrder";
 
 let library = null;          // last successfully fetched library payload
 let libraryPromise = null;   // in-flight fetch
@@ -79,6 +85,100 @@ function hue(text) {
 
 function entryByName(name) {
     return current.entries.get(name) || null;
+}
+
+// ---------------------------------------------------------------------------
+// Section order
+// ---------------------------------------------------------------------------
+
+// The setting is stored as an array, but tolerate a JSON string or a
+// comma-separated string so a hand-edited settings file still works.
+function parseSectionOrder(raw) {
+    let list = raw;
+    if (typeof raw === "string") {
+        try {
+            list = JSON.parse(raw);
+        } catch {
+            list = raw.split(",");
+        }
+    }
+    if (!Array.isArray(list)) return [];
+
+    const order = [];
+    const seen = new Set();
+    for (const item of list) {
+        if (typeof item !== "string") continue;
+        const name = item.trim();
+        if (!name || seen.has(name)) continue;
+        seen.add(name);
+        order.push(name);
+    }
+    return order;
+}
+
+function sectionOrderPreference() {
+    try {
+        return parseSectionOrder(
+            app.ui?.settings?.getSettingValue?.(SECTION_ORDER_SETTING_ID),
+        );
+    } catch {
+        return [];
+    }
+}
+
+function uniqueSections(sections) {
+    const result = [];
+    const seen = new Set();
+    for (const section of sections || []) {
+        if (typeof section !== "string" || !section || seen.has(section)) continue;
+        seen.add(section);
+        result.push(section);
+    }
+    return result;
+}
+
+// Saved order first (filtered to real sections), then everything unlisted in
+// its library order.
+function mergeSectionOrder(knownSections, preferred) {
+    const known = new Set(knownSections);
+    const order = [];
+    const seen = new Set();
+    for (const section of preferred) {
+        if (!known.has(section) || seen.has(section)) continue;
+        seen.add(section);
+        order.push(section);
+    }
+    for (const section of knownSections) {
+        if (seen.has(section)) continue;
+        seen.add(section);
+        order.push(section);
+    }
+    return order;
+}
+
+function orderedSections() {
+    if (!library) return [];
+    return mergeSectionOrder(
+        uniqueSections(library.sections),
+        sectionOrderPreference(),
+    );
+}
+
+// Group the library by the configured section order, keeping each section's
+// own style order (a stable sort).
+function orderedLibraryStyles() {
+    if (!library) return [];
+    const rank = new Map(orderedSections().map((section, index) => [section, index]));
+    const unranked = rank.size;
+
+    return library.styles
+        .map((entry, index) => ({ entry, index }))
+        .sort((left, right) => {
+            const leftRank = rank.get(left.entry.section) ?? unranked;
+            const rightRank = rank.get(right.entry.section) ?? unranked;
+            return leftRank - rightRank || left.index - right.index;
+        })
+        .map(({ entry }) => entry);
 }
 
 function thumbUrl(entry) {
@@ -514,6 +614,22 @@ function ensureCss() {
 .skutils-editor-error { min-height: 16px; font-size: 12px; color: #ff8a8a; }
 .skutils-editor-actions { display: flex; align-items: center; gap: 8px; }
 .skutils-editor-actions .spacer { flex: 1; }
+/* Settings → skkut-utils → Features → StyleSelector: section-order control. */
+.skutils-setting { display: flex; flex-direction: column; gap: 5px; width: 260px; max-width: 100%; font-size: 12px; }
+.skutils-setting-list { display: flex; flex-direction: column; gap: 2px; max-height: 240px; overflow-y: auto; padding: 4px; border: 1px solid var(--border-color, #444); border-radius: 6px; background: var(--comfy-input-bg, #171717); }
+.skutils-setting-row { display: flex; align-items: center; gap: 4px; padding: 2px 3px 2px 5px; border-radius: 4px; background: rgba(127,127,127,.1); cursor: grab; }
+.skutils-setting-row.dragging { opacity: .4; }
+.skutils-setting-row.drop-target, .skutils-setting-row:focus-visible { outline: 2px solid var(--p-primary-color, #3b82f6); outline-offset: -1px; }
+.skutils-setting-handle { flex: 0 0 auto; opacity: .45; font-size: 10px; letter-spacing: -1px; }
+.skutils-setting-name { flex: 1 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.skutils-setting-btn { flex: 0 0 auto; width: 22px; height: 20px; padding: 0; border: none; border-radius: 4px; background: rgba(127,127,127,.16); color: inherit; cursor: pointer; font-size: 12px; line-height: 1; opacity: .8; }
+.skutils-setting-btn:hover:not(:disabled) { opacity: 1; }
+.skutils-setting-btn:disabled { opacity: .2; cursor: default; }
+.skutils-setting-actions { display: flex; justify-content: flex-end; }
+.skutils-setting-reset { padding: 3px 8px; border: 1px solid var(--border-color, #444); border-radius: 5px; background: var(--comfy-input-bg, #222); color: inherit; cursor: pointer; font-size: 11px; }
+.skutils-setting-reset:hover:not(:disabled) { border-color: var(--p-primary-color, #3b82f6); }
+.skutils-setting-reset:disabled { opacity: .4; cursor: default; }
+.skutils-setting-note { font-size: 11px; line-height: 1.3; opacity: .6; }
 `;
     document.head.append(style);
 }
@@ -638,6 +754,174 @@ function ensureModal() {
     document.addEventListener("keydown", onModalKeyDown, true);
 
     return modal;
+}
+
+// ---------------------------------------------------------------------------
+// Settings control
+// ---------------------------------------------------------------------------
+
+/*
+ * The section-order setting is a custom settings-dialog control: a compact,
+ * drag-and-drop list of every section in the library.  ComfyUI calls the
+ * function form of a setting's `type` with (name, setValue, value, attrs) and
+ * mounts the returned element, so this works in the legacy and current
+ * settings dialogs alike.
+ */
+function buildSectionOrderSetting(value, setValue) {
+    ensureCss();
+
+    const list = el("div", { class: "skutils-setting-list", role: "list" });
+    const status = el("div", { class: "skutils-setting-note", text: "Loading sections…" });
+    const resetButton = el("button", {
+        class: "skutils-setting-reset",
+        type: "button",
+        text: "Reset to default",
+        disabled: true,
+    });
+    const root = el(
+        "div",
+        { class: "skutils-setting" },
+        list,
+        el("div", { class: "skutils-setting-actions" }, resetButton),
+        status,
+    );
+
+    let knownSections = [];
+    let order = [];
+    let dragIndex = null;
+    let savedTimer = null;
+
+    function computeOrder(preferred) {
+        return mergeSectionOrder(knownSections, preferred);
+    }
+
+    function flashSaved() {
+        status.textContent = "Saved.";
+        if (savedTimer) clearTimeout(savedTimer);
+        savedTimer = setTimeout(() => {
+            status.textContent = "Changes are saved automatically.";
+        }, 2000);
+    }
+
+    function persist() {
+        setValue(order.slice());
+        flashSaved();
+    }
+
+    function move(from, to) {
+        if (!Number.isInteger(from) || from < 0 || from >= order.length) return;
+        if (to < 0) to = 0;
+        if (to >= order.length) to = order.length - 1;
+        if (from === to) return;
+
+        const [section] = order.splice(from, 1);
+        order.splice(to, 0, section);
+        renderRows(section);
+        persist();
+    }
+
+    function renderRows(focusSection = null) {
+        list.replaceChildren();
+        const rows = new Map();
+
+        order.forEach((section, index) => {
+            const row = el("div", {
+                class: "skutils-setting-row",
+                role: "listitem",
+                tabindex: "-1",
+                draggable: "true",
+                "data-section": section,
+            });
+
+            const upButton = el("button", {
+                class: "skutils-setting-btn",
+                type: "button",
+                text: "↑",
+                title: `Move ${section} up`,
+                "aria-label": `Move ${section} up`,
+                disabled: index === 0,
+                onclick: (event) => {
+                    event.stopPropagation();
+                    move(index, index - 1);
+                },
+            });
+            const downButton = el("button", {
+                class: "skutils-setting-btn",
+                type: "button",
+                text: "↓",
+                title: `Move ${section} down`,
+                "aria-label": `Move ${section} down`,
+                disabled: index === order.length - 1,
+                onclick: (event) => {
+                    event.stopPropagation();
+                    move(index, index + 1);
+                },
+            });
+
+            row.append(
+                el("span", { class: "skutils-setting-handle", text: "⋮⋮", "aria-hidden": "true" }),
+                el("span", { class: "skutils-setting-name", text: section, title: section }),
+                upButton,
+                downButton,
+            );
+
+            row.addEventListener("dragstart", (event) => {
+                dragIndex = index;
+                event.dataTransfer.effectAllowed = "move";
+                event.dataTransfer.setData("text/plain", String(index));
+                row.classList.add("dragging");
+            });
+            row.addEventListener("dragend", () => {
+                dragIndex = null;
+                row.classList.remove("dragging");
+                for (const item of list.querySelectorAll(".drop-target")) {
+                    item.classList.remove("drop-target");
+                }
+            });
+            row.addEventListener("dragover", (event) => {
+                event.preventDefault();
+                event.dataTransfer.dropEffect = "move";
+                row.classList.add("drop-target");
+            });
+            row.addEventListener("dragleave", () => row.classList.remove("drop-target"));
+            row.addEventListener("drop", (event) => {
+                event.preventDefault();
+                row.classList.remove("drop-target");
+                const source = dragIndex
+                    ?? Number.parseInt(event.dataTransfer.getData("text/plain"), 10);
+                dragIndex = null;
+                move(source, index);
+            });
+
+            rows.set(section, row);
+            list.append(row);
+        });
+
+        resetButton.disabled = order.length === 0;
+        rows.get(focusSection)?.focus({ preventScroll: true });
+    }
+
+    resetButton.addEventListener("click", () => {
+        setValue([]);
+        order = computeOrder([]);
+        renderRows();
+        flashSaved();
+    });
+
+    ensureLibrary()
+        .then(() => {
+            if (!root.isConnected) return;
+            knownSections = uniqueSections(library.sections);
+            order = computeOrder(parseSectionOrder(value));
+            renderRows();
+            status.textContent = "Changes are saved automatically.";
+        })
+        .catch((error) => {
+            if (!root.isConnected) return;
+            status.textContent = `Could not load sections: ${error.message}`;
+        });
+
+    return root;
 }
 
 // ---------------------------------------------------------------------------
@@ -907,6 +1191,8 @@ function rebuildFromLibrary() {
 
     fillSections();
     buildGrid();
+    // buildGrid() recreates the tiles, so restore their selected badges.
+    syncTiles();
     renderStrip();
     applyFilters();
     updateFooter();
@@ -923,7 +1209,8 @@ function fillSections() {
     modal.sectionSelect.replaceChildren(
         el("option", { value: "", text: `All sections (${library.styles.length})` }),
     );
-    for (const section of library.sections) {
+    const sections = orderedSections();
+    for (const section of sections) {
         if (!counts.get(section)) continue;
         modal.sectionSelect.append(
             el("option", { value: section, text: `${section} (${counts.get(section)})` }),
@@ -935,7 +1222,7 @@ function fillSections() {
 
     const datalist = getEditorRefs().datalist;
     datalist.replaceChildren(
-        ...library.sections.map((section) => el("option", { value: section })),
+        ...sections.map((section) => el("option", { value: section })),
     );
 }
 
@@ -944,7 +1231,7 @@ function buildGrid() {
     modal.grid.replaceChildren();
 
     const fragment = document.createDocumentFragment();
-    for (const entry of library.styles) {
+    for (const entry of orderedLibraryStyles()) {
         // A div (not a button) so the per-tile edit button is not nested
         // inside another interactive element.
         const tile = el("div", {
@@ -1157,6 +1444,31 @@ function updateFooter() {
 
 app.registerExtension({
     name: "Skutils.StyleSelector",
+
+    settings: [
+        {
+            id: SECTION_ORDER_SETTING_ID,
+            name: "Section order",
+            type: (_name, setValue, value) => buildSectionOrderSetting(value, setValue),
+            defaultValue: [],
+            // Its own group, so the settings panel draws a section heading and
+            // divider after the Features toggles instead of interleaving it
+            // with them.
+            category: ["skkut-utils", "Style Selector"],
+            tooltip:
+                "Reorder the sections in the style picker. Styles stay grouped by section; drag a row or use the arrows.",
+        },
+    ],
+
+    setup() {
+        // If the picker happens to be open, rearrange it as soon as the
+        // setting changes instead of waiting for it to be reopened.
+        app.ui?.settings?.addEventListener?.(`${SECTION_ORDER_SETTING_ID}.change`, () => {
+            if (!library || !modal || modal.overlay.style.display === "none") return;
+            rebuildFromLibrary();
+        });
+    },
+
     async nodeCreated(node) {
         if (node.comfyClass !== NODE_CLASS && node.type !== NODE_CLASS) return;
         setupNode(node);

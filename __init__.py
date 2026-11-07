@@ -9,7 +9,8 @@ Features
   job runs, from actual execution start (web-only feature).
 - settings              — a dedicated "skkut-utils" section in ComfyUI's
   Settings dialog; currently houses the Auto Dark Mode and Job Status
-  toggles (implemented in the web/ feature extensions).
+  toggles and the Style Selector's section order (implemented in the web/
+  feature extensions).
 - save_compressed_weppy — saves images as compressed WebP with embedded
   prompt/workflow metadata: a custom node plus a right-click
   "Save Compressed Weppy" context-menu entry.
