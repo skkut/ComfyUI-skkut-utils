@@ -10,5 +10,8 @@ Agents.md
 # Development-only tooling (the generated library it produces is packaged)
 scripts/
 
+# Developer-only style library tooling (still on GitHub)
+tools/
+
 # Backup / manual comparison copy of styles.json; not loaded at runtime
 skutils_style_selector/styles2.json

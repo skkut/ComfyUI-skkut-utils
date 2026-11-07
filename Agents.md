@@ -37,6 +37,10 @@ web/                               # Single WEB_DIRECTORY: one JS file per featu
     save_compressed_weppy.js
     skutils_style_selector.js
 scripts/                           # Dev-only generators (excluded from the package)
+tools/                             # Dev-only utilities (excluded from the package)
+    reorganize_styles.py           #   visual editor for skutils_style_selector/styles.json
+    README.md                      #   usage for the tools above
+    backups/                       #   generated save backups (gitignored)
 docs/                              # One markdown file per feature (see rule below)
 Agents.md
 README.md

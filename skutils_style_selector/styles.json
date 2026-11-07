@@ -33,18 +33,11 @@
   "Illustration",
   "Character & Creature Design",
   "Emotion",
-  "Edit"
+  "Edit",
+  "Watercolour",
+  "Special Effects"
  ],
  "styles": [
-  {
-   "name": "Anime Style",
-   "section": "Anime",
-   "source": "clio",
-   "prompt": "A clean, expressive illustration style built on confident, simplified linework defining stylized, appealing proportions, flat-to-cel-based shading applied with straightforward graphic clarity, large expressive eyes carrying the primary emotional weight of the design, a bright, approachable simplicity that favors instant readability over rendering complexity, and a versatile, universally recognizable animated charm rooted in broad contemporary Japanese animation convention. Influenced by: contemporary anime illustration tradition, cel-shaded character-design technique, Japanese animation studio practice, mainstream manga-adaptation method.",
-   "negative": "photorealistic skin pores, 3D CGI render, oil-painting brushwork, western cartoon proportions, sketchy unfinished linework",
-   "template": null,
-   "thumb": "Anime_Style.webp"
-  },
   {
    "name": "Ghibli Style",
    "section": "Anime",
@@ -52,7 +45,209 @@
    "prompt": "A gentle, hand-painted animation illustration style built on soft watercolor-inspired shading that gives every plane a breathable, tender texture, meticulous naturalistic detail applied with unhurried patience, rounded, expressive proportions carrying quiet emotional sincerity, a hushed, wondrous stillness pervading even the most fantastical scenes, and a nostalgic, wholesome hand-crafted intensity that feels timeless and deeply human. Influenced by: Hayao Miyazaki, Studio Ghibli production technique, traditional cel-animation painting method, naturalist watercolor illustration tradition.",
    "negative": "photorealistic rendering, gritty horror texture, harsh black outlines, dark desaturated palette, 3D CGI shading, sharp vector edges",
    "template": null,
-   "thumb": "Ghibli_Style.webp"
+   "thumb": "Ghibli_Style.webp",
+   "pinned": true
+  },
+  {
+   "name": "Manga Style",
+   "section": "Anime",
+   "source": "clio",
+   "prompt": "A clean, expressive black-and-white illustration style built on confident, precise linework defining stylized, appealing proportions, restrained tonal shading achieved through screentone patterning or fine cross-hatching rather than continuous gradation, large expressive eyes carrying much of the emotional weight, a dynamic, panel-ready clarity favoring instant visual readability, and a versatile, universally recognizable illustrative charm rooted in mainstream Japanese comic-illustration convention. Influenced by: mainstream manga illustration tradition, screentone-shading technique, Weekly Shōnen Jump publishing convention, Japanese comic-art practice.",
+   "negative": "color fill, painterly brushstrokes, photorealistic shading, 3D CGI render, screentone-free continuous gradients",
+   "template": null,
+   "thumb": "Manga_Style.webp",
+   "pinned": true
+  },
+  {
+   "name": "Anime Style",
+   "section": "Anime",
+   "source": "clio",
+   "prompt": "A clean, expressive illustration style built on confident, simplified linework defining stylized, appealing proportions, flat-to-cel-based shading applied with straightforward graphic clarity, large expressive eyes carrying the primary emotional weight of the design, a bright, approachable simplicity that favors instant readability over rendering complexity, and a versatile, universally recognizable animated charm rooted in broad contemporary Japanese animation convention. Influenced by: contemporary anime illustration tradition, cel-shaded character-design technique, Japanese animation studio practice, mainstream manga-adaptation method.",
+   "negative": "photorealistic skin pores, 3D CGI render, oil-painting brushwork, western cartoon proportions, sketchy unfinished linework",
+   "template": null,
+   "thumb": "Anime_Style.webp",
+   "pinned": true
+  },
+  {
+   "name": "Josei Manga Illustration",
+   "section": "Anime",
+   "source": "u/Dear-Spend-2865",
+   "prompt": "mature elegant manga linework, realistic slender proportions, subtle restrained expressions, soft screentone gradients, refined fashion-magazine clarity, clean image area free of lettering, inspired by Ai Yazawa, Akiko Higashimura, Moyoco Anno, josei, manga, elegant, fine lineart.",
+   "negative": "photorealistic skin pores, 3D CGI render, oil-painting brushwork, western cartoon proportions, sketchy unfinished linework",
+   "template": null,
+   "thumb": "Josei_Manga_Illustration.webp"
+  },
+  {
+   "name": "Takehiko Inoue Style Manga Illustration",
+   "section": "Anime",
+   "source": "u/Dear-Spend-2865",
+   "prompt": "masterful brush and ink manga, realistic expressive faces, ink-wash tones, dynamic confident brushwork, dry-brush texture, calligraphic contour lines, soft grey wash gradients, inspired by Takehiko Inoue, Vagabond, Slam Dunk, manga, brush ink, ink wash, realistic.",
+   "negative": "photorealistic skin pores, 3D CGI render, oil-painting brushwork, western cartoon proportions, sketchy unfinished linework",
+   "template": null,
+   "thumb": "Takehiko_Inoue_Style_Manga_Illustration.webp"
+  },
+  {
+   "name": "Taiyo Matsumoto Style Manga Illustration",
+   "section": "Anime",
+   "source": "u/Dear-Spend-2865",
+   "prompt": "manga illustration, loose scratchy irregular linework, warped playful perspective, raw sketchy textures, quirky flat tones, inspired by Taiyo Matsumoto, Tekkonkinkreet, Ping Pong, manga, scratchy, alternative manga, expressive.",
+   "negative": "photorealistic skin pores, 3D CGI render, oil-painting brushwork, western cartoon proportions, sketchy unfinished linework",
+   "template": null,
+   "thumb": "Taiyo_Matsumoto_Style_Manga_Illustration.webp"
+  },
+  {
+   "name": "Inoue Brush Manga Masterpiece",
+   "section": "Anime",
+   "source": "u/Dear-Spend-2865",
+   "prompt": "manga brush ink illustration, masterful sumi brush and pen linework, expressive ink-wash tones, minimal elegant screentone, confident calligraphic contours, refined realistic manga finish, inspired by Takehiko Inoue, Naoki Urasawa, Kentaro Miura, manga, ink wash, brush ink, black and white, masterpiece.",
+   "negative": "photorealistic skin pores, 3D CGI render, oil-painting brushwork, western cartoon proportions, sketchy unfinished linework",
+   "template": null,
+   "thumb": "Inoue_Brush_Manga_Masterpiece.webp"
+  },
+  {
+   "name": "Horror Manga Masterpiece",
+   "section": "Anime",
+   "source": "u/Dear-Spend-2865",
+   "prompt": "horror manga ink illustration, ultra-detailed obsessive linework, dense hatching, unsettling distorted forms, deep inky blacks, creeping dread through texture, inspired by Junji Ito, Kazuo Umezu, Hideshi Hino, horror manga, ultra detailed, crosshatching, black and white, eerie.",
+   "negative": "photorealistic skin pores, 3D CGI render, oil-painting brushwork, western cartoon proportions, sketchy unfinished linework",
+   "template": null,
+   "thumb": "Horror_Manga_Masterpiece.webp"
+  },
+  {
+   "name": "Hiroaki Samura Style Manga Illustration",
+   "section": "Anime",
+   "source": "u/Dear-Spend-2865",
+   "prompt": "ultra-detailed raw pencil manga, scratchy expressive linework, gritty textures, realistic proportions, visible graphite smudges, loose unfinished edges, rough sketchbook energy, inspired by Hiroaki Samura, Blade of the Immortal, Takehiko Inoue, manga, pencil, gritty, detailed.",
+   "negative": "photorealistic skin pores, 3D CGI render, oil-painting brushwork, western cartoon proportions, sketchy unfinished linework",
+   "template": null,
+   "thumb": "Hiroaki_Samura_Style_Manga_Illustration.webp"
+  },
+  {
+   "name": "Katsura Manga Cover Prestige",
+   "section": "Anime",
+   "source": "u/Dear-Spend-2865",
+   "prompt": "refined 90s manga cover illustration, realistic graceful form, luminous airbrushed skin, soft copic and watercolor gradients, glossy hair rendering, crisp delicate lineart, bright clean white background with pastel accents, clean image area free of lettering, inspired by Masakazu Katsura, I-s, DNA2, manga cover, 90s manga, airbrush, masterpiece, character art.",
+   "negative": "photorealistic skin pores, 3D CGI render, oil-painting brushwork, western cartoon proportions, sketchy unfinished linework",
+   "template": null,
+   "thumb": "Katsura_Manga_Cover_Prestige.webp"
+  },
+  {
+   "name": "Miyazaki Masterpiece Anime Illustration",
+   "section": "Anime",
+   "source": "u/Dear-Spend-2865",
+   "prompt": "lush hand-painted poster-color backgrounds, soft natural light, gentle brush textures, simple clean character lines with flat cel colors, warm muted palette, meticulous naturalistic detail, clean image area free of lettering, inspired by Hayao Miyazaki, Kazuo Oga, Yoji Takeshige, studio ghibli, anime, hand painted, background art, masterpiece.",
+   "negative": "photorealistic skin pores, 3D CGI render, oil-painting brushwork, western cartoon proportions, sketchy unfinished linework",
+   "template": null,
+   "thumb": "Miyazaki_Masterpiece_Anime_Illustration.webp"
+  },
+  {
+   "name": "Osamu Tezuka Style",
+   "section": "Anime",
+   "source": "clio",
+   "prompt": "A charming, expressive manga-illustration style built on confident, rounded linework carrying a distinctly whimsical, animation-influenced simplicity,  conveying deep emotional sincerity within otherwise simplified design, unmistakably classic. Influenced by: Osamu Tezuka, Astro boy, Black Jack manga, foundational manga-illustration tradition, early Japanese cel-animation technique,",
+   "negative": "photorealistic anatomy, gritty horror shading, 3D CGI render, dense crosshatching, muted muddy palette",
+   "template": null,
+   "thumb": "Osamu_Tezuka_Style.webp"
+  },
+  {
+   "name": "Ultradetailed Manga Illustration",
+   "section": "Anime",
+   "source": "clio",
+   "prompt": "exceptionally dense manga aesthetics characterized by obsessive line fidelity, intricate textural rendering, advanced visual layering, meticulous hatch work, precise structural draftsmanship, and an extraordinary concentration of graphical information. The style emphasizes complexity, craftsmanship, and prolonged visual exploration, rewarding close inspection through micro-detail, architectural precision, elaborate costume design, and highly refined material interpretation. Rather than relying on simplified manga shorthand, it pursues visual richness, technical virtuosity, and immersive image construction while preserving strong readability and compositional control. The overall effect feels ambitious, authoritative, and intensely crafted, balancing narrative clarity with astonishing detail density and artistic dedication, reminiscent of Kentaro Miura and Tsutomu Nihei, inspired by Berserk and BLAME!.",
+   "negative": "color fill, soft watercolor wash, chibi proportions, 3D CGI render, loose minimal sketch lines",
+   "template": null,
+   "thumb": "Ultradetailed_Manga_Illustration.webp"
+  },
+  {
+   "name": "Junji Ito Style",
+   "section": "Anime",
+   "source": "clio",
+   "prompt": "A meticulously detailed horror-manga illustration style built on dense, obsessive fine linework and cross-hatching that renders skin, hair, and texture with unsettling hyper-precision, ordinary human forms twisted into spiraling, biologically wrong distortions and body horror, stark black-and-white contrast with pools of inky shadow swallowing the edges of the frame, wide unblinking eyes carrying quiet dawning dread, and a slow-building, deeply unsettling atmosphere of cosmic horror seeping into mundane settings. Influenced by: Junji Ito, Tomie and Uzumaki manga art, body-horror illustration, ink cross-hatching technique.",
+   "negative": "color fill, soft pastel rendering, chibi cuteness, 3D CGI render, clean minimal linework, bright cheerful palette",
+   "template": null,
+   "thumb": "Junji_Ito_Style.webp"
+  },
+  {
+   "name": "Shindol Style",
+   "section": "Anime",
+   "source": "clio",
+   "prompt": "A polished Korean webtoon illustration style rendered with soft cel-shaded gradients over cleanly inked linework, realistically proportioned yet subtly idealized figures with smooth, luminous skin and delicately blushed cheeks, expressive detailed eyes rendered with glossy multi-layered highlights, soft ambient studio-like lighting that keeps shadows gentle and skin tones warm, and a clean, contemporary digital-comic polish characteristic of modern webtoon romance and drama art. Influenced by: Shindol, Korean webtoon illustration, Manhwa digital coloring technique, romance webtoon art direction.",
+   "negative": "photorealistic skin pores, oil-paint texture, chibi proportions, rough sketch lines, muted muddy palette",
+   "template": null,
+   "thumb": "Shindol_Style.webp"
+  },
+  {
+   "name": "Murata Hyperrealism",
+   "section": "Anime",
+   "source": "clio",
+   "prompt": "A meticulously rendered manga-illustration style built on obsessive anatomical precision that treats musculature and material detail with near-photographic exactness, dramatic high-contrast shading carving powerful, sculptural form through confident cross-hatched shadow, a technically disciplined realism that pushes traditional manga linework toward hyperreal density, dynamic, kinetic posing charged with explosive physical presence, and a bold, virtuosic manga intensity that feels equal parts scientific precision and raw physical spectacle. Influenced by: Yusuke Murata, One-Punch Man manga tradition, hyper-detailed manga illustration technique, technical-precision character-design practice.",
+   "negative": "loose gestural sketch, chibi proportions, flat pastel fill, 3D CGI render, soft watercolor wash",
+   "template": null,
+   "thumb": "Murata_Hyperrealism.webp"
+  },
+  {
+   "name": "Katsuya Terada Style",
+   "section": "Anime",
+   "source": "clio",
+   "prompt": "A ferociously energetic illustration style built on wild, gestural linework that captures raw movement and muscular dynamism in every stroke, loose ink-driven cross-hatching layered with confident painterly color, chaotic yet controlled compositions bursting with kinetic tension, richly textured surface detail giving textures a visceral, almost sculptural intensity, and a bold, untamed painterly ferocity that feels equally at home in fine art and manga tradition. Influenced by: Katsuya Terada, Japanese gekiga illustration, ink-and-color technique, fantasy creature illustration.",
+   "negative": "clean polished vector lines, soft airbrushed gradients, chibi cuteness, pastel palette, 3D CGI render",
+   "template": null,
+   "thumb": "Katsuya_Terada_Style.webp"
+  },
+  {
+   "name": "Classic Shojo Illustration",
+   "section": "Anime",
+   "source": "clio",
+   "prompt": "elegant manga-inspired aesthetics characterized by graceful linework, refined visual delicacy, expressive emotional storytelling, sophisticated composition, ornamental detailing, and a strong sense of romantic atmosphere, blending stylized beauty with polished illustration craftsmanship through airy visual rhythms, nuanced rendering, and timeless narrative charm, reminiscent of Riyoko Ikeda and CLAMP, inspired by The Rose of Versailles and Cardcaptor Sakura.",
+   "negative": "gritty horror shading, muscular hyper-anatomy, photorealistic render, muddy palette, 3D CGI plastic sheen",
+   "template": null,
+   "thumb": "Classic_Shojo_Illustration.webp"
+  },
+  {
+   "name": "Boichi Style",
+   "section": "Anime",
+   "source": "clio",
+   "prompt": "A meticulously rendered manga-illustration style built on dense, hyper-precise linework that treats anatomy and mechanical detail with equal obsessive accuracy, dramatic high-contrast shading that carves powerful, sculptural form through confident cross-hatched shadow, a technically disciplined realism balancing muscular anatomical grounding with dynamic, kinetic posing, meticulous attention to material and structural logic rewarding close inspection, and a bold, technically virtuosic manga intensity that feels equal parts scientific precision and explosive physicality. Influenced by: Boichi, Dr. Stone manga art tradition, hyper-detailed manga illustration technique, technical-precision character-design practice.",
+   "negative": "loose sketchy linework, chibi proportions, flat cartoon simplicity, pastel palette, 3D CGI render",
+   "template": null,
+   "thumb": "Boichi_Style.webp"
+  },
+  {
+   "name": "Berserk Manga Style",
+   "section": "Anime",
+   "source": "clio",
+   "prompt": "monumental dark fantasy manga aesthetics characterized by obsessive crosshatched detail, rugged textural density, dramatic black-and-white value structure, intricate ornamental craftsmanship, and an overwhelming sense of weight, scale, and historical depth. The style emphasizes brutal realism, weathered material rendering, architectural complexity, and emotionally intense visual storytelling, constructing imagery through countless layers of inked detail and highly disciplined draftsmanship. Rather than stylized simplification, it pursues visual immersion through realism, atmosphere, and relentless craftsmanship, creating artwork that feels ancient, tragic, and profoundly human. The visual language balances violence and beauty, grandeur and decay, with extraordinary attention to texture, structure, and narrative gravitas, reminiscent of Kentaro Miura and Hal Foster, inspired by Berserk and Prince Valiant.",
+   "negative": "color fill, clean minimal linework, bright cheerful palette, chibi proportions, 3D CGI render, glossy airbrush finish",
+   "template": null,
+   "thumb": "Berserk_Manga_Style.webp"
+  },
+  {
+   "name": "Chainsaw Man Style",
+   "section": "Anime",
+   "source": "clio",
+   "prompt": "A raw, gritty manga-illustration style built on loose, aggressive linework carrying deliberately unpolished, visceral energy, stark high-contrast shading that swallows much of the composition in engulfing shadow , a chaotic, kinetic sense of motion charged with unpredictable, feral intensity, meticulous grotesque body-horror rendering balanced against darkly comedic character design, and a raw, unflinching contemporary shōnen edge that feels equal parts brutal and irreverently funny. Influenced by: Tatsuki Fujimoto, contemporary dark-shōnen manga tradition, raw ink-heavy illustration technique, body-horror action-manga practice.",
+   "negative": "clean polished vector art, bright pastel palette, chibi cuteness, 3D CGI render, soft airbrushed gradients",
+   "template": null,
+   "thumb": "Chainsaw_Man_Style.webp"
+  },
+  {
+   "name": "Attack on Titan Manga Style",
+   "section": "Anime",
+   "source": "clio",
+   "prompt": "A gritty, high-tension manga-anime illustration style built on dense, realistic linework rendering musculature and gear with mechanical precision, dramatic dark shading and heavy cross-hatched texture that carves grim, intensity into every surface, dynamic extreme-perspective framing charged with kinetic urgency and scale, desaturated tonal harmony broken by stark high-contrast lighting in moments of violence or dread, and a grim, visceral action-illustration gravitas suffused with existential tension. Influenced by: Hajime Isayama, dark shōnen manga tradition, cel-shaded action-anime technique, gritty military-fantasy illustration.",
+   "negative": "bright cheerful palette, chibi proportions, glossy airbrushed skin, 3D CGI render, soft watercolor pastels",
+   "template": null,
+   "thumb": "Attack_on_Titan_Manga_Style.webp"
+  },
+  {
+   "name": "Atsushi Ohkubo Style",
+   "section": "Anime",
+   "source": "clio",
+   "prompt": "bold graphic aesthetics characterized by sharp silhouette design, dynamic linework, stylized anatomy, exaggerated visual rhythm, striking contrast, and highly recognizable shape language, blending manga expressiveness with contemporary illustration sensibilities through energetic compositions, refined ink work, and a distinctive balance between elegance and intensity, reminiscent of Atsushi Ohkubo and Tite Kubo, inspired by Soul Eater and Fire Force.",
+   "negative": "soft painterly rendering, realistic anatomy, pastel palette, 3D CGI render, delicate fine linework, static posing",
+   "template": null,
+   "thumb": "Atsushi_Ohkubo_Style.webp",
+   "pinned": true
   },
   {
    "name": "1970s Anime",
@@ -62,15 +257,6 @@
    "negative": "modern digital gradients, glossy airbrushed skin, 3D CG rendering, ultra-sharp vector lines, contemporary anime gloss, flat sterile lighting",
    "template": null,
    "thumb": "1970s_Anime.webp"
-  },
-  {
-   "name": "Manga Style",
-   "section": "Anime",
-   "source": "clio",
-   "prompt": "A clean, expressive black-and-white illustration style built on confident, precise linework defining stylized, appealing proportions, restrained tonal shading achieved through screentone patterning or fine cross-hatching rather than continuous gradation, large expressive eyes carrying much of the emotional weight, a dynamic, panel-ready clarity favoring instant visual readability, and a versatile, universally recognizable illustrative charm rooted in mainstream Japanese comic-illustration convention. Influenced by: mainstream manga illustration tradition, screentone-shading technique, Weekly Shōnen Jump publishing convention, Japanese comic-art practice.",
-   "negative": "color fill, painterly brushstrokes, photorealistic shading, 3D CGI render, screentone-free continuous gradients",
-   "template": null,
-   "thumb": "Manga_Style.webp"
   },
   {
    "name": "Akira Style",
@@ -91,33 +277,6 @@
    "thumb": "Akira_Toriyama_Style.webp"
   },
   {
-   "name": "Atsushi Ohkubo Style",
-   "section": "Anime",
-   "source": "clio",
-   "prompt": "bold graphic aesthetics characterized by sharp silhouette design, dynamic linework, stylized anatomy, exaggerated visual rhythm, striking contrast, and highly recognizable shape language, blending manga expressiveness with contemporary illustration sensibilities through energetic compositions, refined ink work, and a distinctive balance between elegance and intensity, reminiscent of Atsushi Ohkubo and Tite Kubo, inspired by Soul Eater and Fire Force.",
-   "negative": "soft painterly rendering, realistic anatomy, pastel palette, 3D CGI render, delicate fine linework, static posing",
-   "template": null,
-   "thumb": "Atsushi_Ohkubo_Style.webp"
-  },
-  {
-   "name": "Attack on Titan Manga Style",
-   "section": "Anime",
-   "source": "clio",
-   "prompt": "A gritty, high-tension manga-anime illustration style built on dense, realistic linework rendering musculature and gear with mechanical precision, dramatic dark shading and heavy cross-hatched texture that carves grim, intensity into every surface, dynamic extreme-perspective framing charged with kinetic urgency and scale, desaturated tonal harmony broken by stark high-contrast lighting in moments of violence or dread, and a grim, visceral action-illustration gravitas suffused with existential tension. Influenced by: Hajime Isayama, dark shōnen manga tradition, cel-shaded action-anime technique, gritty military-fantasy illustration.",
-   "negative": "bright cheerful palette, chibi proportions, glossy airbrushed skin, 3D CGI render, soft watercolor pastels",
-   "template": null,
-   "thumb": "Attack_on_Titan_Manga_Style.webp"
-  },
-  {
-   "name": "Chainsaw Man Style",
-   "section": "Anime",
-   "source": "clio",
-   "prompt": "A raw, gritty manga-illustration style built on loose, aggressive linework carrying deliberately unpolished, visceral energy, stark high-contrast shading that swallows much of the composition in engulfing shadow , a chaotic, kinetic sense of motion charged with unpredictable, feral intensity, meticulous grotesque body-horror rendering balanced against darkly comedic character design, and a raw, unflinching contemporary shōnen edge that feels equal parts brutal and irreverently funny. Influenced by: Tatsuki Fujimoto, contemporary dark-shōnen manga tradition, raw ink-heavy illustration technique, body-horror action-manga practice.",
-   "negative": "clean polished vector art, bright pastel palette, chibi cuteness, 3D CGI render, soft airbrushed gradients",
-   "template": null,
-   "thumb": "Chainsaw_Man_Style.webp"
-  },
-  {
    "name": "Jujutsu Kaisen Style",
    "section": "Anime",
    "source": "clio",
@@ -134,15 +293,6 @@
    "negative": "dark horror shading, photorealistic anatomy, muted desaturated palette, 3D CGI render, painterly oil texture",
    "template": null,
    "thumb": "My_Hero_Academia_Style.webp"
-  },
-  {
-   "name": "Berserk Manga Style",
-   "section": "Anime",
-   "source": "clio",
-   "prompt": "monumental dark fantasy manga aesthetics characterized by obsessive crosshatched detail, rugged textural density, dramatic black-and-white value structure, intricate ornamental craftsmanship, and an overwhelming sense of weight, scale, and historical depth. The style emphasizes brutal realism, weathered material rendering, architectural complexity, and emotionally intense visual storytelling, constructing imagery through countless layers of inked detail and highly disciplined draftsmanship. Rather than stylized simplification, it pursues visual immersion through realism, atmosphere, and relentless craftsmanship, creating artwork that feels ancient, tragic, and profoundly human. The visual language balances violence and beauty, grandeur and decay, with extraordinary attention to texture, structure, and narrative gravitas, reminiscent of Kentaro Miura and Hal Foster, inspired by Berserk and Prince Valiant.",
-   "negative": "color fill, clean minimal linework, bright cheerful palette, chibi proportions, 3D CGI render, glossy airbrush finish",
-   "template": null,
-   "thumb": "Berserk_Manga_Style.webp"
   },
   {
    "name": "Bleach Style",
@@ -163,15 +313,6 @@
    "thumb": "Frieren_Style.webp"
   },
   {
-   "name": "Boichi Style",
-   "section": "Anime",
-   "source": "clio",
-   "prompt": "A meticulously rendered manga-illustration style built on dense, hyper-precise linework that treats anatomy and mechanical detail with equal obsessive accuracy, dramatic high-contrast shading that carves powerful, sculptural form through confident cross-hatched shadow, a technically disciplined realism balancing muscular anatomical grounding with dynamic, kinetic posing, meticulous attention to material and structural logic rewarding close inspection, and a bold, technically virtuosic manga intensity that feels equal parts scientific precision and explosive physicality. Influenced by: Boichi, Dr. Stone manga art tradition, hyper-detailed manga illustration technique, technical-precision character-design practice.",
-   "negative": "loose sketchy linework, chibi proportions, flat cartoon simplicity, pastel palette, 3D CGI render",
-   "template": null,
-   "thumb": "Boichi_Style.webp"
-  },
-  {
    "name": "Cinematic Anime",
    "section": "Anime",
    "source": "clio",
@@ -179,15 +320,6 @@
    "negative": "flat TV-episode simplicity, chibi proportions, sketchy rough lines, 3D CGI render, muddy desaturated palette",
    "template": null,
    "thumb": "Cinematic_Anime.webp"
-  },
-  {
-   "name": "Classic Shojo Illustration",
-   "section": "Anime",
-   "source": "clio",
-   "prompt": "elegant manga-inspired aesthetics characterized by graceful linework, refined visual delicacy, expressive emotional storytelling, sophisticated composition, ornamental detailing, and a strong sense of romantic atmosphere, blending stylized beauty with polished illustration craftsmanship through airy visual rhythms, nuanced rendering, and timeless narrative charm, reminiscent of Riyoko Ikeda and CLAMP, inspired by The Rose of Versailles and Cardcaptor Sakura.",
-   "negative": "gritty horror shading, muscular hyper-anatomy, photorealistic render, muddy palette, 3D CGI plastic sheen",
-   "template": null,
-   "thumb": "Classic_Shojo_Illustration.webp"
   },
   {
    "name": "Euromanga Style",
@@ -199,15 +331,6 @@
    "thumb": "Euromanga_Style.webp"
   },
   {
-   "name": "Watercolor Anime Illustration",
-   "section": "Anime",
-   "source": "clio",
-   "prompt": "A soft, luminous illustration style built on delicate translucent washes blending seamlessly with clean anime-adjacent linework, gentle bleeding and diffusion at the edges lending each plane a tender, organic softness, restrained tonal layering achieved through patient, unhurried wash-building rather than opaque coverage, a hushed, dreamlike stillness carried through soft directional light, and a poetic, wistful character-illustration finish that feels equally hand-painted and anime-refined. Influenced by: traditional watercolor-and-wash technique, contemporary anime-illustration tradition, gentle wash-blending practice, semi-realistic character-art method.",
-   "negative": "opaque digital airbrush, hard vector edges, glossy 3D shading, photographic detail, heavy black ink",
-   "template": null,
-   "thumb": "Watercolor_Anime_Illustration.webp"
-  },
-  {
    "name": "Granblue Fantasy Pin-Up Style",
    "section": "Anime",
    "source": "clio",
@@ -215,15 +338,6 @@
    "negative": "photorealistic skin pores, oil-paint texture, chibi proportions, rough sketchy linework, muted muddy palette",
    "template": null,
    "thumb": "Granblue_Fantasy_Pin_Up_Style.webp"
-  },
-  {
-   "name": "Katsuya Terada Style",
-   "section": "Anime",
-   "source": "clio",
-   "prompt": "A ferociously energetic illustration style built on wild, gestural linework that captures raw movement and muscular dynamism in every stroke, loose ink-driven cross-hatching layered with confident painterly color, chaotic yet controlled compositions bursting with kinetic tension, richly textured surface detail giving textures a visceral, almost sculptural intensity, and a bold, untamed painterly ferocity that feels equally at home in fine art and manga tradition. Influenced by: Katsuya Terada, Japanese gekiga illustration, ink-and-color technique, fantasy creature illustration.",
-   "negative": "clean polished vector lines, soft airbrushed gradients, chibi cuteness, pastel palette, 3D CGI render",
-   "template": null,
-   "thumb": "Katsuya_Terada_Style.webp"
   },
   {
    "name": "Manhwa Ultradetailed Art",
@@ -235,15 +349,6 @@
    "thumb": "Manhwa_Ultradetailed_Art.webp"
   },
   {
-   "name": "Murata Hyperrealism",
-   "section": "Anime",
-   "source": "clio",
-   "prompt": "A meticulously rendered manga-illustration style built on obsessive anatomical precision that treats musculature and material detail with near-photographic exactness, dramatic high-contrast shading carving powerful, sculptural form through confident cross-hatched shadow, a technically disciplined realism that pushes traditional manga linework toward hyperreal density, dynamic, kinetic posing charged with explosive physical presence, and a bold, virtuosic manga intensity that feels equal parts scientific precision and raw physical spectacle. Influenced by: Yusuke Murata, One-Punch Man manga tradition, hyper-detailed manga illustration technique, technical-precision character-design practice.",
-   "negative": "loose gestural sketch, chibi proportions, flat pastel fill, 3D CGI render, soft watercolor wash",
-   "template": null,
-   "thumb": "Murata_Hyperrealism.webp"
-  },
-  {
    "name": "MidJourney Niji-Inspired Digital Illustration",
    "section": "Anime",
    "source": "clio",
@@ -251,15 +356,6 @@
    "negative": "photorealistic texture, gritty horror shading, heavy black outlines, muted desaturated palette, 3D CGI render",
    "template": null,
    "thumb": "MidJourney_Niji_Inspired_Digital_Illustration.webp"
-  },
-  {
-   "name": "Shindol Style",
-   "section": "Anime",
-   "source": "clio",
-   "prompt": "A polished Korean webtoon illustration style rendered with soft cel-shaded gradients over cleanly inked linework, realistically proportioned yet subtly idealized figures with smooth, luminous skin and delicately blushed cheeks, expressive detailed eyes rendered with glossy multi-layered highlights, soft ambient studio-like lighting that keeps shadows gentle and skin tones warm, and a clean, contemporary digital-comic polish characteristic of modern webtoon romance and drama art. Influenced by: Shindol, Korean webtoon illustration, Manhwa digital coloring technique, romance webtoon art direction.",
-   "negative": "photorealistic skin pores, oil-paint texture, chibi proportions, rough sketch lines, muted muddy palette",
-   "template": null,
-   "thumb": "Shindol_Style.webp"
   },
   {
    "name": "Solo Leveling Art",
@@ -361,15 +457,6 @@
    "thumb": "Anime_Key_Visual.webp"
   },
   {
-   "name": "Junji Ito Style",
-   "section": "Anime",
-   "source": "clio",
-   "prompt": "A meticulously detailed horror-manga illustration style built on dense, obsessive fine linework and cross-hatching that renders skin, hair, and texture with unsettling hyper-precision, ordinary human forms twisted into spiraling, biologically wrong distortions and body horror, stark black-and-white contrast with pools of inky shadow swallowing the edges of the frame, wide unblinking eyes carrying quiet dawning dread, and a slow-building, deeply unsettling atmosphere of cosmic horror seeping into mundane settings. Influenced by: Junji Ito, Tomie and Uzumaki manga art, body-horror illustration, ink cross-hatching technique.",
-   "negative": "color fill, soft pastel rendering, chibi cuteness, 3D CGI render, clean minimal linework, bright cheerful palette",
-   "template": null,
-   "thumb": "Junji_Ito_Style.webp"
-  },
-  {
    "name": "Anime Illustration",
    "section": "Anime",
    "source": "clio",
@@ -377,15 +464,6 @@
    "negative": "photorealistic skin pores, oil-painting brushwork, gritty horror shading, 3D CGI render, western cartoon proportions",
    "template": null,
    "thumb": "Anime_Illustration.webp"
-  },
-  {
-   "name": "Ultradetailed Manga Illustration",
-   "section": "Anime",
-   "source": "clio",
-   "prompt": "exceptionally dense manga aesthetics characterized by obsessive line fidelity, intricate textural rendering, advanced visual layering, meticulous hatch work, precise structural draftsmanship, and an extraordinary concentration of graphical information. The style emphasizes complexity, craftsmanship, and prolonged visual exploration, rewarding close inspection through micro-detail, architectural precision, elaborate costume design, and highly refined material interpretation. Rather than relying on simplified manga shorthand, it pursues visual richness, technical virtuosity, and immersive image construction while preserving strong readability and compositional control. The overall effect feels ambitious, authoritative, and intensely crafted, balancing narrative clarity with astonishing detail density and artistic dedication, reminiscent of Kentaro Miura and Tsutomu Nihei, inspired by Berserk and BLAME!.",
-   "negative": "color fill, soft watercolor wash, chibi proportions, 3D CGI render, loose minimal sketch lines",
-   "template": null,
-   "thumb": "Ultradetailed_Manga_Illustration.webp"
   },
   {
    "name": "Polished Ultrarealistic Anime Pin-Up",
@@ -496,15 +574,6 @@
    "thumb": "Mecha_Anime_Style.webp"
   },
   {
-   "name": "Osamu Tezuka Style",
-   "section": "Anime",
-   "source": "clio",
-   "prompt": "A charming, expressive manga-illustration style built on confident, rounded linework carrying a distinctly whimsical, animation-influenced simplicity,  conveying deep emotional sincerity within otherwise simplified design, unmistakably classic. Influenced by: Osamu Tezuka, Astro boy, Black Jack manga, foundational manga-illustration tradition, early Japanese cel-animation technique,",
-   "negative": "photorealistic anatomy, gritty horror shading, 3D CGI render, dense crosshatching, muted muddy palette",
-   "template": null,
-   "thumb": "Osamu_Tezuka_Style.webp"
-  },
-  {
    "name": "Yu-Gi-Oh! Style",
    "section": "Anime",
    "source": "clio",
@@ -595,15 +664,6 @@
    "thumb": "Manhua_Comic_Art.webp"
   },
   {
-   "name": "Manhua Wuxia Digital Painting",
-   "section": "Anime",
-   "source": "u/Dear-Spend-2865",
-   "prompt": "digital painting, flowing painterly digital rendering, ink-wash effects, warm harmonious color temperature, elegant fluid poses, swirling energy trails, soft tonal transitions, misty layered depth, crisp detailed faces, inspired by Tales of Demons and Gods, Feng Shen Ji, Zheng Wang, manhua, wuxia, digital painting, ink wash, detailed.",
-   "negative": "photorealistic skin pores, 3D CGI render, oil-painting brushwork, western cartoon proportions, sketchy unfinished linework",
-   "template": null,
-   "thumb": "Manhua_Wuxia_Digital_Painting.webp"
-  },
-  {
    "name": "Sam Yang Character Style Anime Illustration",
    "section": "Anime",
    "source": "u/Dear-Spend-2865",
@@ -638,15 +698,6 @@
    "negative": "photorealistic skin pores, 3D CGI render, oil-painting brushwork, western cartoon proportions, sketchy unfinished linework",
    "template": null,
    "thumb": "Xianxia_Manhua_Digital_Painting.webp"
-  },
-  {
-   "name": "Hong Kong Manhua Comic Art",
-   "section": "Anime",
-   "source": "u/Dear-Spend-2865",
-   "prompt": "gritty painted color comic art, heavy realistic anatomy, airbrushed and gouache coloring, dramatic speed streaks, rain and fire effects, warm harmonious color temperature, rough ink textures, inspired by Ma Wing-shing, Tony Wong, Storm Riders, hong kong manhua, wuxia, painted comic, gritty, dynamic.",
-   "negative": "photorealistic skin pores, 3D CGI render, oil-painting brushwork, western cartoon proportions, sketchy unfinished linework",
-   "template": null,
-   "thumb": "Hong_Kong_Manhua_Comic_Art.webp"
   },
   {
    "name": "Lineless Anime",
@@ -685,15 +736,6 @@
    "thumb": "90s_Anime_Cel.webp"
   },
   {
-   "name": "Miyazaki Masterpiece Anime Illustration",
-   "section": "Anime",
-   "source": "u/Dear-Spend-2865",
-   "prompt": "lush hand-painted poster-color backgrounds, soft natural light, gentle brush textures, simple clean character lines with flat cel colors, warm muted palette, meticulous naturalistic detail, clean image area free of lettering, inspired by Hayao Miyazaki, Kazuo Oga, Yoji Takeshige, studio ghibli, anime, hand painted, background art, masterpiece.",
-   "negative": "photorealistic skin pores, 3D CGI render, oil-painting brushwork, western cartoon proportions, sketchy unfinished linework",
-   "template": null,
-   "thumb": "Miyazaki_Masterpiece_Anime_Illustration.webp"
-  },
-  {
    "name": "Anime Art Nouveau",
    "section": "Anime",
    "source": "u/Dear-Spend-2865",
@@ -730,15 +772,6 @@
    "thumb": "Classic_Bishounen_Illustration.webp"
   },
   {
-   "name": "Katsura Manga Cover Prestige",
-   "section": "Anime",
-   "source": "u/Dear-Spend-2865",
-   "prompt": "refined 90s manga cover illustration, realistic graceful form, luminous airbrushed skin, soft copic and watercolor gradients, glossy hair rendering, crisp delicate lineart, bright clean white background with pastel accents, clean image area free of lettering, inspired by Masakazu Katsura, I-s, DNA2, manga cover, 90s manga, airbrush, masterpiece, character art.",
-   "negative": "photorealistic skin pores, 3D CGI render, oil-painting brushwork, western cartoon proportions, sketchy unfinished linework",
-   "template": null,
-   "thumb": "Katsura_Manga_Cover_Prestige.webp"
-  },
-  {
    "name": "Genga Keyframe Sketch",
    "section": "Anime",
    "source": "u/Dear-Spend-2865",
@@ -746,51 +779,6 @@
    "negative": "photorealistic skin pores, 3D CGI render, oil-painting brushwork, western cartoon proportions, sketchy unfinished linework",
    "template": null,
    "thumb": "Genga_Keyframe_Sketch.webp"
-  },
-  {
-   "name": "Hiroaki Samura Style Manga Illustration",
-   "section": "Anime",
-   "source": "u/Dear-Spend-2865",
-   "prompt": "ultra-detailed raw pencil manga, scratchy expressive linework, gritty textures, realistic proportions, visible graphite smudges, loose unfinished edges, rough sketchbook energy, inspired by Hiroaki Samura, Blade of the Immortal, Takehiko Inoue, manga, pencil, gritty, detailed.",
-   "negative": "photorealistic skin pores, 3D CGI render, oil-painting brushwork, western cartoon proportions, sketchy unfinished linework",
-   "template": null,
-   "thumb": "Hiroaki_Samura_Style_Manga_Illustration.webp"
-  },
-  {
-   "name": "Gekiga Realism Ink Drawing",
-   "section": "Anime",
-   "source": "u/Dear-Spend-2865",
-   "prompt": "gritty realistic ink drawing, heavy brush blacks, detailed textures, raw dramatic shading, rough pen hatching, realistic proportions, grainy screentone, harsh black-and-white print finish, inspired by Yoshihiro Tatsumi, Goseki Kojima, Takao Saito, gekiga, manga, realistic, ink, gritty.",
-   "negative": "photorealistic skin pores, 3D CGI render, oil-painting brushwork, western cartoon proportions, sketchy unfinished linework",
-   "template": null,
-   "thumb": "Gekiga_Realism_Ink_Drawing.webp"
-  },
-  {
-   "name": "Horror Manga Masterpiece",
-   "section": "Anime",
-   "source": "u/Dear-Spend-2865",
-   "prompt": "horror manga ink illustration, ultra-detailed obsessive linework, dense hatching, unsettling distorted forms, deep inky blacks, creeping dread through texture, inspired by Junji Ito, Kazuo Umezu, Hideshi Hino, horror manga, ultra detailed, crosshatching, black and white, eerie.",
-   "negative": "photorealistic skin pores, 3D CGI render, oil-painting brushwork, western cartoon proportions, sketchy unfinished linework",
-   "template": null,
-   "thumb": "Horror_Manga_Masterpiece.webp"
-  },
-  {
-   "name": "Inoue Brush Manga Masterpiece",
-   "section": "Anime",
-   "source": "u/Dear-Spend-2865",
-   "prompt": "manga brush ink illustration, masterful sumi brush and pen linework, expressive ink-wash tones, minimal elegant screentone, confident calligraphic contours, refined realistic manga finish, inspired by Takehiko Inoue, Naoki Urasawa, Kentaro Miura, manga, ink wash, brush ink, black and white, masterpiece.",
-   "negative": "photorealistic skin pores, 3D CGI render, oil-painting brushwork, western cartoon proportions, sketchy unfinished linework",
-   "template": null,
-   "thumb": "Inoue_Brush_Manga_Masterpiece.webp"
-  },
-  {
-   "name": "Takehiko Inoue Style Manga Illustration",
-   "section": "Anime",
-   "source": "u/Dear-Spend-2865",
-   "prompt": "masterful brush and ink manga, realistic expressive faces, ink-wash tones, dynamic confident brushwork, dry-brush texture, calligraphic contour lines, soft grey wash gradients, inspired by Takehiko Inoue, Vagabond, Slam Dunk, manga, brush ink, ink wash, realistic.",
-   "negative": "photorealistic skin pores, 3D CGI render, oil-painting brushwork, western cartoon proportions, sketchy unfinished linework",
-   "template": null,
-   "thumb": "Takehiko_Inoue_Style_Manga_Illustration.webp"
   },
   {
    "name": "Ethereal Anime",
@@ -818,15 +806,6 @@
    "negative": "photorealistic skin pores, 3D CGI render, oil-painting brushwork, western cartoon proportions, sketchy unfinished linework",
    "template": null,
    "thumb": "Kyoto_Animation_Prestige.webp"
-  },
-  {
-   "name": "Modern Urban Manhua Comic Art",
-   "section": "Anime",
-   "source": "u/Dear-Spend-2865",
-   "prompt": "bright clean digital comic look, thin crisp lineart, glossy cel shading, soft pastel city-light gradients, polished vertical-scroll panel finish, inspired by Kuaikan Manhua, Bilibili Comics, The King's Avatar, manhua, urban, webcomic, clean lineart, glossy.",
-   "negative": "photorealistic skin pores, 3D CGI render, oil-painting brushwork, western cartoon proportions, sketchy unfinished linework",
-   "template": null,
-   "thumb": "Modern_Urban_Manhua_Comic_Art.webp"
   },
   {
    "name": "Moe Anime Character",
@@ -863,15 +842,6 @@
    "negative": "photorealistic skin pores, 3D CGI render, oil-painting brushwork, western cartoon proportions, sketchy unfinished linework",
    "template": null,
    "thumb": "Soft_Pastel_Romance_Manhwa.webp"
-  },
-  {
-   "name": "Taiyo Matsumoto Style Manga Illustration",
-   "section": "Anime",
-   "source": "u/Dear-Spend-2865",
-   "prompt": "manga illustration, loose scratchy irregular linework, warped playful perspective, raw sketchy textures, quirky flat tones, inspired by Taiyo Matsumoto, Tekkonkinkreet, Ping Pong, manga, scratchy, alternative manga, expressive.",
-   "negative": "photorealistic skin pores, 3D CGI render, oil-painting brushwork, western cartoon proportions, sketchy unfinished linework",
-   "template": null,
-   "thumb": "Taiyo_Matsumoto_Style_Manga_Illustration.webp"
   },
   {
    "name": "Manga Screentone",
@@ -919,15 +889,6 @@
    "thumb": "Dark_Horror_Anime.webp"
   },
   {
-   "name": "Historical Sageuk Romance Manhwa Illustration",
-   "section": "Anime",
-   "source": "u/Dear-Spend-2865",
-   "prompt": "illustration, Joseon-era romance webtoon rendering, soft muted tonality, delicate painterly grounds with ink-wash mist, warm lantern-glow gradients, elegant fine lineart, inspired by The Tale of Gyeonu, Red Storm, Kakao Webtoon, manhwa, sageuk, historical romance, painterly.",
-   "negative": "photorealistic skin pores, 3D CGI render, oil-painting brushwork, western cartoon proportions, sketchy unfinished linework",
-   "template": null,
-   "thumb": "Historical_Sageuk_Romance_Manhwa_Illustration.webp"
-  },
-  {
    "name": "Inio Asano Style Manga Illustration",
    "section": "Anime",
    "source": "u/Dear-Spend-2865",
@@ -935,15 +896,6 @@
    "negative": "photorealistic skin pores, 3D CGI render, oil-painting brushwork, western cartoon proportions, sketchy unfinished linework",
    "template": null,
    "thumb": "Inio_Asano_Style_Manga_Illustration.webp"
-  },
-  {
-   "name": "Josei Manga Illustration",
-   "section": "Anime",
-   "source": "u/Dear-Spend-2865",
-   "prompt": "mature elegant manga linework, realistic slender proportions, subtle restrained expressions, soft screentone gradients, refined fashion-magazine clarity, clean image area free of lettering, inspired by Ai Yazawa, Akiko Higashimura, Moyoco Anno, josei, manga, elegant, fine lineart.",
-   "negative": "photorealistic skin pores, 3D CGI render, oil-painting brushwork, western cartoon proportions, sketchy unfinished linework",
-   "template": null,
-   "thumb": "Josei_Manga_Illustration.webp"
   },
   {
    "name": "Lo-Fi Anime Chill",
@@ -1267,7 +1219,53 @@
    "prompt": "A simplified, graphic illustration style built on confident, evenly weighted outline defining exaggerated, readable proportions, flat color fill with minimal shading complexity, an appealing, elastic sense of form that favors expressive readability over anatomical accuracy, cheerful, uncomplicated composition prioritizing instant visual clarity, and a lighthearted, accessible illustrative charm rooted in broad, universal animation tradition. Influenced by: classic American cel-animation tradition, flat-color character-design technique, squash-and-stretch animation practice, newspaper-syndicate cartoon method.",
    "negative": "photorealistic anatomy, 3D CGI render, oil-painting texture, anime large-eye proportions, gritty horror shading",
    "template": null,
-   "thumb": "Cartoon_Style.webp"
+   "thumb": "Cartoon_Style.webp",
+   "pinned": true
+  },
+  {
+   "name": "Painterly Cartoon Illustration",
+   "section": "Cartoon",
+   "source": "u/Dear-Spend-2865",
+   "prompt": "cartoon shapes rendered with loose painted brushwork, soft painterly shading, visible brush texture, lush color, appealing rounded forms, inspired by Goro Fujita, Pascal Campion, Lorelay Bove, painterly, cartoon, digital painting, visual development.",
+   "negative": "photorealistic anatomy, 3D CGI render, oil-painting texture, anime large-eye proportions, gritty horror shading",
+   "template": null,
+   "thumb": "Painterly_Cartoon_Illustration.webp"
+  },
+  {
+   "name": "Arcane Animation Still",
+   "section": "Cartoon",
+   "source": "clio",
+   "prompt": "A richly painterly animated-illustration style built on visible, confident brushstroke texture layered directly into rendering rather than smoothed away, dramatic chiaroscuro lighting that carves bold graphic shadow across stylized angular form, a fusion of hand-painted textural depth with clean animation-ready linework, moody atmospheric tonal harmony charged with cinematic tension, and a bold, painterly-meets-graphic animation intensity that feels both illustrated and alive. Influenced by: Fortiche Production, League of Legends concept-art tradition, painterly animation technique, cinematic stylized character-design practice.",
+   "negative": "flat vector fill, chibi proportions, clean minimal linework, 3D CGI plastic sheen, photographic realism",
+   "template": null,
+   "thumb": "Arcane_Animation_Still.webp"
+  },
+  {
+   "name": "Disney Ultradetailed Illustration",
+   "section": "Cartoon",
+   "source": "clio",
+   "prompt": "premium feature-animation aesthetics characterized by exceptionally refined draftsmanship, expressive form design, sophisticated visual appeal, advanced material rendering, cinematic staging, and meticulous attention to every surface and design element. The style emphasizes clarity, emotional readability, graceful shape language, polished visual storytelling, and a remarkable balance between realism and stylization, combining the charm of classical animation with the fidelity of contemporary digital illustration. Rather than relying on simplified cartoon conventions, it pursues richness, precision, and production-level craftsmanship through nuanced lighting, intricate textures, elegant composition, and highly controlled rendering. The resulting imagery feels aspirational, immersive, and masterfully produced, with every element contributing to a cohesive sense of wonder, artistry, and visual sophistication, reminiscent of Glen Keane and James Baxter, Inspired by Walt Disney.",
+   "negative": "flat untextured fill, crude sketch lines, 3D CGI plastic look, gritty horror shading, muted muddy palette",
+   "template": null,
+   "thumb": "Disney_Ultradetailed_Illustration.webp"
+  },
+  {
+   "name": "Classic Disney Feature Animation",
+   "section": "Cartoon",
+   "source": "clio",
+   "prompt": "A warm, hand-painted animation-illustration style built on rounded, appealing character proportions carrying expressive, exaggerated readability, smooth cel-shaded color application with gentle, naturalistic gradation, meticulous attention to fluid, principle-driven motion even within a single still frame, a nostalgic, wholesome sincerity carried through soft, inviting lighting logic, and a timeless, storybook grandeur rooted in decades of golden-age feature-animation craftsmanship. Influenced by: Disney and Walt Disney, golden-age American feature-animation tradition, classical cel-animation painting technique, expressive character-animation principles, mid-century studio illustration practice.",
+   "negative": "3D CGI render, flat vector minimalism, crude sketchy lines, photorealistic texture, modern glossy gradients",
+   "template": null,
+   "thumb": "Classic_Disney_Feature_Animation.webp"
+  },
+  {
+   "name": "Modern Cartoon",
+   "section": "Cartoon",
+   "source": "clio",
+   "prompt": "A clean, flat illustration style built on confident, simplified outline holding contemporary, streamlined proportions, bright flat-color fill with minimal shading beyond basic form-defining contact shadow, an appealing, geometrically simplified sense of form balancing charm with graphic efficiency, cheerful, uncomplicated composition favoring instant digital-platform readability, and a versatile, contemporary animated charm rooted in current streaming-era cartoon convention. Influenced by: contemporary streaming-animation tradition, flat-color character-design technique, digital-native cartoon practice, modern indie-animation method.",
+   "negative": "photorealistic anatomy, gritty texture, retro rubber-hose stiffness, 3D CGI render, oil-painting brushwork",
+   "template": null,
+   "thumb": "Modern_Cartoon.webp"
   },
   {
    "name": "Invader Zim Style",
@@ -1351,15 +1349,6 @@
    "thumb": "Family_Guy_Style.webp"
   },
   {
-   "name": "Modern Cartoon",
-   "section": "Cartoon",
-   "source": "clio",
-   "prompt": "A clean, flat illustration style built on confident, simplified outline holding contemporary, streamlined proportions, bright flat-color fill with minimal shading beyond basic form-defining contact shadow, an appealing, geometrically simplified sense of form balancing charm with graphic efficiency, cheerful, uncomplicated composition favoring instant digital-platform readability, and a versatile, contemporary animated charm rooted in current streaming-era cartoon convention. Influenced by: contemporary streaming-animation tradition, flat-color character-design technique, digital-native cartoon practice, modern indie-animation method.",
-   "negative": "photorealistic anatomy, gritty texture, retro rubber-hose stiffness, 3D CGI render, oil-painting brushwork",
-   "template": null,
-   "thumb": "Modern_Cartoon.webp"
-  },
-  {
    "name": "Rubber Hose Cartoon",
    "section": "Cartoon",
    "source": "clio",
@@ -1369,24 +1358,6 @@
    "thumb": "Rubber_Hose_Cartoon.webp"
   },
   {
-   "name": "Disney Ultradetailed Illustration",
-   "section": "Cartoon",
-   "source": "clio",
-   "prompt": "premium feature-animation aesthetics characterized by exceptionally refined draftsmanship, expressive form design, sophisticated visual appeal, advanced material rendering, cinematic staging, and meticulous attention to every surface and design element. The style emphasizes clarity, emotional readability, graceful shape language, polished visual storytelling, and a remarkable balance between realism and stylization, combining the charm of classical animation with the fidelity of contemporary digital illustration. Rather than relying on simplified cartoon conventions, it pursues richness, precision, and production-level craftsmanship through nuanced lighting, intricate textures, elegant composition, and highly controlled rendering. The resulting imagery feels aspirational, immersive, and masterfully produced, with every element contributing to a cohesive sense of wonder, artistry, and visual sophistication, reminiscent of Glen Keane and James Baxter, Inspired by Walt Disney.",
-   "negative": "flat untextured fill, crude sketch lines, 3D CGI plastic look, gritty horror shading, muted muddy palette",
-   "template": null,
-   "thumb": "Disney_Ultradetailed_Illustration.webp"
-  },
-  {
-   "name": "Classic Disney Feature Animation",
-   "section": "Cartoon",
-   "source": "clio",
-   "prompt": "A warm, hand-painted animation-illustration style built on rounded, appealing character proportions carrying expressive, exaggerated readability, smooth cel-shaded color application with gentle, naturalistic gradation, meticulous attention to fluid, principle-driven motion even within a single still frame, a nostalgic, wholesome sincerity carried through soft, inviting lighting logic, and a timeless, storybook grandeur rooted in decades of golden-age feature-animation craftsmanship. Influenced by: Disney and Walt Disney, golden-age American feature-animation tradition, classical cel-animation painting technique, expressive character-animation principles, mid-century studio illustration practice.",
-   "negative": "3D CGI render, flat vector minimalism, crude sketchy lines, photorealistic texture, modern glossy gradients",
-   "template": null,
-   "thumb": "Classic_Disney_Feature_Animation.webp"
-  },
-  {
    "name": "Bruce Timm Noir",
    "section": "Cartoon",
    "source": "clio",
@@ -1394,15 +1365,6 @@
    "negative": "soft pastel rendering, photorealistic anatomy, 3D CGI render, detailed painterly texture, bright cheerful palette",
    "template": null,
    "thumb": "Bruce_Timm_Noir.webp"
-  },
-  {
-   "name": "Arcane Animation Still",
-   "section": "Cartoon",
-   "source": "clio",
-   "prompt": "A richly painterly animated-illustration style built on visible, confident brushstroke texture layered directly into rendering rather than smoothed away, dramatic chiaroscuro lighting that carves bold graphic shadow across stylized angular form, a fusion of hand-painted textural depth with clean animation-ready linework, moody atmospheric tonal harmony charged with cinematic tension, and a bold, painterly-meets-graphic animation intensity that feels both illustrated and alive. Influenced by: Fortiche Production, League of Legends concept-art tradition, painterly animation technique, cinematic stylized character-design practice.",
-   "negative": "flat vector fill, chibi proportions, clean minimal linework, 3D CGI plastic sheen, photographic realism",
-   "template": null,
-   "thumb": "Arcane_Animation_Still.webp"
   },
   {
    "name": "Tex Avery Style",
@@ -1511,15 +1473,6 @@
    "negative": "clean smooth vector lines, flat cel fill, photorealistic skin pores, 3D CGI plastic sheen, muted desaturated palette",
    "template": null,
    "thumb": "Spider_Verse_Style.webp"
-  },
-  {
-   "name": "Painterly Cartoon Illustration",
-   "section": "Cartoon",
-   "source": "u/Dear-Spend-2865",
-   "prompt": "cartoon shapes rendered with loose painted brushwork, soft painterly shading, visible brush texture, lush color, appealing rounded forms, inspired by Goro Fujita, Pascal Campion, Lorelay Bove, painterly, cartoon, digital painting, visual development.",
-   "negative": "photorealistic anatomy, 3D CGI render, oil-painting texture, anime large-eye proportions, gritty horror shading",
-   "template": null,
-   "thumb": "Painterly_Cartoon_Illustration.webp"
   },
   {
    "name": "80s Saturday Morning Cartoon",
@@ -2476,22 +2429,32 @@
    "thumb": "Steranko_Style_Comic_Art.webp"
   },
   {
+   "name": "Hong Kong Manhua Comic Art",
+   "section": "Comics",
+   "source": "u/Dear-Spend-2865",
+   "prompt": "gritty painted color comic art, heavy realistic anatomy, airbrushed and gouache coloring, dramatic speed streaks, rain and fire effects, warm harmonious color temperature, rough ink textures, inspired by Ma Wing-shing, Tony Wong, Storm Riders, hong kong manhua, wuxia, painted comic, gritty, dynamic.",
+   "negative": "photorealistic skin pores, 3D CGI render, oil-painting brushwork, western cartoon proportions, sketchy unfinished linework",
+   "template": null,
+   "thumb": "Hong_Kong_Manhua_Comic_Art.webp"
+  },
+  {
+   "name": "Modern Urban Manhua Comic Art",
+   "section": "Comics",
+   "source": "u/Dear-Spend-2865",
+   "prompt": "bright clean digital comic look, thin crisp lineart, glossy cel shading, soft pastel city-light gradients, polished vertical-scroll panel finish, inspired by Kuaikan Manhua, Bilibili Comics, The King's Avatar, manhua, urban, webcomic, clean lineart, glossy.",
+   "negative": "photorealistic skin pores, 3D CGI render, oil-painting brushwork, western cartoon proportions, sketchy unfinished linework",
+   "template": null,
+   "thumb": "Modern_Urban_Manhua_Comic_Art.webp"
+  },
+  {
    "name": "Drawing",
    "section": "Drawing",
    "source": "clio",
    "prompt": "A direct, hand-crafted illustration style built on confident linework capturing form through economical, considered mark-making, restrained tonal shading applied through simple cross-hatching or light shading rather than elaborate rendering, an honest, unembellished clarity that favors observation over stylization, unhurried, deliberate strokes carrying a personal, tactile sensibility, and a timeless, accessible sincerity rooted in foundational drawing tradition. Influenced by: traditional pencil-and-ink drawing tradition, life-drawing practice, classical illustration fundamentals, observational sketching method.",
    "negative": "photorealistic rendering, 3D CGI render, oil-painting impasto, digital airbrush gloss, flat vector fills",
    "template": null,
-   "thumb": "Drawing.webp"
-  },
-  {
-   "name": "Caricature",
-   "section": "Drawing",
-   "source": "clio",
-   "prompt": "A playful exaggeration-driven illustration style built on bold distortion of proportion that amplifies distinctive features for comedic and expressive impact, loose, confident linework capturing likeness through economical, energetic mark-making rather than exhaustive detail, light, quick shading applied to suggest form without slowing the gestural energy, an exuberant, larger-than-life comic timing embedded in every exaggerated feature, and a witty, high-energy sketch-illustration charm that celebrates personality over precision. Influenced by: classic caricature-illustration tradition, quick-sketch portraiture technique, satirical editorial illustration, gestural ink-and-wash caricature.",
-   "negative": "realistic proportions, photorealistic anatomy, subtle understated features, 3D CGI render, oil-painting texture",
-   "template": null,
-   "thumb": "Caricature.webp"
+   "thumb": "Drawing.webp",
+   "pinned": true
   },
   {
    "name": "Charcoal Rendering",
@@ -2500,7 +2463,125 @@
    "prompt": "traditional drawing aesthetics characterized by rich tonal gradation, expressive mark-making, tactile surface texture, atmospheric softness, and powerful value-based form construction, emphasizing depth, mood, and craftsmanship through layered shading, subtle edge control, and a handcrafted visual presence that balances realism with artistic interpretation, reminiscent of Käthe Kollwitz and Robert Longo, inspired by The Weavers and Men in the Cities.",
    "negative": "crisp vector lines, flat digital fill, glossy 3D shading, saturated neon palette, photorealistic skin pores",
    "template": null,
-   "thumb": "Charcoal_Rendering.webp"
+   "thumb": "Charcoal_Rendering.webp",
+   "pinned": true
+  },
+  {
+   "name": "Doodle Sketchbook",
+   "section": "Drawing",
+   "source": "u/Dear-Spend-2865",
+   "prompt": "full sketchbook spread packed with interlocking little doodles, mixed ballpoint, fineliner and marker accents, playful wobbly lines, warm harmonious color temperature, inspired by Mattias Adolfsson, Jon Burgerman, Keith Haring doodles, doodle, sketchbook, ballpoint, marker, playful.",
+   "negative": "photorealistic rendering, 3D CGI render, oil-painting impasto, digital airbrush gloss, flat vector fills",
+   "template": null,
+   "thumb": "Doodle_Sketchbook.webp"
+  },
+  {
+   "name": "Quentin Blake Scribble Ink Drawing",
+   "section": "Drawing",
+   "source": "u/Dear-Spend-2865",
+   "prompt": "energetic scratchy ink lines, spontaneous loose construction, splashy transparent watercolor washes, scattered ink splatters, dancing contours, clean image area free of lettering, inspired by Quentin Blake, Ronald Searle, John Burningham, ink sketch, watercolor, loose lines, children's book.",
+   "negative": "photorealistic rendering, 3D CGI render, oil-painting impasto, digital airbrush gloss, flat vector fills",
+   "template": null,
+   "thumb": "Quentin_Blake_Scribble_Ink_Drawing.webp"
+  },
+  {
+   "name": "Calligraphic Linework",
+   "section": "Drawing",
+   "source": "clio",
+   "prompt": "refined line-centric aesthetics characterized by fluid strokes, graceful visual rhythm, expressive contour variation, elegant mark-making, and exceptional draftsmanship, emphasizing movement, balance, and artistic confidence through controlled line weight, organic transitions, and a harmonious interplay between precision and spontaneity, reminiscent of Egon Schiele and Katsuya Terada, inspired by The Book of Kells and Ukiyo-e brush drawing traditions.",
+   "negative": "dense crosshatched shading, flat opaque fill, photorealistic texture, 3D CGI render, cluttered detail",
+   "template": null,
+   "thumb": "Calligraphic_Linework.webp"
+  },
+  {
+   "name": "Beatrix Potter Style",
+   "section": "Drawing",
+   "source": "clio",
+   "prompt": "A gentle, meticulously observed watercolor illustration style built on delicate, softly blended washes carrying quiet naturalist precision, fine detailed linework reserved for texture and form rather than bold outline, a hushed pastoral tenderness radiating through soft diffused lighting, restrained old-world charm achieved through understated, unhurried brushwork, and a tender, storybook intimacy that feels both scientifically observant and gently whimsical. Influenced by: Beatrix Potter, English watercolor illustration, naturalist botanical illustration, Golden Age children's book art.",
+   "negative": "photorealistic rendering, 3D CGI render, saturated neon palette, harsh black outlines, dense crosshatching",
+   "template": null,
+   "thumb": "Beatrix_Potter_Style.webp"
+  },
+  {
+   "name": "Collector Storybook Illustration",
+   "section": "Drawing",
+   "source": "clio",
+   "prompt": "premium narrative illustration aesthetics characterized by refined draftsmanship, elegant visual storytelling, intricate decorative detail, polished painterly rendering, and a timeless sense of wonder, blending classic storybook craftsmanship with modern production-quality execution through sophisticated composition, atmospheric depth, and meticulously curated visual richness, reminiscent of Arthur Rackham and Kinuko Y. Craft, inspired by The Fairy Tales of the Brothers Grimm and The Chronicles of Narnia.",
+   "negative": "flat crude sketch lines, 3D CGI plastic sheen, photorealistic horror texture, minimal detail, muted muddy palette",
+   "template": null,
+   "thumb": "Collector_Storybook_Illustration.webp"
+  },
+  {
+   "name": "Poe-Inspired Illustration",
+   "section": "Drawing",
+   "source": "clio",
+   "prompt": "A haunting gothic-macabre illustration style steeped in melancholy and dread, rendered in desaturated colors, ash-gray, and deep black tones pierced by isolated light, decaying Victorian vibes, symbolic motifs woven through the composition, delicately cross-hatched or ink-washed texture recalling antique engraving, and a brooding, poetic atmosphere of obsession, grief, and quiet horror. Influenced by: Harry Clarke, gothic engraving illustration, Victorian mourning art, Gustave Doré.",
+   "negative": "bright cheerful palette, cute rounded proportions, 3D CGI render, clean vector lines, pastel softness",
+   "template": null,
+   "thumb": "Poe_Inspired_Illustration.webp"
+  },
+  {
+   "name": "Bookplate Illustration",
+   "section": "Drawing",
+   "source": "clio",
+   "prompt": "refined decorative illustration aesthetics characterized by meticulous linework, engraved-inspired detailing, ornamental sophistication, literary craftsmanship, balanced composition, and timeless artisanal quality, blending classical printmaking traditions with elegant visual storytelling through intricate textures, disciplined draftsmanship, and exceptionally polished design sensibilities, reminiscent of Arthur Rackham and Aubrey Beardsley, inspired by Golden Age Bookplates and The Fairy Tales of the Brothers Grimm.",
+   "negative": "flat contemporary vector art, 3D CGI render, photorealistic texture, crude sketch lines, minimalist negative space",
+   "template": null,
+   "thumb": "Bookplate_Illustration.webp"
+  },
+  {
+   "name": "Conté Pastel",
+   "section": "Drawing",
+   "source": "clio",
+   "prompt": "A rich, tactile drawing style built on dense, velvety pigment applied with confident, blendable pressure, a soft, smudgeable quality allowing form to be built through both layered mark-making and controlled blending, a warm, granular texture distinct from smoother chalk or charcoal media, deliberate tonal transition achieved through pressure variation rather than wet blending, and a timeless, painterly-adjacent intensity rooted in classical academic drawing tradition. Influenced by: Conté crayon drawing tradition, classical academic tonal-drawing practice, life-drawing atelier technique, fine-art pastel-and-chalk method.",
+   "negative": "glossy digital airbrush, crisp vector lines, flat opaque fill, 3D CGI render, photorealistic skin pores",
+   "template": null,
+   "thumb": "Cont_Pastel.webp"
+  },
+  {
+   "name": "Technical Drawing",
+   "section": "Drawing",
+   "source": "clio",
+   "prompt": "A precise, disciplined illustration style built on exacting linework constructed with mechanical accuracy and consistent line-weight logic, minimal or entirely absent shading that relies on line alone to convey form and structure, a rigorous, measured clarity that favors exact proportion and dimensional accuracy over expressive interpretation, meticulous attention to structural detail rendered with drafting-level precision, and a clean, methodical exactness rooted in centuries of engineering and scientific illustration discipline. Influenced by: technical/engineering-drawing tradition, drafting-illustration technique, scientific-diagram illustration practice, orthographic-projection drawing method.",
+   "negative": "painterly brushstrokes, photorealistic texture, 3D CGI render, loose sketchy lines, decorative ornament",
+   "template": null,
+   "thumb": "Technical_Drawing.webp"
+  },
+  {
+   "name": "Loose Crosshatched Character Sketch",
+   "section": "Drawing",
+   "source": "clio",
+   "prompt": "A lively, unfinished-feeling character-illustration style built on confident, visibly searching linework left intentionally raw rather than cleaned up, dense parallel crosshatching used sparingly to suggest volume and shadow without committing to full rendering, expressive, exaggerated facial modeling that prioritizes emotional intensity over anatomical polish, a loose, energetic looseness at the edges that keeps the whole piece feeling immediate and process-driven, and a spirited, illustrative rawness that reads as equal parts concept sketch and finished character study. Influenced by: contemporary character-design sketch practice, marker-and-pencil illustration technique, expressive digital-sketch rendering method, gesture-driven character-study tradition.",
+   "negative": "photorealistic rendering, smooth airbrushed gradients, 3D CGI render, flat opaque fill, fully polished finish",
+   "template": null,
+   "thumb": "Loose_Crosshatched_Character_Sketch.webp"
+  },
+  {
+   "name": "Ink Pen Drawing",
+   "section": "Drawing",
+   "source": "clio",
+   "prompt": "A precise, linear illustration style built on confident, controlled strokes that construct every form entirely through line rather than blended tone, dense cross-hatching and stippling layered to achieve tonal depth purely through line density, a crisp, deliberate discipline carried through unhurried, considered mark-making, meticulous attention to line-weight variation suggesting weight and dimensionality, and a timeless, meticulous craftsmanship rooted in centuries of traditional pen-and-ink illustration practice. Influenced by: classical pen-and-ink illustration tradition, fine cross-hatching technique, engraving-adjacent linework practice, traditional academic drawing method.",
+   "negative": "flat digital color fill, soft airbrushed shading, photorealistic texture, 3D CGI render, loose scribbled lines",
+   "template": null,
+   "thumb": "Ink_Pen_Drawing.webp"
+  },
+  {
+   "name": "Sketch",
+   "section": "Drawing",
+   "source": "clio",
+   "prompt": "A raw, immediate illustration style built on loose, gestural linework that captures form through confident, economical mark-making rather than exhaustive rendering, visible construction lines and searching strokes left intentionally unresolved, minimal tonal shading achieved through quick cross-hatching or light smudging rather than smooth gradation, an energetic sense of spontaneity and unfinished momentum carried through every line, and a raw, honest immediacy that values gesture and observation over polish. Influenced by: life-drawing sketch tradition, charcoal and graphite illustration technique, quick-study figure drawing, academic atelier sketching method.",
+   "negative": "fully rendered painting, polished vector lines, photorealistic texture, 3D CGI render, heavy opaque color fill",
+   "template": null,
+   "thumb": "Sketch.webp"
+  },
+  {
+   "name": "Chinese Ink Drawing",
+   "section": "Drawing",
+   "source": "clio",
+   "prompt": "A meditative, gestural illustration style built on fluid, calligraphic brushwork that captures form through economical, confident strokes rather than exhaustive detail, deliberate negative space treated as an active compositional element carrying as much weight as rendered form, varying ink density achieved through brush pressure and water dilution rather than layered shading, a contemplative, breath-driven rhythm carried through unhurried, deliberate mark-making, and a timeless, philosophical restraint that values suggestion and empty space over exhaustive representation. Influenced by: traditional Chinese shuǐmò (ink-wash) painting tradition, literati brush-painting practice, Xu Beihong ink technique, classical Chinese calligraphy discipline.",
+   "negative": "dense crosshatched shading, opaque flat color, photorealistic texture, 3D CGI render, cluttered composition",
+   "template": null,
+   "thumb": "Chinese_Ink_Drawing.webp"
   },
   {
    "name": "Hyperrealistic Colored-Pen Sketch",
@@ -2510,6 +2591,15 @@
    "negative": "smooth airbrushed gradients, digital painting gloss, flat vector fill, 3D CGI render, loose unfinished sketch lines",
    "template": null,
    "thumb": "Hyperrealistic_Colored_Pen_Sketch.webp"
+  },
+  {
+   "name": "Caricature",
+   "section": "Drawing",
+   "source": "clio",
+   "prompt": "A playful exaggeration-driven illustration style built on bold distortion of proportion that amplifies distinctive features for comedic and expressive impact, loose, confident linework capturing likeness through economical, energetic mark-making rather than exhaustive detail, light, quick shading applied to suggest form without slowing the gestural energy, an exuberant, larger-than-life comic timing embedded in every exaggerated feature, and a witty, high-energy sketch-illustration charm that celebrates personality over precision. Influenced by: classic caricature-illustration tradition, quick-sketch portraiture technique, satirical editorial illustration, gestural ink-and-wash caricature.",
+   "negative": "realistic proportions, photorealistic anatomy, subtle understated features, 3D CGI render, oil-painting texture",
+   "template": null,
+   "thumb": "Caricature.webp"
   },
   {
    "name": "Jarek Kubicki Style",
@@ -2528,24 +2618,6 @@
    "negative": "photorealistic rendering, 3D CGI render, clean vector precision, muted muddy palette, stiff digital perfection",
    "template": null,
    "thumb": "Playful_Hand_Drawn_Illustration.webp"
-  },
-  {
-   "name": "Chinese Ink Drawing",
-   "section": "Drawing",
-   "source": "clio",
-   "prompt": "A meditative, gestural illustration style built on fluid, calligraphic brushwork that captures form through economical, confident strokes rather than exhaustive detail, deliberate negative space treated as an active compositional element carrying as much weight as rendered form, varying ink density achieved through brush pressure and water dilution rather than layered shading, a contemplative, breath-driven rhythm carried through unhurried, deliberate mark-making, and a timeless, philosophical restraint that values suggestion and empty space over exhaustive representation. Influenced by: traditional Chinese shuǐmò (ink-wash) painting tradition, literati brush-painting practice, Xu Beihong ink technique, classical Chinese calligraphy discipline.",
-   "negative": "dense crosshatched shading, opaque flat color, photorealistic texture, 3D CGI render, cluttered composition",
-   "template": null,
-   "thumb": "Chinese_Ink_Drawing.webp"
-  },
-  {
-   "name": "Sketch",
-   "section": "Drawing",
-   "source": "clio",
-   "prompt": "A raw, immediate illustration style built on loose, gestural linework that captures form through confident, economical mark-making rather than exhaustive rendering, visible construction lines and searching strokes left intentionally unresolved, minimal tonal shading achieved through quick cross-hatching or light smudging rather than smooth gradation, an energetic sense of spontaneity and unfinished momentum carried through every line, and a raw, honest immediacy that values gesture and observation over polish. Influenced by: life-drawing sketch tradition, charcoal and graphite illustration technique, quick-study figure drawing, academic atelier sketching method.",
-   "negative": "fully rendered painting, polished vector lines, photorealistic texture, 3D CGI render, heavy opaque color fill",
-   "template": null,
-   "thumb": "Sketch.webp"
   },
   {
    "name": "Children's Book Drawing",
@@ -2593,15 +2665,6 @@
    "thumb": "Fashion_Sketch.webp"
   },
   {
-   "name": "Loose Crosshatched Character Sketch",
-   "section": "Drawing",
-   "source": "clio",
-   "prompt": "A lively, unfinished-feeling character-illustration style built on confident, visibly searching linework left intentionally raw rather than cleaned up, dense parallel crosshatching used sparingly to suggest volume and shadow without committing to full rendering, expressive, exaggerated facial modeling that prioritizes emotional intensity over anatomical polish, a loose, energetic looseness at the edges that keeps the whole piece feeling immediate and process-driven, and a spirited, illustrative rawness that reads as equal parts concept sketch and finished character study. Influenced by: contemporary character-design sketch practice, marker-and-pencil illustration technique, expressive digital-sketch rendering method, gesture-driven character-study tradition.",
-   "negative": "photorealistic rendering, smooth airbrushed gradients, 3D CGI render, flat opaque fill, fully polished finish",
-   "template": null,
-   "thumb": "Loose_Crosshatched_Character_Sketch.webp"
-  },
-  {
    "name": "Wojak/Meme-Sketch Style",
    "section": "Drawing",
    "source": "clio",
@@ -2609,33 +2672,6 @@
    "negative": "photorealistic rendering, detailed anatomy, 3D CGI render, painterly texture, professional polish",
    "template": null,
    "thumb": "Wojak_Meme_Sketch_Style.webp"
-  },
-  {
-   "name": "Ink Pen Drawing",
-   "section": "Drawing",
-   "source": "clio",
-   "prompt": "A precise, linear illustration style built on confident, controlled strokes that construct every form entirely through line rather than blended tone, dense cross-hatching and stippling layered to achieve tonal depth purely through line density, a crisp, deliberate discipline carried through unhurried, considered mark-making, meticulous attention to line-weight variation suggesting weight and dimensionality, and a timeless, meticulous craftsmanship rooted in centuries of traditional pen-and-ink illustration practice. Influenced by: classical pen-and-ink illustration tradition, fine cross-hatching technique, engraving-adjacent linework practice, traditional academic drawing method.",
-   "negative": "flat digital color fill, soft airbrushed shading, photorealistic texture, 3D CGI render, loose scribbled lines",
-   "template": null,
-   "thumb": "Ink_Pen_Drawing.webp"
-  },
-  {
-   "name": "Technical Drawing",
-   "section": "Drawing",
-   "source": "clio",
-   "prompt": "A precise, disciplined illustration style built on exacting linework constructed with mechanical accuracy and consistent line-weight logic, minimal or entirely absent shading that relies on line alone to convey form and structure, a rigorous, measured clarity that favors exact proportion and dimensional accuracy over expressive interpretation, meticulous attention to structural detail rendered with drafting-level precision, and a clean, methodical exactness rooted in centuries of engineering and scientific illustration discipline. Influenced by: technical/engineering-drawing tradition, drafting-illustration technique, scientific-diagram illustration practice, orthographic-projection drawing method.",
-   "negative": "painterly brushstrokes, photorealistic texture, 3D CGI render, loose sketchy lines, decorative ornament",
-   "template": null,
-   "thumb": "Technical_Drawing.webp"
-  },
-  {
-   "name": "Conté Pastel",
-   "section": "Drawing",
-   "source": "clio",
-   "prompt": "A rich, tactile drawing style built on dense, velvety pigment applied with confident, blendable pressure, a soft, smudgeable quality allowing form to be built through both layered mark-making and controlled blending, a warm, granular texture distinct from smoother chalk or charcoal media, deliberate tonal transition achieved through pressure variation rather than wet blending, and a timeless, painterly-adjacent intensity rooted in classical academic drawing tradition. Influenced by: Conté crayon drawing tradition, classical academic tonal-drawing practice, life-drawing atelier technique, fine-art pastel-and-chalk method.",
-   "negative": "glossy digital airbrush, crisp vector lines, flat opaque fill, 3D CGI render, photorealistic skin pores",
-   "template": null,
-   "thumb": "Cont_Pastel.webp"
   },
   {
    "name": "Crayola Colored-Book Style",
@@ -2647,15 +2683,6 @@
    "thumb": "Crayola_Colored_Book_Style.webp"
   },
   {
-   "name": "Bookplate Illustration",
-   "section": "Drawing",
-   "source": "clio",
-   "prompt": "refined decorative illustration aesthetics characterized by meticulous linework, engraved-inspired detailing, ornamental sophistication, literary craftsmanship, balanced composition, and timeless artisanal quality, blending classical printmaking traditions with elegant visual storytelling through intricate textures, disciplined draftsmanship, and exceptionally polished design sensibilities, reminiscent of Arthur Rackham and Aubrey Beardsley, inspired by Golden Age Bookplates and The Fairy Tales of the Brothers Grimm.",
-   "negative": "flat contemporary vector art, 3D CGI render, photorealistic texture, crude sketch lines, minimalist negative space",
-   "template": null,
-   "thumb": "Bookplate_Illustration.webp"
-  },
-  {
    "name": "Boulet Graphic Illustration",
    "section": "Drawing",
    "source": "clio",
@@ -2663,24 +2690,6 @@
    "negative": "photorealistic rendering, 3D CGI render, stiff static figures, dense ornamental clutter, muted muddy palette",
    "template": null,
    "thumb": "Boulet_Graphic_Illustration.webp"
-  },
-  {
-   "name": "Poe-Inspired Illustration",
-   "section": "Drawing",
-   "source": "clio",
-   "prompt": "A haunting gothic-macabre illustration style steeped in melancholy and dread, rendered in desaturated colors, ash-gray, and deep black tones pierced by isolated light, decaying Victorian vibes, symbolic motifs woven through the composition, delicately cross-hatched or ink-washed texture recalling antique engraving, and a brooding, poetic atmosphere of obsession, grief, and quiet horror. Influenced by: Harry Clarke, gothic engraving illustration, Victorian mourning art, Gustave Doré.",
-   "negative": "bright cheerful palette, cute rounded proportions, 3D CGI render, clean vector lines, pastel softness",
-   "template": null,
-   "thumb": "Poe_Inspired_Illustration.webp"
-  },
-  {
-   "name": "Collector Storybook Illustration",
-   "section": "Drawing",
-   "source": "clio",
-   "prompt": "premium narrative illustration aesthetics characterized by refined draftsmanship, elegant visual storytelling, intricate decorative detail, polished painterly rendering, and a timeless sense of wonder, blending classic storybook craftsmanship with modern production-quality execution through sophisticated composition, atmospheric depth, and meticulously curated visual richness, reminiscent of Arthur Rackham and Kinuko Y. Craft, inspired by The Fairy Tales of the Brothers Grimm and The Chronicles of Narnia.",
-   "negative": "flat crude sketch lines, 3D CGI plastic sheen, photorealistic horror texture, minimal detail, muted muddy palette",
-   "template": null,
-   "thumb": "Collector_Storybook_Illustration.webp"
   },
   {
    "name": "Saul Steinberg Style",
@@ -2719,15 +2728,6 @@
    "thumb": "Very_Simplistic_Doodle.webp"
   },
   {
-   "name": "Beatrix Potter Style",
-   "section": "Drawing",
-   "source": "clio",
-   "prompt": "A gentle, meticulously observed watercolor illustration style built on delicate, softly blended washes carrying quiet naturalist precision, fine detailed linework reserved for texture and form rather than bold outline, a hushed pastoral tenderness radiating through soft diffused lighting, restrained old-world charm achieved through understated, unhurried brushwork, and a tender, storybook intimacy that feels both scientifically observant and gently whimsical. Influenced by: Beatrix Potter, English watercolor illustration, naturalist botanical illustration, Golden Age children's book art.",
-   "negative": "photorealistic rendering, 3D CGI render, saturated neon palette, harsh black outlines, dense crosshatching",
-   "template": null,
-   "thumb": "Beatrix_Potter_Style.webp"
-  },
-  {
    "name": "Lo-Fi Art",
    "section": "Drawing",
    "source": "clio",
@@ -2753,15 +2753,6 @@
    "negative": "stiff static posing, flat vector fill, photorealistic rendering, 3D CGI plastic sheen, anime proportions",
    "template": null,
    "thumb": "Glen_Keane_Style.webp"
-  },
-  {
-   "name": "Calligraphic Linework",
-   "section": "Drawing",
-   "source": "clio",
-   "prompt": "refined line-centric aesthetics characterized by fluid strokes, graceful visual rhythm, expressive contour variation, elegant mark-making, and exceptional draftsmanship, emphasizing movement, balance, and artistic confidence through controlled line weight, organic transitions, and a harmonious interplay between precision and spontaneity, reminiscent of Egon Schiele and Katsuya Terada, inspired by The Book of Kells and Ukiyo-e brush drawing traditions.",
-   "negative": "dense crosshatched shading, flat opaque fill, photorealistic texture, 3D CGI render, cluttered detail",
-   "template": null,
-   "thumb": "Calligraphic_Linework.webp"
   },
   {
    "name": "Traditional Marker Illustration",
@@ -2827,15 +2818,6 @@
    "thumb": "Sculpted_Caricature_Painting.webp"
   },
   {
-   "name": "Doodle Sketchbook",
-   "section": "Drawing",
-   "source": "u/Dear-Spend-2865",
-   "prompt": "full sketchbook spread packed with interlocking little doodles, mixed ballpoint, fineliner and marker accents, playful wobbly lines, warm harmonious color temperature, inspired by Mattias Adolfsson, Jon Burgerman, Keith Haring doodles, doodle, sketchbook, ballpoint, marker, playful.",
-   "negative": "photorealistic rendering, 3D CGI render, oil-painting impasto, digital airbrush gloss, flat vector fills",
-   "template": null,
-   "thumb": "Doodle_Sketchbook.webp"
-  },
-  {
    "name": "Haute Couture Watercolor Sketch",
    "section": "Drawing",
    "source": "u/Dear-Spend-2865",
@@ -2843,15 +2825,6 @@
    "negative": "photorealistic rendering, 3D CGI render, oil-painting impasto, digital airbrush gloss, flat vector fills",
    "template": null,
    "thumb": "Haute_Couture_Watercolor_Sketch.webp"
-  },
-  {
-   "name": "Quentin Blake Scribble Ink Drawing",
-   "section": "Drawing",
-   "source": "u/Dear-Spend-2865",
-   "prompt": "energetic scratchy ink lines, spontaneous loose construction, splashy transparent watercolor washes, scattered ink splatters, dancing contours, clean image area free of lettering, inspired by Quentin Blake, Ronald Searle, John Burningham, ink sketch, watercolor, loose lines, children's book.",
-   "negative": "photorealistic rendering, 3D CGI render, oil-painting impasto, digital airbrush gloss, flat vector fills",
-   "template": null,
-   "thumb": "Quentin_Blake_Scribble_Ink_Drawing.webp"
   },
   {
    "name": "Nathan Fowkes Style Gouache Sketch",
@@ -3518,6 +3491,15 @@
    "negative": "photorealistic rendering, 3D CGI render, oil-painting impasto, digital airbrush gloss, flat vector fills",
    "template": null,
    "thumb": "Colored_Pencil_Illustration.webp"
+  },
+  {
+   "name": "Gekiga Realism Ink Drawing",
+   "section": "Drawing",
+   "source": "u/Dear-Spend-2865",
+   "prompt": "gritty realistic ink drawing, heavy brush blacks, detailed textures, raw dramatic shading, rough pen hatching, realistic proportions, grainy screentone, harsh black-and-white print finish, inspired by Yoshihiro Tatsumi, Goseki Kojima, Takao Saito, gekiga, manga, realistic, ink, gritty.",
+   "negative": "photorealistic skin pores, 3D CGI render, oil-painting brushwork, western cartoon proportions, sketchy unfinished linework",
+   "template": null,
+   "thumb": "Gekiga_Realism_Ink_Drawing.webp"
   },
   {
    "name": "Lowbrow Style",
@@ -5905,6 +5887,132 @@
    "thumb": "Giger_Biomechanical_art.webp"
   },
   {
+   "name": "Concept Art",
+   "section": "Digital Painting",
+   "source": "u/Dear-Spend-2865",
+   "prompt": "production concept painting, confident digital brushwork, strong value grouping, readable shape design, loose edges with sharp focal detail, atmospheric depth, cinematic color, inspired by Craig Mullins, Feng Zhu, Ryan Church, concept art, digital painting, painterly, production design.",
+   "negative": "flat cartoon fill, simple geometric shapes, rough sketch lines, 3D CGI plastic sheen, cluttered foreground",
+   "template": null,
+   "thumb": "Concept_Art.webp"
+  },
+  {
+   "name": "Textured Digital Painting",
+   "section": "Digital Painting",
+   "source": "u/Dear-Spend-2865",
+   "prompt": "digital painting with visible textured brush marks, varied edge quality, layered opaque strokes, controlled surface grain, selective fine detail, natural painted transitions, digital painting, textured brushes, painterly.",
+   "negative": "flat cartoon fill, simple geometric shapes, rough sketch lines, 3D CGI plastic sheen, cluttered foreground",
+   "template": null,
+   "thumb": "Textured_Digital_Painting.webp"
+  },
+  {
+   "name": "Procreate Painterly Digital Painting",
+   "section": "Digital Painting",
+   "source": "u/Dear-Spend-2865",
+   "prompt": "textured gouache and dry-brush digital strokes, visible brush grain in every mark, chunky blocked-in color shapes, soft airbrushed gradients over crisp painted edges, loose sketch lines showing through, subtle paper-grain noise, confident tablet-painting finish, inspired by Kyle Webster, Max Ulichney, Procreate artists, procreate, digital painting, painterly, textured brushes.",
+   "negative": "flat cartoon fill, simple geometric shapes, rough sketch lines, 3D CGI plastic sheen, cluttered foreground",
+   "template": null,
+   "thumb": "Procreate_Painterly_Digital_Painting.webp"
+  },
+  {
+   "name": "Hyperrealist Digital Painting",
+   "section": "Digital Painting",
+   "source": "u/Dear-Spend-2865",
+   "prompt": "digital painting indistinguishable from a high-resolution photograph, pore-level skin texture, fine strand-level detail, warm subsurface glow, crisp specular catchlights, seamless blending with invisible brush marks, soft studio light with gentle falloff, photographic depth of field, faint painterly polish in the highlights, inspired by Kyle Lambert, Sam Spratt, Robin Eley, hyperrealism, digital painting, photorealistic.",
+   "negative": "flat cartoon fill, simple geometric shapes, rough sketch lines, 3D CGI plastic sheen, cluttered foreground",
+   "template": null,
+   "thumb": "Hyperrealist_Digital_Painting.webp"
+  },
+  {
+   "name": "Mystical digital Illustration",
+   "section": "Digital Painting",
+   "source": "u/Dear-Spend-2865",
+   "prompt": "a hyperdetailed and dynamic decorative-adjacent artwork , digital painting, artistic complexity incorporating dotting, overlapping layers, stippling, scumbling and neuroimaging microscopy; influenced by Edmund Dulac, Hilma af Klint, Anato Finnstark, zentangle, fractal art, sacred geometry, and figurative art.",
+   "negative": "flat cartoon fill, simple geometric shapes, rough sketch lines, 3D CGI plastic sheen, cluttered foreground",
+   "template": null,
+   "thumb": "Mystical_digital_Illustration.webp"
+  },
+  {
+   "name": "Graphic Digital Painting",
+   "section": "Digital Painting",
+   "source": "u/Dear-Spend-2865",
+   "prompt": "digital painting built from bold shape divisions, simplified tonal planes, clean color grouping, limited texture, precise edge hierarchy, strong visual readability, digital painting, graphic shapes, shape design.",
+   "negative": "flat cartoon fill, simple geometric shapes, rough sketch lines, 3D CGI plastic sheen, cluttered foreground",
+   "template": null,
+   "thumb": "Graphic_Digital_Painting.webp"
+  },
+  {
+   "name": "Clean Digital Painting",
+   "section": "Digital Painting",
+   "source": "u/Dear-Spend-2865",
+   "prompt": "digital painting with controlled contours, smooth tonal modeling, selective crisp edges, unified material rendering, restrained brush texture, polished professional finish, digital painting, clean rendering, polished.",
+   "negative": "flat cartoon fill, simple geometric shapes, rough sketch lines, 3D CGI plastic sheen, cluttered foreground",
+   "template": null,
+   "thumb": "Clean_Digital_Painting.webp"
+  },
+  {
+   "name": "Contemporary Fantasy Art",
+   "section": "Digital Painting",
+   "source": "clio",
+   "prompt": "modern fantasy aesthetics characterized by sophisticated visual design, refined painterly rendering, cinematic atmosphere, immersive worldbuilding, and a balance between realism and stylization, emphasizing artistic originality, premium craftsmanship, and contemporary entertainment-art sensibilities through controlled detail, elegant lighting, and highly polished execution, reminiscent of Marc Simonetti and Ruan Jia, inspired by The Witcher Concept Art and Magic: The Gathering Modern Masters.",
+   "negative": "flat cartoon fill, chibi proportions, crude sketch lines, 3D CGI plastic sheen, minimalist negative space",
+   "template": null,
+   "thumb": "Contemporary_Fantasy_Art.webp"
+  },
+  {
+   "name": "Bernie Wrightson Gothic",
+   "section": "Digital Painting",
+   "source": "clio",
+   "prompt": "richly detailed gothic illustration characterized by intricate linework, masterful texture rendering, atmospheric darkness, organic complexity, dramatic chiaroscuro, and exceptional craftsmanship, blending classical draftsmanship with horror-infused visual storytelling through meticulous detail, immersive mood, and a strong sense of haunting romanticism, reminiscent of Bernie Wrightson and Gustave Doré, inspired by Frankenstein and Swamp Thing.",
+   "negative": "cute rounded proportions, bright pastel palette, flat cartoon fill, 3D CGI render, minimalist negative space",
+   "template": null,
+   "thumb": "Bernie_Wrightson_Gothic.webp"
+  },
+  {
+   "name": "ArtStation Masterpiece",
+   "section": "Digital Painting",
+   "source": "clio",
+   "prompt": "A high-production concept-art illustration style built on meticulously controlled rendering that balances painterly atmosphere with technical precision, dramatic cinematic lighting establishing mood and scale within a single portfolio-ready composition, richly detailed material and textural nuance rewarding close inspection without sacrificing overall painterly cohesion, confident, ambitious compositional scale calibrated for maximum visual impact at first glance, and a polished, industry-grade rendering intensity built to command attention within a competitive professional showcase. Influenced by: contemporary ArtStation concept-art community tradition, painterly digital-illustration technique, industry-standard portfolio-rendering practice, cinematic concept-art composition method.",
+   "negative": "flat cartoon fill, crude sketch lines, 3D CGI plastic sheen, muted muddy palette, low-detail minimalism",
+   "template": null,
+   "thumb": "ArtStation_Masterpiece.webp"
+  },
+  {
+   "name": "Artgerm Style",
+   "section": "Digital Painting",
+   "source": "clio",
+   "prompt": "A polished digital-painting portrait style blending photorealistic rendering with idealized comic-glamour proportions, luminous porcelain skin with soft airbrushed gradients and crisp specular highlights, richly detailed glossy rendering carried strand by strand where fine linework is called for, confident glamorous poses framed with clean painterly composition, and a slick, high-production pin-up polish that bridges Western comic-cover art and digital beauty illustration. Influenced by: Stanley \"Artgerm\" Lau, comic-book cover illustration, digital pin-up art, airbrush portrait technique.",
+   "negative": "flat cel fill, rough sketch lines, chibi proportions, visible impasto texture, muted muddy palette",
+   "template": null,
+   "thumb": "Artgerm_Style.webp"
+  },
+  {
+   "name": "Absolute Painterly Style",
+   "section": "Digital Painting",
+   "source": "clio",
+   "prompt": "A richly tactile digital painting style built entirely on visible, confident brushwork rather than smooth blending, thick impasto-like strokes carrying real physical weight and direction across every surface, loose expressive edges that dissolve fine detail in favor of gestural energy, dramatic value contrast doing the heavy lifting instead of line, and a raw, emotive, unmistakably hand-painted intensity that celebrates the mark of the brush over polished precision. Influenced by: traditional oil painting technique, John Singer Sargent, impasto brushwork, classical atelier painting method.",
+   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI render, crisp uniform lines",
+   "template": null,
+   "thumb": "Absolute_Painterly_Style.webp"
+  },
+  {
+   "name": "Scribble Fine Art",
+   "section": "Digital Painting",
+   "source": "clio",
+   "prompt": "expressive fine art aesthetics characterized by energetic freeform mark-making, layered scribbled structures, spontaneous visual construction, dynamic line accumulation, and a deliberate balance between chaos and control. The style builds form, texture, and atmosphere through overlapping gestural lines, exploratory drawing decisions, and visible artistic thought processes, transforming sketch-like marks into sophisticated visual compositions. Rather than concealing construction, it celebrates improvisation, intuition, and the physical act of drawing, allowing complexity and emotion to emerge organically from repeated line interactions. The resulting aesthetic feels raw, intelligent, and deeply personal, blending contemporary fine art experimentation with refined compositional awareness and a strong sense of visual rhythm, reminiscent of Cy Twombly and Julie Mehretu, inspired by Untitled (New York City) and Stadia II.",
+   "negative": "clean polished rendering, flat vector fill, photorealistic skin pores, 3D CGI render, rigid symmetry",
+   "template": null,
+   "thumb": "Scribble_Fine_Art.webp"
+  },
+  {
+   "name": "Digital Painting",
+   "section": "Digital Painting",
+   "source": "clio",
+   "prompt": "A richly layered illustration style built on confident brushwork translated through digital tools while retaining the tactile logic of traditional painting, meticulous control over light behavior achieved through non-destructive layered blending, visible painterly texture preserved even within highly refined rendering, a technically flexible balance between loose gestural mark-making and precise, considered detail, and a polished, contemporary painterly gravitas that bridges classical technique with modern production tools. Influenced by: contemporary digital-painting tradition, Photoshop/Procreate painting workflow, classical oil-painting technique translated digitally, modern concept-art rendering practice.",
+   "negative": "photographic skin pores, 3D CGI sheen, flat vector fill, sketching construction lines, crude low-detail rendering",
+   "template": null,
+   "thumb": "Digital_Painting.webp"
+  },
+  {
    "name": "Atmospheric Matte Painting",
    "section": "Digital Painting",
    "source": "clio",
@@ -5950,15 +6058,6 @@
    "thumb": "Steampunk.webp"
   },
   {
-   "name": "Digital Painting",
-   "section": "Digital Painting",
-   "source": "clio",
-   "prompt": "A richly layered illustration style built on confident brushwork translated through digital tools while retaining the tactile logic of traditional painting, meticulous control over light behavior achieved through non-destructive layered blending, visible painterly texture preserved even within highly refined rendering, a technically flexible balance between loose gestural mark-making and precise, considered detail, and a polished, contemporary painterly gravitas that bridges classical technique with modern production tools. Influenced by: contemporary digital-painting tradition, Photoshop/Procreate painting workflow, classical oil-painting technique translated digitally, modern concept-art rendering practice.",
-   "negative": "photographic skin pores, 3D CGI sheen, flat vector fill, sketching construction lines, crude low-detail rendering",
-   "template": null,
-   "thumb": "Digital_Painting.webp"
-  },
-  {
    "name": "Castlevania Concept Art",
    "section": "Digital Painting",
    "source": "clio",
@@ -5977,15 +6076,6 @@
    "thumb": "Sakimichan_Style.webp"
   },
   {
-   "name": "Scribble Fine Art",
-   "section": "Digital Painting",
-   "source": "clio",
-   "prompt": "expressive fine art aesthetics characterized by energetic freeform mark-making, layered scribbled structures, spontaneous visual construction, dynamic line accumulation, and a deliberate balance between chaos and control. The style builds form, texture, and atmosphere through overlapping gestural lines, exploratory drawing decisions, and visible artistic thought processes, transforming sketch-like marks into sophisticated visual compositions. Rather than concealing construction, it celebrates improvisation, intuition, and the physical act of drawing, allowing complexity and emotion to emerge organically from repeated line interactions. The resulting aesthetic feels raw, intelligent, and deeply personal, blending contemporary fine art experimentation with refined compositional awareness and a strong sense of visual rhythm, reminiscent of Cy Twombly and Julie Mehretu, inspired by Untitled (New York City) and Stadia II.",
-   "negative": "clean polished rendering, flat vector fill, photorealistic skin pores, 3D CGI render, rigid symmetry",
-   "template": null,
-   "thumb": "Scribble_Fine_Art.webp"
-  },
-  {
    "name": "Gris Grimly-Inspired Hyperrealism",
    "section": "Digital Painting",
    "source": "clio",
@@ -5995,33 +6085,6 @@
    "thumb": "Gris_Grimly_Inspired_Hyperrealism.webp"
   },
   {
-   "name": "Absolute Painterly Style",
-   "section": "Digital Painting",
-   "source": "clio",
-   "prompt": "A richly tactile digital painting style built entirely on visible, confident brushwork rather than smooth blending, thick impasto-like strokes carrying real physical weight and direction across every surface, loose expressive edges that dissolve fine detail in favor of gestural energy, dramatic value contrast doing the heavy lifting instead of line, and a raw, emotive, unmistakably hand-painted intensity that celebrates the mark of the brush over polished precision. Influenced by: traditional oil painting technique, John Singer Sargent, impasto brushwork, classical atelier painting method.",
-   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI render, crisp uniform lines",
-   "template": null,
-   "thumb": "Absolute_Painterly_Style.webp"
-  },
-  {
-   "name": "Artgerm Style",
-   "section": "Digital Painting",
-   "source": "clio",
-   "prompt": "A polished digital-painting portrait style blending photorealistic rendering with idealized comic-glamour proportions, luminous porcelain skin with soft airbrushed gradients and crisp specular highlights, richly detailed glossy rendering carried strand by strand where fine linework is called for, confident glamorous poses framed with clean painterly composition, and a slick, high-production pin-up polish that bridges Western comic-cover art and digital beauty illustration. Influenced by: Stanley \"Artgerm\" Lau, comic-book cover illustration, digital pin-up art, airbrush portrait technique.",
-   "negative": "flat cel fill, rough sketch lines, chibi proportions, visible impasto texture, muted muddy palette",
-   "template": null,
-   "thumb": "Artgerm_Style.webp"
-  },
-  {
-   "name": "ArtStation Masterpiece",
-   "section": "Digital Painting",
-   "source": "clio",
-   "prompt": "A high-production concept-art illustration style built on meticulously controlled rendering that balances painterly atmosphere with technical precision, dramatic cinematic lighting establishing mood and scale within a single portfolio-ready composition, richly detailed material and textural nuance rewarding close inspection without sacrificing overall painterly cohesion, confident, ambitious compositional scale calibrated for maximum visual impact at first glance, and a polished, industry-grade rendering intensity built to command attention within a competitive professional showcase. Influenced by: contemporary ArtStation concept-art community tradition, painterly digital-illustration technique, industry-standard portfolio-rendering practice, cinematic concept-art composition method.",
-   "negative": "flat cartoon fill, crude sketch lines, 3D CGI plastic sheen, muted muddy palette, low-detail minimalism",
-   "template": null,
-   "thumb": "ArtStation_Masterpiece.webp"
-  },
-  {
    "name": "Bastien Lecouffe-Deharme Fantasy",
    "section": "Digital Painting",
    "source": "clio",
@@ -6029,15 +6092,6 @@
    "negative": "bright cheerful palette, flat cartoon fill, chibi proportions, 3D CGI plastic sheen, crude sketch lines",
    "template": null,
    "thumb": "Bastien_Lecouffe_Deharme_Fantasy.webp"
-  },
-  {
-   "name": "Bernie Wrightson Gothic",
-   "section": "Digital Painting",
-   "source": "clio",
-   "prompt": "richly detailed gothic illustration characterized by intricate linework, masterful texture rendering, atmospheric darkness, organic complexity, dramatic chiaroscuro, and exceptional craftsmanship, blending classical draftsmanship with horror-infused visual storytelling through meticulous detail, immersive mood, and a strong sense of haunting romanticism, reminiscent of Bernie Wrightson and Gustave Doré, inspired by Frankenstein and Swamp Thing.",
-   "negative": "cute rounded proportions, bright pastel palette, flat cartoon fill, 3D CGI render, minimalist negative space",
-   "template": null,
-   "thumb": "Bernie_Wrightson_Gothic.webp"
   },
   {
    "name": "Blacklight Style",
@@ -6076,15 +6130,6 @@
    "thumb": "Charlie_Bowater_Style.webp"
   },
   {
-   "name": "Contemporary Fantasy Art",
-   "section": "Digital Painting",
-   "source": "clio",
-   "prompt": "modern fantasy aesthetics characterized by sophisticated visual design, refined painterly rendering, cinematic atmosphere, immersive worldbuilding, and a balance between realism and stylization, emphasizing artistic originality, premium craftsmanship, and contemporary entertainment-art sensibilities through controlled detail, elegant lighting, and highly polished execution, reminiscent of Marc Simonetti and Ruan Jia, inspired by The Witcher Concept Art and Magic: The Gathering Modern Masters.",
-   "negative": "flat cartoon fill, chibi proportions, crude sketch lines, 3D CGI plastic sheen, minimalist negative space",
-   "template": null,
-   "thumb": "Contemporary_Fantasy_Art.webp"
-  },
-  {
    "name": "Cosmic Horror Illustration",
    "section": "Digital Painting",
    "source": "clio",
@@ -6092,33 +6137,6 @@
    "negative": "cute rounded proportions, bright cheerful palette, flat cartoon fill, 3D CGI plastic sheen, clean vector lines",
    "template": null,
    "thumb": "Cosmic_Horror_Illustration.webp"
-  },
-  {
-   "name": "Contemporary Commercial Illustration",
-   "section": "Digital Painting",
-   "source": "clio",
-   "prompt": "A polished, versatile illustration style built on clean, confident linework balanced with smooth digital shading calibrated for broad commercial appeal, bright, approachable lighting logic that keeps every composition legible and inviting, a deliberate, market-tested clarity favoring instant communication over artistic ambiguity, meticulous attention to appealing, on-trend rendering finish, and a professional, versatile illustrative polish rooted in contemporary advertising and editorial practice. Influenced by: contemporary commercial-illustration tradition, advertising-illustration technique, editorial-illustration practice, digital-brand illustration method.",
-   "negative": "gritty texture, dark horror shading, crude sketch lines, 3D CGI render, muted muddy palette",
-   "template": null,
-   "thumb": "Contemporary_Commercial_Illustration.webp"
-  },
-  {
-   "name": "Editorial Illustration",
-   "section": "Digital Painting",
-   "source": "clio",
-   "prompt": "A conceptually driven illustration style built on confident, considered composition designed to communicate a single idea with immediate clarity, restrained shading and color logic that supports rather than overwhelms the central concept, meticulous attention to symbolic or metaphorical visual shorthand, a polished, deadline-tested economy of mark-making that favors clever communication over exhaustive rendering, and a sharp, intelligent illustrative wit rooted in contemporary magazine and publication practice. Influenced by: contemporary editorial-illustration tradition, conceptual magazine-illustration technique, symbolic visual-metaphor practice, publication-illustration method.",
-   "negative": "photorealistic texture, dense rendering, 3D CGI render, ornate clutter, muted muddy palette",
-   "template": null,
-   "thumb": "Editorial_Illustration.webp"
-  },
-  {
-   "name": "Clean Digital Painting",
-   "section": "Digital Painting",
-   "source": "u/Dear-Spend-2865",
-   "prompt": "digital painting with controlled contours, smooth tonal modeling, selective crisp edges, unified material rendering, restrained brush texture, polished professional finish, digital painting, clean rendering, polished.",
-   "negative": "flat cartoon fill, simple geometric shapes, rough sketch lines, 3D CGI plastic sheen, cluttered foreground",
-   "template": null,
-   "thumb": "Clean_Digital_Painting.webp"
   },
   {
    "name": "Devin Elle Kurtz Style Digital Painting",
@@ -6148,33 +6166,6 @@
    "thumb": "Goro_Fujita_Style_Digital_Painting.webp"
   },
   {
-   "name": "Graphic Digital Painting",
-   "section": "Digital Painting",
-   "source": "u/Dear-Spend-2865",
-   "prompt": "digital painting built from bold shape divisions, simplified tonal planes, clean color grouping, limited texture, precise edge hierarchy, strong visual readability, digital painting, graphic shapes, shape design.",
-   "negative": "flat cartoon fill, simple geometric shapes, rough sketch lines, 3D CGI plastic sheen, cluttered foreground",
-   "template": null,
-   "thumb": "Graphic_Digital_Painting.webp"
-  },
-  {
-   "name": "Hyperrealist Digital Painting",
-   "section": "Digital Painting",
-   "source": "u/Dear-Spend-2865",
-   "prompt": "digital painting indistinguishable from a high-resolution photograph, pore-level skin texture, fine strand-level detail, warm subsurface glow, crisp specular catchlights, seamless blending with invisible brush marks, soft studio light with gentle falloff, photographic depth of field, faint painterly polish in the highlights, inspired by Kyle Lambert, Sam Spratt, Robin Eley, hyperrealism, digital painting, photorealistic.",
-   "negative": "flat cartoon fill, simple geometric shapes, rough sketch lines, 3D CGI plastic sheen, cluttered foreground",
-   "template": null,
-   "thumb": "Hyperrealist_Digital_Painting.webp"
-  },
-  {
-   "name": "Mystical digital Illustration",
-   "section": "Digital Painting",
-   "source": "u/Dear-Spend-2865",
-   "prompt": "a hyperdetailed and dynamic decorative-adjacent artwork , digital painting, artistic complexity incorporating dotting, overlapping layers, stippling, scumbling and neuroimaging microscopy; influenced by Edmund Dulac, Hilma af Klint, Anato Finnstark, zentangle, fractal art, sacred geometry, and figurative art.",
-   "negative": "flat cartoon fill, simple geometric shapes, rough sketch lines, 3D CGI plastic sheen, cluttered foreground",
-   "template": null,
-   "thumb": "Mystical_digital_Illustration.webp"
-  },
-  {
    "name": "Ornamental Editorial Digital Painting",
    "section": "Digital Painting",
    "source": "u/Dear-Spend-2865",
@@ -6193,15 +6184,6 @@
    "thumb": "Pascal_Campion_Style_Digital_Painting.webp"
   },
   {
-   "name": "Procreate Painterly Digital Painting",
-   "section": "Digital Painting",
-   "source": "u/Dear-Spend-2865",
-   "prompt": "textured gouache and dry-brush digital strokes, visible brush grain in every mark, chunky blocked-in color shapes, soft airbrushed gradients over crisp painted edges, loose sketch lines showing through, subtle paper-grain noise, confident tablet-painting finish, inspired by Kyle Webster, Max Ulichney, Procreate artists, procreate, digital painting, painterly, textured brushes.",
-   "negative": "flat cartoon fill, simple geometric shapes, rough sketch lines, 3D CGI plastic sheen, cluttered foreground",
-   "template": null,
-   "thumb": "Procreate_Painterly_Digital_Painting.webp"
-  },
-  {
    "name": "Ross Tran Character Style Digital Painting",
    "section": "Digital Painting",
    "source": "u/Dear-Spend-2865",
@@ -6209,15 +6191,6 @@
    "negative": "flat cartoon fill, simple geometric shapes, rough sketch lines, 3D CGI plastic sheen, cluttered foreground",
    "template": null,
    "thumb": "Ross_Tran_Character_Style_Digital_Painting.webp"
-  },
-  {
-   "name": "Textured Digital Painting",
-   "section": "Digital Painting",
-   "source": "u/Dear-Spend-2865",
-   "prompt": "digital painting with visible textured brush marks, varied edge quality, layered opaque strokes, controlled surface grain, selective fine detail, natural painted transitions, digital painting, textured brushes, painterly.",
-   "negative": "flat cartoon fill, simple geometric shapes, rough sketch lines, 3D CGI plastic sheen, cluttered foreground",
-   "template": null,
-   "thumb": "Textured_Digital_Painting.webp"
   },
   {
    "name": "Ultradetailed King of Fighters Splash Art",
@@ -6236,15 +6209,6 @@
    "negative": "flat cartoon fill, simple geometric shapes, rough sketch lines, 3D CGI plastic sheen, cluttered foreground",
    "template": null,
    "thumb": "Cassette_Futurism_Painting.webp"
-  },
-  {
-   "name": "Concept Art",
-   "section": "Digital Painting",
-   "source": "u/Dear-Spend-2865",
-   "prompt": "production concept painting, confident digital brushwork, strong value grouping, readable shape design, loose edges with sharp focal detail, atmospheric depth, cinematic color, inspired by Craig Mullins, Feng Zhu, Ryan Church, concept art, digital painting, painterly, production design.",
-   "negative": "flat cartoon fill, simple geometric shapes, rough sketch lines, 3D CGI plastic sheen, cluttered foreground",
-   "template": null,
-   "thumb": "Concept_Art.webp"
   },
   {
    "name": "Concept Art Speedpaint",
@@ -6434,6 +6398,15 @@
    "negative": "flat cartoon fill, simple geometric shapes, rough sketch lines, 3D CGI plastic sheen, cluttered foreground",
    "template": null,
    "thumb": "Ultradetailed_Cyberpunk_Painting.webp"
+  },
+  {
+   "name": "Manhua Wuxia Digital Painting",
+   "section": "Digital Painting",
+   "source": "u/Dear-Spend-2865",
+   "prompt": "digital painting, flowing painterly digital rendering, ink-wash effects, warm harmonious color temperature, elegant fluid poses, swirling energy trails, soft tonal transitions, misty layered depth, crisp detailed faces, inspired by Tales of Demons and Gods, Feng Shen Ji, Zheng Wang, manhua, wuxia, digital painting, ink wash, detailed.",
+   "negative": "photorealistic skin pores, 3D CGI render, oil-painting brushwork, western cartoon proportions, sketchy unfinished linework",
+   "template": null,
+   "thumb": "Manhua_Wuxia_Digital_Painting.webp"
   },
   {
    "name": "Etching",
@@ -7354,6 +7327,96 @@
    "thumb": "Fine_Tessera_Mosaic.webp"
   },
   {
+   "name": "Retro Aesthetic Photograph",
+   "section": "Photography",
+   "source": "u/Dear-Spend-2865",
+   "prompt": "vintage photograph, faded warm colors with lifted blacks, soft film grain, slightly yellowed highlights, cool restrained color temperature, rounded soft contrast, worn offset print texture, subtle halftone accents, inspired by 70s and 80s print media, Kodachrome, vintage advertising, retro, vintage, faded colors, film grain.",
+   "negative": "illustration, painting, 3D CGI render, cartoon proportions, sketch lines, surreal distortion",
+   "template": null,
+   "thumb": "Retro_Aesthetic_Photograph.webp"
+  },
+  {
+   "name": "High-Contrast Photography",
+   "section": "Photography",
+   "source": "clio",
+   "prompt": "A striking photography technique built on a bright, blown-out backdrop that turns the surrounding area nearly pure white, a strong rim of illumination tracing the edge of the subject while the front stays comparatively underexposed and rich in shadow detail, sharp, decisive focus concentrated tightly on the figure against a softly overexposed, low-detail surround, deliberate exposure contrast pushing the tonal range toward extremes rather than an even middle, and a bold, graphic, high-impact clarity that isolates form through light alone. Influenced by: high-contrast lighting practice, controlled exposure-contrast photographic tradition.",
+   "negative": "flat even lighting, low contrast, gray midtones, soft diffused shadow, muted palette",
+   "template": null,
+   "thumb": "High_Contrast_Photography.webp"
+  },
+  {
+   "name": "Outer Form Inner Imagery Interplay",
+   "section": "Photography",
+   "source": "clio",
+   "prompt": "A conceptual double-exposure photomontage style where the outer silhouette of a figure functions as a container or window, its surface seamlessly blended with an entirely separate inner scene, glimpsed through translucent overlaps and layered blending, the boundary between subject and embedded imagery dissolving into soft gradient transitions and selective sharp detail, creating a poetic visual metaphor where the figure's interior world is made literally visible. Influenced by: double-exposure photography, Dan Mountford, surrealist collage art, digital photo-manipulation.",
+   "negative": "single exposure, flat opaque silhouette, no layered blending, straightforward portrait, cartoon illustration",
+   "template": null,
+   "thumb": "Outer_Form_Inner_Imagery_Interplay.webp"
+  },
+  {
+   "name": "Studio Photography",
+   "section": "Photography",
+   "source": "clio",
+   "prompt": "A controlled, immaculately lit photographic style built on precise lighting that sculpt form with deliberate, repeatable exactness, a clean, seamless separation between subject and surrounding space achieved through careful lighting, crisp, evenly balanced exposure that eliminates unwanted ambient interference, confident, deliberate composition within a controlled,environment, and a polished, professional-grade clarity that feels composed, exacting, and fully intentional. Influenced by: commercial studio-lighting technique, professional portrait-photography tradition, controlled-environment photographic method.",
+   "negative": "mixed ambient color, cluttered background, candid snapshot, harsh uncontrolled shadow, illustration",
+   "template": null,
+   "thumb": "Studio_Photography.webp"
+  },
+  {
+   "name": "Golden Hour Photography",
+   "section": "Photography",
+   "source": "clio",
+   "prompt": "A softly directional photographic style built on a low, raking angle of natural illumination that stretches long, gentle shadows across the frame, a diffused, glowing quality softened by increased atmospheric scattering at that time of day, a flattering, low-contrast luminosity that wraps gently around form rather than casting harsh definition, an unhurried, fleeting stillness carried through the brief window of ideal light, and a nostalgic, cinematic tenderness that feels naturally soft and effortlessly atmospheric. Influenced by: natural available-light photography tradition, magic-hour cinematography technique, outdoor portrait-lighting practice, documentary golden-hour shooting method.",
+   "negative": "harsh midday sun, flat gray overcast, cool blue color cast, harsh flash, cartoon illustration",
+   "template": null,
+   "thumb": "Golden_Hour_Photography.webp"
+  },
+  {
+   "name": "Instagram Model Glamour Photography",
+   "section": "Photography",
+   "source": "clio",
+   "prompt": "A polished, aspirational glamour-photography style built on soft, evenly diffused lighting that flatters skin with a warm, flawless glow, confident curve-forward posing shot with a slight low angle for a flattering elongated silhouette, glossy heavy retouching that smooths texture while keeping a believable, photographic sheen, gentle golden-hour warmth or clean bright-studio evenness depending on setting, and a polished, algorithm-friendly commercial appeal built for maximum aspirational impact. Influenced by: contemporary Instagram influencer photography, commercial glamour retouching technique, social-media beauty content, golden-hour portrait lighting.inspired by Demi Rose photoshoot, Amouranth Stream, Emily Ratajkowski glamour photo,",
+   "negative": "unretouched skin, candid documentary framing, flat ambient lighting, no makeup, editorial minimalism",
+   "template": null,
+   "thumb": "Instagram_Model_Glamour_Photography.webp"
+  },
+  {
+   "name": "HDR Photography",
+   "section": "Photography",
+   "source": "clio",
+   "prompt": "A richly detailed photographic technique built on merging multiple exposures to capture an expanded tonal range beyond a single capture's limitation, meticulously balanced highlight and shadow detail that reveals nuance across the entire dynamic spectrum simultaneously, a hyper-clarified, almost otherworldly evenness in illumination that flattens typical contrast extremes, dense, saturated micro-contrast enhancing texture across every plane, and a technically ambitious, heightened-reality intensity that pushes photographic capture toward a hyper-vivid, almost painterly clarity. Influenced by: high-dynamic-range exposure-blending technique, tone-mapping photographic practice, landscape HDR-photography tradition, technically enhanced digital-photography method.",
+   "negative": "crushed shadows, blown highlights, flat low-contrast lighting, single-exposure limitation, cartoon illustration",
+   "template": null,
+   "thumb": "HDR_Photography.webp"
+  },
+  {
+   "name": "Commercial Beauty Photography",
+   "section": "Photography",
+   "source": "clio",
+   "prompt": "luxury commercial photography aesthetics characterized by flawless presentation, sophisticated studio lighting, immaculate detail reproduction, refined tonal transitions, premium surface rendering, and high-end editorial polish, emphasizing visual perfection, elegance, and market-ready image quality through meticulous craftsmanship, controlled composition, and contemporary beauty-industry standards, reminiscent of Solve Sundsbo and Mario Testino, inspired by Vogue Beauty Covers and Dior Beauty Campaigns.",
+   "negative": "visible skin pores, unretouched texture, harsh shadow, casual snapshot, flat ambient light, illustration",
+   "template": null,
+   "thumb": "Commercial_Beauty_Photography.webp"
+  },
+  {
+   "name": "Cinematic Photography",
+   "section": "Photography",
+   "source": "clio",
+   "prompt": "A dramatically composed photographic style built on deliberate, film-like framing that favors wide aspect ratios and purposeful negative space, controlled color-grading logic that unifies highlight and shadow into a single cohesive mood, soft, motivated lighting sources that feel narratively justified rather than purely technical, a patient, unhurried compositional stillness charged with implied story beyond the frame, and a polished, narrative-driven visual gravitas rooted in feature-film visual-language tradition. Influenced by: Roger Deakins cinematography tradition, anamorphic-lens visual technique, narrative film-lighting practice, color-grading post-production method.",
+   "negative": "flat sitcom lighting, snapshot framing, vertical phone aspect ratio, cartoon illustration, harsh on-camera flash",
+   "template": null,
+   "thumb": "Cinematic_Photography.webp"
+  },
+  {
+   "name": "Butterfly Lighting",
+   "section": "Photography",
+   "source": "clio",
+   "prompt": "classic portrait photography aesthetics characterized by symmetrical facial illumination, refined shadow placement, sculptural volume, elegant tonal transitions, and timeless studio craftsmanship, creating a polished and flattering visual presentation through carefully controlled frontal lighting, balanced contrast, and sophisticated portrait execution, reminiscent of George Hurrell and Yousuf Karsh, inspired by Hollywood Glamour Photography and Vanity Fair Portraiture.",
+   "negative": "side lighting, split lighting, harsh under-eye shadow, flat frontal flash, candid snapshot, amateur exposure",
+   "template": null,
+   "thumb": "Butterfly_Lighting.webp"
+  },
+  {
    "name": "Photography",
    "section": "Photography",
    "source": "clio",
@@ -7435,15 +7498,6 @@
    "thumb": "Blue_Hour_Cinema.webp"
   },
   {
-   "name": "Butterfly Lighting",
-   "section": "Photography",
-   "source": "clio",
-   "prompt": "classic portrait photography aesthetics characterized by symmetrical facial illumination, refined shadow placement, sculptural volume, elegant tonal transitions, and timeless studio craftsmanship, creating a polished and flattering visual presentation through carefully controlled frontal lighting, balanced contrast, and sophisticated portrait execution, reminiscent of George Hurrell and Yousuf Karsh, inspired by Hollywood Glamour Photography and Vanity Fair Portraiture.",
-   "negative": "side lighting, split lighting, harsh under-eye shadow, flat frontal flash, candid snapshot, amateur exposure",
-   "template": null,
-   "thumb": "Butterfly_Lighting.webp"
-  },
-  {
    "name": "Candid Photography",
    "section": "Photography",
    "source": "clio",
@@ -7451,24 +7505,6 @@
    "negative": "posed studio portrait, perfect symmetrical composition, controlled three-point lighting, staged smiling pose",
    "template": null,
    "thumb": "Candid_Photography.webp"
-  },
-  {
-   "name": "Cinematic Photography",
-   "section": "Photography",
-   "source": "clio",
-   "prompt": "A dramatically composed photographic style built on deliberate, film-like framing that favors wide aspect ratios and purposeful negative space, controlled color-grading logic that unifies highlight and shadow into a single cohesive mood, soft, motivated lighting sources that feel narratively justified rather than purely technical, a patient, unhurried compositional stillness charged with implied story beyond the frame, and a polished, narrative-driven visual gravitas rooted in feature-film visual-language tradition. Influenced by: Roger Deakins cinematography tradition, anamorphic-lens visual technique, narrative film-lighting practice, color-grading post-production method.",
-   "negative": "flat sitcom lighting, snapshot framing, vertical phone aspect ratio, cartoon illustration, harsh on-camera flash",
-   "template": null,
-   "thumb": "Cinematic_Photography.webp"
-  },
-  {
-   "name": "Commercial Beauty Photography",
-   "section": "Photography",
-   "source": "clio",
-   "prompt": "luxury commercial photography aesthetics characterized by flawless presentation, sophisticated studio lighting, immaculate detail reproduction, refined tonal transitions, premium surface rendering, and high-end editorial polish, emphasizing visual perfection, elegance, and market-ready image quality through meticulous craftsmanship, controlled composition, and contemporary beauty-industry standards, reminiscent of Solve Sundsbo and Mario Testino, inspired by Vogue Beauty Covers and Dior Beauty Campaigns.",
-   "negative": "visible skin pores, unretouched texture, harsh shadow, casual snapshot, flat ambient light, illustration",
-   "template": null,
-   "thumb": "Commercial_Beauty_Photography.webp"
   },
   {
    "name": "Editorial Photography",
@@ -7552,15 +7588,6 @@
    "thumb": "GQ_Photoshoot.webp"
   },
   {
-   "name": "HDR Photography",
-   "section": "Photography",
-   "source": "clio",
-   "prompt": "A richly detailed photographic technique built on merging multiple exposures to capture an expanded tonal range beyond a single capture's limitation, meticulously balanced highlight and shadow detail that reveals nuance across the entire dynamic spectrum simultaneously, a hyper-clarified, almost otherworldly evenness in illumination that flattens typical contrast extremes, dense, saturated micro-contrast enhancing texture across every plane, and a technically ambitious, heightened-reality intensity that pushes photographic capture toward a hyper-vivid, almost painterly clarity. Influenced by: high-dynamic-range exposure-blending technique, tone-mapping photographic practice, landscape HDR-photography tradition, technically enhanced digital-photography method.",
-   "negative": "crushed shadows, blown highlights, flat low-contrast lighting, single-exposure limitation, cartoon illustration",
-   "template": null,
-   "thumb": "HDR_Photography.webp"
-  },
-  {
    "name": "High-Key Lighting Photography",
    "section": "Photography",
    "source": "clio",
@@ -7595,15 +7622,6 @@
    "negative": "color, bright daylight, flat even lighting, soft pastel palette, clean modern digital gloss, naturalistic composition",
    "template": null,
    "thumb": "German_Expressionist_Noir.webp"
-  },
-  {
-   "name": "Instagram Model Glamour Photography",
-   "section": "Photography",
-   "source": "clio",
-   "prompt": "A polished, aspirational glamour-photography style built on soft, evenly diffused lighting that flatters skin with a warm, flawless glow, confident curve-forward posing shot with a slight low angle for a flattering elongated silhouette, glossy heavy retouching that smooths texture while keeping a believable, photographic sheen, gentle golden-hour warmth or clean bright-studio evenness depending on setting, and a polished, algorithm-friendly commercial appeal built for maximum aspirational impact. Influenced by: contemporary Instagram influencer photography, commercial glamour retouching technique, social-media beauty content, golden-hour portrait lighting.inspired by Demi Rose photoshoot, Amouranth Stream, Emily Ratajkowski glamour photo,",
-   "negative": "unretouched skin, candid documentary framing, flat ambient lighting, no makeup, editorial minimalism",
-   "template": null,
-   "thumb": "Instagram_Model_Glamour_Photography.webp"
   },
   {
    "name": "Art Photography",
@@ -7786,15 +7804,6 @@
    "thumb": "Vogue_Magazine.webp"
   },
   {
-   "name": "Golden Hour Photography",
-   "section": "Photography",
-   "source": "clio",
-   "prompt": "A softly directional photographic style built on a low, raking angle of natural illumination that stretches long, gentle shadows across the frame, a diffused, glowing quality softened by increased atmospheric scattering at that time of day, a flattering, low-contrast luminosity that wraps gently around form rather than casting harsh definition, an unhurried, fleeting stillness carried through the brief window of ideal light, and a nostalgic, cinematic tenderness that feels naturally soft and effortlessly atmospheric. Influenced by: natural available-light photography tradition, magic-hour cinematography technique, outdoor portrait-lighting practice, documentary golden-hour shooting method.",
-   "negative": "harsh midday sun, flat gray overcast, cool blue color cast, harsh flash, cartoon illustration",
-   "template": null,
-   "thumb": "Golden_Hour_Photography.webp"
-  },
-  {
    "name": "Brett Weston Photography",
    "section": "Photography",
    "source": "clio",
@@ -7867,24 +7876,6 @@
    "thumb": "Cosplay_Photography.webp"
   },
   {
-   "name": "Outer Form Inner Imagery Interplay",
-   "section": "Photography",
-   "source": "clio",
-   "prompt": "A conceptual double-exposure photomontage style where the outer silhouette of a figure functions as a container or window, its surface seamlessly blended with an entirely separate inner scene, glimpsed through translucent overlaps and layered blending, the boundary between subject and embedded imagery dissolving into soft gradient transitions and selective sharp detail, creating a poetic visual metaphor where the figure's interior world is made literally visible. Influenced by: double-exposure photography, Dan Mountford, surrealist collage art, digital photo-manipulation.",
-   "negative": "single exposure, flat opaque silhouette, no layered blending, straightforward portrait, cartoon illustration",
-   "template": null,
-   "thumb": "Outer_Form_Inner_Imagery_Interplay.webp"
-  },
-  {
-   "name": "Studio Photography",
-   "section": "Photography",
-   "source": "clio",
-   "prompt": "A controlled, immaculately lit photographic style built on precise lighting that sculpt form with deliberate, repeatable exactness, a clean, seamless separation between subject and surrounding space achieved through careful lighting, crisp, evenly balanced exposure that eliminates unwanted ambient interference, confident, deliberate composition within a controlled,environment, and a polished, professional-grade clarity that feels composed, exacting, and fully intentional. Influenced by: commercial studio-lighting technique, professional portrait-photography tradition, controlled-environment photographic method.",
-   "negative": "mixed ambient color, cluttered background, candid snapshot, harsh uncontrolled shadow, illustration",
-   "template": null,
-   "thumb": "Studio_Photography.webp"
-  },
-  {
    "name": "Imperfections-Driven Photography",
    "section": "Photography",
    "source": "clio",
@@ -7892,15 +7883,6 @@
    "negative": "clean digital perfection, smooth noise-free surface, perfectly level composition, studio polish, HDR clarity",
    "template": null,
    "thumb": "Imperfections_Driven_Photography.webp"
-  },
-  {
-   "name": "High-Contrast Photography",
-   "section": "Photography",
-   "source": "clio",
-   "prompt": "A striking photography technique built on a bright, blown-out backdrop that turns the surrounding area nearly pure white, a strong rim of illumination tracing the edge of the subject while the front stays comparatively underexposed and rich in shadow detail, sharp, decisive focus concentrated tightly on the figure against a softly overexposed, low-detail surround, deliberate exposure contrast pushing the tonal range toward extremes rather than an even middle, and a bold, graphic, high-impact clarity that isolates form through light alone. Influenced by: high-contrast lighting practice, controlled exposure-contrast photographic tradition.",
-   "negative": "flat even lighting, low contrast, gray midtones, soft diffused shadow, muted palette",
-   "template": null,
-   "thumb": "High_Contrast_Photography.webp"
   },
   {
    "name": "John Wick-Inspired Neon Photography",
@@ -7973,15 +7955,6 @@
    "negative": "illustration, painting, 3D CGI render, cartoon proportions, sketch lines, surreal distortion",
    "template": null,
    "thumb": "Caustic_Light_Photograph.webp"
-  },
-  {
-   "name": "Retro Aesthetic Photograph",
-   "section": "Photography",
-   "source": "u/Dear-Spend-2865",
-   "prompt": "vintage photograph, faded warm colors with lifted blacks, soft film grain, slightly yellowed highlights, cool restrained color temperature, rounded soft contrast, worn offset print texture, subtle halftone accents, inspired by 70s and 80s print media, Kodachrome, vintage advertising, retro, vintage, faded colors, film grain.",
-   "negative": "illustration, painting, 3D CGI render, cartoon proportions, sketch lines, surreal distortion",
-   "template": null,
-   "thumb": "Retro_Aesthetic_Photograph.webp"
   },
   {
    "name": "Split-Toned Palette Photograph",
@@ -8630,33 +8603,6 @@
    "negative": "illustration, painting, 3D CGI render, cartoon proportions, sketch lines, surreal distortion",
    "template": null,
    "thumb": "Street_Photography.webp"
-  },
-  {
-   "name": "Detailed Brick-Built Model",
-   "section": "Photography",
-   "source": "u/Dear-Spend-2865",
-   "prompt": "macro photograph of a real expert brick-built model, thousands of small plastic bricks, plates and tiles, smooth studless surfaces with clever part usage, precise greebled detail, glossy ABS plastic, inspired by LEGO Ideas builders, BrickCon builders, Nathan Sawaya, lego moc, detailed, toy bricks, product photography, photorealistic.",
-   "negative": "illustration, painting, 3D CGI render, cartoon proportions, sketch lines, surreal distortion",
-   "template": null,
-   "thumb": "Detailed_Brick_Built_Model.webp"
-  },
-  {
-   "name": "Enamel Pin",
-   "section": "Photography",
-   "source": "u/Dear-Spend-2865",
-   "prompt": "product photograph of a real enamel pin, glossy hard enamel fills, polished gold metal outlines, raised metal edges, compact die-cut shape, subtle specular highlights, inspired by enamel pin makers, Pinlord, Strange Ways, enamel pin, metal outline, glossy, product shot, flat colors, photorealistic.",
-   "negative": "illustration, painting, 3D CGI render, cartoon proportions, sketch lines, surreal distortion",
-   "template": null,
-   "thumb": "Enamel_Pin.webp"
-  },
-  {
-   "name": "Gummy Candy Material Photograph",
-   "section": "Photography",
-   "source": "u/Dear-Spend-2865",
-   "prompt": "macro photograph, everything made of translucent gummy candy, glossy jelly surfaces, soft bright fruit colors, light glowing through, sugar-dusted texture, squishy rounded forms, inspired by Haribo, candy food artists, macro food photographers, gummy, candy, translucent, glossy, photorealistic.",
-   "negative": "illustration, painting, 3D CGI render, cartoon proportions, sketch lines, surreal distortion",
-   "template": null,
-   "thumb": "Gummy_Candy_Material_Photograph.webp"
   },
   {
    "name": "Jewelry Macro Photography",
@@ -11962,6 +11908,33 @@
    "thumb": "Dr_Seuss_Style_Illustration.webp"
   },
   {
+   "name": "Historical Sageuk Romance Manhwa Illustration",
+   "section": "Illustration",
+   "source": "u/Dear-Spend-2865",
+   "prompt": "illustration, Joseon-era romance webtoon rendering, soft muted tonality, delicate painterly grounds with ink-wash mist, warm lantern-glow gradients, elegant fine lineart, inspired by The Tale of Gyeonu, Red Storm, Kakao Webtoon, manhwa, sageuk, historical romance, painterly.",
+   "negative": "photorealistic skin pores, 3D CGI render, oil-painting brushwork, western cartoon proportions, sketchy unfinished linework",
+   "template": null,
+   "thumb": "Historical_Sageuk_Romance_Manhwa_Illustration.webp"
+  },
+  {
+   "name": "Contemporary Commercial Illustration",
+   "section": "Illustration",
+   "source": "clio",
+   "prompt": "A polished, versatile illustration style built on clean, confident linework balanced with smooth digital shading calibrated for broad commercial appeal, bright, approachable lighting logic that keeps every composition legible and inviting, a deliberate, market-tested clarity favoring instant communication over artistic ambiguity, meticulous attention to appealing, on-trend rendering finish, and a professional, versatile illustrative polish rooted in contemporary advertising and editorial practice. Influenced by: contemporary commercial-illustration tradition, advertising-illustration technique, editorial-illustration practice, digital-brand illustration method.",
+   "negative": "gritty texture, dark horror shading, crude sketch lines, 3D CGI render, muted muddy palette",
+   "template": null,
+   "thumb": "Contemporary_Commercial_Illustration.webp"
+  },
+  {
+   "name": "Editorial Illustration",
+   "section": "Illustration",
+   "source": "clio",
+   "prompt": "A conceptually driven illustration style built on confident, considered composition designed to communicate a single idea with immediate clarity, restrained shading and color logic that supports rather than overwhelms the central concept, meticulous attention to symbolic or metaphorical visual shorthand, a polished, deadline-tested economy of mark-making that favors clever communication over exhaustive rendering, and a sharp, intelligent illustrative wit rooted in contemporary magazine and publication practice. Influenced by: contemporary editorial-illustration tradition, conceptual magazine-illustration technique, symbolic visual-metaphor practice, publication-illustration method.",
+   "negative": "photorealistic texture, dense rendering, 3D CGI render, ornate clutter, muted muddy palette",
+   "template": null,
+   "thumb": "Editorial_Illustration.webp"
+  },
+  {
    "name": "Sam Yang-Inspired Character Design",
    "section": "Character & Creature Design",
    "source": "u/Dear-Spend-2865",
@@ -12779,6 +12752,42 @@
    "negative": "sofa, wardrobe, table, chairs, carpet, flowers, indoor clutter, furniture shadows",
    "template": "{prompt} Remove all furniture. Left, front, right. Wardrobes and sofas, flowers and carpets, vegetation.",
    "thumb": "orex__remove-furniture.webp"
+  },
+  {
+   "name": "Watercolor Anime Illustration",
+   "section": "Watercolour",
+   "source": "clio",
+   "prompt": "A soft, luminous illustration style built on delicate translucent washes blending seamlessly with clean anime-adjacent linework, gentle bleeding and diffusion at the edges lending each plane a tender, organic softness, restrained tonal layering achieved through patient, unhurried wash-building rather than opaque coverage, a hushed, dreamlike stillness carried through soft directional light, and a poetic, wistful character-illustration finish that feels equally hand-painted and anime-refined. Influenced by: traditional watercolor-and-wash technique, contemporary anime-illustration tradition, gentle wash-blending practice, semi-realistic character-art method.",
+   "negative": "opaque digital airbrush, hard vector edges, glossy 3D shading, photographic detail, heavy black ink",
+   "template": null,
+   "thumb": "Watercolor_Anime_Illustration.webp"
+  },
+  {
+   "name": "Detailed Brick-Built Model",
+   "section": "Special Effects",
+   "source": "u/Dear-Spend-2865",
+   "prompt": "macro photograph of a real expert brick-built model, thousands of small plastic bricks, plates and tiles, smooth studless surfaces with clever part usage, precise greebled detail, glossy ABS plastic, inspired by LEGO Ideas builders, BrickCon builders, Nathan Sawaya, lego moc, detailed, toy bricks, product photography, photorealistic.",
+   "negative": "illustration, painting, 3D CGI render, cartoon proportions, sketch lines, surreal distortion",
+   "template": null,
+   "thumb": "Detailed_Brick_Built_Model.webp"
+  },
+  {
+   "name": "Enamel Pin",
+   "section": "Special Effects",
+   "source": "u/Dear-Spend-2865",
+   "prompt": "product photograph of a real enamel pin, glossy hard enamel fills, polished gold metal outlines, raised metal edges, compact die-cut shape, subtle specular highlights, inspired by enamel pin makers, Pinlord, Strange Ways, enamel pin, metal outline, glossy, product shot, flat colors, photorealistic.",
+   "negative": "illustration, painting, 3D CGI render, cartoon proportions, sketch lines, surreal distortion",
+   "template": null,
+   "thumb": "Enamel_Pin.webp"
+  },
+  {
+   "name": "Gummy Candy Material Photograph",
+   "section": "Special Effects",
+   "source": "u/Dear-Spend-2865",
+   "prompt": "macro photograph, everything made of translucent gummy candy, glossy jelly surfaces, soft bright fruit colors, light glowing through, sugar-dusted texture, squishy rounded forms, inspired by Haribo, candy food artists, macro food photographers, gummy, candy, translucent, glossy, photorealistic.",
+   "negative": "illustration, painting, 3D CGI render, cartoon proportions, sketch lines, surreal distortion",
+   "template": null,
+   "thumb": "Gummy_Candy_Material_Photograph.webp"
   }
  ]
 }
