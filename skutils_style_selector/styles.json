@@ -3502,31 +3502,361 @@
    "thumb": "Gekiga_Realism_Ink_Drawing.webp"
   },
   {
-   "name": "Lowbrow Style",
+   "name": "Acrylic Dreamscape",
    "section": "Painting",
    "source": "clio",
-   "prompt": "A darkly whimsical illustration style built on cartoonish exaggeration mixed with unsettling, surreal juxtaposition, confident smooth rendering that gives every form a glossy, pop-adjacent polish, bold caricatured proportion pushed toward grotesque or absurd extremes, a rebellious, subversive humor woven through otherwise technically polished composition, and a bold, countercultural intensity that feels irreverent, playful, and quietly unsettling. Influenced by: Robert Williams, Mark Ryden, lowbrow-art movement tradition, pop-surrealist illustration practice.",
-   "negative": "photorealistic anatomy, muted subtle palette, 3D CGI plastic sheen, delicate thin linework, restrained serious tone",
+   "prompt": "expressive painterly rendering with layered acrylic textures, blended edges, atmospheric transitions, rich surface variation, handcrafted brushwork, contemporary fine art sensibilities, dreamlike visual rhythm, softly abstracted realism, tactile material presence, luminous depth, gallery-quality execution, reminiscent of Gerhard Richter and Jeremy Mann, inspired by Abstract Painting and Contemporary Fine Art Exhibitions.",
+   "negative": "flat vector fill, rigid hard edges, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
    "template": null,
-   "thumb": "Lowbrow_Style.webp"
+   "thumb": "Acrylic_Dreamscape.webp",
+   "pinned": true
   },
   {
-   "name": "Swirling Impasto",
+   "name": "Korean Ink Painting",
    "section": "Painting",
-   "source": "clio",
-   "prompt": "A richly textured painting style built on thick, confident circular brushstrokes that curl and swirl across every extent, dense impasto ridges catching directional light with sculptural, tactile weight, sweeping curved strokes carrying dynamic, windswept motion throughout the composition, a warm, glowing luminosity built through layered circular dabs rather than smooth blending, and a lush, expressive painterly grandeur that feels alive with rhythmic, swirling energy. Influenced by: J.C. Leyendecker, Vincent van Gogh, impasto oil-painting technique, contemporary digital-painting practice.",
-   "negative": "flat vector fill, smooth airbrushed gradients, photorealistic skin pores, 3D CGI plastic sheen, tight controlled strokes",
+   "source": "u/Dear-Spend-2865",
+   "prompt": "refined sumuk ink brushwork, soft grey washes, sparse elegant strokes, warm hanji paper, dry-brush texture in the darks, layered ink gradations, generous blank paper, subtle pale color touches, inspired by Jeong Seon, Kim Hong-do, Shin Yun-bok, korean painting, ink wash, joseon, brush strokes, traditional.",
+   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
    "template": null,
-   "thumb": "Swirling_Impasto.webp"
+   "thumb": "Korean_Ink_Painting.webp",
+   "pinned": true
   },
   {
-   "name": "Jean-Gabriel Domergue Style",
+   "name": "Raja Ravi Varma Style",
+   "section": "Painting",
+   "source": "manual",
+   "prompt": "oil painting in the style of Raja Ravi Varma, 19th-century Indian academic realism, dramatic side lighting, warm golden undertones, richly detailed silk saree, zari gold embroidery, classical Indian portraiture, contemplative gaze, deep earthy color palette, subtle oil paint texture, vintage aesthetic.",
+   "negative": "anime, cartoon, 3D CGI plastic sheen, flat vector fill, neon color palette, modern clothing, photographic skin pores",
+   "template": null,
+   "thumb": "Raja_Ravi_Varma_Style.webp",
+   "pinned": true
+  },
+  {
+   "name": "Literati Ink",
+   "section": "Painting",
+   "source": "u/Dear-Spend-2865",
+   "prompt": "Chinese ink painting, calligraphic brushwork, layered ink densities, elegant dry-brush textures, vast balanced empty paper, graceful tonal haze, inspired by Shitao, Bada Shanren, Xu Wei, literati painting, ink wash, chinese painting, brush strokes, minimalist.",
+   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
+   "template": null,
+   "thumb": "Literati_Ink.webp",
+   "pinned": true
+  },
+  {
+   "name": "Sesshu Ink Masterpiece",
+   "section": "Painting",
+   "source": "u/Dear-Spend-2865",
+   "prompt": "sumi-e ink painting, confident single-pass brush strokes, dramatic contrast of wet black ink and dry-brush grey, splashed ink haboku passages, vast luminous untouched paper, calligraphic energy, inspired by Sesshu Toyo, Hasegawa Tohaku, Muqi, sumi-e, ink wash, japanese painting, brush strokes, masterpiece, minimalist.",
+   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
+   "template": null,
+   "thumb": "Sesshu_Ink_Masterpiece.webp",
+   "pinned": true
+  },
+  {
+   "name": "Sumi-e Ink",
+   "section": "Painting",
+   "source": "u/Dear-Spend-2865",
+   "prompt": "fluid brush ink strokes with tapering ends, diluted grey washes next to rich black accents, dry-brush texture, generous blank paper areas, economical shape definition, inspired by Sesshu Toyo, Qi Baishi, Takehiko Inoue ink works, ink wash painting, sumi-e, brush strokes, monochrome, minimalist, traditional media.",
+   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
+   "template": null,
+   "thumb": "Sumi_e_Ink.webp",
+   "pinned": true
+  },
+  {
+   "name": "Arthur Rackham Style Illustration",
+   "section": "Painting",
+   "source": "u/Dear-Spend-2865",
+   "prompt": "pen and watercolor illustration, sinuous delicate pen line, earthy muted tonal harmony, soft tonal transitions, gnarled twisting linear rhythms, aged paper softness, inspired by Arthur Rackham, Edmund Dulac, Kay Nielsen, golden age illustration, pen and ink, watercolor, fairy tale, muted palette.",
+   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
+   "template": null,
+   "thumb": "Arthur_Rackham_Style_Illustration.webp"
+  },
+  {
+   "name": "Mughal Miniature Watercolor",
+   "section": "Painting",
+   "source": "u/Dear-Spend-2865",
+   "prompt": "watercolor on paper, naturalistic modeling of faces in soft stippled shading, delicate hair-fine brushwork, refined realism, inspired by Basawan, Abu'l Hasan, Mansur, mughal miniature, indian painting, gold, naturalistic, detailed.",
+   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
+   "template": null,
+   "thumb": "Mughal_Miniature_Watercolor.webp"
+  },
+  {
+   "name": "Horror Painting",
+   "section": "Painting",
+   "source": "u/Dear-Spend-2865",
+   "prompt": "dark unsettling rendering, deep heavy shadows, cool restrained color temperature, decaying textures, harsh low light, distorted uncanny forms, grainy gritty finish, inspired by Zdzislaw Beksinski, Bernie Wrightson, Junji Ito, horror art, dark, eerie, macabre, gritty.",
+   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
+   "template": null,
+   "thumb": "Horror_Painting.webp"
+  },
+  {
+   "name": "Encaustic Wax",
+   "section": "Painting",
+   "source": "u/Dear-Spend-2865",
+   "prompt": "wax, layered translucent beeswax paint, soft glossy depth, scraped and fused textures, embedded pigment layers, inspired by Jasper Johns, Fayum mummy portraits, Tony Scherman, encaustic, wax painting, layered, textured, translucent.",
+   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
+   "template": null,
+   "thumb": "Encaustic_Wax.webp"
+  },
+  {
+   "name": "Edgy Grunge Painting",
+   "section": "Painting",
+   "source": "u/Dear-Spend-2865",
+   "prompt": "mixed media painting, raw aggressive brush slashes, splattered paint, distressed scratched textures, high-contrast black and acid accents, gritty urban energy, inspired by Ashley Wood, Bill Sienkiewicz, Dave McKean, edgy, grunge, gritty, expressive, mixed media, high contrast.",
+   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
+   "template": null,
+   "thumb": "Edgy_Grunge_Painting.webp"
+  },
+  {
+   "name": "Detailed Painting",
+   "section": "Painting",
+   "source": "u/Dear-Spend-2865",
+   "prompt": "detailed rendering, well-defined forms, clean crisp edges, visible fine textures, readable small elements, balanced level of detail across the image, sharp focus, detailed, high detail, crisp, well-defined.",
+   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
+   "template": null,
+   "thumb": "Detailed_Painting.webp"
+  },
+  {
+   "name": "Grimdark Fantasy Painting",
+   "section": "Painting",
+   "source": "u/Dear-Spend-2865",
+   "prompt": "painting, heavily textured dark painterly rendering, gritty desaturated palette, worn rough material textures, scratchy brush marks, inspired by Adrian Smith, Karl Kopinski, Zdzislaw Beksinski, dark fantasy, grimdark, painterly, gritty, desaturated.",
+   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
+   "template": null,
+   "thumb": "Grimdark_Fantasy_Painting.webp"
+  },
+  {
+   "name": "Tachisme Painting",
+   "section": "Painting",
+   "source": "u/Dear-Spend-2865",
+   "prompt": "painting, loose spontaneous blots and dabs of paint, layered splashes, dripped and dabbed color patches, raw gestural texture, lyrical abstract rhythm, inspired by Pierre Soulages, Hans Hartung, Georges Mathieu, tachisme, lyrical abstraction, gestural, painterly.",
+   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
+   "template": null,
+   "thumb": "Tachisme_Painting.webp"
+  },
+  {
+   "name": "Ghostly Palette Knife Painting",
+   "section": "Painting",
+   "source": "u/Dear-Spend-2865",
+   "prompt": "painting, pale translucent paint veils, scraped edges, sparse isolated impasto accents, muted pearl and ash palette, softly dissolving contours, inspired by Gerhard Richter, Zao Wou-Ki, Nicolas de Stael, palette knife, pale colors, abstract, scraped paint, atmospheric.",
+   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
+   "template": null,
+   "thumb": "Ghostly_Palette_Knife_Painting.webp"
+  },
+  {
+   "name": "Dark Fantasy Horror Painting",
+   "section": "Painting",
+   "source": "u/Dear-Spend-2865",
+   "prompt": "dark fantasy oil painting, decaying textures, cool restrained color temperature, heavy shadow masses, scratchy painterly brushwork, eerie dim glows, unsettling distorted forms, inspired by Zdzislaw Beksinski, Seb McKinnon, Brom, horror art, dark fantasy, oil painting, eerie, grim, painterly.",
+   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
+   "template": null,
+   "thumb": "Dark_Fantasy_Horror_Painting.webp"
+  },
+  {
+   "name": "Francis Bacon Style Painting",
+   "section": "Painting",
+   "source": "u/Dear-Spend-2865",
+   "prompt": "painting, smeared distorted painted forms, raw swiped brushstrokes, flat saturated color fields, blurred twisting flesh tones, unsettling raw energy, inspired by Francis Bacon, Lucian Freud, Frank Auerbach, expressionism, distorted, oil painting, raw.",
+   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
+   "template": null,
+   "thumb": "Francis_Bacon_Style_Painting.webp"
+  },
+  {
+   "name": "Masterpiece Painting",
+   "section": "Painting",
+   "source": "u/Dear-Spend-2865",
+   "prompt": "masterpiece oil painting, masterpiece, best quality, highest quality, amazing quality, very aesthetic, absurdres, highres, ultra detailed, 8k, intricate details, sharp focus, perfect composition, flawless rendering, professional, award winning, stunning, beautiful, extremely detailed, vivid colors, rich textures, perfect lighting, high dynamic range, crisp clarity, polished finish, trending on artstation.",
+   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
+   "template": null,
+   "thumb": "Masterpiece_Painting.webp"
+  },
+  {
+   "name": "Loose Handling Painting",
+   "section": "Painting",
+   "source": "u/Dear-Spend-2865",
+   "prompt": "oil painting, broad economical brush marks, lost and found edges, suggested rather than defined details, visible canvas texture, inspired by Edouard Manet, Frans Hals, Zhaoming Wu, loose brushwork, painterly, sketchy, oil painting, expressive.",
+   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
+   "template": null,
+   "thumb": "Loose_Handling_Painting.webp"
+  },
+  {
+   "name": "Grisaille",
+   "section": "Painting",
+   "source": "u/Dear-Spend-2865",
+   "prompt": "monochrome grey underpainting, tonal modeling in greys only, sculptural relief-like illusion, cool silvery finish, inspired by Jan van Eyck, Andrea Mantegna, Hendrick Goltzius, grisaille, monochrome, oil painting, grey tones, tonal.",
+   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
+   "template": null,
+   "thumb": "Grisaille.webp"
+  },
+  {
+   "name": "Fine Art Masterpiece",
+   "section": "Painting",
+   "source": "u/Dear-Spend-2865",
+   "prompt": "museum-grade traditional painting, impeccable draftsmanship, sophisticated color harmony, refined glazed and painterly passages, aged varnish luster, timeless gallery finish, inspired by Diego Velazquez, Johannes Vermeer, John Singer Sargent, fine art, masterpiece, oil painting, old master, museum quality.",
+   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
+   "template": null,
+   "thumb": "Fine_Art_Masterpiece.webp"
+  },
+  {
+   "name": "Dark Academia Painting",
+   "section": "Painting",
+   "source": "u/Dear-Spend-2865",
+   "prompt": "oil painting, earthy muted tonal harmony, warm dim low-key light, old paper tones, worn tactile surface textures, muted vintage grain, inspired by The Secret History, Dead Poets Society, John Atkinson Grimshaw, dark academia, vintage, muted colors, classic.",
+   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
+   "template": null,
+   "thumb": "Dark_Academia_Painting.webp"
+  },
+  {
+   "name": "Aestheticism Painting",
+   "section": "Painting",
+   "source": "u/Dear-Spend-2865",
+   "prompt": "oil painting, harmonious muted color arrangements, decorative flattened design, refined tonal unity, soft subdued palette, Japanese-influenced composition, inspired by James McNeill Whistler, Albert Moore, Frederic Leighton, aestheticism, tonal harmony, decorative, oil painting, muted colors.",
+   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
+   "template": null,
+   "thumb": "Aestheticism_Painting.webp"
+  },
+  {
+   "name": "Turner Atmospheric Painting",
+   "section": "Painting",
+   "source": "u/Dear-Spend-2865",
+   "prompt": "oil painting, luminous swirling washes of light and color, dissolving forms, golden and pearl haze, loose expressive oil glazes, inspired by J. M. W. Turner, Claude Lorrain, Thomas Moran, romanticism, atmospheric, oil painting, luminous, painterly.",
+   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
+   "template": null,
+   "thumb": "Turner_Atmospheric_Painting.webp"
+  },
+  {
+   "name": "Impressionist Painting",
+   "section": "Painting",
+   "source": "u/Dear-Spend-2865",
+   "prompt": "impressionist oil painting, short broken brushstrokes of pure color, vibrating color dabs side by side, soft dissolved contours, visible canvas between strokes, bright high-key palette, inspired by Claude Monet, Pierre-Auguste Renoir, Camille Pissarro, impressionism, broken brushstrokes, oil painting, painterly, high key.",
+   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
+   "template": null,
+   "thumb": "Impressionist_Painting.webp"
+  },
+  {
+   "name": "Dappled Light Painting",
+   "section": "Painting",
+   "source": "u/Dear-Spend-2865",
+   "prompt": "oil painting, scattered patches of sunlight breaking through leaves, soft organic light and shadow pattern, warm green-gold palette, inspired by Claude Monet, Pierre-Auguste Renoir, Emmanuel Lubezki, dappled light, sunlight, light and shadow, natural light, impressionist light.",
+   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
+   "template": null,
+   "thumb": "Dappled_Light_Painting.webp"
+  },
+  {
+   "name": "Frazetta Oil Painting",
+   "section": "Painting",
+   "source": "u/Dear-Spend-2865",
+   "prompt": "oil painting, dramatic painterly oil rendering, dynamic powerful forms, dark earthy palette with warm highlights, loose atmospheric edges, inspired by Frank Frazetta, Boris Vallejo, Ken Kelly, fantasy art, oil painting, dramatic, painterly, sword and sorcery.",
+   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
+   "template": null,
+   "thumb": "Frazetta_Oil_Painting.webp"
+  },
+  {
+   "name": "Dark Gothic Aesthetic Painting",
+   "section": "Painting",
+   "source": "u/Dear-Spend-2865",
+   "prompt": "gothic oil painting, rich saturated color depth, warm amber glow, crisp refined edge work, antique textures, brooding romantic mood, inspired by Tim Burton, Crimson Peak, Victorian gothic illustration, gothic, dark aesthetic, victorian, moody, romantic.",
+   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
+   "template": null,
+   "thumb": "Dark_Gothic_Aesthetic_Painting.webp"
+  },
+  {
+   "name": "Scumbling Painting",
+   "section": "Painting",
+   "source": "u/Dear-Spend-2865",
+   "prompt": "painting, thin broken opaque layers dragged over dry paint, hazy veiled color, soft granular texture, atmospheric softness, inspired by J. M. W. Turner, Titian late works, Rembrandt, scumbling, oil painting, broken color, hazy, textured.",
+   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
+   "template": null,
+   "thumb": "Scumbling_Painting.webp"
+  },
+  {
+   "name": "Oil Painting",
+   "section": "Painting",
+   "source": "u/Dear-Spend-2865",
+   "prompt": "rich buttery oil paint, blended and layered strokes, glazed depth in the darks, thick lights, subtle canvas weave, warm varnished finish, inspired by Rembrandt van Rijn, John Singer Sargent, Ilya Repin, oil painting, oil on canvas, painterly, traditional media, fine art.",
+   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
+   "template": null,
+   "thumb": "Oil_Painting.webp"
+  },
+  {
+   "name": "Imprimatura Underpainting",
+   "section": "Painting",
+   "source": "u/Dear-Spend-2865",
+   "prompt": "underpainting, warm toned ground glowing through thin layers, loose monochrome drawing in paint, partially finished passages, transparent scumbled lights, inspired by Peter Paul Rubens, Anthony van Dyck, Rembrandt van Rijn, imprimatura, underpainting, oil sketch, unfinished.",
+   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
+   "template": null,
+   "thumb": "Imprimatura_Underpainting.webp"
+  },
+  {
+   "name": "Painterly Gouache Illustration",
+   "section": "Painting",
+   "source": "u/Dear-Spend-2865",
+   "prompt": "opaque gouache illustration with visible loaded-brush marks, softly layered color, dry-brush edge texture, selective crisp detail, matte painted finish.",
+   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
+   "template": null,
+   "thumb": "Painterly_Gouache_Illustration.webp"
+  },
+  {
+   "name": "Impasto",
    "section": "Painting",
    "source": "clio",
-   "prompt": "An elegant Art Deco portrait-illustration style built on smooth, confident linework tracing idealized, statuesque proportion with graceful economy, refined tonal shading applied with restrained, sophisticated subtlety rather than dramatic contrast, a poised, glamorous stillness carried through deliberate, composed posing, meticulous attention to graceful line quality over exhaustive detail, and a chic, timeless sophistication that feels effortlessly elegant and quietly luxurious. Influenced by: Jean-Gabriel Domergue, Art Deco portraiture but modern, French illustration contemporary technique , glamour-digital illustration,",
-   "negative": "photorealistic skin pores, loose chaotic brushwork, 3D CGI plastic sheen, muted muddy palette, rough sketch lines",
+   "prompt": "A richly physical painting style built on thickly applied pigment that stands proud from the working surface, ridges and peaks of dried medium catching real directional light with sculptural dimensionality, confident, decisive strokes carrying visible weight and texture across the entire composition, dramatic tactile depth replacing smooth blending or flat coverage entirely, and a raw, sculptural painterly intensity that celebrates the physical presence of pigment itself. Influenced by: Vincent van Gogh, Lucian Freud, impasto oil-painting technique, expressive thick-pigment method.",
+   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
    "template": null,
-   "thumb": "Jean_Gabriel_Domergue_Style.webp"
+   "thumb": "Impasto.webp"
+  },
+  {
+   "name": "Norman Rockwell Style",
+   "section": "Painting",
+   "source": "clio",
+   "prompt": "A warm, narrative-driven illustration style built on meticulous, brushy realism with sincere, storytelling detail, confident tonal modeling giving convincing dimensional presence, a nostalgic, wholesome sensibility carried through carefully staged, relatable composition, richly rendered expression and gesture conveying gentle humor or quiet emotion, and a timeless, homespun sincerity that feels deeply American, comforting, and effortlessly narrative. Influenced by: Norman Rockwell, Golden Age American illustration tradition, oil-painting technique, magazine-cover narrative-illustration practice.",
+   "negative": "photorealistic skin pores, gritty horror shading, 3D CGI plastic sheen, surreal distortion, muted muddy palette",
+   "template": null,
+   "thumb": "Norman_Rockwell_Style.webp"
+  },
+  {
+   "name": "Contemporary Oil Painting",
+   "section": "Painting",
+   "source": "clio",
+   "prompt": "A richly layered painting style built on confident, visible brushwork that constructs form through deliberate, physically present strokes, meticulous blended tonal transition achieved through wet-on-wet and glazing technique in equal measure, a tactile, hand-crafted depth that preserves brush character even within refined passages, deliberate value and contrast control giving every form convincing dimensional weight, and a timeless yet unmistakably current painterly sincerity that bridges classical technique with a contemporary rendering sensibility. Influenced by: contemporary figurative-oil-painting tradition, classical atelier technique, alla prima painting practice, modern gallery-oil-painting method.",
+   "negative": "digital airbrush gloss, flat vector fill, 3D CGI plastic sheen, photographic skin pores, sketchy construction lines",
+   "template": null,
+   "thumb": "Contemporary_Oil_Painting.webp"
+  },
+  {
+   "name": "Commercial Illustration",
+   "section": "Painting",
+   "source": "clio",
+   "prompt": "polished professional illustration aesthetics characterized by exceptional visual clarity, refined draftsmanship, sophisticated rendering, strong communication value, and broad audience appeal, emphasizing readability, craftsmanship, and conceptual effectiveness through balanced composition, controlled detail hierarchy, premium surface treatment, and production-ready execution, reminiscent of J.C. Leyendecker and Norman Rockwell, inspired by The Saturday Evening Post and American Illustrators Gallery exhibitions.",
+   "negative": "gritty texture, crude sketch lines, 3D CGI plastic sheen, muted muddy palette, experimental abstraction",
+   "template": null,
+   "thumb": "Commercial_Illustration.webp"
+  },
+  {
+   "name": "Ultrarealism",
+   "section": "Painting",
+   "source": "clio",
+   "prompt": "A meticulously rendered painting style built on hyper-precise attention to minute detail that surpasses ordinary photographic fidelity, dramatic, controlled lighting establishing an almost tangible dimensionality throughout the composition, obsessive layering that builds convincing depth, translucency, and subtle tonal variation, a disciplined, painstaking rendering approach that treats absolute technical mastery as the primary goal, and an uncanny, almost hyper-vivid intensity that pushes representational accuracy beyond what unaided vision typically perceives. Influenced by: hyperrealist and ultrarealist oil-painting tradition, contemporary photorealism technique, meticulous layered-glazing practice, technically obsessive figurative-painting method.",
+   "negative": "visible impasto brushstrokes, flat cartoon fill, 3D CGI plastic sheen, loose sketch lines, muted muddy palette",
+   "template": null,
+   "thumb": "Ultrarealism.webp"
+  },
+  {
+   "name": "Bill Sienkiewicz Expressionism",
+   "section": "Painting",
+   "source": "clio",
+   "prompt": "highly experimental illustration aesthetics combining expressive brushwork, mixed-media textures, abstract visual fragmentation, painterly distortion, emotional intensity, and unconventional storytelling techniques, blending fine art sensibilities with graphic narrative through bold mark-making, layered surfaces, and a fearless approach to visual interpretation, reminiscent of Bill Sienkiewicz and Ralph Steadman, inspired by Elektra: Assassin and Stray Toasters.",
+   "negative": "clean polished vector lines, flat cel fill, photorealistic skin pores, 3D CGI plastic sheen, calm static composition",
+   "template": null,
+   "thumb": "Bill_Sienkiewicz_Expressionism.webp"
+  },
+  {
+   "name": "Monet Style",
+   "section": "Painting",
+   "source": "clio",
+   "prompt": "A luminous, atmospheric painting style built on loose, broken brushstrokes that dissolve precise form in favor of captured light and momentary sensation, delicate layered dabs of pigment that blend optically at a distance rather than through physical mixing, a soft, hazy compositional atmosphere that prioritizes fleeting impression over structural clarity, an unhurried, contemplative rhythm carried through repeated, patient mark-making, and a tranquil, light-drenched painterly sincerity rooted in plein-air impressionist observation. Influenced by: Claude Monet, French impressionist painting tradition, plein-air painting technique, broken-color brushwork practice.",
+   "negative": "hard-edged outlines, photorealistic detail, flat vector fill, 3D CGI plastic sheen, high-contrast black shadow",
+   "template": null,
+   "thumb": "Monet_Style.webp"
   },
   {
    "name": "Painting",
@@ -3547,6 +3877,33 @@
    "thumb": "Abstract_Expressionism.webp"
   },
   {
+   "name": "Swirling Impasto",
+   "section": "Painting",
+   "source": "clio",
+   "prompt": "A richly textured painting style built on thick, confident circular brushstrokes that curl and swirl across every extent, dense impasto ridges catching directional light with sculptural, tactile weight, sweeping curved strokes carrying dynamic, windswept motion throughout the composition, a warm, glowing luminosity built through layered circular dabs rather than smooth blending, and a lush, expressive painterly grandeur that feels alive with rhythmic, swirling energy. Influenced by: J.C. Leyendecker, Vincent van Gogh, impasto oil-painting technique, contemporary digital-painting practice.",
+   "negative": "flat vector fill, smooth airbrushed gradients, photorealistic skin pores, 3D CGI plastic sheen, tight controlled strokes",
+   "template": null,
+   "thumb": "Swirling_Impasto.webp"
+  },
+  {
+   "name": "Jean-Gabriel Domergue Style",
+   "section": "Painting",
+   "source": "clio",
+   "prompt": "An elegant Art Deco portrait-illustration style built on smooth, confident linework tracing idealized, statuesque proportion with graceful economy, refined tonal shading applied with restrained, sophisticated subtlety rather than dramatic contrast, a poised, glamorous stillness carried through deliberate, composed posing, meticulous attention to graceful line quality over exhaustive detail, and a chic, timeless sophistication that feels effortlessly elegant and quietly luxurious. Influenced by: Jean-Gabriel Domergue, Art Deco portraiture but modern, French illustration contemporary technique , glamour-digital illustration,",
+   "negative": "photorealistic skin pores, loose chaotic brushwork, 3D CGI plastic sheen, muted muddy palette, rough sketch lines",
+   "template": null,
+   "thumb": "Jean_Gabriel_Domergue_Style.webp"
+  },
+  {
+   "name": "Lowbrow Style",
+   "section": "Painting",
+   "source": "clio",
+   "prompt": "A darkly whimsical illustration style built on cartoonish exaggeration mixed with unsettling, surreal juxtaposition, confident smooth rendering that gives every form a glossy, pop-adjacent polish, bold caricatured proportion pushed toward grotesque or absurd extremes, a rebellious, subversive humor woven through otherwise technically polished composition, and a bold, countercultural intensity that feels irreverent, playful, and quietly unsettling. Influenced by: Robert Williams, Mark Ryden, lowbrow-art movement tradition, pop-surrealist illustration practice.",
+   "negative": "photorealistic anatomy, muted subtle palette, 3D CGI plastic sheen, delicate thin linework, restrained serious tone",
+   "template": null,
+   "thumb": "Lowbrow_Style.webp"
+  },
+  {
    "name": "Academic Precision Realism",
    "section": "Painting",
    "source": "clio",
@@ -3554,15 +3911,6 @@
    "negative": "visible loose brushstrokes, sketchy lines, flat cartoon fill, 3D CGI plastic sheen, muted muddy palette",
    "template": null,
    "thumb": "Academic_Precision_Realism.webp"
-  },
-  {
-   "name": "Acrylic Dreamscape",
-   "section": "Painting",
-   "source": "clio",
-   "prompt": "expressive painterly rendering with layered acrylic textures, blended edges, atmospheric transitions, rich surface variation, handcrafted brushwork, contemporary fine art sensibilities, dreamlike visual rhythm, softly abstracted realism, tactile material presence, luminous depth, gallery-quality execution, reminiscent of Gerhard Richter and Jeremy Mann, inspired by Abstract Painting and Contemporary Fine Art Exhibitions.",
-   "negative": "flat vector fill, rigid hard edges, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
-   "template": null,
-   "thumb": "Acrylic_Dreamscape.webp"
   },
   {
    "name": "Adventure Illustration",
@@ -3601,24 +3949,6 @@
    "thumb": "Van_Gogh_Style.webp"
   },
   {
-   "name": "Monet Style",
-   "section": "Painting",
-   "source": "clio",
-   "prompt": "A luminous, atmospheric painting style built on loose, broken brushstrokes that dissolve precise form in favor of captured light and momentary sensation, delicate layered dabs of pigment that blend optically at a distance rather than through physical mixing, a soft, hazy compositional atmosphere that prioritizes fleeting impression over structural clarity, an unhurried, contemplative rhythm carried through repeated, patient mark-making, and a tranquil, light-drenched painterly sincerity rooted in plein-air impressionist observation. Influenced by: Claude Monet, French impressionist painting tradition, plein-air painting technique, broken-color brushwork practice.",
-   "negative": "hard-edged outlines, photorealistic detail, flat vector fill, 3D CGI plastic sheen, high-contrast black shadow",
-   "template": null,
-   "thumb": "Monet_Style.webp"
-  },
-  {
-   "name": "Wet-on-Wet Watercolor Ink Painting",
-   "section": "Painting",
-   "source": "clio",
-   "prompt": "A fluid, unpredictable painting style built on pigment applied directly into an already-saturated wet layer, allowing color and tone to bloom, bleed, and diffuse with organic unpredictability rather than controlled placement, soft, feathered edges replacing any crisp boundary as washes merge and blend spontaneously, a delicate, translucent layering that builds depth through repeated wet passes rather than opaque coverage, an unhurried, meditative looseness carried through the medium's inherent unpredictability, and a poetic, ephemeral fluidity that captures the beauty of controlled chance. Influenced by: traditional wet-on-wet watercolor technique, ink-wash painting tradition, expressive fluid-media practice, spontaneous wash-blending method.",
-   "negative": "opaque flat fill, hard vector edges, glossy 3D shading, photorealistic detail, dense crosshatching",
-   "template": null,
-   "thumb": "Wet_on_Wet_Watercolor_Ink_Painting.webp"
-  },
-  {
    "name": "Alphonse Mucha Masterwork",
    "section": "Painting",
    "source": "clio",
@@ -3644,15 +3974,6 @@
    "negative": "flat even lighting, high-key exposure, saturated neon palette, photorealistic skin pores, 3D CGI plastic sheen",
    "template": null,
    "thumb": "Rembrandt_Painting.webp"
-  },
-  {
-   "name": "Raja Ravi Varma Style",
-   "section": "Painting",
-   "source": "manual",
-   "prompt": "oil painting in the style of Raja Ravi Varma, 19th-century Indian academic realism, dramatic side lighting, warm golden undertones, richly detailed silk saree, zari gold embroidery, classical Indian portraiture, contemplative gaze, deep earthy color palette, subtle oil paint texture, vintage aesthetic.",
-   "negative": "anime, cartoon, 3D CGI plastic sheen, flat vector fill, neon color palette, modern clothing, photographic skin pores",
-   "template": null,
-   "thumb": "Raja_Ravi_Varma_Style.webp"
   },
   {
    "name": "Art Deco Gold Highlights",
@@ -3689,15 +4010,6 @@
    "negative": "flat even lighting, low contrast, high-key brightness, pastel palette, no deep shadow",
    "template": null,
    "thumb": "Chiaroscuro.webp"
-  },
-  {
-   "name": "Bill Sienkiewicz Expressionism",
-   "section": "Painting",
-   "source": "clio",
-   "prompt": "highly experimental illustration aesthetics combining expressive brushwork, mixed-media textures, abstract visual fragmentation, painterly distortion, emotional intensity, and unconventional storytelling techniques, blending fine art sensibilities with graphic narrative through bold mark-making, layered surfaces, and a fearless approach to visual interpretation, reminiscent of Bill Sienkiewicz and Ralph Steadman, inspired by Elektra: Assassin and Stray Toasters.",
-   "negative": "clean polished vector lines, flat cel fill, photorealistic skin pores, 3D CGI plastic sheen, calm static composition",
-   "template": null,
-   "thumb": "Bill_Sienkiewicz_Expressionism.webp"
   },
   {
    "name": "Graffiti Painting",
@@ -3754,15 +4066,6 @@
    "thumb": "Hyperrealism.webp"
   },
   {
-   "name": "Ultrarealism",
-   "section": "Painting",
-   "source": "clio",
-   "prompt": "A meticulously rendered painting style built on hyper-precise attention to minute detail that surpasses ordinary photographic fidelity, dramatic, controlled lighting establishing an almost tangible dimensionality throughout the composition, obsessive layering that builds convincing depth, translucency, and subtle tonal variation, a disciplined, painstaking rendering approach that treats absolute technical mastery as the primary goal, and an uncanny, almost hyper-vivid intensity that pushes representational accuracy beyond what unaided vision typically perceives. Influenced by: hyperrealist and ultrarealist oil-painting tradition, contemporary photorealism technique, meticulous layered-glazing practice, technically obsessive figurative-painting method.",
-   "negative": "visible impasto brushstrokes, flat cartoon fill, 3D CGI plastic sheen, loose sketch lines, muted muddy palette",
-   "template": null,
-   "thumb": "Ultrarealism.webp"
-  },
-  {
    "name": "Casey Baugh Style",
    "section": "Painting",
    "source": "clio",
@@ -3770,15 +4073,6 @@
    "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
    "template": null,
    "thumb": "Casey_Baugh_Style.webp"
-  },
-  {
-   "name": "Commercial Illustration",
-   "section": "Painting",
-   "source": "clio",
-   "prompt": "polished professional illustration aesthetics characterized by exceptional visual clarity, refined draftsmanship, sophisticated rendering, strong communication value, and broad audience appeal, emphasizing readability, craftsmanship, and conceptual effectiveness through balanced composition, controlled detail hierarchy, premium surface treatment, and production-ready execution, reminiscent of J.C. Leyendecker and Norman Rockwell, inspired by The Saturday Evening Post and American Illustrators Gallery exhibitions.",
-   "negative": "gritty texture, crude sketch lines, 3D CGI plastic sheen, muted muddy palette, experimental abstraction",
-   "template": null,
-   "thumb": "Commercial_Illustration.webp"
   },
   {
    "name": "Cubism",
@@ -3790,15 +4084,6 @@
    "thumb": "Cubism.webp"
   },
   {
-   "name": "Carne Griffiths Style",
-   "section": "Painting",
-   "source": "clio",
-   "prompt": "A delicately fluid mixed-media illustration style built on flowing, ink-and-wash linework that bleeds and drips with organic unpredictability, translucent layered washes that let forms dissolve into loose atmospheric bloom at the edges, fine calligraphic detail threading through the figure like living linework, a hushed, ethereal fragility carried through delicate transparency, and a poetic, painterly looseness where control and chance blend into something dreamlike and organic. Influenced by: Carne Griffiths, ink and tea-wash illustration technique, mixed-media fine art, botanical linework technique.",
-   "negative": "opaque flat fill, hard vector edges, 3D CGI plastic sheen, photorealistic skin pores, dense crosshatching",
-   "template": null,
-   "thumb": "Carne_Griffiths_Style.webp"
-  },
-  {
    "name": "Jackson Pollock Style",
    "section": "Painting",
    "source": "clio",
@@ -3806,24 +4091,6 @@
    "negative": "realistic anatomy, precise hard-edged geometry, photorealistic detail, 3D CGI render, flat vector fill",
    "template": null,
    "thumb": "Jackson_Pollock_Style.webp"
-  },
-  {
-   "name": "Watercolor Painting",
-   "section": "Painting",
-   "source": "clio",
-   "prompt": "A fluid, translucent painting style built on delicate layered washes that build depth through repeated transparent passes rather than opaque coverage, soft, feathered edges where pigment bleeds and diffuses with organic unpredictability, a luminous quality achieved by letting light pass through thin pigment layers, an unhurried, patient looseness carried through the medium's inherent fluidity, and a poetic, gentle sincerity that captures spontaneity within controlled technical discipline. Influenced by: traditional watercolor-painting tradition, wet-on-wet washing technique, plein-air watercolor practice, classical wash-and-glaze method.",
-   "negative": "opaque flat fill, hard vector edges, glossy 3D shading, photorealistic detail, dense crosshatching",
-   "template": null,
-   "thumb": "Watercolor_Painting.webp"
-  },
-  {
-   "name": "Contemporary Oil Painting",
-   "section": "Painting",
-   "source": "clio",
-   "prompt": "A richly layered painting style built on confident, visible brushwork that constructs form through deliberate, physically present strokes, meticulous blended tonal transition achieved through wet-on-wet and glazing technique in equal measure, a tactile, hand-crafted depth that preserves brush character even within refined passages, deliberate value and contrast control giving every form convincing dimensional weight, and a timeless yet unmistakably current painterly sincerity that bridges classical technique with a contemporary rendering sensibility. Influenced by: contemporary figurative-oil-painting tradition, classical atelier technique, alla prima painting practice, modern gallery-oil-painting method.",
-   "negative": "digital airbrush gloss, flat vector fill, 3D CGI plastic sheen, photographic skin pores, sketchy construction lines",
-   "template": null,
-   "thumb": "Contemporary_Oil_Painting.webp"
   },
   {
    "name": "Pop Art",
@@ -3889,15 +4156,6 @@
    "thumb": "Contemporary_Gothic_Art.webp"
   },
   {
-   "name": "Norman Rockwell Style",
-   "section": "Painting",
-   "source": "clio",
-   "prompt": "A warm, narrative-driven illustration style built on meticulous, brushy realism with sincere, storytelling detail, confident tonal modeling giving convincing dimensional presence, a nostalgic, wholesome sensibility carried through carefully staged, relatable composition, richly rendered expression and gesture conveying gentle humor or quiet emotion, and a timeless, homespun sincerity that feels deeply American, comforting, and effortlessly narrative. Influenced by: Norman Rockwell, Golden Age American illustration tradition, oil-painting technique, magazine-cover narrative-illustration practice.",
-   "negative": "photorealistic skin pores, gritty horror shading, 3D CGI plastic sheen, surreal distortion, muted muddy palette",
-   "template": null,
-   "thumb": "Norman_Rockwell_Style.webp"
-  },
-  {
    "name": "Edvard Munch Style",
    "section": "Painting",
    "source": "clio",
@@ -3932,15 +4190,6 @@
    "negative": "painterly brushstrokes, photorealistic texture, 3D CGI plastic sheen, muted muddy palette, unique handcrafted imperfection",
    "template": null,
    "thumb": "Andy_Warhol_Style.webp"
-  },
-  {
-   "name": "Impasto",
-   "section": "Painting",
-   "source": "clio",
-   "prompt": "A richly physical painting style built on thickly applied pigment that stands proud from the working surface, ridges and peaks of dried medium catching real directional light with sculptural dimensionality, confident, decisive strokes carrying visible weight and texture across the entire composition, dramatic tactile depth replacing smooth blending or flat coverage entirely, and a raw, sculptural painterly intensity that celebrates the physical presence of pigment itself. Influenced by: Vincent van Gogh, Lucian Freud, impasto oil-painting technique, expressive thick-pigment method.",
-   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
-   "template": null,
-   "thumb": "Impasto.webp"
   },
   {
    "name": "1950s Fashion Illustration",
@@ -3988,15 +4237,6 @@
    "thumb": "Gouache_Flat.webp"
   },
   {
-   "name": "Painterly Gouache Illustration",
-   "section": "Painting",
-   "source": "u/Dear-Spend-2865",
-   "prompt": "opaque gouache illustration with visible loaded-brush marks, softly layered color, dry-brush edge texture, selective crisp detail, matte painted finish.",
-   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
-   "template": null,
-   "thumb": "Painterly_Gouache_Illustration.webp"
-  },
-  {
    "name": "Syd Mead Style illustration",
    "section": "Painting",
    "source": "u/Dear-Spend-2865",
@@ -4031,42 +4271,6 @@
    "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
    "template": null,
    "thumb": "Little_Golden_Book_Gouache.webp"
-  },
-  {
-   "name": "Modern Storybook Illustration",
-   "section": "Painting",
-   "source": "u/Dear-Spend-2865",
-   "prompt": "contemporary storybook illustration, simplified readable shapes, textured painted fills, clean contour control, selective fine detail, visible paper-like grain, polished publishing finish, inspired by Jon Klassen, Isabelle Arsenault, Carson Ellis, storybook illustration, gouache, pencil.",
-   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
-   "template": null,
-   "thumb": "Modern_Storybook_Illustration.webp"
-  },
-  {
-   "name": "Polish Storybook Illustration",
-   "section": "Painting",
-   "source": "u/Dear-Spend-2865",
-   "prompt": "storybook illustration with expressive ink contours, textured gouache color, symbolic simplified forms, dry printed grain, refined handmade finish, inspired by Jan Marcin Szancer, Jozef Wilkon, Stasys Eidrigevicius, Polish illustration, storybook.",
-   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
-   "template": null,
-   "thumb": "Polish_Storybook_Illustration.webp"
-  },
-  {
-   "name": "Russian Storybook Illustration",
-   "section": "Painting",
-   "source": "u/Dear-Spend-2865",
-   "prompt": "ink and gouache storybook illustration, crisp decorative contours, flat painted color areas, intricate folk patterning, polished ornamental rhythm, inspired by Ivan Bilibin, Yuri Vasnetsov, Elena Polenova, Russian storybook, gouache, ink, folk illustration.",
-   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
-   "template": null,
-   "thumb": "Russian_Storybook_Illustration.webp"
-  },
-  {
-   "name": "Soviet Storybook Illustration",
-   "section": "Painting",
-   "source": "u/Dear-Spend-2865",
-   "prompt": "mid-century storybook illustration, simplified expressive forms, opaque gouache color, confident brush contours, restrained printed texture, polished book-art finish, inspired by Vladimir Lebedev, Yevgeny Charushin, Yuri Vasnetsov, Soviet illustration, storybook.",
-   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
-   "template": null,
-   "thumb": "Soviet_Storybook_Illustration.webp"
   },
   {
    "name": "Storybook Gouache",
@@ -4150,33 +4354,6 @@
    "thumb": "Neoclassical_Painting.webp"
   },
   {
-   "name": "Imprimatura Underpainting",
-   "section": "Painting",
-   "source": "u/Dear-Spend-2865",
-   "prompt": "underpainting, warm toned ground glowing through thin layers, loose monochrome drawing in paint, partially finished passages, transparent scumbled lights, inspired by Peter Paul Rubens, Anthony van Dyck, Rembrandt van Rijn, imprimatura, underpainting, oil sketch, unfinished.",
-   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
-   "template": null,
-   "thumb": "Imprimatura_Underpainting.webp"
-  },
-  {
-   "name": "Oil Painting",
-   "section": "Painting",
-   "source": "u/Dear-Spend-2865",
-   "prompt": "rich buttery oil paint, blended and layered strokes, glazed depth in the darks, thick lights, subtle canvas weave, warm varnished finish, inspired by Rembrandt van Rijn, John Singer Sargent, Ilya Repin, oil painting, oil on canvas, painterly, traditional media, fine art.",
-   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
-   "template": null,
-   "thumb": "Oil_Painting.webp"
-  },
-  {
-   "name": "Scumbling Painting",
-   "section": "Painting",
-   "source": "u/Dear-Spend-2865",
-   "prompt": "painting, thin broken opaque layers dragged over dry paint, hazy veiled color, soft granular texture, atmospheric softness, inspired by J. M. W. Turner, Titian late works, Rembrandt, scumbling, oil painting, broken color, hazy, textured.",
-   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
-   "template": null,
-   "thumb": "Scumbling_Painting.webp"
-  },
-  {
    "name": "Baroque Chiaroscuro Painting",
    "section": "Painting",
    "source": "u/Dear-Spend-2865",
@@ -4202,15 +4379,6 @@
    "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
    "template": null,
    "thumb": "Dutch_Golden_Age_Painting.webp"
-  },
-  {
-   "name": "Dark Gothic Aesthetic Painting",
-   "section": "Painting",
-   "source": "u/Dear-Spend-2865",
-   "prompt": "gothic oil painting, rich saturated color depth, warm amber glow, crisp refined edge work, antique textures, brooding romantic mood, inspired by Tim Burton, Crimson Peak, Victorian gothic illustration, gothic, dark aesthetic, victorian, moody, romantic.",
-   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
-   "template": null,
-   "thumb": "Dark_Gothic_Aesthetic_Painting.webp"
   },
   {
    "name": "Gothic Painting",
@@ -4249,15 +4417,6 @@
    "thumb": "Frazetta_Masterpiece_Painting.webp"
   },
   {
-   "name": "Frazetta Oil Painting",
-   "section": "Painting",
-   "source": "u/Dear-Spend-2865",
-   "prompt": "oil painting, dramatic painterly oil rendering, dynamic powerful forms, dark earthy palette with warm highlights, loose atmospheric edges, inspired by Frank Frazetta, Boris Vallejo, Ken Kelly, fantasy art, oil painting, dramatic, painterly, sword and sorcery.",
-   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
-   "template": null,
-   "thumb": "Frazetta_Oil_Painting.webp"
-  },
-  {
    "name": "Cezanne Style Painting",
    "section": "Painting",
    "source": "u/Dear-Spend-2865",
@@ -4267,15 +4426,6 @@
    "thumb": "Cezanne_Style_Painting.webp"
   },
   {
-   "name": "Dappled Light Painting",
-   "section": "Painting",
-   "source": "u/Dear-Spend-2865",
-   "prompt": "oil painting, scattered patches of sunlight breaking through leaves, soft organic light and shadow pattern, warm green-gold palette, inspired by Claude Monet, Pierre-Auguste Renoir, Emmanuel Lubezki, dappled light, sunlight, light and shadow, natural light, impressionist light.",
-   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
-   "template": null,
-   "thumb": "Dappled_Light_Painting.webp"
-  },
-  {
    "name": "Gauguin Synthetism Painting",
    "section": "Painting",
    "source": "u/Dear-Spend-2865",
@@ -4283,15 +4433,6 @@
    "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
    "template": null,
    "thumb": "Gauguin_Synthetism_Painting.webp"
-  },
-  {
-   "name": "Impressionist Painting",
-   "section": "Painting",
-   "source": "u/Dear-Spend-2865",
-   "prompt": "impressionist oil painting, short broken brushstrokes of pure color, vibrating color dabs side by side, soft dissolved contours, visible canvas between strokes, bright high-key palette, inspired by Claude Monet, Pierre-Auguste Renoir, Camille Pissarro, impressionism, broken brushstrokes, oil painting, painterly, high key.",
-   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
-   "template": null,
-   "thumb": "Impressionist_Painting.webp"
   },
   {
    "name": "Renoir Prestige Painting",
@@ -4375,15 +4516,6 @@
    "thumb": "Romantic_Sublime_Painting.webp"
   },
   {
-   "name": "Turner Atmospheric Painting",
-   "section": "Painting",
-   "source": "u/Dear-Spend-2865",
-   "prompt": "oil painting, luminous swirling washes of light and color, dissolving forms, golden and pearl haze, loose expressive oil glazes, inspired by J. M. W. Turner, Claude Lorrain, Thomas Moran, romanticism, atmospheric, oil painting, luminous, painterly.",
-   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
-   "template": null,
-   "thumb": "Turner_Atmospheric_Painting.webp"
-  },
-  {
    "name": "Contemporary Figurative Painting",
    "section": "Painting",
    "source": "u/Dear-Spend-2865",
@@ -4402,15 +4534,6 @@
    "thumb": "Modigliani_Style_Painting.webp"
   },
   {
-   "name": "Aestheticism Painting",
-   "section": "Painting",
-   "source": "u/Dear-Spend-2865",
-   "prompt": "oil painting, harmonious muted color arrangements, decorative flattened design, refined tonal unity, soft subdued palette, Japanese-influenced composition, inspired by James McNeill Whistler, Albert Moore, Frederic Leighton, aestheticism, tonal harmony, decorative, oil painting, muted colors.",
-   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
-   "template": null,
-   "thumb": "Aestheticism_Painting.webp"
-  },
-  {
    "name": "Candlelight Painting",
    "section": "Painting",
    "source": "u/Dear-Spend-2865",
@@ -4418,24 +4541,6 @@
    "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
    "template": null,
    "thumb": "Candlelight_Painting.webp"
-  },
-  {
-   "name": "Dark Academia Painting",
-   "section": "Painting",
-   "source": "u/Dear-Spend-2865",
-   "prompt": "oil painting, earthy muted tonal harmony, warm dim low-key light, old paper tones, worn tactile surface textures, muted vintage grain, inspired by The Secret History, Dead Poets Society, John Atkinson Grimshaw, dark academia, vintage, muted colors, classic.",
-   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
-   "template": null,
-   "thumb": "Dark_Academia_Painting.webp"
-  },
-  {
-   "name": "Fine Art Masterpiece",
-   "section": "Painting",
-   "source": "u/Dear-Spend-2865",
-   "prompt": "museum-grade traditional painting, impeccable draftsmanship, sophisticated color harmony, refined glazed and painterly passages, aged varnish luster, timeless gallery finish, inspired by Diego Velazquez, Johannes Vermeer, John Singer Sargent, fine art, masterpiece, oil painting, old master, museum quality.",
-   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
-   "template": null,
-   "thumb": "Fine_Art_Masterpiece.webp"
   },
   {
    "name": "Firelight Painting",
@@ -4465,15 +4570,6 @@
    "thumb": "Glazing_Layers_Painting.webp"
   },
   {
-   "name": "Grisaille",
-   "section": "Painting",
-   "source": "u/Dear-Spend-2865",
-   "prompt": "monochrome grey underpainting, tonal modeling in greys only, sculptural relief-like illusion, cool silvery finish, inspired by Jan van Eyck, Andrea Mantegna, Hendrick Goltzius, grisaille, monochrome, oil painting, grey tones, tonal.",
-   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
-   "template": null,
-   "thumb": "Grisaille.webp"
-  },
-  {
    "name": "Hammershoi Stillness Painting",
    "section": "Painting",
    "source": "u/Dear-Spend-2865",
@@ -4492,15 +4588,6 @@
    "thumb": "Klimt_Gold_Leaf_Painting.webp"
   },
   {
-   "name": "Loose Handling Painting",
-   "section": "Painting",
-   "source": "u/Dear-Spend-2865",
-   "prompt": "oil painting, broad economical brush marks, lost and found edges, suggested rather than defined details, visible canvas texture, inspired by Edouard Manet, Frans Hals, Zhaoming Wu, loose brushwork, painterly, sketchy, oil painting, expressive.",
-   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
-   "template": null,
-   "thumb": "Loose_Handling_Painting.webp"
-  },
-  {
    "name": "Luminous Glaze Painting",
    "section": "Painting",
    "source": "u/Dear-Spend-2865",
@@ -4508,15 +4595,6 @@
    "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
    "template": null,
    "thumb": "Luminous_Glaze_Painting.webp"
-  },
-  {
-   "name": "Masterpiece Painting",
-   "section": "Painting",
-   "source": "u/Dear-Spend-2865",
-   "prompt": "masterpiece oil painting, masterpiece, best quality, highest quality, amazing quality, very aesthetic, absurdres, highres, ultra detailed, 8k, intricate details, sharp focus, perfect composition, flawless rendering, professional, award winning, stunning, beautiful, extremely detailed, vivid colors, rich textures, perfect lighting, high dynamic range, crisp clarity, polished finish, trending on artstation.",
-   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
-   "template": null,
-   "thumb": "Masterpiece_Painting.webp"
   },
   {
    "name": "Maxfield Parrish Style Painting",
@@ -4562,15 +4640,6 @@
    "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
    "template": null,
    "thumb": "Naturalism_Painting.webp"
-  },
-  {
-   "name": "Francis Bacon Style Painting",
-   "section": "Painting",
-   "source": "u/Dear-Spend-2865",
-   "prompt": "painting, smeared distorted painted forms, raw swiped brushstrokes, flat saturated color fields, blurred twisting flesh tones, unsettling raw energy, inspired by Francis Bacon, Lucian Freud, Frank Auerbach, expressionism, distorted, oil painting, raw.",
-   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
-   "template": null,
-   "thumb": "Francis_Bacon_Style_Painting.webp"
   },
   {
    "name": "Regionalism Painting",
@@ -4753,15 +4822,6 @@
    "thumb": "Bocklin_Style_Painting.webp"
   },
   {
-   "name": "Dark Fantasy Horror Painting",
-   "section": "Painting",
-   "source": "u/Dear-Spend-2865",
-   "prompt": "dark fantasy oil painting, decaying textures, cool restrained color temperature, heavy shadow masses, scratchy painterly brushwork, eerie dim glows, unsettling distorted forms, inspired by Zdzislaw Beksinski, Seb McKinnon, Brom, horror art, dark fantasy, oil painting, eerie, grim, painterly.",
-   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
-   "template": null,
-   "thumb": "Dark_Fantasy_Horror_Painting.webp"
-  },
-  {
    "name": "Gustave Moreau Jeweled Painting",
    "section": "Painting",
    "source": "u/Dear-Spend-2865",
@@ -4825,15 +4885,6 @@
    "thumb": "Dot_Painting.webp"
   },
   {
-   "name": "Ghostly Palette Knife Painting",
-   "section": "Painting",
-   "source": "u/Dear-Spend-2865",
-   "prompt": "painting, pale translucent paint veils, scraped edges, sparse isolated impasto accents, muted pearl and ash palette, softly dissolving contours, inspired by Gerhard Richter, Zao Wou-Ki, Nicolas de Stael, palette knife, pale colors, abstract, scraped paint, atmospheric.",
-   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
-   "template": null,
-   "thumb": "Ghostly_Palette_Knife_Painting.webp"
-  },
-  {
    "name": "Hard-Edge Painting",
    "section": "Painting",
    "source": "u/Dear-Spend-2865",
@@ -4859,15 +4910,6 @@
    "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
    "template": null,
    "thumb": "Lichtenstein_Masterpiece_Painting.webp"
-  },
-  {
-   "name": "Literati Ink",
-   "section": "Painting",
-   "source": "u/Dear-Spend-2865",
-   "prompt": "Chinese ink painting, calligraphic brushwork, layered ink densities, elegant dry-brush textures, vast balanced empty paper, graceful tonal haze, inspired by Shitao, Bada Shanren, Xu Wei, literati painting, ink wash, chinese painting, brush strokes, minimalist.",
-   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
-   "template": null,
-   "thumb": "Literati_Ink.webp"
   },
   {
    "name": "Minimalist Painting",
@@ -4924,15 +4966,6 @@
    "thumb": "Primary_Color_Palette_Painting.webp"
   },
   {
-   "name": "Sesshu Ink Masterpiece",
-   "section": "Painting",
-   "source": "u/Dear-Spend-2865",
-   "prompt": "sumi-e ink painting, confident single-pass brush strokes, dramatic contrast of wet black ink and dry-brush grey, splashed ink haboku passages, vast luminous untouched paper, calligraphic energy, inspired by Sesshu Toyo, Hasegawa Tohaku, Muqi, sumi-e, ink wash, japanese painting, brush strokes, masterpiece, minimalist.",
-   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
-   "template": null,
-   "thumb": "Sesshu_Ink_Masterpiece.webp"
-  },
-  {
    "name": "Stepped Hue Illustration",
    "section": "Painting",
    "source": "u/Dear-Spend-2865",
@@ -4940,24 +4973,6 @@
    "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
    "template": null,
    "thumb": "Stepped_Hue_Illustration.webp"
-  },
-  {
-   "name": "Sumi-e Ink",
-   "section": "Painting",
-   "source": "u/Dear-Spend-2865",
-   "prompt": "fluid brush ink strokes with tapering ends, diluted grey washes next to rich black accents, dry-brush texture, generous blank paper areas, economical shape definition, inspired by Sesshu Toyo, Qi Baishi, Takehiko Inoue ink works, ink wash painting, sumi-e, brush strokes, monochrome, minimalist, traditional media.",
-   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
-   "template": null,
-   "thumb": "Sumi_e_Ink.webp"
-  },
-  {
-   "name": "Tachisme Painting",
-   "section": "Painting",
-   "source": "u/Dear-Spend-2865",
-   "prompt": "painting, loose spontaneous blots and dabs of paint, layered splashes, dripped and dabbed color patches, raw gestural texture, lyrical abstract rhythm, inspired by Pierre Soulages, Hans Hartung, Georges Mathieu, tachisme, lyrical abstraction, gestural, painterly.",
-   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
-   "template": null,
-   "thumb": "Tachisme_Painting.webp"
   },
   {
    "name": "Vorticism Painting",
@@ -4978,15 +4993,6 @@
    "thumb": "Ethereal_Fantasy_Painting.webp"
   },
   {
-   "name": "Grimdark Fantasy Painting",
-   "section": "Painting",
-   "source": "u/Dear-Spend-2865",
-   "prompt": "painting, heavily textured dark painterly rendering, gritty desaturated palette, worn rough material textures, scratchy brush marks, inspired by Adrian Smith, Karl Kopinski, Zdzislaw Beksinski, dark fantasy, grimdark, painterly, gritty, desaturated.",
-   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
-   "template": null,
-   "thumb": "Grimdark_Fantasy_Painting.webp"
-  },
-  {
    "name": "Lunarpunk Painting",
    "section": "Painting",
    "source": "u/Dear-Spend-2865",
@@ -4994,15 +5000,6 @@
    "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
    "template": null,
    "thumb": "Lunarpunk_Painting.webp"
-  },
-  {
-   "name": "Trading Card Art",
-   "section": "Painting",
-   "source": "u/Dear-Spend-2865",
-   "prompt": "art, dense painted fantasy rendering, detailed focal subject, rich saturated colors, polished finish, vivid effect particles, crisp edge highlights, glossy collectible card finish, clean image area free of lettering, inspired by Magic The Gathering, Pokemon TCG, Yu-Gi-Oh, card art, fantasy, detailed, painted.",
-   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
-   "template": null,
-   "thumb": "Trading_Card_Art.webp"
   },
   {
    "name": "Chinese Folk Storybook Illustration",
@@ -5014,24 +5011,6 @@
    "thumb": "Chinese_Folk_Storybook_Illustration.webp"
   },
   {
-   "name": "Chinese Storybook Illustration",
-   "section": "Painting",
-   "source": "u/Dear-Spend-2865",
-   "prompt": "fine brush outlines, soft mineral-pigment color, smooth transparent washes, precise decorative details, refined paper texture, inspired by Chinese lianhuanhua artists, Yu Fei'an, traditional gongbi painting, storybook, Chinese painting, illustration.",
-   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
-   "template": null,
-   "thumb": "Chinese_Storybook_Illustration.webp"
-  },
-  {
-   "name": "Chris Foss Style Illustration",
-   "section": "Painting",
-   "source": "u/Dear-Spend-2865",
-   "prompt": "illustration, bold airbrushed sci-fi with striped hazard-color patterns, smooth airbrush gradients, glossy painted hard surfaces, high-contrast color blocking, clean image area free of lettering, inspired by Chris Foss, Peter Elson, Angus McKie, 70s sci-fi, paperback cover, airbrush, retro sci-fi.",
-   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
-   "template": null,
-   "thumb": "Chris_Foss_Style_Illustration.webp"
-  },
-  {
    "name": "Clouded Pointillism Painting",
    "section": "Painting",
    "source": "u/Dear-Spend-2865",
@@ -5039,24 +5018,6 @@
    "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
    "template": null,
    "thumb": "Clouded_Pointillism_Painting.webp"
-  },
-  {
-   "name": "Detailed Painting",
-   "section": "Painting",
-   "source": "u/Dear-Spend-2865",
-   "prompt": "detailed rendering, well-defined forms, clean crisp edges, visible fine textures, readable small elements, balanced level of detail across the image, sharp focus, detailed, high detail, crisp, well-defined.",
-   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
-   "template": null,
-   "thumb": "Detailed_Painting.webp"
-  },
-  {
-   "name": "Edgy Grunge Painting",
-   "section": "Painting",
-   "source": "u/Dear-Spend-2865",
-   "prompt": "mixed media painting, raw aggressive brush slashes, splattered paint, distressed scratched textures, high-contrast black and acid accents, gritty urban energy, inspired by Ashley Wood, Bill Sienkiewicz, Dave McKean, edgy, grunge, gritty, expressive, mixed media, high contrast.",
-   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
-   "template": null,
-   "thumb": "Edgy_Grunge_Painting.webp"
   },
   {
    "name": "Folk Art Painting",
@@ -5084,15 +5045,6 @@
    "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
    "template": null,
    "thumb": "Insular_Celtic_Manuscript_Painting.webp"
-  },
-  {
-   "name": "Korean Ink Painting",
-   "section": "Painting",
-   "source": "u/Dear-Spend-2865",
-   "prompt": "refined sumuk ink brushwork, soft grey washes, sparse elegant strokes, warm hanji paper, dry-brush texture in the darks, layered ink gradations, generous blank paper, subtle pale color touches, inspired by Jeong Seon, Kim Hong-do, Shin Yun-bok, korean painting, ink wash, joseon, brush strokes, traditional.",
-   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
-   "template": null,
-   "thumb": "Korean_Ink_Painting.webp"
   },
   {
    "name": "Lineless Illustration",
@@ -5383,15 +5335,6 @@
    "thumb": "Casein_Painting.webp"
   },
   {
-   "name": "Encaustic Wax",
-   "section": "Painting",
-   "source": "u/Dear-Spend-2865",
-   "prompt": "wax, layered translucent beeswax paint, soft glossy depth, scraped and fused textures, embedded pigment layers, inspired by Jasper Johns, Fayum mummy portraits, Tony Scherman, encaustic, wax painting, layered, textured, translucent.",
-   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
-   "template": null,
-   "thumb": "Encaustic_Wax.webp"
-  },
-  {
    "name": "Korean Minhwa Painting",
    "section": "Painting",
    "source": "u/Dear-Spend-2865",
@@ -5417,15 +5360,6 @@
    "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
    "template": null,
    "thumb": "Tibetan_Thangka.webp"
-  },
-  {
-   "name": "Alcohol Ink Flow",
-   "section": "Painting",
-   "source": "u/Dear-Spend-2865",
-   "prompt": "alcohol ink painting, vivid fluid pigment spreading in organic cells, crisp crystalline edges where ink dries, translucent layered pools, warm harmonious color temperature, glossy synthetic paper, inspired by Ashley Mahlberg, Sarah Kidd, fluid art painters, alcohol ink, fluid art, vibrant colors, abstract, translucent.",
-   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
-   "template": null,
-   "thumb": "Alcohol_Ink_Flow.webp"
   },
   {
    "name": "Analogous Palette Painting",
@@ -5480,24 +5414,6 @@
    "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
    "template": null,
    "thumb": "Fresco.webp"
-  },
-  {
-   "name": "Gothic Horror Literature Painting",
-   "section": "Painting",
-   "source": "u/Dear-Spend-2865",
-   "prompt": "dark atmospheric painting, cool restrained color temperature, cold pale blue highlights, crumbling textures, romantic dread, inspired by Bernie Wrightson Frankenstein, Caspar David Friedrich, Henry Fuseli, gothic horror, frankenstein, dracula, dark romanticism, eerie, painterly.",
-   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
-   "template": null,
-   "thumb": "Gothic_Horror_Literature_Painting.webp"
-  },
-  {
-   "name": "Horror Painting",
-   "section": "Painting",
-   "source": "u/Dear-Spend-2865",
-   "prompt": "dark unsettling rendering, deep heavy shadows, cool restrained color temperature, decaying textures, harsh low light, distorted uncanny forms, grainy gritty finish, inspired by Zdzislaw Beksinski, Bernie Wrightson, Junji Ito, horror art, dark, eerie, macabre, gritty.",
-   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
-   "template": null,
-   "thumb": "Horror_Painting.webp"
   },
   {
    "name": "Illuminated Manuscript Painting",
@@ -5590,15 +5506,6 @@
    "thumb": "Swiss_Illustration.webp"
   },
   {
-   "name": "Mughal Miniature Watercolor",
-   "section": "Painting",
-   "source": "u/Dear-Spend-2865",
-   "prompt": "watercolor on paper, naturalistic modeling of faces in soft stippled shading, delicate hair-fine brushwork, refined realism, inspired by Basawan, Abu'l Hasan, Mansur, mughal miniature, indian painting, gold, naturalistic, detailed.",
-   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
-   "template": null,
-   "thumb": "Mughal_Miniature_Watercolor.webp"
-  },
-  {
    "name": "Fashion Illustration",
    "section": "Painting",
    "source": "u/Dear-Spend-2865",
@@ -5606,15 +5513,6 @@
    "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
    "template": null,
    "thumb": "Fashion_Illustration.webp"
-  },
-  {
-   "name": "Alan Lee Style Watercolor",
-   "section": "Painting",
-   "source": "u/Dear-Spend-2865",
-   "prompt": "delicate watercolor and pencil, earthy muted tonal harmony, misty atmospheric depth, gentle storybook realism, clean image area free of lettering, inspired by Alan Lee, John Howe, Brian Froud, tolkien illustration, watercolor, pencil, fantasy.",
-   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
-   "template": null,
-   "thumb": "Alan_Lee_Style_Watercolor.webp"
   },
   {
    "name": "Arabian Folk Storybook Illustration",
@@ -5635,24 +5533,6 @@
    "thumb": "Arabian_Nights_Orientalist_Illustration.webp"
   },
   {
-   "name": "Arthur Rackham Style Illustration",
-   "section": "Painting",
-   "source": "u/Dear-Spend-2865",
-   "prompt": "pen and watercolor illustration, sinuous delicate pen line, earthy muted tonal harmony, soft tonal transitions, gnarled twisting linear rhythms, aged paper softness, inspired by Arthur Rackham, Edmund Dulac, Kay Nielsen, golden age illustration, pen and ink, watercolor, fairy tale, muted palette.",
-   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
-   "template": null,
-   "thumb": "Arthur_Rackham_Style_Illustration.webp"
-  },
-  {
-   "name": "Brian Froud Style Watercolor",
-   "section": "Painting",
-   "source": "u/Dear-Spend-2865",
-   "prompt": "whimsical earthy watercolor and pencil, gnarled organic textures, whimsical stylized forms, muted palette, fine pencil detail, inspired by Brian Froud, Alan Lee, Arthur Rackham, faerie art, watercolor, fantasy, whimsical.",
-   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
-   "template": null,
-   "thumb": "Brian_Froud_Style_Watercolor.webp"
-  },
-  {
    "name": "Czech Storybook Illustration",
    "section": "Painting",
    "source": "u/Dear-Spend-2865",
@@ -5660,24 +5540,6 @@
    "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
    "template": null,
    "thumb": "Czech_Storybook_Illustration.webp"
-  },
-  {
-   "name": "Detailed Fantasy Storybook Illustration",
-   "section": "Painting",
-   "source": "u/Dear-Spend-2865",
-   "prompt": "richly rendered storybook illustration, fine controlled linework, layered watercolor and gouache, intricate material detail, polished literary finish, clean image area free of lettering, inspired by Arthur Rackham, Edmund Dulac, John Bauer, fantasy storybook.",
-   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
-   "template": null,
-   "thumb": "Detailed_Fantasy_Storybook_Illustration.webp"
-  },
-  {
-   "name": "Eastern European Storybook Illustration",
-   "section": "Painting",
-   "source": "u/Dear-Spend-2865",
-   "prompt": "watercolor and gouache storybook illustration, elongated decorative forms, delicate ink texture, muted printed color, intricate folk-derived patterning, inspired by Josef Lada, Jiri Trnka, Dusan Kallay, Eastern European illustration, storybook.",
-   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
-   "template": null,
-   "thumb": "Eastern_European_Storybook_Illustration.webp"
   },
   {
    "name": "Edmund Dulac Style Watercolor",
@@ -5689,15 +5551,6 @@
    "thumb": "Edmund_Dulac_Style_Watercolor.webp"
   },
   {
-   "name": "Fairy Tale Golden Age Watercolor",
-   "section": "Painting",
-   "source": "u/Dear-Spend-2865",
-   "prompt": "delicate pen outlines with muted watercolor washes, twisting decorative lines, sepia and olive palette, intricate textured detail, inspired by Arthur Rackham, Edmund Dulac, Kay Nielsen, fairy tale illustration, watercolor, ink, vintage, golden age illustration.",
-   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
-   "template": null,
-   "thumb": "Fairy_Tale_Golden_Age_Watercolor.webp"
-  },
-  {
    "name": "Fairy Tale Masterpiece Painting",
    "section": "Painting",
    "source": "u/Dear-Spend-2865",
@@ -5705,24 +5558,6 @@
    "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
    "template": null,
    "thumb": "Fairy_Tale_Masterpiece_Painting.webp"
-  },
-  {
-   "name": "Japanese Folk Tale Illustration",
-   "section": "Painting",
-   "source": "u/Dear-Spend-2865",
-   "prompt": "ink and watercolor storybook illustration, elegant simplified forms, restrained mineral color, fine brush texture, subtle washi grain, polished traditional book-art finish, inspired by Chihiro Iwasaki, Ryohei Yanagihara, Japanese folk-tale books, storybook.",
-   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
-   "template": null,
-   "thumb": "Japanese_Folk_Tale_Illustration.webp"
-  },
-  {
-   "name": "John Bauer Style Illustration",
-   "section": "Painting",
-   "source": "u/Dear-Spend-2865",
-   "prompt": "soft muted watercolor and gouache, earthy muted tonality, misty quiet atmosphere, gentle glowing light, delicate fairy tale clarity, inspired by John Bauer, Arthur Rackham, Theodor Kittelsen, scandinavian, fairy tale, watercolor, muted.",
-   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
-   "template": null,
-   "thumb": "John_Bauer_Style_Illustration.webp"
   },
   {
    "name": "Korean Storybook Illustration",
@@ -5743,15 +5578,6 @@
    "thumb": "Nordic_Folklore_Storybook_Painting.webp"
   },
   {
-   "name": "Scandinavian Storybook Illustration",
-   "section": "Painting",
-   "source": "u/Dear-Spend-2865",
-   "prompt": "watercolor storybook illustration, flowing organic contours, richly textured watercolor washes, delicate pencil details, decorative folk patterns, soft layered colors, clean image area free of lettering, inspired by Elsa Beskow, Tove Jansson, Ilon Wikland, children's book, watercolor, folk pattern, scandinavian, storybook.",
-   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
-   "template": null,
-   "thumb": "Scandinavian_Storybook_Illustration.webp"
-  },
-  {
    "name": "Sendak Style Illustration",
    "section": "Painting",
    "source": "u/Dear-Spend-2865",
@@ -5759,24 +5585,6 @@
    "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
    "template": null,
    "thumb": "Sendak_Style_Illustration.webp"
-  },
-  {
-   "name": "Tolkien Illustration",
-   "section": "Painting",
-   "source": "u/Dear-Spend-2865",
-   "prompt": "earthy muted watercolor and ink, gentle painterly textures, old-world storybook craftsmanship, soft natural palette, clean image area free of lettering, inspired by Alan Lee, John Howe, Ted Nasmith, tolkien, fantasy illustration, watercolor, ink, epic fantasy.",
-   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
-   "template": null,
-   "thumb": "Tolkien_Illustration.webp"
-  },
-  {
-   "name": "Whimsical Ethereal Storybook Watercolor",
-   "section": "Painting",
-   "source": "u/Dear-Spend-2865",
-   "prompt": "soft glowing watercolor, iridescent pastel palette, delicate sparkle, dreamy translucent layering, gentle magical haze, clean image area free of lettering, inspired by Brian Froud, Cicely Mary Barker, Yoshitaka Amano, ethereal, whimsical, fairy tale, watercolor, dreamy.",
-   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
-   "template": null,
-   "thumb": "Whimsical_Ethereal_Storybook_Watercolor.webp"
   },
   {
    "name": "Botanical Vignette Illustration",
@@ -5788,15 +5596,6 @@
    "thumb": "Botanical_Vignette_Illustration.webp"
   },
   {
-   "name": "Ink and Watercolor",
-   "section": "Painting",
-   "source": "u/Dear-Spend-2865",
-   "prompt": "confident fine ink linework over loose transparent watercolor washes, soft blooms and color bleeds, visible cold-press paper texture, generous white space, fresh airy finish, inspired by Jean-Baptiste Monge, Ronald Searle, Quentin Blake, ink and watercolor, line and wash, illustration, loose, airy.",
-   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
-   "template": null,
-   "thumb": "Ink_and_Watercolor.webp"
-  },
-  {
    "name": "Naturalist Plate",
    "section": "Painting",
    "source": "u/Dear-Spend-2865",
@@ -5804,15 +5603,6 @@
    "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
    "template": null,
    "thumb": "Naturalist_Plate.webp"
-  },
-  {
-   "name": "Opaque Watercolor Illustration",
-   "section": "Painting",
-   "source": "u/Dear-Spend-2865",
-   "prompt": "watercolor illustration using denser opaque pigment passages, compact color shapes, controlled edges, layered matte-to-transparent treatment, visible paper surface.",
-   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
-   "template": null,
-   "thumb": "Opaque_Watercolor_Illustration.webp"
   },
   {
    "name": "Paul Klee Style Watercolor",
@@ -5824,33 +5614,6 @@
    "thumb": "Paul_Klee_Style_Watercolor.webp"
   },
   {
-   "name": "Sargent Watercolor Masterpiece",
-   "section": "Painting",
-   "source": "u/Dear-Spend-2865",
-   "prompt": "watercolor painting, fearless wet transparent washes, crisp lost-and-found edges, white paper sparkle preserved, rich layered darks, rapid confident brushwork, luminous saturated color, inspired by John Singer Sargent, Winslow Homer, Joseph Zbukvic, watercolor, transparent washes, painterly, masterpiece, traditional media.",
-   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
-   "template": null,
-   "thumb": "Sargent_Watercolor_Masterpiece.webp"
-  },
-  {
-   "name": "Scientific Botanical Illustration",
-   "section": "Painting",
-   "source": "u/Dear-Spend-2865",
-   "prompt": "highly detailed scientific botanical illustration, precise anatomical morphology, ultra-fine controlled contours, accurate venation and surface structures, delicate layered watercolor with colored-pencil refinement, crisp specimen-level detail, restrained natural color, clean archival plate finish, inspired by Marianne North, Rory McEwen, and Pandora Sellars, botanical art, scientific illustration, natural-history plate, watercolor, colored pencil.",
-   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
-   "template": null,
-   "thumb": "Scientific_Botanical_Illustration.webp"
-  },
-  {
-   "name": "Tarot Card",
-   "section": "Painting",
-   "source": "u/Dear-Spend-2865",
-   "prompt": "flat symbolic forms, fine outlines with watercolor fills, warm harmonious color temperature, centered emblematic composition, precise delicate mark-making, clean image area free of lettering, inspired by Pamela Colman Smith, Rider-Waite tarot, Thoth tarot, tarot, illustration, gold accents, symbolic.",
-   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
-   "template": null,
-   "thumb": "Tarot_Card.webp"
-  },
-  {
    "name": "Vargas Airbrush Pin-Up",
    "section": "Painting",
    "source": "u/Dear-Spend-2865",
@@ -5858,15 +5621,6 @@
    "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
    "template": null,
    "thumb": "Vargas_Airbrush_Pin_Up.webp"
-  },
-  {
-   "name": "Watercolor Wash",
-   "section": "Painting",
-   "source": "u/Dear-Spend-2865",
-   "prompt": "watercolor painting, transparent pigment washes blooming into wet paper, soft granulating edges, pale color pooling at stroke borders, white paper preserved as highlights, loose fluid shapes with crisp occasional dry-brush accents, inspired by Winslow Homer, Joseph Zbukvic, Agnes-Cecile, watercolor, wet on wet, color bleed, paper texture, traditional media, soft edges.",
-   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
-   "template": null,
-   "thumb": "Watercolor_Wash.webp"
   },
   {
    "name": "Spray Paint Art",
@@ -5885,6 +5639,15 @@
    "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
    "template": null,
    "thumb": "Giger_Biomechanical_art.webp"
+  },
+  {
+   "name": "Gothic Horror Literature Painting",
+   "section": "Painting",
+   "source": "u/Dear-Spend-2865",
+   "prompt": "dark atmospheric painting, cool restrained color temperature, cold pale blue highlights, crumbling textures, romantic dread, inspired by Bernie Wrightson Frankenstein, Caspar David Friedrich, Henry Fuseli, gothic horror, frankenstein, dracula, dark romanticism, eerie, painterly.",
+   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
+   "template": null,
+   "thumb": "Gothic_Horror_Literature_Painting.webp"
   },
   {
    "name": "Concept Art",
@@ -11935,6 +11698,123 @@
    "thumb": "Editorial_Illustration.webp"
   },
   {
+   "name": "Modern Storybook Illustration",
+   "section": "Illustration",
+   "source": "u/Dear-Spend-2865",
+   "prompt": "contemporary storybook illustration, simplified readable shapes, textured painted fills, clean contour control, selective fine detail, visible paper-like grain, polished publishing finish, inspired by Jon Klassen, Isabelle Arsenault, Carson Ellis, storybook illustration, gouache, pencil.",
+   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
+   "template": null,
+   "thumb": "Modern_Storybook_Illustration.webp"
+  },
+  {
+   "name": "Polish Storybook Illustration",
+   "section": "Illustration",
+   "source": "u/Dear-Spend-2865",
+   "prompt": "storybook illustration with expressive ink contours, textured gouache color, symbolic simplified forms, dry printed grain, refined handmade finish, inspired by Jan Marcin Szancer, Jozef Wilkon, Stasys Eidrigevicius, Polish illustration, storybook.",
+   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
+   "template": null,
+   "thumb": "Polish_Storybook_Illustration.webp"
+  },
+  {
+   "name": "Russian Storybook Illustration",
+   "section": "Illustration",
+   "source": "u/Dear-Spend-2865",
+   "prompt": "ink and gouache storybook illustration, crisp decorative contours, flat painted color areas, intricate folk patterning, polished ornamental rhythm, inspired by Ivan Bilibin, Yuri Vasnetsov, Elena Polenova, Russian storybook, gouache, ink, folk illustration.",
+   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
+   "template": null,
+   "thumb": "Russian_Storybook_Illustration.webp"
+  },
+  {
+   "name": "Soviet Storybook Illustration",
+   "section": "Illustration",
+   "source": "u/Dear-Spend-2865",
+   "prompt": "mid-century storybook illustration, simplified expressive forms, opaque gouache color, confident brush contours, restrained printed texture, polished book-art finish, inspired by Vladimir Lebedev, Yevgeny Charushin, Yuri Vasnetsov, Soviet illustration, storybook.",
+   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
+   "template": null,
+   "thumb": "Soviet_Storybook_Illustration.webp"
+  },
+  {
+   "name": "Chinese Storybook Illustration",
+   "section": "Illustration",
+   "source": "u/Dear-Spend-2865",
+   "prompt": "fine brush outlines, soft mineral-pigment color, smooth transparent washes, precise decorative details, refined paper texture, inspired by Chinese lianhuanhua artists, Yu Fei'an, traditional gongbi painting, storybook, Chinese painting, illustration.",
+   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
+   "template": null,
+   "thumb": "Chinese_Storybook_Illustration.webp"
+  },
+  {
+   "name": "Chris Foss Style Illustration",
+   "section": "Illustration",
+   "source": "u/Dear-Spend-2865",
+   "prompt": "illustration, bold airbrushed sci-fi with striped hazard-color patterns, smooth airbrush gradients, glossy painted hard surfaces, high-contrast color blocking, clean image area free of lettering, inspired by Chris Foss, Peter Elson, Angus McKie, 70s sci-fi, paperback cover, airbrush, retro sci-fi.",
+   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
+   "template": null,
+   "thumb": "Chris_Foss_Style_Illustration.webp"
+  },
+  {
+   "name": "Detailed Fantasy Storybook Illustration",
+   "section": "Illustration",
+   "source": "u/Dear-Spend-2865",
+   "prompt": "richly rendered storybook illustration, fine controlled linework, layered watercolor and gouache, intricate material detail, polished literary finish, clean image area free of lettering, inspired by Arthur Rackham, Edmund Dulac, John Bauer, fantasy storybook.",
+   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
+   "template": null,
+   "thumb": "Detailed_Fantasy_Storybook_Illustration.webp"
+  },
+  {
+   "name": "Eastern European Storybook Illustration",
+   "section": "Illustration",
+   "source": "u/Dear-Spend-2865",
+   "prompt": "watercolor and gouache storybook illustration, elongated decorative forms, delicate ink texture, muted printed color, intricate folk-derived patterning, inspired by Josef Lada, Jiri Trnka, Dusan Kallay, Eastern European illustration, storybook.",
+   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
+   "template": null,
+   "thumb": "Eastern_European_Storybook_Illustration.webp"
+  },
+  {
+   "name": "Japanese Folk Tale Illustration",
+   "section": "Illustration",
+   "source": "u/Dear-Spend-2865",
+   "prompt": "ink and watercolor storybook illustration, elegant simplified forms, restrained mineral color, fine brush texture, subtle washi grain, polished traditional book-art finish, inspired by Chihiro Iwasaki, Ryohei Yanagihara, Japanese folk-tale books, storybook.",
+   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
+   "template": null,
+   "thumb": "Japanese_Folk_Tale_Illustration.webp"
+  },
+  {
+   "name": "John Bauer Style Illustration",
+   "section": "Illustration",
+   "source": "u/Dear-Spend-2865",
+   "prompt": "soft muted watercolor and gouache, earthy muted tonality, misty quiet atmosphere, gentle glowing light, delicate fairy tale clarity, inspired by John Bauer, Arthur Rackham, Theodor Kittelsen, scandinavian, fairy tale, watercolor, muted.",
+   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
+   "template": null,
+   "thumb": "John_Bauer_Style_Illustration.webp"
+  },
+  {
+   "name": "Scandinavian Storybook Illustration",
+   "section": "Illustration",
+   "source": "u/Dear-Spend-2865",
+   "prompt": "watercolor storybook illustration, flowing organic contours, richly textured watercolor washes, delicate pencil details, decorative folk patterns, soft layered colors, clean image area free of lettering, inspired by Elsa Beskow, Tove Jansson, Ilon Wikland, children's book, watercolor, folk pattern, scandinavian, storybook.",
+   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
+   "template": null,
+   "thumb": "Scandinavian_Storybook_Illustration.webp"
+  },
+  {
+   "name": "Scientific Botanical Illustration",
+   "section": "Illustration",
+   "source": "u/Dear-Spend-2865",
+   "prompt": "highly detailed scientific botanical illustration, precise anatomical morphology, ultra-fine controlled contours, accurate venation and surface structures, delicate layered watercolor with colored-pencil refinement, crisp specimen-level detail, restrained natural color, clean archival plate finish, inspired by Marianne North, Rory McEwen, and Pandora Sellars, botanical art, scientific illustration, natural-history plate, watercolor, colored pencil.",
+   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
+   "template": null,
+   "thumb": "Scientific_Botanical_Illustration.webp"
+  },
+  {
+   "name": "Tolkien Illustration",
+   "section": "Illustration",
+   "source": "u/Dear-Spend-2865",
+   "prompt": "earthy muted watercolor and ink, gentle painterly textures, old-world storybook craftsmanship, soft natural palette, clean image area free of lettering, inspired by Alan Lee, John Howe, Ted Nasmith, tolkien, fantasy illustration, watercolor, ink, epic fantasy.",
+   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
+   "template": null,
+   "thumb": "Tolkien_Illustration.webp"
+  },
+  {
    "name": "Sam Yang-Inspired Character Design",
    "section": "Character & Creature Design",
    "source": "u/Dear-Spend-2865",
@@ -12763,6 +12643,114 @@
    "thumb": "Watercolor_Anime_Illustration.webp"
   },
   {
+   "name": "Wet-on-Wet Watercolor Ink Painting",
+   "section": "Watercolour",
+   "source": "clio",
+   "prompt": "A fluid, unpredictable painting style built on pigment applied directly into an already-saturated wet layer, allowing color and tone to bloom, bleed, and diffuse with organic unpredictability rather than controlled placement, soft, feathered edges replacing any crisp boundary as washes merge and blend spontaneously, a delicate, translucent layering that builds depth through repeated wet passes rather than opaque coverage, an unhurried, meditative looseness carried through the medium's inherent unpredictability, and a poetic, ephemeral fluidity that captures the beauty of controlled chance. Influenced by: traditional wet-on-wet watercolor technique, ink-wash painting tradition, expressive fluid-media practice, spontaneous wash-blending method.",
+   "negative": "opaque flat fill, hard vector edges, glossy 3D shading, photorealistic detail, dense crosshatching",
+   "template": null,
+   "thumb": "Wet_on_Wet_Watercolor_Ink_Painting.webp"
+  },
+  {
+   "name": "Carne Griffiths Style",
+   "section": "Watercolour",
+   "source": "clio",
+   "prompt": "A delicately fluid mixed-media illustration style built on flowing, ink-and-wash linework that bleeds and drips with organic unpredictability, translucent layered washes that let forms dissolve into loose atmospheric bloom at the edges, fine calligraphic detail threading through the figure like living linework, a hushed, ethereal fragility carried through delicate transparency, and a poetic, painterly looseness where control and chance blend into something dreamlike and organic. Influenced by: Carne Griffiths, ink and tea-wash illustration technique, mixed-media fine art, botanical linework technique.",
+   "negative": "opaque flat fill, hard vector edges, 3D CGI plastic sheen, photorealistic skin pores, dense crosshatching",
+   "template": null,
+   "thumb": "Carne_Griffiths_Style.webp"
+  },
+  {
+   "name": "Watercolor Painting",
+   "section": "Watercolour",
+   "source": "clio",
+   "prompt": "A fluid, translucent painting style built on delicate layered washes that build depth through repeated transparent passes rather than opaque coverage, soft, feathered edges where pigment bleeds and diffuses with organic unpredictability, a luminous quality achieved by letting light pass through thin pigment layers, an unhurried, patient looseness carried through the medium's inherent fluidity, and a poetic, gentle sincerity that captures spontaneity within controlled technical discipline. Influenced by: traditional watercolor-painting tradition, wet-on-wet washing technique, plein-air watercolor practice, classical wash-and-glaze method.",
+   "negative": "opaque flat fill, hard vector edges, glossy 3D shading, photorealistic detail, dense crosshatching",
+   "template": null,
+   "thumb": "Watercolor_Painting.webp"
+  },
+  {
+   "name": "Alcohol Ink Flow",
+   "section": "Watercolour",
+   "source": "u/Dear-Spend-2865",
+   "prompt": "alcohol ink painting, vivid fluid pigment spreading in organic cells, crisp crystalline edges where ink dries, translucent layered pools, warm harmonious color temperature, glossy synthetic paper, inspired by Ashley Mahlberg, Sarah Kidd, fluid art painters, alcohol ink, fluid art, vibrant colors, abstract, translucent.",
+   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
+   "template": null,
+   "thumb": "Alcohol_Ink_Flow.webp"
+  },
+  {
+   "name": "Alan Lee Style Watercolor",
+   "section": "Watercolour",
+   "source": "u/Dear-Spend-2865",
+   "prompt": "delicate watercolor and pencil, earthy muted tonal harmony, misty atmospheric depth, gentle storybook realism, clean image area free of lettering, inspired by Alan Lee, John Howe, Brian Froud, tolkien illustration, watercolor, pencil, fantasy.",
+   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
+   "template": null,
+   "thumb": "Alan_Lee_Style_Watercolor.webp"
+  },
+  {
+   "name": "Brian Froud Style Watercolor",
+   "section": "Watercolour",
+   "source": "u/Dear-Spend-2865",
+   "prompt": "whimsical earthy watercolor and pencil, gnarled organic textures, whimsical stylized forms, muted palette, fine pencil detail, inspired by Brian Froud, Alan Lee, Arthur Rackham, faerie art, watercolor, fantasy, whimsical.",
+   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
+   "template": null,
+   "thumb": "Brian_Froud_Style_Watercolor.webp"
+  },
+  {
+   "name": "Fairy Tale Golden Age Watercolor",
+   "section": "Watercolour",
+   "source": "u/Dear-Spend-2865",
+   "prompt": "delicate pen outlines with muted watercolor washes, twisting decorative lines, sepia and olive palette, intricate textured detail, inspired by Arthur Rackham, Edmund Dulac, Kay Nielsen, fairy tale illustration, watercolor, ink, vintage, golden age illustration.",
+   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
+   "template": null,
+   "thumb": "Fairy_Tale_Golden_Age_Watercolor.webp"
+  },
+  {
+   "name": "Whimsical Ethereal Storybook Watercolor",
+   "section": "Watercolour",
+   "source": "u/Dear-Spend-2865",
+   "prompt": "soft glowing watercolor, iridescent pastel palette, delicate sparkle, dreamy translucent layering, gentle magical haze, clean image area free of lettering, inspired by Brian Froud, Cicely Mary Barker, Yoshitaka Amano, ethereal, whimsical, fairy tale, watercolor, dreamy.",
+   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
+   "template": null,
+   "thumb": "Whimsical_Ethereal_Storybook_Watercolor.webp"
+  },
+  {
+   "name": "Ink and Watercolor",
+   "section": "Watercolour",
+   "source": "u/Dear-Spend-2865",
+   "prompt": "confident fine ink linework over loose transparent watercolor washes, soft blooms and color bleeds, visible cold-press paper texture, generous white space, fresh airy finish, inspired by Jean-Baptiste Monge, Ronald Searle, Quentin Blake, ink and watercolor, line and wash, illustration, loose, airy.",
+   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
+   "template": null,
+   "thumb": "Ink_and_Watercolor.webp"
+  },
+  {
+   "name": "Opaque Watercolor Illustration",
+   "section": "Watercolour",
+   "source": "u/Dear-Spend-2865",
+   "prompt": "watercolor illustration using denser opaque pigment passages, compact color shapes, controlled edges, layered matte-to-transparent treatment, visible paper surface.",
+   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
+   "template": null,
+   "thumb": "Opaque_Watercolor_Illustration.webp"
+  },
+  {
+   "name": "Sargent Watercolor Masterpiece",
+   "section": "Watercolour",
+   "source": "u/Dear-Spend-2865",
+   "prompt": "watercolor painting, fearless wet transparent washes, crisp lost-and-found edges, white paper sparkle preserved, rich layered darks, rapid confident brushwork, luminous saturated color, inspired by John Singer Sargent, Winslow Homer, Joseph Zbukvic, watercolor, transparent washes, painterly, masterpiece, traditional media.",
+   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
+   "template": null,
+   "thumb": "Sargent_Watercolor_Masterpiece.webp"
+  },
+  {
+   "name": "Watercolor Wash",
+   "section": "Watercolour",
+   "source": "u/Dear-Spend-2865",
+   "prompt": "watercolor painting, transparent pigment washes blooming into wet paper, soft granulating edges, pale color pooling at stroke borders, white paper preserved as highlights, loose fluid shapes with crisp occasional dry-brush accents, inspired by Winslow Homer, Joseph Zbukvic, Agnes-Cecile, watercolor, wet on wet, color bleed, paper texture, traditional media, soft edges.",
+   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
+   "template": null,
+   "thumb": "Watercolor_Wash.webp"
+  },
+  {
    "name": "Detailed Brick-Built Model",
    "section": "Special Effects",
    "source": "u/Dear-Spend-2865",
@@ -12788,6 +12776,24 @@
    "negative": "illustration, painting, 3D CGI render, cartoon proportions, sketch lines, surreal distortion",
    "template": null,
    "thumb": "Gummy_Candy_Material_Photograph.webp"
+  },
+  {
+   "name": "Trading Card Art",
+   "section": "Special Effects",
+   "source": "u/Dear-Spend-2865",
+   "prompt": "art, dense painted fantasy rendering, detailed focal subject, rich saturated colors, polished finish, vivid effect particles, crisp edge highlights, glossy collectible card finish, clean image area free of lettering, inspired by Magic The Gathering, Pokemon TCG, Yu-Gi-Oh, card art, fantasy, detailed, painted.",
+   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
+   "template": null,
+   "thumb": "Trading_Card_Art.webp"
+  },
+  {
+   "name": "Tarot Card",
+   "section": "Special Effects",
+   "source": "u/Dear-Spend-2865",
+   "prompt": "flat symbolic forms, fine outlines with watercolor fills, warm harmonious color temperature, centered emblematic composition, precise delicate mark-making, clean image area free of lettering, inspired by Pamela Colman Smith, Rider-Waite tarot, Thoth tarot, tarot, illustration, gold accents, symbolic.",
+   "negative": "smooth airbrushed gradients, flat vector fill, photorealistic skin pores, 3D CGI plastic sheen, crisp uniform lines",
+   "template": null,
+   "thumb": "Tarot_Card.webp"
   }
  ]
 }

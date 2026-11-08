@@ -27,13 +27,13 @@ Options:
 ## What it does
 
 - **Reorder styles** inside a section — drag a row by its `⠿` grip, use the
-  `↑` / `↓` buttons for single steps, or `⤒` to send a style to the top.
-  Each row shows its current position number within its section, and the
-  numbers update immediately after a move (and live while dragging). The
-  picker shows styles in the saved order within each section.
+  `↑` / `↓` buttons for single steps, or `⤒` / `⤓` to send a style to the top
+  or bottom. Each row shows its current position number within its section,
+  and the numbers update immediately after a move (and live while dragging).
+  The picker shows styles in the saved order within each section.
 - **Pin styles to anchor them** — click `📌` on a row. Pinning never changes
   the row's position: pin something in the middle and it stays there. A
-  pinned row itself cannot be moved (its grip, `↑`, `↓` and `⤒` are
+  pinned row itself cannot be moved (its grip, `↑`, `↓`, `⤒` and `⤓` are
   disabled). Pinned styles that form the block at the very top of a section
   stay on top: `⤒` on an unpinned style lands directly **below** that block,
   skipping over any anchored styles further down. Click `📌` again to unpin

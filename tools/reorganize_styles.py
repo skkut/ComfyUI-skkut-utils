@@ -832,8 +832,9 @@ INDEX_HTML = r"""<!doctype html>
 <main id="sections"></main>
 <footer>
   Drag a row by its <strong>⠿</strong> grip to reorder it within its section, use <strong>↑</strong> /
-  <strong>↓</strong> for single steps, or <strong>⤒</strong> to send it to the top. Use the dropdown on a
-  row to move it to another section; choosing <strong>＋ New section…</strong> creates one.
+  <strong>↓</strong> for single steps, or <strong>⤒</strong> / <strong>⤓</strong> to jump to the top or
+  bottom. Use the dropdown on a row to move it to another section; choosing
+  <strong>＋ New section…</strong> creates one.
   Click any thumbnail for a full-size preview (<strong>←</strong> / <strong>→</strong> to browse,
   <strong>Esc</strong> to close). Saving updates <code>skutils_style_selector/styles.json</code> and keeps
   a timestamped backup in <code>tools/backups/</code>. Restart ComfyUI afterwards so the picker
@@ -1136,6 +1137,10 @@ INDEX_HTML = r"""<!doctype html>
     );
     var up = makeButton("↑", style.pinned ? anchoredTitle : "Move up");
     var down = makeButton("↓", style.pinned ? anchoredTitle : "Move down");
+    var toBottom = makeButton(
+      "⤓",
+      style.pinned ? anchoredTitle : "Move to the bottom of the section"
+    );
 
     var list = groups.get(style.section) || [];
     var index = list.indexOf(style);
@@ -1144,19 +1149,23 @@ INDEX_HTML = r"""<!doctype html>
       toTop.disabled = true;
       up.disabled = true;
       down.disabled = true;
+      toBottom.disabled = true;
     } else {
       toTop.disabled = index === topPins;
       up.disabled = index <= topPins;
       down.disabled = index >= list.length - 1;
+      toBottom.disabled = index >= list.length - 1;
     }
 
     toTop.addEventListener("click", function () { moveToTop(style); });
     up.addEventListener("click", function () { moveBy(style, -1); });
     down.addEventListener("click", function () { moveBy(style, 1); });
+    toBottom.addEventListener("click", function () { moveToBottom(style); });
     moves.appendChild(pin);
     moves.appendChild(toTop);
     moves.appendChild(up);
     moves.appendChild(down);
+    moves.appendChild(toBottom);
 
     var head = document.createElement("div");
     head.className = "info-head";
@@ -1396,6 +1405,17 @@ INDEX_HTML = r"""<!doctype html>
     if (index === target) return;
     list.splice(index, 1);
     list.splice(target, 0, style);
+    refreshGroup(style.section);
+    setDirty(true);
+  }
+
+  function moveToBottom(style) {
+    if (style.pinned) return;
+    var list = groups.get(style.section) || [];
+    var index = list.indexOf(style);
+    if (index < 0 || index >= list.length - 1) return;
+    list.splice(index, 1);
+    list.push(style);
     refreshGroup(style.section);
     setDirty(true);
   }
