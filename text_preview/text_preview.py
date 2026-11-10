@@ -38,6 +38,11 @@ The input is optional.  An unconnected ``text`` port (or an upstream
 empty string) makes the next run clear the displayed widget instead of
 failing prompt validation, so a preview left over from an earlier run
 does not masquerade as the current one.
+
+The node also exposes the text it displays as a ``STRING`` output.  That
+lets a save node (e.g. Save Compressed Weppy) store the *corresponding*
+prompt in each saved image's embedded workflow when a batch run produces
+one prompt per style, rather than every prompt from the batch.
 """
 
 import pprint
@@ -218,6 +223,10 @@ class SkutilsTextPreview:
     validation.  Any connected value is converted to text.  The displayed
     text lives in a serialized widget, so a workflow save writes it to the
     JSON and a load restores it without a re-run.
+
+    The same converted text is also returned as a ``STRING`` output, so a
+    downstream save node can embed the prompt that produced each image
+    (in batch mode the output is one string per execution, in order).
     """
 
     @classmethod
@@ -242,7 +251,8 @@ class SkutilsTextPreview:
             }
         }
 
-    RETURN_TYPES = ()
+    RETURN_TYPES = ("STRING",)
+    RETURN_NAMES = ("text",)
     FUNCTION = "preview"
     OUTPUT_NODE = True
     CATEGORY = "skkut-utils"
@@ -252,4 +262,10 @@ class SkutilsTextPreview:
         # it in a serialized widget so it survives a workflow save.  An
         # empty list tells the frontend to remove the display widget when
         # nothing was received.
-        return {"ui": {"text": [] if text is None else [to_text(text)]}}
+        converted = "" if text is None else to_text(text)
+        return {
+            "ui": {"text": [] if text is None else [converted]},
+            # The same text is exposed as an output for save nodes that
+            # want to embed the prompt of the image they are saving.
+            "result": (converted,),
+        }

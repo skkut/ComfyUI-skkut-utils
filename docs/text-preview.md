@@ -18,6 +18,10 @@ Node name: **Skutils Text Preview** · Category: `skkut-utils` (Nodes → Extens
 |---|---|---|---|
 | `text` | wildcard `*` (input port, **optional**) | unconnected | Value to display — connect **any** upstream output: a string, a boolean, a number, an image/latent tensor, a dict, etc. The value is converted to text (see [how values are converted](#how-values-are-converted)). If left unconnected (or fed an empty string), the next run clears the preview |
 
+| Output | Type | Description |
+|---|---|---|
+| `text` | `STRING` | The same converted text that is displayed (and stored), so one or more downstream nodes can consume it — e.g. **Save Compressed Weppy**'s `enhanced_prompt` input to embed the corresponding prompt in each saved image. In a batch run the output is one string per execution, in the same order as the incoming list; an unconnected input outputs `""` |
+
 ### How values are converted
 
 The backend converts whatever arrives at the `text` port before showing or storing it, so non-string outputs such as a boolean preview correctly:
@@ -67,6 +71,12 @@ The trick is *where* the text lives. ComfyUI persists **widget values** into the
 
 The display widget is **read-only**: its value is always the text that was executed (or the text that was saved with the workflow), so what you see is exactly what the JSON contains. After a run with no text the widget is removed and the node body is empty; that cleared state is what the next workflow save stores.
 
+### Batch runs and per-image prompts
+
+When a list reaches `text` (for example **Skutils Style Selector** in *Batch: one run per style* mode), the backend runs once per item and ComfyUI sends the frontend one merged payload containing **every** item. The node draws them all, one read-only text widget per item, in list order — so a 40-style batch shows 40 prompts and the next workflow save contains all 40.
+
+The node's `STRING` output is still the per-item text, in order. Connect it to **Save Compressed Weppy**'s `enhanced_prompt` input and each saved image's embedded workflow is rewritten to contain only the prompt that produced that image (see [per-image preview text](save-compressed-weppy.md#per-image-preview-text)). The extra output does not change the on-node display.
+
 ### What is and isn't stored
 
 | Place | Stored? | Why |
@@ -85,7 +95,7 @@ The display widget is **read-only**: its value is always the text that was execu
 
 ## Files
 
-- `text_preview/text_preview.py` — node implementation: optional port-only wildcard `text` input (`"*"`, `forceInput`), `to_text()` conversion of any value (string, boolean, number, tensor summary, pretty-printed containers, `repr()` fallback), returns `{"ui": {"text": [...]}}` or `{"ui": {"text": []}}` when nothing was received.
+- `text_preview/text_preview.py` — node implementation: optional port-only wildcard `text` input (`"*"`, `forceInput`), `to_text()` conversion of any value (string, boolean, number, tensor summary, pretty-printed containers, `repr()` fallback), returns the converted text both as a `STRING` output and as `{"ui": {"text": [...]}}` (or `{"ui": {"text": []}}` and `""` when nothing was received).
 - `text_preview/__init__.py` — registers the node mapping.
 - `web/text_preview.js` — frontend extension that creates the serialized display widget, fills it (or removes it when empty) from `onExecuted`, and rebuilds it from stored values on `configure`/`onConfigure`.
 

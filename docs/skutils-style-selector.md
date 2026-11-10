@@ -101,7 +101,10 @@ is not part of a workflow.
   in the first chunk only, then joined with `", "`.
 - **Batch: one run per style** — one positive/negative pair is emitted per
   style, in selection order. The downstream graph runs once per style. This
-  is OreX's batch mode.
+  is OreX's batch mode. Each run also produces its own enhanced prompt, so
+  wire that prompt into **Save Compressed Weppy**'s `enhanced_prompt` input
+  (e.g. via [Skutils Text Preview](text-preview.md)) to store the matching
+  prompt in each saved image instead of every style's prompt.
 
 ### Examples
 

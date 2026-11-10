@@ -1223,6 +1223,87 @@
    "pinned": true
   },
   {
+   "name": "Pixar Masterpiece Render",
+   "section": "Cartoon",
+   "source": "u/Dear-Spend-2865",
+   "prompt": "render, feature-film CGI with soft subsurface skin, physically accurate global illumination, rich layered materials, appealing stylized proportions, cinematic depth of field, warm filmic color grade, inspired by Pixar, Disney Animation Studios, Pete Docter, 3d render, cgi, stylized, cinematic, masterpiece, high quality.",
+   "negative": "photorealistic anatomy, 3D CGI render, oil-painting texture, anime large-eye proportions, gritty horror shading",
+   "template": null,
+   "thumb": "Pixar_Masterpiece_Render.webp"
+  },
+  {
+   "name": "Chuck Jones Theatrical Animation Still",
+   "section": "Cartoon",
+   "source": "u/Dear-Spend-2865",
+   "prompt": "expressive theatrical cartoon poses, elegant graphic backgrounds, smooth appealing linework, stylized midcentury color design, inspired by Chuck Jones, Maurice Noble, What's Opera Doc, looney tunes, classic animation, theatrical, stylized background, cartoon.",
+   "negative": "photorealistic anatomy, 3D CGI render, oil-painting texture, anime large-eye proportions, gritty horror shading",
+   "template": null,
+   "thumb": "Chuck_Jones_Theatrical_Animation_Still.webp"
+  },
+  {
+   "name": "Creepy Vintage Cartoon",
+   "section": "Cartoon",
+   "source": "u/Dear-Spend-2865",
+   "prompt": "1930s rubber hose animation with unsettling distortions, earthy muted tonal harmony, heavy film scratches, inspired by Fleischer Studios, Cuphead, Bendy and the Ink Machine, creepy cartoon, rubber hose, vintage, horror, film grain.",
+   "negative": "photorealistic anatomy, 3D CGI render, oil-painting texture, anime large-eye proportions, gritty horror shading",
+   "template": null,
+   "thumb": "Creepy_Vintage_Cartoon.webp"
+  },
+  {
+   "name": "Chomet French Animation",
+   "section": "Cartoon",
+   "source": "u/Dear-Spend-2865",
+   "prompt": "2d animation still, elongated caricatural forms, earthy muted tonal harmony, fine scratchy lines, watercolor-textured backgrounds, inspired by Sylvain Chomet, The Triplets of Belleville, The Illusionist, french animation, caricature, muted colors, hand drawn, watercolor.",
+   "negative": "photorealistic anatomy, 3D CGI render, oil-painting texture, anime large-eye proportions, gritty horror shading",
+   "template": null,
+   "thumb": "Chomet_French_Animation.webp"
+  },
+  {
+   "name": "Pencil Test Animation Drawing",
+   "section": "Cartoon",
+   "source": "u/Dear-Spend-2865",
+   "prompt": "rough graphite animation drawing on paper, loose searching construction lines, light blue underdrawing, soft paper grain, inspired by Disney pencil tests, Glen Keane, Richard Williams, pencil test, rough animation, sketch, hand drawn.",
+   "negative": "photorealistic anatomy, 3D CGI render, oil-painting texture, anime large-eye proportions, gritty horror shading",
+   "template": null,
+   "thumb": "Pencil_Test_Animation_Drawing.webp"
+  },
+  {
+   "name": "Editorial Cartoon Drawing",
+   "section": "Cartoon",
+   "source": "u/Dear-Spend-2865",
+   "prompt": "loose expressive pen line, satirical caricature exaggeration, crosshatched shading, quick ink washes, newspaper print finish, inspired by Thomas Nast, Pat Oliphant, Ronald Searle, editorial cartoon, caricature, pen and ink, satire.",
+   "negative": "photorealistic anatomy, 3D CGI render, oil-painting texture, anime large-eye proportions, gritty horror shading",
+   "template": null,
+   "thumb": "Editorial_Cartoon_Drawing.webp"
+  },
+  {
+   "name": "Spider-Verse Style",
+   "section": "Cartoon",
+   "source": "clio",
+   "prompt": "A kinetic mixed-media animation-illustration style built on visible halftone dot patterning and offset-print texture layered directly into character rendering, deliberate chromatic-fringe misregistration echoing vintage comic-printing imperfection, bold graphic linework,  animation intensity that feels handmade, glitchy, and alive. Influenced by: Sony Pictures Animation, Kris Anka, halftone comic-printing technique, mixed-media collage-animation practice.",
+   "negative": "clean smooth vector lines, flat cel fill, photorealistic skin pores, 3D CGI plastic sheen, muted desaturated palette",
+   "template": null,
+   "thumb": "Spider_Verse_Style.webp"
+  },
+  {
+   "name": "Star Wars: The Clone Wars Style",
+   "section": "Cartoon",
+   "source": "clio",
+   "prompt": "A bold, angular animation-illustration style built on stylized, geometric character proportion with sharply defined, faceted silhouette construction, confident cel-shaded rendering with graphic, high-contrast shadow blocking rather than smooth gradation, dramatic cinematic lighting establishing epic, sweeping mood within stylized composition, meticulous attention to dynamic, action-driven posing balanced against clean graphic clarity, and a bold, blockbuster-grade stylized-animation intensity that feels both angular and cinematically grand. Influenced by: Dave Filoni, stylized 3D-animation technique, geometric character-design practice, cinematic sci-fi animation method.",
+   "negative": "soft rounded cute proportions, painterly brushstrokes, photorealistic texture, 3D CGI ambient occlusion, pastel palette",
+   "template": null,
+   "thumb": "Star_Wars_The_Clone_Wars_Style.webp"
+  },
+  {
+   "name": "Bruce Timm Noir",
+   "section": "Cartoon",
+   "source": "clio",
+   "prompt": "stylish noir-inspired illustration aesthetics characterized by confident silhouette design, elegant simplification, clean geometric construction, dramatic shadow composition, strong graphic readability, and cinematic visual storytelling, blending classic animation principles with crime-fiction atmosphere through disciplined linework, refined staging, and timeless visual sophistication, reminiscent of Bruce Timm and Darwyn Cooke, inspired by Batman: The Animated Series and DC: The New Frontier.",
+   "negative": "soft pastel rendering, photorealistic anatomy, 3D CGI render, detailed painterly texture, bright cheerful palette",
+   "template": null,
+   "thumb": "Bruce_Timm_Noir.webp"
+  },
+  {
    "name": "Painterly Cartoon Illustration",
    "section": "Cartoon",
    "source": "u/Dear-Spend-2865",
@@ -1358,15 +1439,6 @@
    "thumb": "Rubber_Hose_Cartoon.webp"
   },
   {
-   "name": "Bruce Timm Noir",
-   "section": "Cartoon",
-   "source": "clio",
-   "prompt": "stylish noir-inspired illustration aesthetics characterized by confident silhouette design, elegant simplification, clean geometric construction, dramatic shadow composition, strong graphic readability, and cinematic visual storytelling, blending classic animation principles with crime-fiction atmosphere through disciplined linework, refined staging, and timeless visual sophistication, reminiscent of Bruce Timm and Darwyn Cooke, inspired by Batman: The Animated Series and DC: The New Frontier.",
-   "negative": "soft pastel rendering, photorealistic anatomy, 3D CGI render, detailed painterly texture, bright cheerful palette",
-   "template": null,
-   "thumb": "Bruce_Timm_Noir.webp"
-  },
-  {
    "name": "Tex Avery Style",
    "section": "Cartoon",
    "source": "clio",
@@ -1448,15 +1520,6 @@
    "thumb": "Western_Cel_Shaded_Illustration.webp"
   },
   {
-   "name": "Star Wars: The Clone Wars Style",
-   "section": "Cartoon",
-   "source": "clio",
-   "prompt": "A bold, angular animation-illustration style built on stylized, geometric character proportion with sharply defined, faceted silhouette construction, confident cel-shaded rendering with graphic, high-contrast shadow blocking rather than smooth gradation, dramatic cinematic lighting establishing epic, sweeping mood within stylized composition, meticulous attention to dynamic, action-driven posing balanced against clean graphic clarity, and a bold, blockbuster-grade stylized-animation intensity that feels both angular and cinematically grand. Influenced by: Dave Filoni, stylized 3D-animation technique, geometric character-design practice, cinematic sci-fi animation method.",
-   "negative": "soft rounded cute proportions, painterly brushstrokes, photorealistic texture, 3D CGI ambient occlusion, pastel palette",
-   "template": null,
-   "thumb": "Star_Wars_The_Clone_Wars_Style.webp"
-  },
-  {
    "name": "The Mitchells vs. the Machines Style",
    "section": "Cartoon",
    "source": "clio",
@@ -1464,15 +1527,6 @@
    "negative": "flat vector fill, static stiff posing, photorealistic rendering, 3D CGI plastic sheen, muted desaturated palette",
    "template": null,
    "thumb": "The_Mitchells_vs_the_Machines_Style.webp"
-  },
-  {
-   "name": "Spider-Verse Style",
-   "section": "Cartoon",
-   "source": "clio",
-   "prompt": "A kinetic mixed-media animation-illustration style built on visible halftone dot patterning and offset-print texture layered directly into character rendering, deliberate chromatic-fringe misregistration echoing vintage comic-printing imperfection, bold graphic linework,  animation intensity that feels handmade, glitchy, and alive. Influenced by: Sony Pictures Animation, Kris Anka, halftone comic-printing technique, mixed-media collage-animation practice.",
-   "negative": "clean smooth vector lines, flat cel fill, photorealistic skin pores, 3D CGI plastic sheen, muted desaturated palette",
-   "template": null,
-   "thumb": "Spider_Verse_Style.webp"
   },
   {
    "name": "80s Saturday Morning Cartoon",
@@ -1538,33 +1592,6 @@
    "thumb": "Cartoon_Saloon.webp"
   },
   {
-   "name": "Chomet French Animation",
-   "section": "Cartoon",
-   "source": "u/Dear-Spend-2865",
-   "prompt": "2d animation still, elongated caricatural forms, earthy muted tonal harmony, fine scratchy lines, watercolor-textured backgrounds, inspired by Sylvain Chomet, The Triplets of Belleville, The Illusionist, french animation, caricature, muted colors, hand drawn, watercolor.",
-   "negative": "photorealistic anatomy, 3D CGI render, oil-painting texture, anime large-eye proportions, gritty horror shading",
-   "template": null,
-   "thumb": "Chomet_French_Animation.webp"
-  },
-  {
-   "name": "Pencil Test Animation Drawing",
-   "section": "Cartoon",
-   "source": "u/Dear-Spend-2865",
-   "prompt": "rough graphite animation drawing on paper, loose searching construction lines, light blue underdrawing, soft paper grain, inspired by Disney pencil tests, Glen Keane, Richard Williams, pencil test, rough animation, sketch, hand drawn.",
-   "negative": "photorealistic anatomy, 3D CGI render, oil-painting texture, anime large-eye proportions, gritty horror shading",
-   "template": null,
-   "thumb": "Pencil_Test_Animation_Drawing.webp"
-  },
-  {
-   "name": "Editorial Cartoon Drawing",
-   "section": "Cartoon",
-   "source": "u/Dear-Spend-2865",
-   "prompt": "loose expressive pen line, satirical caricature exaggeration, crosshatched shading, quick ink washes, newspaper print finish, inspired by Thomas Nast, Pat Oliphant, Ronald Searle, editorial cartoon, caricature, pen and ink, satire.",
-   "negative": "photorealistic anatomy, 3D CGI render, oil-painting texture, anime large-eye proportions, gritty horror shading",
-   "template": null,
-   "thumb": "Editorial_Cartoon_Drawing.webp"
-  },
-  {
    "name": "Toon Glamour Pin-Up illustration",
    "section": "Cartoon",
    "source": "u/Dear-Spend-2865",
@@ -1583,15 +1610,6 @@
    "thumb": "Rotoscope_Animation_Still.webp"
   },
   {
-   "name": "Creepy Vintage Cartoon",
-   "section": "Cartoon",
-   "source": "u/Dear-Spend-2865",
-   "prompt": "1930s rubber hose animation with unsettling distortions, earthy muted tonal harmony, heavy film scratches, inspired by Fleischer Studios, Cuphead, Bendy and the Ink Machine, creepy cartoon, rubber hose, vintage, horror, film grain.",
-   "negative": "photorealistic anatomy, 3D CGI render, oil-painting texture, anime large-eye proportions, gritty horror shading",
-   "template": null,
-   "thumb": "Creepy_Vintage_Cartoon.webp"
-  },
-  {
    "name": "Old Black and White Cartoon",
    "section": "Cartoon",
    "source": "u/Dear-Spend-2865",
@@ -1599,15 +1617,6 @@
    "negative": "photorealistic anatomy, 3D CGI render, oil-painting texture, anime large-eye proportions, gritty horror shading",
    "template": null,
    "thumb": "Old_Black_and_White_Cartoon.webp"
-  },
-  {
-   "name": "Chuck Jones Theatrical Animation Still",
-   "section": "Cartoon",
-   "source": "u/Dear-Spend-2865",
-   "prompt": "expressive theatrical cartoon poses, elegant graphic backgrounds, smooth appealing linework, stylized midcentury color design, inspired by Chuck Jones, Maurice Noble, What's Opera Doc, looney tunes, classic animation, theatrical, stylized background, cartoon.",
-   "negative": "photorealistic anatomy, 3D CGI render, oil-painting texture, anime large-eye proportions, gritty horror shading",
-   "template": null,
-   "thumb": "Chuck_Jones_Theatrical_Animation_Still.webp"
   },
   {
    "name": "Super Friends Classic Cartoon Still",
@@ -1725,15 +1734,6 @@
    "negative": "photorealistic anatomy, 3D CGI render, oil-painting texture, anime large-eye proportions, gritty horror shading",
    "template": null,
    "thumb": "Young_Justice_Sleek_Animation_Still.webp"
-  },
-  {
-   "name": "Pixar Masterpiece Render",
-   "section": "Cartoon",
-   "source": "u/Dear-Spend-2865",
-   "prompt": "render, feature-film CGI with soft subsurface skin, physically accurate global illumination, rich layered materials, appealing stylized proportions, cinematic depth of field, warm filmic color grade, inspired by Pixar, Disney Animation Studios, Pete Docter, 3d render, cgi, stylized, cinematic, masterpiece, high quality.",
-   "negative": "photorealistic anatomy, 3D CGI render, oil-painting texture, anime large-eye proportions, gritty horror shading",
-   "template": null,
-   "thumb": "Pixar_Masterpiece_Render.webp"
   },
   {
    "name": "Comics Style",

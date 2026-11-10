@@ -25,6 +25,7 @@ Node name: **Save Compressed Weppy** · Category: `skkut-utils` (Nodes → Exten
 | `filename_prefix` | `STRING` | `ComfyUI_Weppy` | Prefix for saved files (a random 5-letter suffix is appended) |
 | `quality` | `INT` | `80` | WebP quality, 1–100. Higher = better quality, larger file |
 | `lossless` | `BOOLEAN` | `False` | Use lossless WebP encoding (quality then controls compression level) |
+| `enhanced_prompt` | `STRING` (optional input) | — | The executed prompt that produced these images — e.g. the `text` output of **Skutils Text Preview**. When connected, the workflow embedded in each saved image stores this text as the text preview's content (see [per-image preview text](#per-image-preview-text)). Leave unconnected to embed the workflow exactly as the frontend saved it |
 | `prompt` / `extra_pnginfo` | hidden | — | Auto-captured execution prompt and workflow layout |
 
 Each image is saved as `{prefix}_{suffix}_{counter:05}.webp` in the output directory.
@@ -68,6 +69,14 @@ A `style` input that arrives as a *link* (the widget converted to an input socke
 
 To teach the menu about another pack's filename output, add an entry to `NAME_PROVIDERS` — the readers are plain `inputs -> str | None` functions.
 
+## Per-image preview text
+
+A batch run (e.g. **Skutils Style Selector** in *Batch: one run per style* mode) executes the graph once per style, and [Skutils Text Preview](text-preview.md) therefore shows one prompt per style. ComfyUI merges those UI outputs into a single node, so the frontend's workflow snapshot can contain all of them — and every saved image would embed the same multi-prompt snapshot.
+
+Connecting the preview node's `text` output to the save node's `enhanced_prompt` input fixes that. List fan-out keeps the two lists index-aligned: the save node receives the one prompt that produced the images in each invocation and writes it over the connected `SkutilsTextPreview` node's stored text in the embedded workflow (`widgets_values` becomes that single prompt). Each image's EXIF workflow then carries the prompt corresponding to *that* image, not the whole batch. If the prompt travelled through a passthrough or a subgraph so the source node cannot be identified, every preview node in the workflow is updated instead. Without the connection the metadata is embedded unchanged.
+
+This only rewrites the UI workflow metadata; the API-format `prompt:` tag is unaffected. It applies to the **Save Compressed Weppy node** — the right-click context menu has no executed prompt to substitute.
+
 ## Metadata handling
 
 - **`prompt`** is embedded in the EXIF **Make** tag (`prompt:<json>`); **`workflow`** is embedded in the **ImageDescription** tag (`workflow:<json>`), so the workflow can be recovered by drag-and-dropping the `.webp` back into ComfyUI.
@@ -83,7 +92,7 @@ The feature ships as part of the unified `ComfyUI-skkut-utils` repo — see the 
 
 ## Files
 
-- `save_compressed_weppy/save_compressed_weppy.py` — node implementation and `strip_binary_from_workflow()`.
+- `save_compressed_weppy/save_compressed_weppy.py` — node implementation, `strip_binary_from_workflow()` and `apply_text_preview_text()` (the per-image preview-prompt substitution).
 - `save_compressed_weppy/download_name.py` — download filename policy: `NAME_PROVIDERS`, the OreX and Clio style readers, the style-catalog lookups, and `safe_slug()`.
 - `save_compressed_weppy/__init__.py` — registers the node mapping and the `/save_compressed_weppy` route.
 - `web/save_compressed_weppy.js` — context-menu extension (extension name `SaveCompressedWeppy.ContextMenu`).

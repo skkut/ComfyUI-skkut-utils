@@ -9,7 +9,8 @@ whose text disappears on save/reload.
 
 Implementation notes:
   * text_preview.py — the node. Converts any input value to text and
-    returns it as a UI output.
+    returns it both as a UI output and as a STRING output (the latter lets
+    a save node embed the prompt that produced each image).
   * web/text_preview.js — the frontend half. Copies each executed text
     into the node's regular (serialized) widget, which is what the
     workflow JSON stores and restores.
