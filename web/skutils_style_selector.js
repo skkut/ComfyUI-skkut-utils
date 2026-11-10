@@ -657,8 +657,8 @@ function ensureModal() {
         class: "skutils-close",
         type: "button",
         text: "×",
-        title: "Close (Esc)",
-        "aria-label": "Close picker",
+        title: "Apply and close",
+        "aria-label": "Apply selection and close",
     });
     const newButton = el("button", { class: "skutils-btn", type: "button", text: "＋ New style" });
 
@@ -742,7 +742,7 @@ function ensureModal() {
         updateFooter();
     });
     newButton.addEventListener("click", () => openEditor(null));
-    closeButton.addEventListener("click", () => closePicker());
+    closeButton.addEventListener("click", () => applySelection());
     clearButton.addEventListener("click", () => {
         current.selected = [];
         renderStrip();

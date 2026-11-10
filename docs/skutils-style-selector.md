@@ -64,9 +64,10 @@ picker.
    order and the order prose is joined in combine mode.
 4. Reorder selected styles in the strip at the top (drag a chip, or use the
    `‹` / `›` buttons); remove one with `×`.
-5. **Apply** writes the ordered selection back into the node. **Esc**, the
-   overlay, or the round **×** at the top-right of the selected-styles strip
-   closes without applying; **Clear** empties the selection.
+5. **Apply** — or the round **×** at the top-right of the selected-styles
+   strip — writes the ordered selection back into the node and closes the
+   picker. **Esc** or a click on the overlay closes without applying;
+   **Clear** empties the selection.
 
 Selecting a workflow's saved styles or reopening it restores the selection
 from `select_styles` — the picker is only a UI over that widget.
