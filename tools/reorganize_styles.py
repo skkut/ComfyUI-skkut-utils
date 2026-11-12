@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Developer tool: visual editor for the Skutils Style Selector library.
+"""Local tool: visual editor for the Skutils Style Selector's user layer.
 
 This is **not** part of the ComfyUI plugin. It lives in ``tools/``, is never
 imported by the repo, and is excluded from the Comfy Registry package by
@@ -7,45 +7,58 @@ imported by the repo, and is excluded from the Comfy Registry package by
 
 What it does
 ------------
-Serves a small editor for ``skutils_style_selector/styles.json``:
+Serves a small editor for the **user styles file**
+(``<ComfyUI user dir>/default/skkut_style_selector/user_styles.json``), shown
+on top of the read-only bundled library:
 
   * drag a style (by its grip) to reorder it inside its section;
   * pin styles to anchor them in place — pinning never reorders, pinned rows
     cannot be moved, and a contiguous pinned block at the top of a section
-    stays on top (move-to-top inserts directly below it); pinned state is
-    stored as ``"pinned": true`` on the entry;
+    stays on top (move-to-top inserts directly below it);
   * use each row's dropdown to move a style to another section, or create
-    a new section;
+    a new section — for a bundled style this is stored as a section override;
   * search/filter to find styles quickly;
-  * save back to ``styles.json`` (atomic write + timestamped backup).
+  * save the layout (section order, style order, pins, recategorized
+    sections) to the user styles file only (atomic write + timestamped
+    backup next to it).
+
+``skutils_style_selector/styles.json`` is treated as **read-only**. A plugin
+update replaces it; everything saved here survives, because the plugin merges
+the bundled and user layers at read time. New styles and prompt/negative/
+template/thumbnail edits are made in the picker's editor inside ComfyUI; this
+tool focuses on organisation.
 
 Usage
 -----
     python tools/reorganize_styles.py
 
 Options:
-    --port N          port on 127.0.0.1 (default 8765; 0 = random free port)
-    --library PATH    edit a different styles.json (handy for testing)
-    --no-browser      do not open the browser automatically
+    --port N              port on 127.0.0.1 (default 8765; 0 = random free port)
+    --library PATH        bundled styles.json to read (default:
+                          skutils_style_selector/styles.json; never written)
+    --user-styles PATH    user_styles.json to edit. Default: auto-detect
+                          through ``folder_paths``, then a ``user/`` folder
+                          next to the checkout's ``custom_nodes``. Pass this
+                          explicitly when running from a separate checkout.
+    --no-browser          do not open the browser automatically
 
 Only 127.0.0.1 is bound, and every request requires a per-run random token,
 so other machines and random web pages cannot read or overwrite the file.
 The token is part of the URL printed on startup.
 
-After saving, restart ComfyUI so the picker reloads the library (the backend
-caches styles.json at import time).
+No ComfyUI restart is needed: the plugin reads the user file fresh on every
+picker open and on every node execution.
 """
 
 from __future__ import annotations
 
 import argparse
 import glob
+import importlib.util
 import json
 import os
 import secrets
 import shutil
-import sys
-import tempfile
 import threading
 import time
 import webbrowser
@@ -56,7 +69,6 @@ from urllib.parse import parse_qs, unquote, urlparse
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DEFAULT_LIBRARY = os.path.join(REPO_ROOT, "skutils_style_selector", "styles.json")
 THUMBS_DIR = os.path.join(REPO_ROOT, "skutils_style_selector", "assets", "thumbs")
-BACKUP_DIR = os.path.join(REPO_ROOT, "tools", "backups")
 
 MAX_BODY_BYTES = 8 * 1024 * 1024
 MAX_SECTION_LEN = 60
@@ -77,6 +89,26 @@ _IMAGE_TYPES = {
 
 class SaveError(Exception):
     """A save payload that cannot be applied safely."""
+
+
+def _load_library_module():
+    """Load ``skutils_style_selector/library.py`` without importing the package.
+
+    Importing the package would pull in its ``__init__`` (and its guarded
+    ``server``/``aiohttp`` route import), which needs ComfyUI. The shared
+    merge/normalize/write helpers in ``library.py`` are import-safe on their
+    own, so load the module by file path.
+    """
+    path = os.path.join(REPO_ROOT, "skutils_style_selector", "library.py")
+    spec = importlib.util.spec_from_file_location("skutils_style_library", path)
+    if spec is None or spec.loader is None:
+        raise RuntimeError(f"Could not load the style library module at {path}.")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+LIBRARY = _load_library_module()
 
 
 # ---------------------------------------------------------------------------
@@ -119,31 +151,49 @@ def _clean_sections(raw):
     return cleaned
 
 
-def _ordered_styles(raw_order, sections, styles):
+def read_user_data(user_path):
+    """Load the user layer, falling back to the legacy custom file."""
+    if not user_path:
+        return LIBRARY.empty_user_library()
+    data = None
+    if os.path.exists(user_path):
+        with open(user_path, "r", encoding="utf-8") as handle:
+            data = LIBRARY.parse_user_library(json.load(handle))
+    if data is None:
+        legacy = os.path.join(
+            os.path.dirname(os.path.abspath(user_path)),
+            LIBRARY.LEGACY_CUSTOM_FILE_NAME,
+        )
+        if os.path.exists(legacy):
+            with open(legacy, "r", encoding="utf-8") as handle:
+                data = LIBRARY.parse_user_library(json.load(handle))
+    return data if data is not None else LIBRARY.empty_user_library()
+
+
+def _desired_order(raw_order, sections, styles):
+    """Validate the posted order and return ``[{"name", "section", "pinned"}]``."""
     if not isinstance(raw_order, list):
         raise SaveError("`order` must be a list.")
     if len(raw_order) != len(styles):
         raise SaveError(
-            "The editor sent a different number of styles than styles.json contains. "
+            "The editor sent a different number of styles than the library contains. "
             "Reload the page and try again."
         )
 
     by_name = {}
     for style in styles:
-        if not isinstance(style, dict):
-            raise SaveError("styles.json contains a non-object entry.")
         name = style.get("name")
         if not isinstance(name, str) or not name:
-            raise SaveError("styles.json contains an entry without a name.")
+            raise SaveError("The library contains an entry without a name.")
         if name in by_name:
             raise SaveError(
-                f"styles.json has duplicate style name {name!r}; fix that manually first."
+                f"The library has duplicate style name {name!r}; fix that manually first."
             )
         by_name[name] = style
 
     section_set = set(sections)
     seen = set()
-    ordered = []
+    desired = []
     for item in raw_order:
         if not isinstance(item, dict):
             raise SaveError("`order` entries must be objects.")
@@ -159,14 +209,7 @@ def _ordered_styles(raw_order, sections, styles):
         if pinned is not None and not isinstance(pinned, bool):
             raise SaveError(f"`pinned` for style {name!r} must be true or false.")
         seen.add(name)
-        style = by_name[name]
-        style["section"] = section
-        if "pinned" in item:
-            if pinned:
-                style["pinned"] = True
-            else:
-                style.pop("pinned", None)
-        ordered.append(style)
+        desired.append({"name": name, "section": section, "pinned": pinned is True})
 
     missing = set(by_name) - seen
     if missing:
@@ -175,15 +218,19 @@ def _ordered_styles(raw_order, sections, styles):
             f"{len(missing)} style(s) missing from the save payload ({examples}…). "
             "Reload the page and try again."
         )
-    return ordered
+    return desired
 
 
 def _make_backup(path):
-    os.makedirs(BACKUP_DIR, exist_ok=True)
+    """Copy the user file into a ``backups/`` folder beside it."""
+    if not os.path.exists(path):
+        return None
+    directory = os.path.join(os.path.dirname(os.path.abspath(path)), "backups")
+    os.makedirs(directory, exist_ok=True)
     stamp = datetime.now().strftime("%Y%m%d-%H%M%S-%f")[:-3]
-    destination = os.path.join(BACKUP_DIR, f"styles-{stamp}.json")
+    destination = os.path.join(directory, f"user-styles-{stamp}.json")
     shutil.copy2(path, destination)
-    backups = sorted(glob.glob(os.path.join(BACKUP_DIR, "styles-*.json")))
+    backups = sorted(glob.glob(os.path.join(directory, "user-styles-*.json")))
     for old in backups[:-BACKUPS_KEPT]:
         try:
             os.remove(old)
@@ -192,38 +239,85 @@ def _make_backup(path):
     return destination
 
 
-def _write_atomic(path, data):
-    directory = os.path.dirname(os.path.abspath(path))
-    handle, temporary = tempfile.mkstemp(prefix=".styles-", suffix=".json", dir=directory)
-    try:
-        with os.fdopen(handle, "w", encoding="utf-8", newline="\n") as stream:
-            json.dump(data, stream, indent=1, ensure_ascii=False)
-            stream.write("\n")
-        os.replace(temporary, path)
-    except BaseException:
-        try:
-            os.unlink(temporary)
-        except OSError:
-            pass
-        raise
-
-
-def save_order(path, payload):
+def save_layout(bundled_path, user_path, payload):
+    """Apply a layout save to the user file; ``styles.json`` is only read."""
     if not isinstance(payload, dict):
         raise SaveError("Request body must be a JSON object.")
     sections = _clean_sections(payload.get("sections"))
+    if not user_path:
+        raise SaveError("No user styles path is configured.")
 
     with _save_lock:
-        data = read_library(path)
-        styles = data["styles"]
-        ordered = _ordered_styles(payload.get("order"), sections, styles)
-        data["sections"] = sections
-        data["styles"] = ordered
-        backup = _make_backup(path)
-        _write_atomic(path, data)
+        try:
+            bundled = LIBRARY.parse_bundled(read_library(bundled_path))
+        except (OSError, ValueError) as error:
+            raise SaveError(f"Could not read {bundled_path}: {error}") from error
+        try:
+            user = read_user_data(user_path)
+        except (OSError, ValueError) as error:
+            # Never replace a file we could not read: its content (custom
+            # styles, overrides) would be lost.
+            raise SaveError(
+                f"Could not read the user styles file {user_path}: {error}"
+            ) from error
 
-    pinned = sum(1 for style in ordered if style.get("pinned"))
-    return len(ordered), backup, pinned
+        merged = LIBRARY.merge_library(bundled, user)
+        styles = merged["styles"]
+        desired = _desired_order(payload.get("order"), sections, styles)
+
+        bundled_by_name = {style["name"]: style for style in bundled["styles"]}
+        user_by_name = {style["name"]: style for style in user["styles"]}
+        overrides = user["overrides"]
+
+        for item in desired:
+            name = item["name"]
+            if name in user_by_name:
+                # A user style: its section lives in the style entry.
+                user_by_name[name]["section"] = item["section"]
+            elif name in bundled_by_name:
+                # A bundled style: recategorizing stores a section override.
+                original = bundled_by_name[name]
+                override = overrides.get(name)
+                if item["section"] != original["section"]:
+                    if override is None:
+                        override = {}
+                        overrides[name] = override
+                    override["section"] = item["section"]
+                elif override is not None:
+                    override.pop("section", None)
+                    if not override:
+                        overrides.pop(name, None)
+
+        # Keep the user style array in the displayed order too, so a
+        # hand-read file reflects the organizer's order.
+        user["styles"] = [
+            user_by_name[item["name"]]
+            for item in desired
+            if item["name"] in user_by_name
+        ]
+
+        known = {style["name"] for style in styles}
+        orphans = [
+            item
+            for item in user["layout"]["order"]
+            if isinstance(item.get("name"), str) and item["name"] not in known
+        ]
+        user["layout"] = {
+            "sections": sections,
+            "order": [
+                {"name": item["name"], "pinned": True}
+                if item["pinned"]
+                else {"name": item["name"]}
+                for item in desired
+            ]
+            + orphans,
+        }
+
+        backup = _make_backup(user_path)
+        LIBRARY.write_user_library(user_path, user)
+
+    pinned = sum(1 for item in desired if item["pinned"])
+    return len(desired), backup, pinned
 
 
 # ---------------------------------------------------------------------------
@@ -291,18 +385,21 @@ class EditorHandler(BaseHTTPRequestHandler):
             if not self._require_token(query):
                 return
             try:
-                data = read_library(self.server.library_path)
+                bundled = LIBRARY.parse_bundled(read_library(self.server.library_path))
+                user = read_user_data(self.server.user_path)
+                merged = LIBRARY.merge_library(bundled, user)
             except Exception as error:  # noqa: BLE001 - report to the page
-                self._deny(500, f"Could not read {self.server.library_path}: {error}")
+                self._deny(500, f"Could not read the style library: {error}")
                 return
             self._send_json(
                 200,
                 {
-                    "path": self.server.library_path,
-                    "version": data.get("version", 1),
-                    "credits": data.get("credits", {}),
-                    "sections": data.get("sections", []),
-                    "styles": data.get("styles", []),
+                    "path": self.server.user_path,
+                    "bundled_path": self.server.library_path,
+                    "version": merged.get("version", 1),
+                    "credits": merged.get("credits", {}),
+                    "sections": merged["sections"],
+                    "styles": merged["styles"],
                 },
             )
             return
@@ -379,7 +476,9 @@ class EditorHandler(BaseHTTPRequestHandler):
             return
 
         try:
-            count, backup, pinned = save_order(self.server.library_path, payload)
+            count, backup, pinned = save_layout(
+                self.server.library_path, self.server.user_path, payload
+            )
         except SaveError as error:
             self._deny(400, str(error))
             return
@@ -387,7 +486,14 @@ class EditorHandler(BaseHTTPRequestHandler):
             self._deny(500, f"Could not save: {error}")
             return
 
-        relative_backup = os.path.relpath(backup, REPO_ROOT).replace(os.sep, "/")
+        relative_backup = backup or ""
+        if backup:
+            try:
+                candidate = os.path.relpath(backup, REPO_ROOT)
+            except ValueError:
+                candidate = backup
+            relative_backup = backup if candidate.startswith("..") else candidate
+            relative_backup = relative_backup.replace(os.sep, "/")
         saved_at = time.strftime("%Y-%m-%d %H:%M:%S")
         self._send_json(
             200,
@@ -820,8 +926,8 @@ INDEX_HTML = r"""<!doctype html>
   <div class="path" id="filePath" title=""></div>
   <div class="actions">
     <span class="status" id="status"></span>
-    <button type="button" class="btn" id="reloadBtn" title="Reload styles.json from disk">Reload</button>
-    <button type="button" class="btn primary" id="saveBtn" disabled title="Save as styles.json (Ctrl+S)">Save</button>
+    <button type="button" class="btn" id="reloadBtn" title="Reload the style library from disk">Reload</button>
+    <button type="button" class="btn primary" id="saveBtn" disabled title="Save to your user styles file (Ctrl+S)">Save</button>
   </div>
 </header>
 <div class="toolbar">
@@ -836,9 +942,10 @@ INDEX_HTML = r"""<!doctype html>
   bottom. Use the dropdown on a row to move it to another section; choosing
   <strong>＋ New section…</strong> creates one.
   Click any thumbnail for a full-size preview (<strong>←</strong> / <strong>→</strong> to browse,
-  <strong>Esc</strong> to close). Saving updates <code>skutils_style_selector/styles.json</code> and keeps
-  a timestamped backup in <code>tools/backups/</code>. Restart ComfyUI afterwards so the picker
-  reloads the library.
+  <strong>Esc</strong> to close). Saving writes only your user styles file — the bundled
+  <code>styles.json</code> is read-only, so a plugin update never discards your order, pins, or
+  recategorizations. A timestamped backup is kept in the <code>backups/</code> folder next to the
+  user file. Reopen the picker in ComfyUI to see the changes; no restart is needed.
 </footer>
 <div class="lightbox" id="lightbox" aria-hidden="true">
   <button type="button" class="lb-close" id="lbClose" title="Close (Esc)" aria-label="Close">×</button>
@@ -924,6 +1031,7 @@ INDEX_HTML = r"""<!doctype html>
   }
 
   function thumbUrl(style) {
+    if (style.thumbnail) return style.thumbnail;
     if (!style.thumb) return "";
     return "/thumbs/" + encodeURIComponent(style.thumb) + "?token=" + encodeURIComponent(TOKEN);
   }
@@ -996,7 +1104,8 @@ INDEX_HTML = r"""<!doctype html>
       style._uid = uidSeq++;
       style._name = String(style.name || "").toLowerCase();
       style._section = String(style.section || "").toLowerCase();
-      style._source = String(style.source || "").toLowerCase();
+      style._source = String(style.source || "").toLowerCase() +
+        (style.overridden ? " edited" : "");
       style._prompt = String(style.prompt || "").toLowerCase();
       byUid.set(style._uid, style);
       if (!groups.has(style.section)) {
@@ -1008,7 +1117,8 @@ INDEX_HTML = r"""<!doctype html>
 
     total = (data.styles || []).length;
     filePathEl.textContent = data.path || "";
-    filePathEl.title = data.path || "";
+    filePathEl.title = "User styles (writable): " + (data.path || "(none)") +
+      "\nBundled library (read-only): " + (data.bundled_path || "");
     document.title = "Skutils Style Editor — " + total + " styles";
 
     setDirty(false);
@@ -1097,7 +1207,7 @@ INDEX_HTML = r"""<!doctype html>
     var sub = document.createElement("div");
     sub.className = "sub";
     if (style.source) {
-      appendHighlighted(sub, style.source, query);
+      appendHighlighted(sub, style.source + (style.overridden ? " · edited" : ""), query);
       sub.appendChild(document.createTextNode(" · "));
     }
     appendHighlighted(sub, style.prompt, query);
@@ -1332,6 +1442,7 @@ INDEX_HTML = r"""<!doctype html>
     lbSub.textContent = style.section +
       (style.pinned ? " · pinned" : "") +
       (style.source ? " · " + style.source : "") +
+      (style.overridden ? " · edited" : "") +
       " · " + (lbIndex + 1) + " / " + lbList.length;
     lbPrompt.replaceChildren();
     appendHighlighted(lbPrompt, style.prompt, query);
@@ -1618,7 +1729,7 @@ INDEX_HTML = r"""<!doctype html>
   }
 
   async function reload() {
-    if (dirty && !window.confirm("Discard unsaved changes and reload styles.json?")) return;
+    if (dirty && !window.confirm("Discard unsaved changes and reload the style library?")) return;
     try {
       await load();
     } catch (error) {
@@ -1698,9 +1809,39 @@ INDEX_HTML = r"""<!doctype html>
 # Entry point
 # ---------------------------------------------------------------------------
 
+def resolve_user_styles_path(explicit):
+    """Find the plugin's user styles file, or ``None`` if undetectable."""
+    if explicit:
+        return os.path.abspath(explicit)
+    try:
+        import folder_paths
+
+        getter = getattr(folder_paths, "get_user_directory", None)
+        if callable(getter):
+            directory = getter()
+            if directory:
+                return os.path.join(
+                    directory, "default", LIBRARY.USER_DIR_NAME, LIBRARY.USER_FILE_NAME
+                )
+    except Exception:  # noqa: BLE001 - ComfyUI is not importable in a bare shell
+        pass
+
+    for root in (os.path.abspath(REPO_ROOT), os.path.realpath(REPO_ROOT)):
+        base = os.path.dirname(os.path.dirname(root))
+        user_dir = os.path.join(base, "user")
+        if os.path.isdir(user_dir):
+            return os.path.join(
+                user_dir, "default", LIBRARY.USER_DIR_NAME, LIBRARY.USER_FILE_NAME
+            )
+    return None
+
+
 def main(argv=None):
     parser = argparse.ArgumentParser(
-        description="Local-only visual editor for the Skutils Style Selector library.",
+        description=(
+            "Local-only visual editor for the Skutils Style Selector's user "
+            "styles layer (the bundled styles.json is read-only)."
+        ),
     )
     parser.add_argument(
         "--port",
@@ -1711,7 +1852,18 @@ def main(argv=None):
     parser.add_argument(
         "--library",
         default=DEFAULT_LIBRARY,
-        help="styles.json to edit (default: skutils_style_selector/styles.json).",
+        help=(
+            "Bundled styles.json to read (default: "
+            "skutils_style_selector/styles.json). Never written."
+        ),
+    )
+    parser.add_argument(
+        "--user-styles",
+        default=None,
+        help=(
+            "user_styles.json to edit. Default: auto-detect through folder_paths "
+            "or a user/ folder next to the checkout's custom_nodes parent."
+        ),
     )
     parser.add_argument(
         "--no-browser",
@@ -1728,6 +1880,24 @@ def main(argv=None):
     except Exception as error:  # noqa: BLE001 - fail fast with a clear message
         parser.error(f"Could not read {library_path}: {error}")
 
+    user_path = resolve_user_styles_path(args.user_styles)
+    if not user_path:
+        parser.error(
+            "Could not locate ComfyUI's user directory. Pass --user-styles PATH, e.g.\n"
+            "  <ComfyUI>/user/default/skkut_style_selector/user_styles.json\n"
+            "A new file is created there on the first save."
+        )
+    if os.path.exists(user_path):
+        try:
+            read_user_data(user_path)
+        except Exception as error:  # noqa: BLE001 - fail fast with a clear message
+            parser.error(f"Could not read {user_path}: {error}")
+    else:
+        print(
+            f"  Note: {user_path} does not exist yet; it is created on the first save.",
+            flush=True,
+        )
+
     token = secrets.token_urlsafe(32)
     try:
         server = ThreadingHTTPServer(("127.0.0.1", args.port), EditorHandler)
@@ -1736,6 +1906,7 @@ def main(argv=None):
 
     server.token = token
     server.library_path = library_path
+    server.user_path = user_path
     port = server.server_address[1]
     server.allowed_origins = {
         f"http://127.0.0.1:{port}",
@@ -1743,14 +1914,17 @@ def main(argv=None):
     }
 
     url = f"http://127.0.0.1:{port}/?token={token}"
+    backup_dir = os.path.join(os.path.dirname(os.path.abspath(user_path)), "backups")
     print(
-        "Skutils Style Editor — developer utility (not part of the plugin package)",
+        "Skutils Style Editor — local utility (not part of the plugin package)",
         flush=True,
     )
-    print(f"  Library: {library_path}", flush=True)
-    print(f"  Editor:  {url}", flush=True)
-    print("  Saves update styles.json atomically; a timestamped backup is kept in", flush=True)
-    print("  tools/backups/. Restart ComfyUI after saving to reload the picker.", flush=True)
+    print(f"  Bundled (read-only): {library_path}", flush=True)
+    print(f"  User styles:         {user_path}", flush=True)
+    print(f"  Editor:              {url}", flush=True)
+    print("  Saves write only the user styles file; styles.json is never modified.", flush=True)
+    print(f"  Backups: {backup_dir}", flush=True)
+    print("  Reopen the picker in ComfyUI to see the changes — no restart needed.", flush=True)
     print("  Press Ctrl+C to stop.", flush=True)
 
     if not args.no_browser:

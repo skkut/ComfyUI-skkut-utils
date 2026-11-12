@@ -183,8 +183,10 @@ function orderedLibraryStyles() {
 
 function thumbUrl(entry) {
     if (!entry) return null;
-    if (entry.source === "custom") return entry.thumbnail || null;
-    if (!entry.thumb) return null;
+    // A user thumbnail (on a user style, or an override of a bundled style)
+    // takes precedence over the bundled image.
+    if (entry.thumbnail) return entry.thumbnail;
+    if (entry.source === "custom" || !entry.thumb) return null;
     const version = library?.thumb_version || entry.thumb || THUMB_VERSION_FALLBACK;
     return `${THUMB_URL}?name=${encodeURIComponent(entry.name)}&v=${encodeURIComponent(version)}`;
 }
@@ -609,8 +611,10 @@ function ensureCss() {
 .skutils-field { display: flex; flex-direction: column; gap: 4px; font-size: 12px; }
 .skutils-field span { opacity: .8; }
 .skutils-field input, .skutils-field textarea { padding: 6px 8px; border-radius: 6px; border: 1px solid var(--border-color, #444); background: var(--comfy-input-bg, #171717); color: var(--fg-color, #eee); font-size: 13px; font-family: inherit; }
+.skutils-field input:disabled { opacity: .6; cursor: not-allowed; }
 .skutils-field textarea { resize: vertical; min-height: 84px; }
 .skutils-field input[type="url"] { font-family: monospace; font-size: 12px; }
+.skutils-editor-hint { margin: -4px 0 2px; font-size: 11px; line-height: 1.4; opacity: .7; }
 .skutils-editor-error { min-height: 16px; font-size: 12px; color: #ff8a8a; }
 .skutils-editor-actions { display: flex; align-items: center; gap: 8px; }
 .skutils-editor-actions .spacer { flex: 1; }
@@ -929,7 +933,8 @@ function buildSectionOrderSetting(value, setValue) {
 // ---------------------------------------------------------------------------
 
 function buildEditor() {
-    const title = el("h3", { class: "skutils-editor-title", text: "New custom style" });
+    const title = el("h3", { class: "skutils-editor-title", text: "New style" });
+    const hint = el("div", { class: "skutils-editor-hint" });
     const nameInput = el("input", { type: "text", maxlength: "120", placeholder: "My style" });
     const sectionInput = el("input", { type: "text", maxlength: "60", placeholder: "Custom", list: "skutils-style-sections" });
     const datalist = el("datalist", { id: "skutils-style-sections" });
@@ -955,6 +960,7 @@ function buildEditor() {
             "div",
             { class: "skutils-editor-panel" },
             title,
+            hint,
             el("label", { class: "skutils-field" }, el("span", { text: "Name" }), nameInput),
             el("label", { class: "skutils-field" }, el("span", { text: "Section" }), sectionInput, datalist),
             el("label", { class: "skutils-field" }, el("span", { text: "Prompt" }), promptInput),
@@ -986,7 +992,7 @@ function openEditor(entry) {
     if (!modal) return;
     const isNew = !entry;
     const isCustom = !isNew && entry.source === "custom";
-    const clone = !isNew && !isCustom;
+    const isBundled = !isNew && !isCustom;
 
     const source = entry || {
         name: "",
@@ -999,23 +1005,35 @@ function openEditor(entry) {
 
     editorState = {
         originalName: isCustom ? entry.name : null,
+        bundledName: isBundled ? entry.name : null,
     };
     const editor = getEditorRefs();
     editor.title.textContent = isNew
-        ? "New custom style"
+        ? "New style"
         : isCustom
             ? `Edit “${entry.name}”`
-            : `Clone “${entry.name}”`;
-    editor.nameInput.value = clone ? `${entry.name} (custom)` : source.name || "";
+            : `Edit bundled style “${entry.name}”`;
+    editor.hint.textContent = isBundled
+        ? entry.overridden
+            ? "Edited — your changes override the bundled style and survive plugin updates."
+            : "Your edits are stored as an override in your user styles file, so they survive plugin updates."
+        : "Stored in your user styles file — plugin updates never overwrite it.";
+    editor.nameInput.value = source.name || "";
+    editor.nameInput.disabled = isBundled;
+    editor.nameInput.title = isBundled
+        ? "Bundled style names are fixed — workflows refer to them by name."
+        : "";
     editor.sectionInput.value = source.section || "Custom";
     editor.promptInput.value = source.prompt || "";
     editor.negativeInput.value = source.negative || "";
     editor.templateInput.value = source.template || "";
-    editor.thumbnailInput.value = isCustom ? entry.thumbnail || "" : "";
+    editor.thumbnailInput.value = source.thumbnail || "";
     editor.error.textContent = "";
-    editor.deleteButton.style.display = isCustom ? "" : "none";
+    editor.deleteButton.textContent = isBundled ? "Revert to bundled" : "Delete";
+    editor.deleteButton.style.display = isBundled && !entry.overridden ? "none" : "";
     editor.overlay.style.display = "flex";
-    setTimeout(() => editor.nameInput.focus(), 0);
+    const focusTarget = isBundled ? editor.sectionInput : editor.nameInput;
+    setTimeout(() => focusTarget.focus(), 0);
 }
 
 let editorRefs = null;
@@ -1026,6 +1044,7 @@ function getEditorRefs() {
     editorRefs = {
         overlay,
         title: overlay.querySelector(".skutils-editor-title"),
+        hint: overlay.querySelector(".skutils-editor-hint"),
         nameInput: overlay.querySelectorAll("input")[0],
         sectionInput: overlay.querySelectorAll("input")[1],
         datalist: overlay.querySelector("datalist"),
@@ -1067,14 +1086,15 @@ async function saveEditor() {
     }
 
     const originalName = editorState?.originalName ?? null;
+    const overrideName = editorState?.bundledName ?? null;
+    const payload = { action: "save", style };
+    if (originalName) payload.original_name = originalName;
+    if (overrideName) payload.override_name = overrideName;
+
     editor.saveButton.disabled = true;
     editor.error.textContent = "";
     try {
-        const result = await postCustom({
-            action: "save",
-            style,
-            original_name: originalName,
-        });
+        const result = await postCustom(payload);
         library = result.library;
         if (originalName && originalName !== style.name) {
             current.selected = current.selected.map((name) =>
@@ -1092,16 +1112,28 @@ async function saveEditor() {
 
 async function deleteEditor() {
     const editor = getEditorRefs();
-    const name = editorState?.originalName;
+    const originalName = editorState?.originalName ?? null;
+    const name = originalName || editorState?.bundledName;
     if (!name) return;
-    if (!window.confirm(`Delete the custom style “${name}”?`)) return;
+    const reverting = !originalName;
+    if (
+        !window.confirm(
+            reverting
+                ? `Revert “${name}” to the bundled style? Your edits to it will be removed.`
+                : `Delete the user style “${name}”?`,
+        )
+    ) {
+        return;
+    }
 
     editor.deleteButton.disabled = true;
     editor.error.textContent = "";
     try {
         const result = await postCustom({ action: "delete", name });
         library = result.library;
-        current.selected = current.selected.filter((selected) => selected !== name);
+        if (!reverting) {
+            current.selected = current.selected.filter((selected) => selected !== name);
+        }
         closeEditor();
         rebuildFromLibrary();
     } catch (error) {
@@ -1259,7 +1291,9 @@ function buildGrid() {
                 class: "skutils-tile-edit",
                 type: "button",
                 text: "✎",
-                title: entry.source === "custom" ? "Edit this style" : "Clone to a custom style",
+                title: entry.source === "custom"
+                    ? "Edit this style"
+                    : "Edit this style (saved as a user override)",
                 onclick: (event) => {
                     event.stopPropagation();
                     openEditor(entry);

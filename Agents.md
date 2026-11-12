@@ -38,7 +38,7 @@ web/                               # Single WEB_DIRECTORY: one JS file per featu
     skutils_style_selector.js
 scripts/                           # Dev-only generators (excluded from the package)
 tools/                             # Dev-only utilities (excluded from the package)
-    reorganize_styles.py           #   visual editor for skutils_style_selector/styles.json
+    reorganize_styles.py           #   visual editor for the user styles layer (layout only)
     README.md                      #   usage for the tools above
     backups/                       #   generated save backups (gitignored)
 docs/                              # One markdown file per feature (see rule below)
