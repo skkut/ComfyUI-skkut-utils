@@ -4,7 +4,11 @@ Skutils Resolution Calculator — node implementation.
 Calculates width and height from an aspect-ratio preset and a megapixel
 target, mirroring the built-in "Resolution Selector" node (aspect ratio +
 megapixels + rounding multiple) with a much larger list of aspect-ratio
-presets and a fixed megapixel dropdown (0.5–5.0 MP in 0.5 steps).
+presets and a short megapixel dropdown of prominent points (0.5–20.0 MP).
+The dropdown also accepts any positive value: the frontend adds a
+"Custom…" entry that prompts for a number, and VALIDATE_INPUTS below lets
+such values through server-side validation (see
+web/resolution_calculator.js).
 
 The first 8 aspect-ratio options are the exact option strings of the
 built-in node, so workflows built with it drop in unchanged; the rest are
@@ -44,8 +48,14 @@ RESOLUTION_OPTIONS = {
     "32:9 (Super Ultrawide)": (1928, 544),
 }
 
-# Megapixel dropdown: 0.5 to 5.0 in 0.5 steps.
-MEGAPIXEL_OPTIONS = [f"{mp:.1f}" for mp in (i * 0.5 for i in range(1, 11))]
+# Megapixel dropdown: a short list of prominent resolution points, spaced
+# roughly geometrically from 0.5 MP (SD1.5-era drafts) through the ~1 MP
+# native size and the common 2x/4x/8x/16x upscale ladder up to 20.0 MP.
+# Any other positive value is one click away through the node's frontend
+# "Custom…" entry, so the preset list deliberately stays short.
+MEGAPIXEL_OPTIONS = [
+    "0.5", "1.0", "2.0", "3.0", "4.0", "6.0", "8.0", "12.0", "16.0", "20.0",
+]
 
 # Rounding-multiple dropdown. 8 is the minimal value that divides all the
 # model families' requirements (SD1.5 wants 64, Flux wants 16/32, video
@@ -69,7 +79,7 @@ class SkutilsResolutionCalculator:
                 "megapixels": (
                     MEGAPIXEL_OPTIONS,
                     {"default": "1.0",
-                     "tooltip": "Target total megapixels (1 MP = 1,000,000 px); the result never exceeds this."},
+                     "tooltip": "Target total megapixels (1 MP = 1,000,000 px): pick one of the prominent presets from 0.5 to 20.0, or choose Custom… to enter any positive number. The result never exceeds it."},
                 ),
                 "multiple": (
                     MULTIPLE_OPTIONS,
@@ -84,6 +94,23 @@ class SkutilsResolutionCalculator:
     FUNCTION = "calculate"
     CATEGORY = "skkut-utils"
 
+    @classmethod
+    def VALIDATE_INPUTS(cls, megapixels):
+        """Accept any positive megapixel value, not just the dropdown presets.
+
+        Naming an input here also exempts it from the server's
+        combo-membership check (execution.py skips that check for inputs in
+        the VALIDATE_INPUTS signature), which is what lets a workflow carry a
+        value typed through the node's "Custom…" dropdown entry.
+        """
+        try:
+            value = float(megapixels)
+        except (TypeError, ValueError):
+            return f"megapixels must be a number, got {megapixels!r}."
+        if not math.isfinite(value) or value <= 0:
+            return "megapixels must be a positive number."
+        return True
+
     def calculate(self, aspect_ratio, megapixels, multiple):
         base_w, base_h = RESOLUTION_OPTIONS[aspect_ratio]
         # Megapixels are decimal: 1 MP = 1,000,000 pixels.  Anchors are the
@@ -92,7 +119,7 @@ class SkutilsResolutionCalculator:
         # actual pixel count.
         target_px = float(megapixels) * 1_000_000
         # A square preset must stay square: the largest multiple-compatible
-        # square at or below the target (e.g. 1:1 at 1.5 MP -> 1224x1224).
+        # square at or below the target (e.g. 1:1 at 3.0 MP -> 1728x1728).
         if base_w == base_h:
             side = math.floor(math.sqrt(target_px) / multiple) * multiple
             return (side, side)

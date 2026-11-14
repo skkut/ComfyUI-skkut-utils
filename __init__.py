@@ -15,7 +15,8 @@ Features
   prompt/workflow metadata: a custom node plus a right-click
   "Save Compressed Weppy" context-menu entry.
 - resolution_calculator — "Skutils Resolution Calculator" node: aspect-ratio
-  preset (20 options) + megapixel dropdown (0.5–5.0 MP) → width/height.
+  preset (20 options) + megapixel dropdown (10 prominent presets, 0.5–20.0
+  MP, or any positive value via the dropdown's "Custom…" entry) → width/height.
 - scale_to_total_pixels — "Skutils Scale Image to Total Pixels" node: the
   core resize node with an optional image input, so it can guard an image
   slot that may be left empty.
