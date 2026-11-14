@@ -2,7 +2,8 @@
 
 A maintenance utility for the **user layer** of the Skutils Style Selector:
 it edits the layout (style order, section order, pins, recategorization) in
-your `user_styles.json` under ComfyUI's user directory. The bundled
+your `user_styles.json` — under ComfyUI's user directory or, while that file
+does not exist, beside `styles.json` (gitignored). The bundled
 `skutils_style_selector/styles.json` is read-only.
 
 It is **not** part of the ComfyUI plugin: nothing in the repo imports it and it
@@ -20,14 +21,25 @@ python tools/reorganize_styles.py
 The script prints a URL containing a one-run access token and opens it in your
 browser. It binds only to `127.0.0.1`.
 
-It finds the user file through `folder_paths` when available, then through a
-`user/` folder next to the checkout's `custom_nodes` parent. Running from a
-separate development checkout usually needs the path explicitly:
+It resolves the user file with the plugin's own logic: `folder_paths` when
+importable, then `COMFYUI_USER_DIR` / `COMFYUI_PATH`, ComfyUI Desktop's
+`config.json` (`basePath`), and finally the checkout layout. The
+user-directory file wins when it exists. Otherwise an existing **package-local**
+`skutils_style_selector/user_styles.json` beside `styles.json` is used
+(gitignored, created on first save); if neither exists, a new file is created
+in the user directory, or package-locally when no user directory was found.
+The plugin applies the same precedence, so both always agree.
+
+A separate development checkout therefore needs no explicit path in the usual
+Desktop/portable setup. To target another profile or file:
 
 ```bash
 python tools/reorganize_styles.py \
   --user-styles "C:/Programs/ComfyDocs/user/default/skkut_style_selector/user_styles.json"
 ```
+
+A blank `user_styles.json` beside `styles.json` is also fine to create by hand
+(the tool and plugin accept it as an empty user layer).
 
 Options:
 
@@ -35,7 +47,7 @@ Options:
 |---|---|
 | `--port N` | Port on `127.0.0.1` (default `8765`; `0` picks a free port) |
 | `--library PATH` | Bundled `styles.json` to read (default `skutils_style_selector/styles.json`); never written |
-| `--user-styles PATH` | User styles file to edit; created on the first save |
+| `--user-styles PATH` | User styles file to edit; overrides auto-detection; created on the first save |
 | `--no-browser` | Don't open the browser automatically |
 
 ## What it does
@@ -73,8 +85,8 @@ negatives, templates, or thumbnails in the picker's editor inside ComfyUI.
 
 ## Saving
 
-**Save** (or Ctrl+S) writes **only** `user_styles.json`, atomically. Before
-each write, the old user file is copied to a `backups/` folder next to it as
+**Save** (or Ctrl+S) writes **only** the active `user_styles.json`, atomically.
+Before each write, the old user file is copied to a `backups/` folder next to it as
 `user-styles-<timestamp>.json`; the newest 20 backups are kept. The bundled
 `styles.json` is never modified — open the file before and after a save and it
 is byte-for-byte identical.

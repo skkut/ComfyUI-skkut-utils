@@ -15,3 +15,7 @@ tools/
 
 # Backup / manual comparison copy of styles.json; not loaded at runtime
 skutils_style_selector/styles2.json
+
+# Developer-local user layer and its automatic backups; never packaged
+skutils_style_selector/user_styles.json
+skutils_style_selector/backups/

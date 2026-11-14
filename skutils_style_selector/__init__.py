@@ -9,7 +9,8 @@ style name.  Styles can be combined into one prompt or emitted one per
 style for batch execution.
 
 A read-only bundled ``styles.json`` is merged at read time with a **user
-layer** (``user_styles.json`` under ComfyUI's user directory): new styles,
+layer** (``user_styles.json`` under ComfyUI's user directory, or — as a
+gitignored developer fallback — beside ``styles.json``): new styles,
 field-level overrides of bundled styles, and the layout/order saved by the
 picker and the organizer tool.  User changes therefore survive plugin
 updates; nothing ever writes ``styles.json``.

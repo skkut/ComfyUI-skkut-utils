@@ -9,7 +9,9 @@ What it does
 ------------
 Serves a small editor for the **user styles file**
 (``<ComfyUI user dir>/default/skkut_style_selector/user_styles.json``), shown
-on top of the read-only bundled library:
+on top of the read-only bundled library. When that file does not exist, the
+package-local ``skutils_style_selector/user_styles.json`` beside ``styles.json``
+is used instead (gitignored; the plugin reads it too):
 
   * drag a style (by its grip) to reorder it inside its section;
   * pin styles to anchor them in place — pinning never reorders, pinned rows
@@ -36,10 +38,15 @@ Options:
     --port N              port on 127.0.0.1 (default 8765; 0 = random free port)
     --library PATH        bundled styles.json to read (default:
                           skutils_style_selector/styles.json; never written)
-    --user-styles PATH    user_styles.json to edit. Default: auto-detect
-                          through ``folder_paths``, then a ``user/`` folder
-                          next to the checkout's ``custom_nodes``. Pass this
-                          explicitly when running from a separate checkout.
+    --user-styles PATH    user_styles.json to edit. Default: ComfyUI's user
+                          directory (resolved through ``folder_paths`` when
+                          importable, then ``COMFYUI_USER_DIR`` /
+                          ``COMFYUI_PATH``, ComfyUI Desktop's config, or a
+                          ``user/`` folder around the checkout). If the user
+                          directory is unavailable, the package-local
+                          ``skutils_style_selector/user_styles.json`` beside
+                          ``styles.json`` is used (gitignored; created on the
+                          first save).
     --no-browser          do not open the browser automatically
 
 Only 127.0.0.1 is bound, and every request requires a per-run random token,
@@ -1810,30 +1817,18 @@ INDEX_HTML = r"""<!doctype html>
 # ---------------------------------------------------------------------------
 
 def resolve_user_styles_path(explicit):
-    """Find the plugin's user styles file, or ``None`` if undetectable."""
+    """Find the user styles file the plugin itself would use.
+
+    ``library.user_library_path()`` owns the precedence (ComfyUI's user
+    directory first, then a package-local ``user_styles.json`` beside
+    ``styles.json``), so the organizer and the picker can never disagree.
+    Outside ComfyUI's interpreter ``folder_paths`` is unavailable, and the
+    library falls back to ``COMFYUI_USER_DIR`` / ``COMFYUI_PATH``, ComfyUI
+    Desktop's config, or the checkout layout.
+    """
     if explicit:
         return os.path.abspath(explicit)
-    try:
-        import folder_paths
-
-        getter = getattr(folder_paths, "get_user_directory", None)
-        if callable(getter):
-            directory = getter()
-            if directory:
-                return os.path.join(
-                    directory, "default", LIBRARY.USER_DIR_NAME, LIBRARY.USER_FILE_NAME
-                )
-    except Exception:  # noqa: BLE001 - ComfyUI is not importable in a bare shell
-        pass
-
-    for root in (os.path.abspath(REPO_ROOT), os.path.realpath(REPO_ROOT)):
-        base = os.path.dirname(os.path.dirname(root))
-        user_dir = os.path.join(base, "user")
-        if os.path.isdir(user_dir):
-            return os.path.join(
-                user_dir, "default", LIBRARY.USER_DIR_NAME, LIBRARY.USER_FILE_NAME
-            )
-    return None
+    return LIBRARY.user_library_path()
 
 
 def main(argv=None):
@@ -1861,8 +1856,10 @@ def main(argv=None):
         "--user-styles",
         default=None,
         help=(
-            "user_styles.json to edit. Default: auto-detect through folder_paths "
-            "or a user/ folder next to the checkout's custom_nodes parent."
+            "user_styles.json to edit. Default: ComfyUI's user directory "
+            "(folder_paths, COMFYUI_USER_DIR/COMFYUI_PATH, ComfyUI Desktop's "
+            "config, or the checkout layout); while its user_styles.json does "
+            "not exist, the package-local file beside styles.json is used."
         ),
     )
     parser.add_argument(
@@ -1881,12 +1878,9 @@ def main(argv=None):
         parser.error(f"Could not read {library_path}: {error}")
 
     user_path = resolve_user_styles_path(args.user_styles)
-    if not user_path:
-        parser.error(
-            "Could not locate ComfyUI's user directory. Pass --user-styles PATH, e.g.\n"
-            "  <ComfyUI>/user/default/skkut_style_selector/user_styles.json\n"
-            "A new file is created there on the first save."
-        )
+    using_local = os.path.normcase(os.path.abspath(user_path)) == os.path.normcase(
+        os.path.abspath(LIBRARY.LOCAL_USER_PATH)
+    )
     if os.path.exists(user_path):
         try:
             read_user_data(user_path)
@@ -1897,6 +1891,21 @@ def main(argv=None):
             f"  Note: {user_path} does not exist yet; it is created on the first save.",
             flush=True,
         )
+    if using_local and not args.user_styles:
+        if LIBRARY._user_directory():
+            print(
+                "  Note: editing the package-local user_styles.json beside styles.json\n"
+                "        (ComfyUI's user directory was found, but its user_styles.json\n"
+                "        does not exist, so the plugin reads this package-local file).",
+                flush=True,
+            )
+        else:
+            print(
+                "  Note: ComfyUI's user directory was not detected; edits go to the\n"
+                "        package-local user_styles.json beside styles.json. The plugin\n"
+                "        reads it while the user-directory file does not exist.",
+                flush=True,
+            )
 
     token = secrets.token_urlsafe(32)
     try:

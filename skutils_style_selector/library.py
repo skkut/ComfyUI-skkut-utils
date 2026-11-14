@@ -8,7 +8,9 @@ Three layers, merged at read time:
   * **User** — ``user_styles.json`` under ComfyUI's user directory.  Holds
     new styles, per-style overrides of bundled styles, and the layout
     (section order, style order, pins).  A plugin update replaces the
-    bundled layer only; the user layer keeps overriding it.
+    bundled layer only; the user layer keeps overriding it.  As a developer
+    fallback, a ``user_styles.json`` beside ``styles.json`` is used instead
+    while the canonical file does not exist (gitignored, never packaged).
   * **Legacy custom** — ``custom_styles.json`` in the same directory.  Read
     as a fallback when ``user_styles.json`` does not exist yet; new writes
     always go to ``user_styles.json``.
@@ -27,6 +29,7 @@ import json
 import logging
 import os
 import re
+import sys
 import tempfile
 import threading
 
@@ -39,6 +42,11 @@ THUMBS_DIR = os.path.join(PACKAGE_DIR, "assets", "thumbs")
 USER_DIR_NAME = "skkut_style_selector"
 USER_FILE_NAME = "user_styles.json"
 LEGACY_CUSTOM_FILE_NAME = "custom_styles.json"
+# A user_styles.json placed beside styles.json.  It is a **developer
+# fallback** used while the canonical user-directory file does not exist
+# (e.g. the organizer run from a separate clone): gitignored, never
+# packaged, and never an override once the canonical file exists.
+LOCAL_USER_PATH = os.path.join(PACKAGE_DIR, USER_FILE_NAME)
 CUSTOM_SECTION = "Custom"
 USER_FILE_VERSION = 1
 
@@ -124,12 +132,35 @@ def _is_entry(entry):
 # User library: paths
 # ---------------------------------------------------------------------------
 
-def user_library_path():
-    """Path of ``user_styles.json``, or ``None`` if there is no user dir."""
+def _canonical_user_library_path():
+    """``user_styles.json`` under ComfyUI's user directory, or ``None``."""
     user_dir = _user_directory()
     if not user_dir:
         return None
     return os.path.join(user_dir, "default", USER_DIR_NAME, USER_FILE_NAME)
+
+
+def user_library_path():
+    """The active ``user_styles.json`` path.
+
+    Resolution order — the organizer tool uses this same function, so the
+    picker and the organizer always agree on the file:
+
+    1. ``<ComfyUI user dir>/default/skkut_style_selector/user_styles.json``
+       when it exists.  This is the canonical location.
+    2. ``user_styles.json`` beside ``styles.json`` when it exists (developer
+       fallback; see ``LOCAL_USER_PATH``).
+    3. The canonical path when ComfyUI's user directory was detected; a new
+       file is created there on the first write.
+    4. The package-local path otherwise, so a standalone checkout still has
+       somewhere to write.
+    """
+    canonical = _canonical_user_library_path()
+    if canonical and os.path.isfile(canonical):
+        return canonical
+    if os.path.isfile(LOCAL_USER_PATH):
+        return LOCAL_USER_PATH
+    return canonical or LOCAL_USER_PATH
 
 
 def legacy_custom_library_path():
@@ -141,25 +172,76 @@ def legacy_custom_library_path():
 
 
 def _user_directory():
-    """ComfyUI's user directory, tolerating older ``folder_paths`` builds."""
+    """ComfyUI's user directory, tolerating older ``folder_paths`` builds.
+
+    Outside ComfyUI's interpreter (the organizer tool runs with a plain
+    Python), ``folder_paths`` is unavailable, so the directory is also taken
+    from ``COMFYUI_USER_DIR`` / ``COMFYUI_PATH`` and from ComfyUI Desktop's
+    config.  The last resort recognizes a checkout that sits inside
+    ``<ComfyUI>/custom_nodes/``.
+    """
     try:
         import folder_paths
     except Exception:
+        folder_paths = None
+
+    if folder_paths is not None:
+        getter = getattr(folder_paths, "get_user_directory", None)
+        if callable(getter):
+            try:
+                directory = getter()
+                if directory:
+                    return directory
+            except Exception:
+                pass
+
+        base = getattr(folder_paths, "base_path", None)
+        if base:
+            return os.path.join(base, "user")
+
+    value = os.environ.get("COMFYUI_USER_DIR")
+    if value:
+        return value
+    for variable in ("COMFYUI_PATH", "COMFYUI_BASE_PATH"):
+        value = os.environ.get(variable)
+        if value:
+            return os.path.join(value, "user")
+
+    desktop = _desktop_user_directory()
+    if desktop:
+        return desktop
+
+    # <base>/custom_nodes/<repo>/skutils_style_selector -> <base>/user
+    base = os.path.dirname(os.path.dirname(os.path.dirname(PACKAGE_DIR)))
+    candidate = os.path.join(base, "user")
+    if os.path.isdir(candidate):
+        return candidate
+    return None
+
+
+def _desktop_user_directory():
+    """``<basePath>/user`` from ComfyUI Desktop's config, if it exists."""
+    if os.name == "nt":
+        appdata = os.environ.get("APPDATA")
+        config_dir = os.path.join(appdata, "ComfyUI") if appdata else None
+    elif sys.platform == "darwin":
+        config_dir = os.path.expanduser("~/Library/Application Support/ComfyUI")
+    else:
+        xdg = os.environ.get("XDG_CONFIG_HOME") or os.path.expanduser("~/.config")
+        config_dir = os.path.join(xdg, "ComfyUI")
+    if not config_dir:
         return None
 
-    getter = getattr(folder_paths, "get_user_directory", None)
-    if callable(getter):
-        try:
-            directory = getter()
-            if directory:
-                return directory
-        except Exception:
-            pass
-
-    base = getattr(folder_paths, "base_path", None)
-    if base:
-        return os.path.join(base, "user")
-    return None
+    try:
+        with open(os.path.join(config_dir, "config.json"), "r", encoding="utf-8") as handle:
+            config = json.load(handle)
+    except (OSError, ValueError):
+        return None
+    base = config.get("basePath") if isinstance(config, dict) else None
+    if not isinstance(base, str) or not base:
+        return None
+    user_dir = os.path.join(base, "user")
+    return user_dir if os.path.isdir(user_dir) else None
 
 
 # ---------------------------------------------------------------------------
@@ -306,7 +388,7 @@ def _load_user_data_strict():
     """The user library for writers: raises instead of silently emptying."""
     path = user_library_path()
     if not path:
-        raise RuntimeError("ComfyUI's user directory is unavailable.")
+        raise RuntimeError("No user styles file location is available.")
     data = load_user_library(path)
     if data is None:
         legacy = legacy_custom_library_path()
@@ -685,7 +767,7 @@ def write_user_library(path, data):
 def _write_user(data):
     path = user_library_path()
     if not path:
-        raise RuntimeError("ComfyUI's user directory is unavailable.")
+        raise RuntimeError("No user styles file location is available.")
     write_user_library(path, data)
 
 

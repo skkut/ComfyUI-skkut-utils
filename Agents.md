@@ -31,6 +31,7 @@ skutils_style_selector/            # Feature: Skutils Style Selector (node + dat
     routes.py                      #   /skutils_style_selector/* endpoints
     styles.json                    #   GENERATED + hand-curated bundled library (committed)
     assets/thumbs/*.webp           #   bundled style thumbnails (committed)
+    user_styles.json               #   dev-only user layer fallback (gitignored, never packaged)
 web/                               # Single WEB_DIRECTORY: one JS file per feature
     auto_dark_mode.js
     jobTimer.js

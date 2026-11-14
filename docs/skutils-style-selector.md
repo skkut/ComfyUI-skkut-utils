@@ -16,7 +16,7 @@ updates.
 | **Python backend** | `skutils_style_selector/` — node, library, HTTP routes |
 | **Frontend extension** | `web/skutils_style_selector.js` (picker, node body, editor) |
 | **Bundled data** | `skutils_style_selector/styles.json` + `assets/thumbs/*.webp` (read-only) |
-| **User data** | `user_styles.json` under ComfyUI's user directory — new styles, overrides of bundled styles, layout |
+| **User data** | `user_styles.json` under ComfyUI's user directory (developer fallback: beside `styles.json`, gitignored) — new styles, overrides of bundled styles, layout |
 | **Dependencies** | none beyond ComfyUI itself |
 
 Node name: **Skutils Style Selector** · Category: `skkut-utils` (Nodes → Extensions → skkut-utils)
@@ -204,6 +204,19 @@ a hand-edited file may contain one.)
 For a typical install: `ComfyUI/user/default/skkut_style_selector/user_styles.json`
 (ComfyUI Desktop: `<base>/user/default/skkut_style_selector/user_styles.json`).
 
+The plugin and `tools/reorganize_styles.py` resolve the file the same way:
+
+1. The path above, when it exists — the canonical location.
+2. `skutils_style_selector/user_styles.json`, **beside `styles.json`**, when it
+   exists — a developer fallback used while the canonical file does not exist.
+   It is gitignored and never packaged. The plugin reads it and writes there, so
+   organizer changes show up in the picker.
+3. Otherwise the canonical path, created on the first write.
+
+A `user_styles.json` beside `styles.json` therefore acts as a fallback, not an
+override: as soon as the user-directory file exists, it takes precedence and
+the package-local file is ignored.
+
 ```json
 {
   "version": 1,
@@ -260,9 +273,19 @@ result.
 
 ```bash
 python tools/reorganize_styles.py
-# auto-detects the user directory; otherwise:
+# target a specific profile/file explicitly:
 python tools/reorganize_styles.py --user-styles "C:/ComfyUI/user/default/skkut_style_selector/user_styles.json"
 ```
+
+The tool resolves the user file with the plugin's own logic (the three steps
+above). Outside ComfyUI's interpreter `folder_paths` is unavailable, so it
+also checks `COMFYUI_USER_DIR`, `COMFYUI_PATH` / `COMFYUI_BASE_PATH`, and
+ComfyUI Desktop's `config.json` (`basePath`). The user-directory file wins
+when it exists; otherwise an existing package-local
+`skutils_style_selector/user_styles.json` beside `styles.json` is used
+(gitignored, created on first save), with a note on startup. If neither
+exists, a new file is created in the user directory, or package-locally when
+no user directory was found. `--user-styles` overrides all of this.
 
 Options: `--port N` (default 8765, `0` = random), `--library PATH` (the
 bundled file to read; default `skutils_style_selector/styles.json`, never
@@ -277,8 +300,9 @@ file. The organizer cannot edit prompts or create styles; use the picker's
 editor for those.
 
 Reopen the picker in ComfyUI to see the new order; no restart is needed. For
-development, when running from a separate checkout (so the auto-detected
-`user/` folder is not the one ComfyUI uses), pass `--user-styles` explicitly.
+development, a separate checkout and the plugin agree on the package-local
+fallback, so an explicit path is normally unnecessary; pass `--user-styles`
+only to target another ComfyUI profile or a different file.
 
 ## Bundled library
 
@@ -418,11 +442,12 @@ without positive prose are excluded with it.
 | Choosing two styles runs the graph twice | `batch_mode` is on. Turn it off (Combine styles) for a single prompt |
 | The main prompt disappeared | Check the advanced `template`: it must contain `{prompt}`; if it doesn't, the main prompt is appended at the end instead. A style's own template takes precedence over the node template |
 | The Name field is disabled when editing a bundled style | By design: workflows refer to styles by name, so a bundled name is fixed. Edit the other fields (stored as an override), or create a new user style with a different name |
-| My edits/order vanished after a plugin update | They should not — they are in `user_styles.json`, which plugin updates never touch. Check that the file exists under ComfyUI's user directory and is valid JSON. A corrupt file is reported in the ComfyUI console and treated as empty for reading (writes refuse to overwrite it); fix it or restore a backup from the `backups/` folder next to it |
+| My edits/order vanished after a plugin update | They should not — they are in `user_styles.json` under ComfyUI's user directory, which plugin updates never touch. Check that the file exists there and is valid JSON. A corrupt file is reported in the ComfyUI console and treated as empty for reading (writes refuse to overwrite it); fix it or restore a backup from the `backups/` folder next to it. The package-local developer fallback beside `styles.json` is the exception: a reinstall can remove it, so move it to the user directory for data you want to keep |
 | Style save fails with *already exists* | Names are unique case-insensitively across bundled + user styles. Bundled styles are edited in place (their name is fixed); pick a different name for a new style |
-| Save fails with *user directory unavailable* | ComfyUI's `folder_paths` exposes neither `get_user_directory()` nor `base_path`, so the user styles file cannot be located. Check the ComfyUI installation |
+| Save fails with *user directory unavailable* | ComfyUI's `folder_paths` exposes neither `get_user_directory()` nor `base_path`, and the package-local fallback beside `styles.json` is not writable. Check the ComfyUI installation and the custom-node folder's permissions |
 | Organizer changes do not appear in the picker | Reopen the picker — it fetches the library on every open. No restart is needed. If **Settings → skkut-utils → Style Selector → Section order** is customized, it overrides the saved section order (within-section order and pins still apply) |
-| Organizer says it cannot find the user directory | Running from a separate checkout, the auto-detection cannot see ComfyUI's `user/` folder. Pass `--user-styles "<ComfyUI>/user/default/skkut_style_selector/user_styles.json"` |
+| Organizer cannot find the user directory | It no longer errors: when detection fails it edits the package-local `skutils_style_selector/user_styles.json` beside `styles.json` (gitignored) and prints a note. Pass `--user-styles "<ComfyUI>/user/default/skkut_style_selector/user_styles.json"` to target a specific profile |
+| Organizer edits a different file than the picker | Both use the same precedence: the user-directory file when it exists, otherwise the package-local one. The organizer prints the file it is editing; the picker uses the same rule at runtime. Rename/remove the unwanted file or pass `--user-styles` |
 | `file_name` is empty | No selected name resolved against the library (or `select_styles` is empty) |
 | `template` shows a JSON array such as `["Ghibli Style"]` | The workflow was saved by an older build where `positive`/`negative` were widgets, so the saved values were applied to the wrong widgets. Loading the node repairs it: the selection is recovered from the shifted value, batch mode is recovered from the old saved value, and `template` resets to the default (a custom template from before the shift cannot be recovered). Re-save the workflow |
 | Old UI or old thumbnails after updating the repo | Hard-refresh the browser (Ctrl+F5) so ComfyUI reloads `web/skutils_style_selector.js`; restart ComfyUI for the Python side. Thumbnail URLs embed a fingerprint of the bundled files (`thumb_version`), so replaced images bypass the browser's 24-hour image cache on the next load — a stale thumbnail that survives that points to an old frontend bundle |

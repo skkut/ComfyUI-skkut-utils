@@ -6,8 +6,9 @@
                                           save/revert an override of a
                                           bundled style
 
-Nothing here writes ``styles.json``; every change goes to the user styles
-file under ComfyUI's user directory (see ``library.py``).
+Nothing here writes ``styles.json``; every change goes to the active user
+styles file — ComfyUI's user directory, or the package-local developer
+fallback (see ``library.py``).
 
 The thumbnail route never accepts a path: it looks the style up by name and
 only then resolves the stored filename, containment-checked against the

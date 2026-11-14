@@ -9,8 +9,9 @@ import { app } from "../../scripts/app.js";
  *
  *   - a compact chip list + "Choose styles" button on the node body;
  *   - a full-screen picker (search, section filter, ordered multi-select);
- *   - an editor for custom styles, stored by the Python side under
- *     ComfyUI's user directory;
+ *   - an editor for custom styles, stored by the Python side in the active
+ *     user styles file (ComfyUI's user directory, or a developer fallback
+ *     beside styles.json);
  *   - a reorderable section list in ComfyUI's Settings dialog that controls
  *     the order sections appear in the picker.
  */
