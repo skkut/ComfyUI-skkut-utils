@@ -24,6 +24,16 @@ import { app } from "../../scripts/app.js";
  *    unknown value.
  *
  * Cancel restores the previously selected preset; invalid input re-prompts.
+ *
+ * Subgraphs: when the megapixels widget is promoted to a subgraph node, the
+ * frontend gives the host node a store-backed "promoted" widget and never
+ * forwards edits to the interior node's widget callback (SubgraphNode
+ * `_setWidget` + `promotedWidgetStoreProjection`). That host widget is what
+ * the user interacts with, so this extension also decorates every promoted
+ * host widget whose interior source is this node's megapixels widget: it adds
+ * "Custom…" to the host option list, re-adds saved custom values, and wraps
+ * the host widget's callback with the same prompt. Nested subgraphs (a
+ * promoted input of a promoted input) are resolved through the link chain.
  */
 
 const NODE_CLASS = "SkutilsResolutionCalculator";
@@ -32,6 +42,8 @@ const CUSTOM_OPTION = "Custom…";
 const DEFAULT_FALLBACK = "1.0";
 /** Custom values are canonicalised to at most this many decimal places. */
 const MAX_DECIMALS = 4;
+/** Guard against malformed/cyclic promotion chains. */
+const MAX_PROMOTION_DEPTH = 100;
 
 app.registerExtension({
     name: "SkkutUtils.ResolutionCalculator",
@@ -56,6 +68,33 @@ app.registerExtension({
             if (widget) ensureOption(widget, widget.value);
             return result;
         };
+    },
+
+    nodeCreated(node) {
+        if (isSubgraphNode(node)) {
+            watchSubgraphNode(node);
+            scheduleRescan();
+        } else if (isResolutionNode(node)) {
+            // A calculator instance may have been created after a host
+            // subgraph node had already resolved its promoted widget.
+            scheduleRescan();
+        }
+    },
+
+    loadedGraphNode(node) {
+        if (isSubgraphNode(node)) decorateSubgraphNode(node);
+    },
+
+    afterConfigureGraph() {
+        scheduleRescan();
+    },
+
+    afterLoadGraph() {
+        scheduleRescan();
+    },
+
+    setup() {
+        scheduleRescan();
     },
 });
 
@@ -82,6 +121,241 @@ function setupMegapixels(node) {
         }
         void requestCustomValue(node, widget, state);
     };
+}
+
+/* ------------------------------------------------------------------------- *
+ * Promoted widgets on subgraph nodes
+ * ------------------------------------------------------------------------- */
+
+function isSubgraphNode(node) {
+    if (typeof node?.isSubgraphNode === "function") return node.isSubgraphNode();
+    return Boolean(node?.subgraph?.inputNode);
+}
+
+function isResolutionNode(node) {
+    const type = node?.comfyClass ?? node?.type ?? node?._state?.type;
+    return type === NODE_CLASS;
+}
+
+let rescanQueued = false;
+
+/**
+ * Debounced sweep of the graphs for subgraph nodes with a promoted megapixels
+ * input. Runs after promotion/binding/load changes so every host widget gets
+ * decorated even when the frontend rebuilt it without telling us directly.
+ */
+function scheduleRescan() {
+    if (rescanQueued) return;
+    rescanQueued = true;
+    setTimeout(() => {
+        rescanQueued = false;
+        scanForPromotedMegapixels(app.graph);
+        const activeGraph = app.canvas?.graph;
+        if (activeGraph && activeGraph !== app.graph) {
+            scanForPromotedMegapixels(activeGraph);
+        }
+    }, 0);
+}
+
+function scanForPromotedMegapixels(graph) {
+    const seen = new Set();
+
+    const visitNode = (node) => {
+        if (!isSubgraphNode(node)) return;
+        decorateSubgraphNode(node);
+        const subgraph = node.subgraph;
+        if (!subgraph || seen.has(subgraph)) return;
+        seen.add(subgraph);
+        for (const child of subgraph.nodes ?? []) visitNode(child);
+    };
+
+    const visitGraph = (current) => {
+        if (!current || seen.has(current)) return;
+        seen.add(current);
+        for (const node of current.nodes ?? []) visitNode(node);
+    };
+
+    visitGraph(graph);
+}
+
+/** Watch a subgraph node for promotions/rebindings that replace host widgets. */
+function watchSubgraphNode(node) {
+    if (node.__skutilsResolutionWatch) return;
+    node.__skutilsResolutionWatch = true;
+
+    const controller = new AbortController();
+    const onSubgraphEvent = (event) => {
+        // `widget-promoted` carries the instance whose bindings changed; a
+        // shared subgraph definition notifies every instance, so decorate the
+        // node that owns this listener as well.
+        decorateSubgraphNode(event?.detail?.subgraphNode ?? node);
+        if (event?.detail?.subgraphNode !== node) decorateSubgraphNode(node);
+    };
+
+    const events = node.subgraph?.events;
+    for (const name of ["widget-promoted", "input-added"]) {
+        try {
+            events?.addEventListener?.(name, onSubgraphEvent, {
+                signal: controller.signal,
+            });
+        } catch {
+            // Frontends without abortable custom events: the handler is
+            // idempotent, so a stray listener is harmless.
+            events?.addEventListener?.(name, onSubgraphEvent);
+        }
+    }
+
+    const onRemoved = node.onRemoved;
+    node.onRemoved = function () {
+        controller.abort();
+        return onRemoved?.apply(this, arguments);
+    };
+}
+
+/**
+ * Decorate every promoted input of `hostNode` whose interior source is this
+ * node's megapixels widget.
+ */
+function decorateSubgraphNode(hostNode) {
+    if (!isSubgraphNode(hostNode)) return;
+    try {
+        for (const input of hostNode.inputs ?? []) {
+            if (!input?.widgetId) continue;
+            const hostWidget = getHostWidget(hostNode, input);
+            if (!hostWidget) continue;
+            const source = resolvePromotedSource(hostNode, input);
+            if (!isMegapixelsSource(source)) continue;
+            decorateHostWidget(hostNode, hostWidget);
+        }
+    } catch (error) {
+        // Never let decoration break the frontend's promotion flow.
+        console.warn("[skkut-utils] failed to decorate promoted megapixels widget", error);
+    }
+}
+
+function getHostWidget(hostNode, input) {
+    return hostNode.getWidgetFromSlot?.(input) ?? input?._widget ?? null;
+}
+
+/**
+ * Walk the promotion chain of `input` to the concrete interior widget.
+ * Returns `{ node, widget }` or null when the input is not promoted to a
+ * real widget (e.g. connected by a link instead).
+ */
+function resolvePromotedSource(hostNode, input, depth = 0) {
+    if (depth >= MAX_PROMOTION_DEPTH) return null;
+    const slot = input?._subgraphSlot;
+    const subgraph = hostNode?.subgraph;
+    if (!slot || !subgraph) return null;
+
+    for (const linkId of slot.linkIds ?? []) {
+        const link = subgraph.getLink?.(linkId);
+        if (!link) continue;
+        const resolved = resolveLink(link, subgraph);
+        if (!resolved) continue;
+        const { inputNode, targetInput } = resolved;
+
+        if (isSubgraphNode(inputNode)) {
+            const nested = resolvePromotedSource(inputNode, targetInput, depth + 1);
+            if (nested) return nested;
+            continue;
+        }
+
+        const widget =
+            inputNode.getWidgetFromSlot?.(targetInput) ??
+            findWidgetByInput(inputNode, targetInput);
+        if (widget) return { node: inputNode, widget };
+    }
+    return null;
+}
+
+function resolveLink(link, subgraph) {
+    try {
+        if (typeof link.resolve === "function") {
+            const { inputNode, input } = link.resolve(subgraph);
+            if (inputNode && input) return { inputNode, targetInput: input };
+        }
+    } catch {
+        // Fall through to the raw link fields below.
+    }
+    const inputNode = subgraph.getNodeById?.(link.target_id);
+    const targetInput = inputNode?.inputs?.[link.target_slot];
+    return inputNode && targetInput ? { inputNode, targetInput } : null;
+}
+
+function findWidgetByInput(node, input) {
+    const name = input?.widget?.name;
+    if (!name) return null;
+    return node?.widgets?.find((widget) => widget.name === name) ?? null;
+}
+
+function isMegapixelsSource(source) {
+    if (!source?.widget || source.widget.name !== MEGAPIXELS_WIDGET) return false;
+    return (
+        isResolutionNode(source.node) ||
+        Boolean(source.widget.__skutilsCustomMegapixels)
+    );
+}
+
+/**
+ * Make a promoted host widget behave like the interior megapixels widget:
+ * keep "Custom…" and the current value in its option list, and intercept the
+ * "Custom…" selection with the prompt.
+ */
+function decorateHostWidget(hostNode, widget) {
+    let state = widget.__skutilsPromotedMegapixels;
+    if (!state) {
+        state = { lastValue: realValue(widget.value), wrapper: null };
+        widget.__skutilsPromotedMegapixels = state;
+        trackLastValue(widget, state);
+        wrapHostCallback(hostNode, widget, state);
+    } else if (widget.callback !== state.wrapper) {
+        // The frontend (or another extension) replaced the host widget's
+        // callback while rebinding; re-install the interception, chaining to
+        // the new callback.
+        wrapHostCallback(hostNode, widget, state);
+    }
+
+    const current = realValue(widget.value);
+    if (current !== undefined) state.lastValue = current;
+    refreshHostOptions(widget);
+}
+
+function wrapHostCallback(hostNode, widget, state) {
+    const callback = widget.callback;
+    const wrapper = function (value, ...args) {
+        if (value !== CUSTOM_OPTION) {
+            return callback?.apply(this, [value, ...args]);
+        }
+        void requestCustomValue(hostNode, widget, state);
+    };
+    state.wrapper = wrapper;
+    widget.callback = wrapper;
+}
+
+/** A selectable megapixels value, or undefined for null/empty/Custom… */
+function realValue(value) {
+    if (value == null) return undefined;
+    const text = String(value);
+    return text === "" || text === CUSTOM_OPTION ? undefined : text;
+}
+
+/** Keep the host option list in sync with the current value + Custom… */
+function refreshHostOptions(widget) {
+    const values = getValues(widget);
+    if (!values) return;
+
+    const next = withoutCustomOption(values);
+    const current = realValue(widget.value);
+    if (current !== undefined) insertOption(next, current);
+    next.push(CUSTOM_OPTION);
+
+    if (
+        values.length !== next.length ||
+        values.some((value, index) => value !== next[index])
+    ) {
+        setValues(widget, next);
+    }
 }
 
 /**
@@ -201,17 +475,23 @@ function ensureOption(widget, value) {
 
     // Insert among the numeric presets; anything non-numeric goes last.
     const presets = withoutCustomOption(values);
+    insertOption(presets, text);
+    setValues(widget, [...presets, CUSTOM_OPTION]);
+}
+
+/** Insert `text` into `values` in numeric order; non-numeric values go last. */
+function insertOption(values, text) {
+    if (values.includes(text)) return;
     const number = Number(text);
-    let index = presets.length;
+    let index = values.length;
     if (Number.isFinite(number)) {
-        const firstGreater = presets.findIndex((preset) => {
+        const firstGreater = values.findIndex((preset) => {
             const presetNumber = Number(preset);
             return Number.isFinite(presetNumber) && presetNumber > number;
         });
         if (firstGreater !== -1) index = firstGreater;
     }
-    presets.splice(index, 0, text);
-    setValues(widget, [...presets, CUSTOM_OPTION]);
+    values.splice(index, 0, text);
 }
 
 function applyValue(node, widget, value) {

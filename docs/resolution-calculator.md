@@ -7,7 +7,7 @@ A resolution-selector node that outputs **width** and **height** from an **aspec
 | | |
 |---|---|
 | **Python backend** | `resolution_calculator/__init__.py` (node mapping) + `resolution_calculator/resolution_calculator.py` (node) |
-| **Frontend extension** | `web/resolution_calculator.js` — adds the **Custom…** entry to the megapixels dropdown |
+| **Frontend extension** | `web/resolution_calculator.js` — adds the **Custom…** entry to the megapixels dropdown, including when the input is promoted to a subgraph node |
 | **Dependency** | none beyond ComfyUI itself |
 
 Node name: **Skutils Resolution Calculator** · Category: `skkut-utils` (Nodes → Extensions → skkut-utils)
@@ -111,6 +111,28 @@ Behaviour details:
 - The `Custom…` entry and any custom values live only in the browser: the
   server's preset list is unchanged, and other nodes of this type are not
   affected.
+- **Promoted subgraph inputs work too.** If the calculator is inside a
+  subgraph and the `megapixels` input is promoted to the subgraph node, the
+  dropdown on the subgraph node gets the same **Custom…** entry and the same
+  prompt. The custom value is stored on the subgraph node instance (so each
+  instance can carry its own value), is re-added to that dropdown when the
+  workflow loads, and is used by the execution — ComfyUI resolves a promoted
+  input's value from the subgraph node's own widget store. Nested subgraphs
+  (a promoted input that is itself promoted again) are supported; the
+  extension walks the promotion link chain to recognize the input.
+
+### Why subgraph promotion needs extra handling
+
+For a normal node the frontend calls the widget's `callback` when a value is
+picked, which is what opens the **Custom…** prompt. For a promoted input the
+frontend keeps the user-facing value on the subgraph node as a store-backed
+"promoted" widget and deliberately does **not** forward the edit to the
+interior node's widget callback (`SubgraphNode._setWidget` /
+`promotedWidgetStoreProjection`). The interior widget's option list is also
+copied once when the promotion is created. The extension therefore finds
+every promoted input that resolves back to this node's `megapixels` widget,
+adds **Custom…** (and any saved custom value) to the host widget's option
+list, and wraps the host widget's callback with the same prompt.
 
 ## Files
 
@@ -135,5 +157,10 @@ The feature ships as part of the unified `ComfyUI-skkut-utils` repo — see the 
 - **A custom value shows with a red outline in the new node UI.** The value is
   not in that node's dropdown list. It is re-added automatically when the
   workflow is loaded; re-picking or retyping it also fixes it.
+- **Custom… on a subgraph node does nothing.** The frontend extension that
+  decorates promoted subgraph inputs did not load or is an older version.
+  Restart ComfyUI and hard-refresh the browser, then reload the workflow. If
+  the subgraph input was promoted in the same session, reloading the workflow
+  also re-runs the decoration sweep.
 - **Custom values above 20 MP produce enormous images.** That is expected:
   only the presets are capped at 20 MP. Check available VRAM before queueing.
