@@ -31,9 +31,22 @@ import { app } from "../../scripts/app.js";
  * `_setWidget` + `promotedWidgetStoreProjection`). That host widget is what
  * the user interacts with, so this extension also decorates every promoted
  * host widget whose interior source is this node's megapixels widget: it adds
- * "Custom…" to the host option list, re-adds saved custom values, and wraps
- * the host widget's callback with the same prompt. Nested subgraphs (a
- * promoted input of a promoted input) are resolved through the link chain.
+ * "Custom…" to the host option list, re-adds saved custom values, wraps the
+ * host widget's callback with the same prompt, and intercepts direct writes
+ * of the "Custom…" sentinel to the widget-value store. That last part matters
+ * for surfaces that bypass the widget callback — the right-side Parameters
+ * panel writes the value to the store first (`promotedInputWidget` creates a
+ * plain projection whose callback only stores the value), so without the
+ * interception picking "Custom…" there would store the literal label and
+ * never open the prompt. Nested subgraphs (a promoted input of a promoted
+ * input) are resolved through the link chain.
+ *
+ * A "Custom…" value can also be left behind by an older version or a failed
+ * prompt. It is not a valid megapixels value (it fails server validation), and
+ * in the canvas renderer re-selecting it would be a no-op because
+ * `ComboWidget.setValue` ignores a selection equal to the current value. Both
+ * the interior and promoted widgets therefore restore the last real value
+ * (or the `1.0` default) whenever the sentinel is found or selected.
  */
 
 const NODE_CLASS = "SkutilsResolutionCalculator";
@@ -44,6 +57,24 @@ const DEFAULT_FALLBACK = "1.0";
 const MAX_DECIMALS = 4;
 /** Guard against malformed/cyclic promotion chains. */
 const MAX_PROMOTION_DEPTH = 100;
+
+/**
+ * Megapixels widgets that can receive a direct "Custom…" store write, keyed
+ * by ComfyUI widget id. Covers promoted host widgets (right-side panel) and
+ * ordinary interior widgets (Vue node grid).
+ */
+const megapixelsTargets = new Map();
+
+/** The patched `useWidgetValueStore()` instance, once found. */
+let patchedWidgetStore = null;
+
+/**
+ * True while a workflow graph is being configured/loaded. The frontend applies
+ * saved widget values through the same store path as user edits, so a saved
+ * "Custom…" sentinel would otherwise open a prompt on file open. During a load
+ * such values are repaired silently instead.
+ */
+let configuringGraph = false;
 
 app.registerExtension({
     name: "SkkutUtils.ResolutionCalculator",
@@ -85,15 +116,31 @@ app.registerExtension({
         if (isSubgraphNode(node)) decorateSubgraphNode(node);
     },
 
+    beforeLoadGraph() {
+        configuringGraph = true;
+    },
+
+    beforeConfigureGraph() {
+        configuringGraph = true;
+    },
+
     afterConfigureGraph() {
+        configuringGraph = false;
         scheduleRescan();
     },
 
     afterLoadGraph() {
+        configuringGraph = false;
+        scheduleRescan();
+    },
+
+    onGraphLoadError() {
+        configuringGraph = false;
         scheduleRescan();
     },
 
     setup() {
+        ensureWidgetStorePatch();
         scheduleRescan();
     },
 });
@@ -104,23 +151,22 @@ function findMegapixelsWidget(node) {
 
 function setupMegapixels(node) {
     const widget = findMegapixelsWidget(node);
-    if (!widget || widget.__skutilsCustomMegapixels) return;
+    if (!widget) return;
 
     const values = getValues(widget);
     if (!values) return; // function-backed (dynamic) combos are left alone
 
-    const state = { lastValue: widget.value };
-    widget.__skutilsCustomMegapixels = state;
-    trackLastValue(widget, state);
-    setValues(widget, [...withoutCustomOption(values), CUSTOM_OPTION]);
+    let state = widget.__skutilsCustomMegapixels;
+    if (!state) {
+        state = { lastValue: realValue(widget.value), wrapper: null, prompting: false };
+        widget.__skutilsCustomMegapixels = state;
+        trackLastValue(widget, state);
+        installCallbackWrapper(node, widget, state);
+    }
 
-    const callback = widget.callback;
-    widget.callback = function (value, ...args) {
-        if (value !== CUSTOM_OPTION) {
-            return callback?.apply(this, [value, ...args]);
-        }
-        void requestCustomValue(node, widget, state);
-    };
+    setValues(widget, [...withoutCustomOption(values), CUSTOM_OPTION]);
+    normalizeSentinel(node, widget, state);
+    registerMegapixelsTarget(node, widget, state);
 }
 
 /* ------------------------------------------------------------------------- *
@@ -305,29 +351,37 @@ function isMegapixelsSource(source) {
 function decorateHostWidget(hostNode, widget) {
     let state = widget.__skutilsPromotedMegapixels;
     if (!state) {
-        state = { lastValue: realValue(widget.value), wrapper: null };
+        state = { lastValue: realValue(widget.value), wrapper: null, prompting: false };
         widget.__skutilsPromotedMegapixels = state;
         trackLastValue(widget, state);
-        wrapHostCallback(hostNode, widget, state);
+        installCallbackWrapper(hostNode, widget, state);
     } else if (widget.callback !== state.wrapper) {
         // The frontend (or another extension) replaced the host widget's
         // callback while rebinding; re-install the interception, chaining to
         // the new callback.
-        wrapHostCallback(hostNode, widget, state);
+        installCallbackWrapper(hostNode, widget, state);
     }
 
     const current = realValue(widget.value);
     if (current !== undefined) state.lastValue = current;
     refreshHostOptions(widget);
+    normalizeSentinel(hostNode, widget, state);
+    registerMegapixelsTarget(hostNode, widget, state);
 }
 
-function wrapHostCallback(hostNode, widget, state) {
+/**
+ * Chain the widget's callback so a "Custom…" selection opens the prompt.
+ * Selections of real values are forwarded unchanged. The store-level
+ * interception below may have opened the prompt already; `state.prompting`
+ * keeps a single selection from opening it twice.
+ */
+function installCallbackWrapper(node, widget, state) {
     const callback = widget.callback;
     const wrapper = function (value, ...args) {
         if (value !== CUSTOM_OPTION) {
             return callback?.apply(this, [value, ...args]);
         }
-        void requestCustomValue(hostNode, widget, state);
+        beginCustomSelection(node, widget, state);
     };
     state.wrapper = wrapper;
     widget.callback = wrapper;
@@ -338,6 +392,191 @@ function realValue(value) {
     if (value == null) return undefined;
     const text = String(value);
     return text === "" || text === CUSTOM_OPTION ? undefined : text;
+}
+
+/**
+ * The value to fall back to when a widget holds the "Custom…" sentinel but no
+ * real value is known. `1.0` is the backend default, so prefer it when it is
+ * one of the presets; otherwise use the first numeric preset.
+ */
+function realFallback(widget) {
+    const values = getValues(widget);
+    const presets = values ? withoutCustomOption(values).map(String) : [];
+    if (presets.includes(DEFAULT_FALLBACK)) return DEFAULT_FALLBACK;
+    const numeric = presets.find((value) => Number.isFinite(Number(value)));
+    return numeric ?? presets[0] ?? DEFAULT_FALLBACK;
+}
+
+/**
+ * "Custom…" is a UI sentinel, never a valid widget value: it fails server
+ * validation and, in the canvas renderer, makes re-selecting Custom… a no-op
+ * (`ComboWidget.setValue` ignores a selection equal to the current value).
+ * Replace it with the last real value as soon as we see it.
+ */
+function normalizeSentinel(node, widget, state) {
+    if (widget.value !== CUSTOM_OPTION) return;
+    const restore = realValue(state.lastValue) ?? realFallback(widget);
+    state.lastValue = restore;
+    if (configuringGraph) {
+        // Mid-configure: write the store directly, without onWidgetChanged /
+        // version side effects meant for interactive edits.
+        widget.value = restore;
+        return;
+    }
+    applyValue(node, widget, restore);
+}
+
+/**
+ * Open the custom-value prompt once per selection. Any sentinel already
+ * written by the frontend is restored first, so a prompt that fails to open
+ * (or a workflow queued while it is open) never leaves "Custom…" behind.
+ */
+function beginCustomSelection(node, widget, state) {
+    if (state.prompting) return;
+
+    const restore = realValue(state.lastValue) ?? realFallback(widget);
+    state.lastValue = restore;
+    if (widget.value === CUSTOM_OPTION) widget.value = restore;
+
+    // Saved sentinels are applied during graph configuration through the same
+    // path as user edits; repair them without interrupting the workflow load.
+    if (configuringGraph) return;
+
+    state.prompting = true;
+    void requestCustomValue(node, widget, state).finally(() => {
+        state.prompting = false;
+    });
+}
+
+/* ------------------------------------------------------------------------- *
+ * Widget-value store interception
+ * ------------------------------------------------------------------------- */
+
+/**
+ * Remember a widget so direct writes of "Custom…" to the widget-value store
+ * can be intercepted. Needed because the right-side Parameters panel builds
+ * its own widget projection (`promotedInputWidget`) whose callback only writes
+ * the store — it never runs the decorated widget's callback.
+ */
+function registerMegapixelsTarget(node, widget, state) {
+    let id;
+    try {
+        id = widget?.widgetId;
+    } catch {
+        return;
+    }
+    if (!id) return;
+
+    megapixelsTargets.set(id, { node, widget, state });
+    ensureWidgetStorePatch();
+}
+
+function ensureWidgetStorePatch() {
+    if (patchedWidgetStore) return patchedWidgetStore;
+
+    const store = findWidgetValueStore();
+    if (!store) return null;
+
+    const originalSetValue = store.setValue;
+    if (typeof originalSetValue !== "function") return null;
+
+    try {
+        store.setValue = function (id, value) {
+            const target = megapixelsTargets.get(id);
+            if (target) {
+                if (value === CUSTOM_OPTION) {
+                    return interceptCustomOptionWrite(
+                        this,
+                        originalSetValue,
+                        id,
+                        target
+                    );
+                }
+                const text = realValue(value);
+                if (text !== undefined) target.state.lastValue = text;
+            }
+            return originalSetValue.call(this, id, value);
+        };
+    } catch (error) {
+        console.warn(
+            "[skkut-utils] could not intercept promoted widget values",
+            error
+        );
+        return null;
+    }
+
+    patchedWidgetStore = store;
+    return store;
+}
+
+function interceptCustomOptionWrite(store, originalSetValue, id, target) {
+    const { node, widget, state } = target;
+
+    // The panel writes the sentinel three times for one selection (store,
+    // widget value setter, then the projection's callback); only the first
+    // should open the prompt.
+    if (state.prompting) return true;
+
+    // The projection the panel handed us may have been rebuilt or demoted;
+    // do not act on a stale target.
+    let liveId;
+    try {
+        liveId = widget?.widgetId;
+    } catch {
+        liveId = undefined;
+    }
+    if (widget && liveId !== undefined && liveId !== id) {
+        megapixelsTargets.delete(id);
+        return originalSetValue.call(store, id, CUSTOM_OPTION);
+    }
+
+    const restore = realValue(state.lastValue) ?? realFallback(widget);
+    state.lastValue = restore;
+    originalSetValue.call(store, id, restore);
+    beginCustomSelection(node, widget, state);
+    return true;
+}
+
+/**
+ * Locate the frontend's widget-value Pinia store. It is not exported to
+ * extensions, so reach it through the mounted Vue app (best effort; when this
+ * fails the canvas and Vue-node-grid paths still work because they call the
+ * decorated widget's callback directly).
+ */
+function findWidgetValueStore() {
+    try {
+        const pinia = findPinia();
+        const store = pinia?._s?.get?.("widgetValue");
+        return store && typeof store.setValue === "function" ? store : null;
+    } catch {
+        return null;
+    }
+}
+
+function findPinia() {
+    const roots = [
+        document.getElementById("vue-app"),
+        document.getElementById("app"),
+    ];
+    for (const root of roots) {
+        const pinia = root?.__vue_app__?.config?.globalProperties?.$pinia;
+        if (pinia) return pinia;
+    }
+
+    const first = document.body?.firstElementChild;
+    const firstPinia = first?.__vue_app__?.config?.globalProperties?.$pinia;
+    if (firstPinia) return firstPinia;
+
+    // Last resort: bounded walk for whichever element owns the Vue app.
+    const queue = document.body ? [document.body] : [];
+    for (let seen = 0; queue.length && seen < 4000; seen++) {
+        const element = queue.shift();
+        const pinia =
+            element?.__vue_app__?.config?.globalProperties?.$pinia;
+        if (pinia) return pinia;
+        for (const child of element.children) queue.push(child);
+    }
+    return null;
 }
 
 /** Keep the host option list in sync with the current value + Custom… */
@@ -379,7 +618,8 @@ function trackLastValue(widget, state) {
         },
         set(value) {
             descriptor.set.call(this, value);
-            if (value !== CUSTOM_OPTION) state.lastValue = value;
+            const text = realValue(value);
+            if (text !== undefined) state.lastValue = text;
         },
     });
 }

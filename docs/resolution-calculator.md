@@ -7,7 +7,7 @@ A resolution-selector node that outputs **width** and **height** from an **aspec
 | | |
 |---|---|
 | **Python backend** | `resolution_calculator/__init__.py` (node mapping) + `resolution_calculator/resolution_calculator.py` (node) |
-| **Frontend extension** | `web/resolution_calculator.js` — adds the **Custom…** entry to the megapixels dropdown, including when the input is promoted to a subgraph node |
+| **Frontend extension** | `web/resolution_calculator.js` — adds the **Custom…** entry to the megapixels dropdown, including when the input is promoted to a subgraph node, in the canvas, the Nodes 2.0 grid, and the right-side Parameters panel |
 | **Dependency** | none beyond ComfyUI itself |
 
 Node name: **Skutils Resolution Calculator** · Category: `skkut-utils` (Nodes → Extensions → skkut-utils)
@@ -114,12 +114,20 @@ Behaviour details:
 - **Promoted subgraph inputs work too.** If the calculator is inside a
   subgraph and the `megapixels` input is promoted to the subgraph node, the
   dropdown on the subgraph node gets the same **Custom…** entry and the same
-  prompt. The custom value is stored on the subgraph node instance (so each
-  instance can carry its own value), is re-added to that dropdown when the
-  workflow loads, and is used by the execution — ComfyUI resolves a promoted
-  input's value from the subgraph node's own widget store. Nested subgraphs
-  (a promoted input that is itself promoted again) are supported; the
-  extension walks the promotion link chain to recognize the input.
+  prompt. This works on every surface the promoted widget appears on: the
+  node on the canvas (both renderers), the Nodes 2.0 widget grid, and the
+  right-side **Parameters** panel. The custom value is stored on the subgraph
+  node instance (so each instance can carry its own value), is re-added to
+  that dropdown when the workflow loads, and is used by the execution —
+  ComfyUI resolves a promoted input's value from the subgraph node's own
+  widget store. Nested subgraphs (a promoted input that is itself promoted
+  again) are supported; the extension walks the promotion link chain to
+  recognize the input.
+- **A stuck `Custom…` value is repaired automatically.** `Custom…` is a UI
+  sentinel, never a valid megapixels value. If a workflow (or an older
+  version of this extension) saved the literal `Custom…`, loading it replaces
+  the value with the last real value or the `1.0` default, so queueing no
+  longer fails validation and re-selecting **Custom…** opens the prompt again.
 
 ### Why subgraph promotion needs extra handling
 
@@ -134,11 +142,21 @@ every promoted input that resolves back to this node's `megapixels` widget,
 adds **Custom…** (and any saved custom value) to the host widget's option
 list, and wraps the host widget's callback with the same prompt.
 
+The right-side Parameters panel is a separate path: it renders each promoted
+input through its own lightweight projection (`promotedInputWidget`) whose
+callback only writes the widget-value store. It never runs the decorated host
+widget's callback, so choosing **Custom…** there would store the literal
+label. The extension therefore also wraps the frontend's widget-value store
+(`setValue`) and turns a **Custom…** write for a recognized megapixels widget
+into the prompt, restoring a real value first. This makes every surface —
+canvas, Nodes 2.0 grid, and parameters panel — behave the same, and prevents
+the sentinel from ever reaching the workflow or the API prompt.
+
 ## Files
 
 - `resolution_calculator/resolution_calculator.py` — node implementation: `RESOLUTION_OPTIONS`, `MEGAPIXEL_OPTIONS`, `SkutilsResolutionCalculator`, `VALIDATE_INPUTS`.
 - `resolution_calculator/__init__.py` — registers the node mapping.
-- `web/resolution_calculator.js` — adds the **Custom…** dropdown entry and its prompt; re-adds saved custom values when a workflow loads.
+- `web/resolution_calculator.js` — adds the **Custom…** dropdown entry and its prompt; re-adds saved custom values when a workflow loads; decorates promoted subgraph inputs and intercepts widget-value-store writes so the prompt opens from the canvas, the Nodes 2.0 grid, and the right-side Parameters panel.
 
 ## Installation
 
@@ -151,9 +169,11 @@ The feature ships as part of the unified `ComfyUI-skkut-utils` repo — see the 
   the browser (Ctrl+F5 / Cmd+Shift+R) so the new `web/resolution_calculator.js`
   is fetched.
 - **Queueing fails with "megapixels must be a number/positive number".** The
-  widget holds something that is not a positive number — for example the
-  literal `Custom…` value, if a workflow was saved while the prompt was open.
-  Pick a preset, or choose Custom… and enter a number.
+  widget holds something that is not a positive number — historically the
+  literal `Custom…` sentinel, if a workflow was saved while the prompt was
+  open or before the subgraph support was fixed. Reloading the workflow with
+  the current extension repairs such a value automatically (to the last real
+  selection or `1.0`); picking a preset also fixes it immediately.
 - **A custom value shows with a red outline in the new node UI.** The value is
   not in that node's dropdown list. It is re-added automatically when the
   workflow is loaded; re-picking or retyping it also fixes it.
@@ -161,6 +181,9 @@ The feature ships as part of the unified `ComfyUI-skkut-utils` repo — see the 
   decorates promoted subgraph inputs did not load or is an older version.
   Restart ComfyUI and hard-refresh the browser, then reload the workflow. If
   the subgraph input was promoted in the same session, reloading the workflow
-  also re-runs the decoration sweep.
+  also re-runs the decoration sweep. If Custom… works on the canvas node but
+  not in the right-side Parameters panel, the panel's store-level interception
+  did not install (it is best effort); use the canvas node's dropdown, which
+  runs the widget callback directly.
 - **Custom values above 20 MP produce enormous images.** That is expected:
   only the presets are capped at 20 MP. Check available VRAM before queueing.
